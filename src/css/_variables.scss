@@ -1,0 +1,8 @@
+// colors
+$dark: #000000;
+$light: #ffffff;
+
+@mixin margin-center{
+  margin-left: auto;
+  margin-right: auto;
+}
