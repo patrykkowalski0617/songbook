@@ -2,7 +2,32 @@
 $dark: #000000;
 $light: #ffffff;
 
+// space
+$space-1: 0.4rem;
+$space-2: 0.7rem;
+$space-3: 1rem;
+$space-4: 1.3rem;
+$space-5: 1.6rem;
+$space-6: 1.9rem;
+$space-7: 2.2rem;
+
+// media breaks
+$breakS: 320px;		// Breaking points of website
+$breakM: 768px;
+$breakL: 1024px;
+
 @mixin margin-center{
   margin-left: auto;
   margin-right: auto;
+}
+
+@mixin align-items-center{
+  display: flex;
+  align-items: center;
+}
+
+@mixin icon ($bg-color, $txt-color){
+  display: block;
+  background-color: $bg-color;
+  color: $txt-color;
 }
