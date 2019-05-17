@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/index.css';
+import './css/fontello/css/glyph.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 

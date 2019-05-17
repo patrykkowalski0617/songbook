@@ -1,14 +1,21 @@
 [
   {
     "id": 1,
-    "names": ["settings"]
+    "names": [
+      "settings"
+    ]
   },
   {
     "id": 2,
-    "names": ["lyrics-list"]
+    "names": [
+      "lyrics-list"
+    ]
   },
   {
     "id": 3,
-    "names": ["play", "stop", "ex-1", "ex-2"]
+    "names": [
+      "play",
+      "pause"
+    ]
   }
 ]

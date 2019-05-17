@@ -1,0 +1,28 @@
+{
+  "name": "glyph",
+  "css_prefix_text": "icon-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "929ff290f0be577d2a2d587d5a53eec1",
+      "css": "play",
+      "code": 59392,
+      "src": "iconic"
+    },
+    {
+      "uid": "e25c28400dafedf82c27c46ccd6a49a7",
+      "css": "stop",
+      "code": 59393,
+      "src": "iconic"
+    },
+    {
+      "uid": "b660aec4a0c2cdec04a3cd708e00fa07",
+      "css": "pause",
+      "code": 59394,
+      "src": "iconic"
+    }
+  ]
+}
