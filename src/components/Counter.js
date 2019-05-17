@@ -1,3 +1,5 @@
+// import React from 'react';
+
 class Counter {
     constructor(callback, tempo, meter, startDelay) {
         const tt = this;
@@ -55,10 +57,12 @@ class Counter {
     }
 }
 
-const counter = new Counter(function () {
-    // console.clear()
-    console.log(counter.clock.barSet + ' : ' + counter.clock.bar + ' : ' + counter.clock.knock)
-    // counter.stop()
-}, 60, 4, 3000);
+// const counter = new Counter(function () {
+//     // console.clear()
+//     console.log(counter.clock.barSet + ' : ' + counter.clock.bar + ' : ' + counter.clock.knock)
+//     // counter.stop()
+// }, 60, 4, 3000);
 
-counter.start();
+// counter.start();
+
+export default Counter;
