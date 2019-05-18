@@ -10,7 +10,7 @@ class Counter {
         this.setNewTempo = function (newTempo) {
             tt.tempo = newTempo;
             if (tt.clock.isRun) {
-                tt.stop();
+                tt.pause();
                 tt.start();
             }
 
@@ -48,21 +48,21 @@ class Counter {
 
             return tt.clock.isRun;
         };
-        this.stop = function () {
+        this.pause = function () {
             clearInterval(tt.clock.isRun)
             tt.clock.isRun = 0;
 
             return tt.clock.isRun;
         };
+        this.toggle = function () {
+            if (tt.clock.isRun) {
+                tt.pause()
+            }
+            else {
+                tt.start()
+            }
+        }
     }
 }
-
-// const counter = new Counter(function () {
-//     // console.clear()
-//     console.log(counter.clock.barSet + ' : ' + counter.clock.bar + ' : ' + counter.clock.knock)
-//     // counter.stop()
-// }, 60, 4, 3000);
-
-// counter.start();
 
 export default Counter;

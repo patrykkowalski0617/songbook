@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Counter from './Counter';
 
 class Button extends Component {
   constructor(props) {
@@ -16,16 +15,16 @@ class Button extends Component {
 
   render() {
     return (
-      <div className="col" onClick={this.onClick.bind(this)}>
+      <div className="col" onClick={() => this.onClick(this.props.callback)}>
         <i className={`icon icon-${this.props.names[this.state.initialNameIndex]} circle-input`}
           style={this.iconStyle}></i>
       </div>
     )
   }
 
-  onClick() {
+  onClick(callback) {
     this.switchIcon()
-    counter.start()
+    if (callback) { callback() }
   }
 
   switchIcon(props) {
@@ -38,9 +37,5 @@ class Button extends Component {
     )
   }
 }
-
-const counter = new Counter(function () {
-  console.log(counter.clock.barSet + ' : ' + counter.clock.bar + ' : ' + counter.clock.knock)
-}, 60, 4, 3000);
 
 export default Button;
