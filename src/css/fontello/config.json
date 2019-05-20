@@ -23,6 +23,18 @@
       "css": "pause",
       "code": 59394,
       "src": "iconic"
+    },
+    {
+      "uid": "fc94b92194752796654c96c7b7dccebb",
+      "css": "settings",
+      "code": 59395,
+      "src": "iconic"
+    },
+    {
+      "uid": "ef47651da3866460f27baf85ae234e5c",
+      "css": "lyrics-list",
+      "code": 59396,
+      "src": "iconic"
     }
   ]
 }
