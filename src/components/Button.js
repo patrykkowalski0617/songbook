@@ -5,19 +5,24 @@ class Button extends Component {
     super(props);
     this.state = { initialNameIndex: 0 };
 
-    this.iconStyle = {
-      fontSize: '20px',
-      lineHeight: '40px',
-      textAlign: 'center',
-      cursor: 'pointer'
+    this.style = {
+      col: {
+        padding: '0 .3rem'
+      },
+      icon: {
+        fontSize: '20px',
+        lineHeight: '40px',
+        textAlign: 'center',
+        cursor: 'pointer'
+      }
     }
   }
 
   render() {
     return (
-      <div className="col" onClick={() => this.onClick(this.props.callback)}>
+      <div className="col" onClick={() => this.onClick(this.props.callback)} style={this.style.col}>
         <i className={`icon icon-${this.props.names[this.state.initialNameIndex]} circle-input`}
-          style={this.iconStyle}></i>
+          style={this.style.icon}></i>
       </div>
     )
   }

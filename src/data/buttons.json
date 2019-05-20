@@ -17,5 +17,11 @@
       "play",
       "pause"
     ]
+  },
+  {
+    "id": 4,
+    "names": [
+      "stop"
+    ]
   }
 ]

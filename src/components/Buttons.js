@@ -12,6 +12,12 @@ class Buttons extends Component {
       null,
       () => counter.toggle()
     ]
+
+    this.style = {
+      headerButtons: {
+        margin: '0 -.3rem'
+      }
+    }
   }
 
   buttonsMap() {
@@ -25,7 +31,7 @@ class Buttons extends Component {
     const buttonsComponents = this.buttonsMap();
 
     return (
-      <div className="row header-buttons">
+      <div className="row header-buttons" style={this.style.headerButtons}>
         {buttonsComponents}
       </div>
     )
