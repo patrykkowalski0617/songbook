@@ -54,6 +54,12 @@ class Counter {
 
             return tt.clock.isRun;
         };
+        this.stop = function () {
+            if (tt.clock.isRun) {
+                tt.pause();
+                tt.clock.reset();
+            }
+        };
         this.toggle = function () {
             if (tt.clock.isRun) {
                 tt.pause()

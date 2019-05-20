@@ -10,7 +10,8 @@ class Buttons extends Component {
     this.callbacks = [
       null,
       null,
-      () => counter.toggle()
+      () => counter.toggle(),
+      () => counter.stop()
     ]
 
     this.style = {
