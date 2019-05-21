@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import buttons from "../../data/buttons";
+import buttons from "./button_package";
 import Button from "./Button";
 import Counter from "../Counter";
 
