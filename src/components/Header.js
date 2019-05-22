@@ -1,20 +1,22 @@
-import React from "react";
+import React, { Component } from "react";
 
 import ButtonContainer from "./buttons/Button_Container";
 
-function Header() {
-   return (
+class Header extends Component {
+  render() {
+    return (
       <header id="header">
-         <div className="container">
-            <h1>
-               Song
-               <br />
-               Book
-            </h1>
-            <ButtonContainer />
-         </div>
+        <div className="container">
+          <h1>
+            Song
+            <br />
+            Book
+          </h1>
+          <ButtonContainer />
+        </div>
       </header>
-   );
+    );
+  }
 }
 
 export default Header;

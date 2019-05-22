@@ -1,14 +1,16 @@
-import React from 'react';
-import LyricsSearch from './Lyrics_Search';
+import React, { Component } from "react";
+import LyricsSearch from "./Lyrics_Search";
 
-function Main(){
-  return (
-    <main>
-      <div className='container'>
-        <LyricsSearch />
-      </div>
-    </main>
-  )
+class Main extends Component {
+   render() {
+      return (
+         <main>
+            <div className="container">
+               <LyricsSearch />
+            </div>
+         </main>
+      );
+   }
 }
 
 export default Main;
