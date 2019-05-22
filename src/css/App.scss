@@ -13,12 +13,12 @@ body{
   background-color: $dark;
   color: $light;
 }
-#header, #footer{
+.header, #footer{
     width: 100%;
     background-color: $dark;
     color: $light;
 }
-#header{
+.header{
   height: 60px;
   > .container{
     display: flex;

@@ -496,14 +496,14 @@ body {
   background-color: #000000;
   color: #ffffff; }
 
-#header, #footer {
+.header, #footer {
   width: 100%;
   background-color: #000000;
   color: #ffffff; }
 
-#header {
+.header {
   height: 60px; }
-  #header > .container {
+  .header > .container {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -512,9 +512,9 @@ body {
             justify-content: space-between;
     padding-top: 10px;
     padding-bottom: 10px; }
-    #header > .container > * {
+    .header > .container > * {
       max-height: 40px; }
-  #header .header-buttons .icon {
+  .header .header-buttons .icon {
     display: block;
     background-color: #ffffff;
     color: #000000; }
