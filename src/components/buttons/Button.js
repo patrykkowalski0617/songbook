@@ -9,16 +9,17 @@ class Button extends Component {
          fontSize: "20px",
          lineHeight: "40px",
          textAlign: "center",
-         cursor: "pointer"
+         cursor: "pointer",
+         border: "none"
       }
    };
 
    render() {
       return (
          <div className="col" style={this.style.col}>
-            <i
-               className={`icon icon-${this.props.icon} icon-role-${
-                  this.props.iconRole
+            <button
+               className={`icon icon-${this.props.icon} button-${
+                  this.props.buttonName
                } circle-input`}
                style={this.style.icon}
                onClick={this.props.onClick}

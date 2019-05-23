@@ -18,14 +18,16 @@ class ButtonContainer extends Component {
 
    callbacks = [
       null,
-      null,
+      () => {
+         window.updateMainComponent({ display: "hidden" });
+      },
       e => {
          counter.toggle();
          this.switchIcon(e.target);
       },
       () => {
          if (counter.clock.isRun) {
-            this.switchIcon(document.querySelector(".icon-role-play"));
+            this.switchIcon(document.querySelector(".button-play"));
          }
          counter.stop();
       }
@@ -65,14 +67,14 @@ class ButtonContainer extends Component {
       const buttonsComponents = buttons.map((button, index) => {
          this.state.iconInitialIndex.push(0);
          this.buttonClassNames.push(
-            `icon-role-${button.names[this.state.iconInitialIndex[index]]}`
+            `button-${button.names[this.state.iconInitialIndex[index]]}`
          );
 
          return (
             <Button
                key={button.id}
                icon={button.names[this.state.iconInitialIndex[index]]}
-               iconRole={button.names[0]}
+               buttonName={button.names[0]}
                onClick={this.callbacks[index]}
             />
          );
