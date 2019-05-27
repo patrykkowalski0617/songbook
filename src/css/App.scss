@@ -1,63 +1,66 @@
-@import 'variables';
-@import 'grid';
+@import "variables";
+@import "grid";
+@import "animation";
 
-*{
-  box-sizing: border-box;
+* {
+   box-sizing: border-box;
 }
-body{
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  font-size: 15px;
-  background-color: $dark;
-  color: $light;
+body {
+   margin: 0;
+   padding: 0;
+   font-family: "Roboto", sans-serif;
+   font-weight: 400;
+   font-size: 15px;
+   background-color: $dark;
+   color: $light;
 }
-.header, #footer{
-    width: 100%;
-    background-color: $dark;
-    color: $light;
+.header,
+#footer {
+   width: 100%;
+   background-color: $dark;
+   color: $light;
 }
-.header{
-  height: 60px;
-  > .container{
-    display: flex;
-    justify-content: space-between;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    > * {
-      max-height: 40px
-    }
-  }
-  .header-buttons{
-    .icon{
-      @include icon($light, $dark);
-    }
-  }
+.header {
+   height: 60px;
+   > .container {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      > * {
+         max-height: 40px;
+      }
+   }
+   .header-buttons {
+      .icon {
+         @include icon($light, $dark);
+      }
+   }
 }
-#footer{
-  height: 40px
+#footer {
+   height: 40px;
 }
-main{
-  height: calc(100vh - 100px);
-  overflow-y: scroll;
-  background-color: $light;
-  color: $dark;
+main {
+   height: calc(100vh - 100px);
+   overflow-y: scroll;
+   background-color: $light;
+   color: $dark;
 }
-h1{
-  font-weight: 700;
-  font-size: $space-4;
-  line-height: 20px;
-  margin: 0;
+h1 {
+   font-weight: 700;
+   font-size: $space-4;
+   line-height: 20px;
+   margin: 0;
 }
-ul, ol{
-  list-style-type: none;
+ul,
+ol {
+   list-style-type: none;
 }
 .circle-input,
-.bar-input{
-  height: 40px;
-  border-radius: 20px;
+.bar-input {
+   height: 40px;
+   border-radius: 20px;
 }
-.circle-input{
-  width: 40px;
+.circle-input {
+   width: 40px;
 }
