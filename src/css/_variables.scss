@@ -12,21 +12,26 @@ $space-6: 1.9rem;
 $space-7: 2.2rem;
 
 // media breaks
-$breakS: 320px;		// Breaking points of website
+$breakS: 320px; // Breaking points of website
 $breakM: 768px;
 $breakL: 1024px;
 
-@mixin margin-center{
+// header and footer height
+$headerH: 60px;
+$headerPadding: 10px;
+$footerH: 40px;
+
+@mixin margin-center {
   margin-left: auto;
   margin-right: auto;
 }
 
-@mixin align-items-center{
+@mixin align-items-center {
   display: flex;
   align-items: center;
 }
 
-@mixin icon ($bg-color, $txt-color){
+@mixin icon($bg-color, $txt-color) {
   display: block;
   background-color: $bg-color;
   color: $txt-color;
