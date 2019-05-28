@@ -35,6 +35,18 @@
       "css": "lyrics-list",
       "code": 59396,
       "src": "iconic"
+    },
+    {
+      "uid": "11e664deed5b2587456a4f9c01d720b6",
+      "css": "close",
+      "code": 59397,
+      "src": "iconic"
+    },
+    {
+      "uid": "188e881b2e2f2b1eb350eb7697aabafd",
+      "css": "cancel",
+      "code": 59398,
+      "src": "iconic"
     }
   ]
 }

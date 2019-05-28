@@ -4,3 +4,5 @@
 .icon-pause:before { content: '\e802'; } /* '' */
 .icon-settings:before { content: '\e803'; } /* '' */
 .icon-lyrics-list:before { content: '\e804'; } /* '' */
+.icon-close:before { content: '\e805'; } /* '' */
+.icon-cancel:before { content: '\e806'; } /* '' */
