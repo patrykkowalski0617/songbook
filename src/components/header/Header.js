@@ -22,9 +22,7 @@ class Header extends Component {
          <header className="header">
             <div className="container">
                <Logo display={this.state.displaySerach ? "none" : "block"} />
-               <Search
-                  display={this.state.displaySerach ? "inline-block" : "none"}
-               />
+               <Search display={this.state.displaySerach ? "block" : "none"} />
                <Buttons
                   onClick={() => this.handleClick(this.props.onClick())}
                />
