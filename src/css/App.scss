@@ -3,80 +3,81 @@
 @import "animation";
 
 * {
-  box-sizing: border-box;
+   box-sizing: border-box;
 }
 body {
-  margin: 0;
-  padding: 0;
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-size: 15px;
-  background-color: $dark;
-  color: $light;
+   margin: 0;
+   padding: 0;
+   font-family: "Roboto", sans-serif;
+   font-weight: 400;
+   font-size: 15px;
+   background-color: $dark;
+   color: $light;
 }
 a:link,
 a:visited,
 a:active,
 a:hover {
-  color: inherit;
+   color: inherit;
 }
 a {
-  text-decoration: none;
+   text-decoration: none;
 }
 .header,
 .footer {
-  width: 100%;
-  background-color: $dark;
-  color: $light;
+   width: 100%;
+   background-color: $dark;
+   color: $light;
 }
 .header {
-  height: $headerH;
-  > .container {
-    display: flex;
-    justify-content: space-between;
-    padding-top: $headerPadding;
-    padding-bottom: $headerPadding;
-  }
-  .header-buttons {
-    .icon {
-      @include icon($light, $dark);
-    }
-  }
-  .search {
-    width: 100%;
-    margin-right: $space-1;
-    max-width: 650px;
-  }
+   height: $headerH;
+   > .container {
+      display: flex;
+      justify-content: space-between;
+      padding-top: $headerPadding;
+      padding-bottom: $headerPadding;
+   }
+   .header-buttons {
+      .icon {
+         @include icon($light, $dark);
+      }
+   }
+   .search {
+      width: 100%;
+      margin-right: $space-1;
+      max-width: 650px;
+   }
 }
 .footer {
-  height: $footerH;
+   height: $footerH;
+   text-align: center;
 }
 .main {
-  height: calc(100vh - #{$headerH} - #{$footerH});
-  overflow-y: scroll;
-  background-color: $light;
-  color: $dark;
+   height: calc(100vh - #{$headerH} - #{$footerH});
+   overflow-y: scroll;
+   background-color: $light;
+   color: $dark;
 }
 .logo {
-  font-weight: 700;
-  font-size: $space-4;
-  line-height: 20px;
-  margin: 0;
+   font-weight: 700;
+   font-size: $space-4;
+   line-height: 20px;
+   margin: 0;
 }
 ul,
 ol {
-  list-style-type: none;
+   list-style-type: none;
 }
 .circle-input,
 .bar-input {
-  height: 40px;
-  border-radius: 20px;
-  border: none;
+   height: 40px;
+   border-radius: 20px;
+   border: none;
 }
 .circle-input {
-  width: 40px;
+   width: 40px;
 }
 .bar-input {
-  padding-left: 20px;
-  padding-right: 20px;
+   padding-left: 20px;
+   padding-right: 20px;
 }
