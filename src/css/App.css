@@ -496,6 +496,15 @@ body {
   background-color: #000000;
   color: #ffffff; }
 
+a:link,
+a:visited,
+a:active,
+a:hover {
+  color: inherit; }
+
+a {
+  text-decoration: none; }
+
 .header,
 .footer {
   width: 100%;
@@ -517,6 +526,10 @@ body {
     display: block;
     background-color: #ffffff;
     color: #000000; }
+  .header .search {
+    width: 100%;
+    margin-right: 0.4rem;
+    max-width: 650px; }
 
 .footer {
   height: 40px; }
