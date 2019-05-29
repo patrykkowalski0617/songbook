@@ -1,8 +1,8 @@
 import React from "react";
 
-function Search() {
+function Search(props) {
    const style = {
-      display: "none"
+      display: props.display
    };
    return <input type="search" className="bar-input" style={style} />;
 }
