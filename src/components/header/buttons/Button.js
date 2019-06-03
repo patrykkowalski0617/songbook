@@ -1,6 +1,6 @@
 import React from "react";
 
-const ButtonSingle = props => {
+const Button = props => {
    const style = {
       col: {
          padding: "0 .4rem"
@@ -27,4 +27,4 @@ const ButtonSingle = props => {
    );
 };
 
-export default ButtonSingle;
+export default Button;
