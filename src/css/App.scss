@@ -33,25 +33,36 @@ a {
    height: $headerH;
    > .container {
       display: flex;
-      justify-content: space-between;
+      position: relative;
       padding-top: $headerPadding;
       padding-bottom: $headerPadding;
-   }
-   .search {
-      width: 100%;
-      margin-right: $space-1;
-      max-width: 650px;
-      button {
-         border-top-left-radius: 0;
-         border-bottom-left-radius: 0;
-         width: 60px;
-         cursor: pointer;
+      .header-buttons {
+         position: absolute;
+         right: 1.1rem;
+         top: 10px;
       }
-      input {
-         border-top-right-radius: 0;
-         border-bottom-right-radius: 0;
-         border-right: 1px solid $dark;
-         width: calc(100% - 60px);
+      .search {
+         margin-right: $space-1;
+         max-width: 650px;
+         position: relative;
+         overflow: hidden;
+         border-radius: 20px;
+         button {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            width: 100%;
+            max-width: 60px;
+            cursor: pointer;
+            position: absolute;
+            right: 0;
+         }
+         input {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-right: 1px solid $dark;
+            width: calc(100% - 60px);
+            position: absolute;
+         }
       }
    }
 }

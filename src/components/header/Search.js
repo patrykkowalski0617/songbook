@@ -6,11 +6,8 @@ class Search extends Component {
    };
 
    render() {
-      const style = {
-         display: this.props.display
-      };
       return (
-         <div className="search" style={style}>
+         <div className={`search ${this.props.display}`}>
             <input
                className="bar-input"
                type="search"

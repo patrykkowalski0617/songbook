@@ -1,11 +1,8 @@
 import React from "react";
 
 const Logo = props => {
-   const style = {
-      display: props.display
-   };
    return (
-      <h1 className="logo" style={style}>
+      <h1 className={`logo ${props.display}`}>
          <a href="/">
             Song
             <br />

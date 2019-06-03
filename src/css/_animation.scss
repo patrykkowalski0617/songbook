@@ -1,0 +1,13 @@
+.anim-width-show {
+   width: 100%;
+   opacity: 1;
+}
+.anim-width-hide {
+   opacity: 0;
+   width: 0%;
+}
+
+*[class*="anim-"] {
+   transition: 300ms ease-in-out;
+   transition-property: width, opacity;
+}

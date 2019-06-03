@@ -7,12 +7,6 @@ class ButtonContainer extends Component {
       other: "status"
    };
 
-   style = {
-      headerButtons: {
-         margin: "0 -.4rem"
-      }
-   };
-
    buttonsData = {
       lyricsList: {
          icons: ["lyrics-list", "close"],
@@ -36,7 +30,7 @@ class ButtonContainer extends Component {
 
    render() {
       return (
-         <div className="row header-buttons" style={this.style.headerButtons}>
+         <div className="row header-buttons">
             <Button
                icon={
                   this.buttonsData.lyricsList.icons[this.state.lyricsListIcon]
