@@ -1,9 +1,9 @@
 import React from "react";
 
-function LyricsItem() {
+function LyricsItem(props) {
   return (
     <li>
-      <button>lyrics list item</button>
+      <button>{props.lyricsName}</button>
     </li>
   );
 }

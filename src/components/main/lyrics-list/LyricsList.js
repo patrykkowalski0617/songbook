@@ -6,13 +6,11 @@ function LyricsList(props) {
     display: props.display
   };
 
-  console.log(props.searchResult);
-
   return (
     <ul style={style}>
-      <LyricsItem />
-      <LyricsItem />
-      <LyricsItem />
+      {props.searchResult.map(lyricsNames => (
+        <LyricsItem key={lyricsNames.id} lyricsName={lyricsNames.lyricsName} />
+      ))}
     </ul>
   );
 }

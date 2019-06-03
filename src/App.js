@@ -10,10 +10,12 @@ import lyrics_list from "./data/lyrics_list";
 import filterLyricsList from "./logic/filterLyricsList";
 import getLyricsItems from "./logic/getLyricsItems";
 
+const lyricsList = getLyricsItems(lyrics_list);
+
 class App extends Component {
   handleClick = this.handleClick.bind(this);
 
-  state = { displayLyricsList: false, searchResult: [] };
+  state = { displayLyricsList: false, searchResult: lyricsList };
 
   handleClick(callback) {
     console.log("test in App");
@@ -21,7 +23,6 @@ class App extends Component {
   }
 
   searchClick(value) {
-    const lyricsList = getLyricsItems(lyrics_list);
     const searchResult = filterLyricsList(value, lyricsList);
     this.setState({ searchResult: searchResult });
   }
