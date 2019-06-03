@@ -4,12 +4,9 @@ import Search from "./Search";
 import Buttons from "./buttons/Buttons";
 
 class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      displaySerach: false
-    };
-  }
+  state = {
+    displaySerach: false
+  };
 
   handleClick(callback) {
     if (callback) {
