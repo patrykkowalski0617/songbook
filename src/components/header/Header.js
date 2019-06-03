@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Logo from "./Logo";
 import Search from "./Search";
-import Buttons from "./buttons/Buttons";
+import Buttons from "./buttons/ButtonContainer";
 
 class Header extends Component {
   state = {
