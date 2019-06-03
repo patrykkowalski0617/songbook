@@ -37,15 +37,22 @@ a {
     padding-top: $headerPadding;
     padding-bottom: $headerPadding;
   }
-  .header-buttons {
-    .icon {
-      @include icon($light, $dark);
-    }
-  }
   .search {
     width: 100%;
     margin-right: $space-1;
     max-width: 650px;
+    button {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      width: 60px;
+      cursor: pointer;
+    }
+    input {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-right: 1px solid $dark;
+      width: calc(100% - 60px);
+    }
   }
 }
 .footer {
@@ -72,6 +79,8 @@ ol {
   height: 40px;
   border-radius: 20px;
   border: none;
+  background-color: $light;
+  color: $dark;
 }
 .circle-input {
   width: 40px;

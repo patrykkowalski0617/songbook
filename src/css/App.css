@@ -522,14 +522,20 @@ a {
             justify-content: space-between;
     padding-top: 10px;
     padding-bottom: 10px; }
-  .header .header-buttons .icon {
-    display: block;
-    background-color: #ffffff;
-    color: #000000; }
   .header .search {
     width: 100%;
     margin-right: 0.4rem;
     max-width: 650px; }
+    .header .search button {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      width: 60px;
+      cursor: pointer; }
+    .header .search input {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-right: 1px solid #000000;
+      width: calc(100% - 60px); }
 
 .footer {
   height: 40px; }
@@ -554,7 +560,9 @@ ol {
 .bar-input {
   height: 40px;
   border-radius: 20px;
-  border: none; }
+  border: none;
+  background-color: #ffffff;
+  color: #000000; }
 
 .circle-input {
   width: 40px; }
