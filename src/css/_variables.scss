@@ -30,9 +30,3 @@ $footerH: 40px;
   display: flex;
   align-items: center;
 }
-
-@mixin icon($bg-color, $txt-color) {
-  display: block;
-  background-color: $bg-color;
-  color: $txt-color;
-}

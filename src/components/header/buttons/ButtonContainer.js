@@ -1,15 +1,11 @@
 import React, { Component } from "react";
-import ButtonSingle from "./ButtonSingle";
+import ButtonSingle from "./Button";
 
 class Buttons extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      lyricsListIcon: 0,
-      other: "status"
-    };
-  }
+  state = {
+    lyricsListIcon: 0,
+    other: "status"
+  };
 
   style = {
     headerButtons: {
