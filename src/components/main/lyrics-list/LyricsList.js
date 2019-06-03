@@ -6,6 +6,8 @@ function LyricsList(props) {
     display: props.display
   };
 
+  console.log(props.searchResult);
+
   return (
     <ul style={style}>
       <LyricsItem />

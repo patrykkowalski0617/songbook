@@ -5,7 +5,7 @@ function Main(props) {
   return (
     <main className="main">
       <div className="container">
-        <LyricsList display={props.display} />
+        <LyricsList display={props.display} searchResult={props.searchResult} />
       </div>
     </main>
   );

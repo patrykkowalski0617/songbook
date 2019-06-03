@@ -8,12 +8,12 @@ import Main from "./components/main/Main";
 import Footer from "./components/Footer";
 import lyrics_list from "./data/lyrics_list";
 import filterLyricsList from "./logic/filterLyricsList";
-import allLyricsItems from "./logic/allLyricsItems";
+import getLyricsItems from "./logic/getLyricsItems";
 
 class App extends Component {
   handleClick = this.handleClick.bind(this);
 
-  state = { displayLyricsList: false };
+  state = { displayLyricsList: false, searchResult: [] };
 
   handleClick(callback) {
     console.log("test in App");
@@ -21,15 +21,20 @@ class App extends Component {
   }
 
   searchClick(value) {
-    const lyricsList = allLyricsItems(lyrics_list);
-    console.log(filterLyricsList(value, lyricsList));
+    const lyricsList = getLyricsItems(lyrics_list);
+    const searchResult = filterLyricsList(value, lyricsList);
+    this.setState({ searchResult: searchResult });
   }
+  searchClick = this.searchClick.bind(this);
 
   render() {
     return (
       <div>
         <Header onClick={this.handleClick} searchClick={this.searchClick} />
-        <Main display={this.state.displayLyricsList ? "block" : "none"} />
+        <Main
+          display={this.state.displayLyricsList ? "block" : "none"}
+          searchResult={this.state.searchResult}
+        />
         <Footer />
       </div>
     );

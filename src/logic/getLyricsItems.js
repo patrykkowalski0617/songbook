@@ -1,4 +1,4 @@
-const allLyricsItems = function(lyricsJson) {
+const getLyricsItems = function(lyricsJson) {
   const pairedNames = lyricsJson.map(item => {
     return item.songs.map(function(song) {
       return {
@@ -25,4 +25,4 @@ const allLyricsItems = function(lyricsJson) {
   return reducedPairedNames;
 };
 
-export default allLyricsItems;
+export default getLyricsItems;
