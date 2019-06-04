@@ -578,7 +578,7 @@ a {
     .header > .container .header-buttons {
       margin-right: -0.4rem; }
     .header > .container .search {
-      margin-right: 0.4rem;
+      margin-right: 1rem;
       width: 100%;
       position: relative;
       overflow: hidden;
