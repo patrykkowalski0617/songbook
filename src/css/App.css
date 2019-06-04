@@ -576,9 +576,10 @@ a {
     padding-top: 10px;
     padding-bottom: 10px; }
     .header > .container .header-buttons {
-      margin-right: -0.4rem; }
+      margin-right: -0.4rem;
+      margin-left: 0; }
     .header > .container .search {
-      margin-right: 1rem;
+      margin-right: 0.4rem;
       width: 100%;
       position: relative;
       overflow: hidden;

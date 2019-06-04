@@ -2,16 +2,18 @@ import React from "react";
 import LyricsItem from "./LyricsItem";
 
 const LyricsList = props => {
-   return (
-      <ul className={`lyrics-list ${props.display}`}>
-         {props.searchResult.map(lyricsNames => (
+   const lyricsItems = function() {
+      if (props.searchResult.length) {
+         return props.searchResult.map(lyricsNames => (
             <LyricsItem
                key={lyricsNames.id}
                lyricsName={lyricsNames.lyricsName}
             />
-         ))}
-      </ul>
-   );
+         ));
+      }
+      return "Jeszcze nie znam takiej pioseki :(";
+   };
+   return <ul className={`lyrics-list ${props.display}`}>{lyricsItems()}</ul>;
 };
 
 export default LyricsList;

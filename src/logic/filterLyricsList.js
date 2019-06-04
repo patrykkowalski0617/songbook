@@ -1,7 +1,8 @@
 const filterLyricsList = function(value, lyricsList) {
-  return lyricsList.filter(item =>
-    item.lyricsName.toLowerCase().includes(value.toLowerCase())
-  );
+   const filteredList = lyricsList.filter(item =>
+      item.lyricsName.toLowerCase().includes(value.toLowerCase())
+   );
+   return filteredList;
 };
 
 export default filterLyricsList;
