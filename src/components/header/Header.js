@@ -22,18 +22,10 @@ class Header extends Component {
          <header className="header">
             <div className="container">
                <Logo
-                  display={
-                     this.state.displaySerach
-                        ? "anim-width-hide"
-                        : "anim-width-show"
-                  }
+                  display={this.state.displaySerach ? "anim-hide" : "anim-show"}
                />
                <Search
-                  display={
-                     this.state.displaySerach
-                        ? "anim-width-show"
-                        : "anim-width-hide"
-                  }
+                  display={this.state.displaySerach ? "anim-show" : "anim-hide"}
                   searchClick={this.props.searchClick}
                />
                <Buttons

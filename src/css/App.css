@@ -483,19 +483,57 @@ section, article {
 
   .off-l-12 {
     margin-left: 100%; } }
-.anim-width-show {
-  width: 100%;
+.search.anim-show {
+  max-width: 650px;
   opacity: 1; }
 
-.anim-width-hide {
+.search.anim-hide {
   opacity: 0;
-  width: 0%; }
+  max-width: 0; }
 
-*[class*="anim-"] {
-  -webkit-transition: 300ms ease-in-out;
-  transition: 300ms ease-in-out;
+.search.anim-show,
+.search.anim-hide {
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+  -webkit-transition-property: max-width, opacity;
+  transition-property: max-width, opacity; }
+
+.logo.anim-show {
+  width: 60px;
+  opacity: 1; }
+
+.logo.anim-hide {
+  opacity: 0;
+  width: 0px; }
+
+.logo.anim-show,
+.logo.anim-hide {
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
   -webkit-transition-property: width, opacity;
-  transition-property: width, opacity; }
+  transition-property: width, opacity;
+  position: absolute;
+  overflow: hidden; }
+
+.lyrics-list.anim-show {
+  opacity: 1; }
+
+.lyrics-list.anim-hide {
+  opacity: 0; }
+
+.lyrics-list {
+  display: none;
+  overflow: hidden; }
+
+.lyrics-list.anim-show {
+  display: block; }
+
+.lyrics-list.anim-show,
+.lyrics-list.anim-hide {
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+  -webkit-transition-property: opacity;
+  transition-property: opacity; }
 
 * {
   -webkit-box-sizing: border-box;
@@ -531,16 +569,17 @@ a {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     position: relative;
     padding-top: 10px;
     padding-bottom: 10px; }
     .header > .container .header-buttons {
-      position: absolute;
-      right: 1.1rem;
-      top: 10px; }
+      margin-right: -0.4rem; }
     .header > .container .search {
       margin-right: 0.4rem;
-      max-width: 650px;
+      width: 100%;
       position: relative;
       overflow: hidden;
       border-radius: 20px; }
@@ -572,8 +611,7 @@ a {
 .logo {
   font-weight: 700;
   font-size: 1.3rem;
-  line-height: 20px;
-  margin: 0; }
+  line-height: 20px; }
 
 ul,
 ol {

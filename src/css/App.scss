@@ -33,17 +33,16 @@ a {
    height: $headerH;
    > .container {
       display: flex;
+      justify-content: space-between;
       position: relative;
       padding-top: $headerPadding;
       padding-bottom: $headerPadding;
       .header-buttons {
-         position: absolute;
-         right: 1.1rem;
-         top: 10px;
+         margin-right: -$space-1;
       }
       .search {
          margin-right: $space-1;
-         max-width: 650px;
+         width: 100%;
          position: relative;
          overflow: hidden;
          border-radius: 20px;
@@ -80,7 +79,6 @@ a {
    font-weight: 700;
    font-size: $space-4;
    line-height: 20px;
-   margin: 0;
 }
 ul,
 ol {
