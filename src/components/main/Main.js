@@ -1,5 +1,6 @@
 import React from "react";
 import LyricsList from "./lyrics-list/LyricsList";
+import Lyrics from "./lyrics/lyrics";
 
 function Main(props) {
    return (
@@ -9,6 +10,7 @@ function Main(props) {
                display={props.display}
                searchResult={props.searchResult}
             />
+            <Lyrics />
          </div>
       </main>
    );
