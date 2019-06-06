@@ -570,6 +570,10 @@ ol {
   .header .header-buttons {
     margin-right: -0.4rem;
     margin-left: 0; }
+    .header .header-buttons .header-button {
+      padding: 0.4rem; }
+      .header .header-buttons .header-button .icon {
+        font-size: 20px; }
 
 .main {
   height: calc(100vh - 60px - 40px);
