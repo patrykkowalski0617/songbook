@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import "../../css/App.css";
 
 import Header from "../header/Header";
 import Main from "../main/Main";
 import Footer from "../Footer";
 import lyrics_list from "../../data/lyrics_list";
-import filterLyricsList from "../../logic/filterLyricsList";
-import getLyricsItems from "../../logic/getLyricsItems";
+import filterLyricsList from "./logic/filterLyricsList";
+import getLyricsItems from "./logic/getLyricsItems";
 
 const lyricsList = getLyricsItems(lyrics_list);
 
