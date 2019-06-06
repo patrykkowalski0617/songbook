@@ -1,6 +1,6 @@
 import React from "react";
 import LyricsList from "./lyrics-list/LyricsList";
-import Lyrics from "./lyrics/lyrics";
+import Lyrics from "./lyrics/Lyrics";
 
 function Main(props) {
    return (

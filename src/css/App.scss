@@ -1,104 +1,11 @@
-@import "variables";
-@import "grid";
+@import "abstracts/variables";
+
+@import "layout/grid";
+@import "layout/general";
+
+@import "components/header";
+@import "components/main/main";
+@import "components/main/lyrics";
+@import "components/footer";
+
 @import "animation";
-
-* {
-   box-sizing: border-box;
-}
-body {
-   margin: 0;
-   padding: 0;
-   font-family: "Roboto", sans-serif;
-   font-weight: 400;
-   font-size: 15px;
-   background-color: $dark;
-   color: $light;
-}
-a:link,
-a:visited,
-a:active,
-a:hover {
-   color: inherit;
-}
-a {
-   text-decoration: none;
-}
-.header,
-.footer {
-   width: 100%;
-   background-color: $dark;
-   color: $light;
-}
-.header {
-   height: $headerH;
-   > .container {
-      display: flex;
-      justify-content: space-between;
-      position: relative;
-      padding-top: $headerPadding;
-      padding-bottom: $headerPadding;
-      .header-buttons {
-         margin-right: -$space-1;
-         margin-left: 0;
-      }
-      .search {
-         margin-right: $space-1;
-         width: 100%;
-         position: relative;
-         overflow: hidden;
-         border-radius: 20px;
-         button {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-            width: 100%;
-            max-width: 60px;
-            cursor: pointer;
-            position: absolute;
-            right: 0;
-         }
-         input {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-            border-right: 1px solid $dark;
-            width: calc(100% - 60px);
-            position: absolute;
-         }
-      }
-   }
-}
-.footer {
-   height: $footerH;
-   text-align: center;
-}
-.main {
-   height: calc(100vh - #{$headerH} - #{$footerH});
-   overflow-y: scroll;
-   background-color: $light;
-   color: $dark;
-}
-.logo {
-   font-weight: 700;
-   font-size: $space-4;
-   line-height: 20px;
-}
-ul,
-ol {
-   list-style-type: none;
-}
-.circle-input,
-.bar-input {
-   height: 40px;
-   border-radius: 20px;
-   border: none;
-   background-color: $light;
-   color: $dark;
-}
-.circle-input {
-   width: 40px;
-}
-.bar-input {
-   padding-left: 20px;
-   padding-right: 20px;
-}
-
-@import "lyrics";

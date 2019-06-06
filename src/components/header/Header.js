@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Logo from "./Logo";
 import Search from "./Search";
-import Buttons from "./buttons/ButtonContainer";
+import HeaderButtonContainer from "./header-buttons/HeaderButtonContainer";
 
 class Header extends Component {
    state = {
@@ -28,7 +28,7 @@ class Header extends Component {
                   display={this.state.displaySerach ? "anim-show" : "anim-hide"}
                   searchClick={this.props.searchClick}
                />
-               <Buttons
+               <HeaderButtonContainer
                   onClick={() => this.handleClick(this.props.onClick())}
                />
             </div>

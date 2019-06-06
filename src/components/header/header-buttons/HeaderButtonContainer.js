@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Button from "./Button";
+import HeaderButton from "./HeaderButton";
 
 class ButtonContainer extends Component {
    state = {
@@ -31,7 +31,7 @@ class ButtonContainer extends Component {
    render() {
       return (
          <div className="row header-buttons">
-            <Button
+            <HeaderButton
                icon={
                   this.buttonsData.lyricsList.icons[this.state.lyricsListIcon]
                }
