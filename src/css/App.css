@@ -571,7 +571,7 @@ ol {
     margin-right: -0.4rem;
     margin-left: 0; }
     .header .header-buttons .header-button {
-      padding: 0.4rem; }
+      padding: 0 0.4rem; }
       .header .header-buttons .header-button .icon {
         font-size: 20px; }
 
