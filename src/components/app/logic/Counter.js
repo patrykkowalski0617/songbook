@@ -3,8 +3,14 @@ class Counter {
     const tt = this;
 
     this.tempo = tempo;
-    this.time = function(tempo) {
+    this.timeout = function(tempo) {
       return (60 / tempo) * 1000;
+    };
+    this.meter = meter;
+    this.time = function(meter) {
+      const slashIndex = meter.search("/");
+      const meterString = meter.substring(0, slashIndex);
+      return Number(meterString);
     };
     this.startDelay = startDelay;
     this.setNewTempo = function(newTempo) {
@@ -18,7 +24,7 @@ class Counter {
     };
     this.clock = {
       knock: 0, // knocks are like seconds in regural clock
-      knocksPerBar: meter, // git how many knocks is needed to increment bar
+      knocksPerBar: tt.time(meter), // git how many knocks is needed to increment bar
       bar: 0, // bars are like minutes in regural clock
       barPerBarSet: 1, // how many bars is needed to increment barSet
       barSet: 0, // barSets are like hours in regural clock
@@ -34,8 +40,7 @@ class Counter {
     };
     this.start = function(currentBarSetLength) {
       this.clock.updateBarSetLength(currentBarSetLength);
-      console.log(currentBarSetLength);
-      const time = tt.time(tt.tempo);
+      const timeout = tt.timeout(tt.tempo);
       const delay = setTimeout(function() {
         // callback();
         tt.clock.isRun = setInterval(function() {
@@ -48,7 +53,7 @@ class Counter {
             }
           }
           callback();
-        }, time);
+        }, timeout);
         clearTimeout(delay);
       }, tt.startDelay);
 

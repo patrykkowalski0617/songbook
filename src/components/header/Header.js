@@ -21,10 +21,10 @@ class Header extends Component {
         this.props.displayLyricsList();
       },
       () => {
-        console.log("play/pause");
+        this.props.counterToggle();
       },
       () => {
-        console.log("stop");
+        this.props.counterStop();
       }
     ]
   };
