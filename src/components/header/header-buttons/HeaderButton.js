@@ -5,9 +5,7 @@ const Button = props => {
     <div className="col header-button">
       {props.test}
       <button
-        className={`icon icon-${props.icon} button-${
-          props.buttonName
-        } circle-input`}
+        className={`icon icon-${props.icon} circle-input`}
         onClick={props.onClick}
       />
     </div>

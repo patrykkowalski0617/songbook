@@ -6,31 +6,71 @@ import HeaderButtonContainer from "./header-buttons/HeaderButtonContainer";
 
 class Header extends Component {
   state = {
-    displaySerach: false
+    displaySearch: false,
+    // indexes needed to set correct icon from buttonData.icons
+    iconInitialIndex: [0, 0, 0]
   };
 
-  handleClick(callback) {
-    if (callback) {
-      callback();
-    }
+  buttonData = {
+    // possible icons for each button
+    icons: [["lyrics-list", "close"], ["play", "pause"], ["stop"]],
+    // methods for each button
+    methods: [
+      () => {
+        this.setState({ displaySearch: !this.state.displaySearch });
+        this.props.displayLyricsList();
+      },
+      () => {
+        console.log("play/pause");
+      },
+      () => {
+        console.log("stop");
+      }
+    ]
+  };
 
-    console.log("test in Header");
-    this.setState({ displaySerach: !this.state.displaySerach });
+  switchIcon(buttonIndex) {
+    let currentSate = this.state.iconInitialIndex.slice();
+    let iconIndex = currentSate[buttonIndex];
+
+    if (iconIndex < this.buttonData.icons[buttonIndex].length - 1) {
+      iconIndex++;
+    } else {
+      iconIndex = 0;
+    }
+    currentSate[buttonIndex] = iconIndex;
+
+    this.setState({ iconInitialIndex: currentSate });
   }
 
+  handleClick(buttonIndex) {
+    this.switchIcon(buttonIndex);
+    this.buttonData.methods[buttonIndex]();
+  }
+  handleClick = this.handleClick.bind(this);
+
   render() {
+    const indexes = this.state.iconInitialIndex.slice();
+    const icons = this.buttonData.icons.slice();
+    const getIcons = function() {
+      return icons.map(function(item, index) {
+        return item[indexes[index]];
+      });
+    };
+
     return (
       <header className="header">
         <div className="container">
           <Logo
-            display={this.state.displaySerach ? "anim-hide" : "anim-show"}
+            display={this.state.displaySearch ? "anim-hide" : "anim-show"}
           />
           <Search
-            display={this.state.displaySerach ? "anim-show" : "anim-hide"}
+            display={this.state.displaySearch ? "anim-show" : "anim-hide"}
             searchClick={this.props.searchClick}
           />
           <HeaderButtonContainer
-            onClick={() => this.handleClick(this.props.onClick())}
+            icons={getIcons()}
+            handleClick={this.handleClick}
           />
         </div>
       </header>
