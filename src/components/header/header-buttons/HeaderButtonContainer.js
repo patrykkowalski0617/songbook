@@ -3,26 +3,27 @@ import HeaderButton from "./HeaderButton";
 
 class ButtonContainer extends Component {
    state = {
-      lyricsListIcon: 0,
-      other: "status"
+      iconInitialIndex: [0, 0]
    };
 
-   buttonsData = {
-      lyricsList: {
-         icons: ["lyrics-list", "close"],
-         buttonName: "lyrics-list"
-      }
-   };
+   buttonsIcons = [["lyrics-list", "close"], ["play", "pause"]];
 
-   handleClick = function(callback) {
+   buttonsNames = ["lyrics-list", "play"];
+
+   handleClick = function(buttonIndex, callback) {
       console.log("test in Buttons");
-      let iconIndex = this.state.lyricsListIcon;
-      if (iconIndex !== this.buttonsData.lyricsList.icons.length - 1) {
+      let iconIndex = this.state.iconInitialIndex[buttonIndex];
+      let currentSate = this.state.iconInitialIndex.slice();
+      if (iconIndex !== this.buttonsIcons[buttonIndex].length - 1) {
          iconIndex++;
       } else {
          iconIndex = 0;
       }
-      this.setState({ lyricsListIcon: iconIndex });
+
+      currentSate[buttonIndex] = iconIndex;
+
+      this.setState({ iconInitialIndex: currentSate });
+
       if (callback) {
          callback();
       }
@@ -32,12 +33,14 @@ class ButtonContainer extends Component {
       return (
          <div className="row header-buttons">
             <HeaderButton
-               icon={
-                  this.buttonsData.lyricsList.icons[this.state.lyricsListIcon]
-               }
-               buttonName={this.buttonsData.lyricsList.buttonName}
-               test={this.props.test}
-               onClick={() => this.handleClick(this.props.onClick())}
+               icon={this.buttonsIcons[0][this.state.iconInitialIndex[0]]}
+               buttonName={this.buttonsNames[0]}
+               onClick={() => this.handleClick(0, this.props.onClick())}
+            />
+            <HeaderButton
+               icon={this.buttonsIcons[1][this.state.iconInitialIndex[1]]}
+               buttonName={this.buttonsNames[1]}
+               onClick={() => this.handleClick(1, this.props.onClick())}
             />
          </div>
       );
