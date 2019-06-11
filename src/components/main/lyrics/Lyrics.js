@@ -1,37 +1,56 @@
 import React, { Component } from "react";
 import LyricsBody from "./LyricsBody";
 
+import { counter } from "../../../context/counter";
+
 class Lyrics extends Component {
-  render() {
-    const text = this.props.lyrics.body[this.props.barSet].text[this.props.bar];
-    const chords = this.props.lyrics.body[this.props.barSet].chords[
-      this.props.bar
-    ];
-    return (
-      <div>
-        <div className="lyrics-header">
-          <h2>{this.props.lyrics.title}</h2>
-          <p className="lyrics-info row">
-            <span className="lyrics-info-item col">
-              Tempo: {this.props.lyrics.tempo}
-            </span>
-            <span className="lyrics-info-item col">
-              Time: {this.props.lyrics.time}
-            </span>
-            <a
-              className="lyrics-info-item col"
-              href={this.props.lyrics.link}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i>YT</i>
-            </a>
-          </p>
-        </div>
-        <LyricsBody text={text} chords={chords} />
-      </div>
-    );
-  }
+   state = {
+      bar: 0,
+      barSet: 0
+   };
+
+   upadteLyricsBody = function() {
+      this.setState({
+         bar: counter.clock.bar,
+         barSet: counter.clock.barSet
+      });
+   };
+   upadteLyricsBody = this.upadteLyricsBody.bind(this);
+
+   componentDidMount() {
+      counter.callback = this.upadteLyricsBody;
+   }
+
+   render() {
+      const text =
+         counter.lyricsData.body[this.state.barSet].text[this.state.bar];
+      const chords =
+         counter.lyricsData.body[this.state.barSet].chords[this.state.bar];
+      return (
+         <div>
+            <div className="lyrics-header">
+               <h2>{counter.lyricsData.title}</h2>
+               <p className="lyrics-info row">
+                  <span className="lyrics-info-item col">
+                     Tempo: {counter.lyricsData.tempo}
+                  </span>
+                  <span className="lyrics-info-item col">
+                     Time: {counter.lyricsData.time}
+                  </span>
+                  <a
+                     className="lyrics-info-item col"
+                     href={counter.lyricsData.link}
+                     target="_blank"
+                     rel="noopener noreferrer"
+                  >
+                     <i>YT</i>
+                  </a>
+               </p>
+            </div>
+            <LyricsBody text={text} chords={chords} />
+         </div>
+      );
+   }
 }
 
 export default Lyrics;
