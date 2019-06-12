@@ -4,7 +4,7 @@ import Logo from "./Logo";
 import Search from "./Search";
 import HeaderButtonContainer from "./header-buttons/HeaderButtonContainer";
 
-import counter from "../../context/counter";
+import counter from "../../logic/counter";
 
 class Header extends Component {
    state = {

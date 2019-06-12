@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import LyricsBody from "./LyricsBody";
 
-import counter from "../../../context/counter";
+import counter from "../../../logic/counter";
 
 class Lyrics extends Component {
    state = {
