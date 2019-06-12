@@ -1,4 +1,3 @@
-import React from "react";
 import kings_of_leon_sex_on_fire from "../data/lyrics/kings_of_leon_-_sex_on_fire";
 
 class Counter {
@@ -99,6 +98,6 @@ class Counter {
    }
 }
 
-export const counter = new Counter(kings_of_leon_sex_on_fire, 4);
+const counter = new Counter(kings_of_leon_sex_on_fire, 4);
 
-export const CounterContext = React.createContext(counter);
+export default counter;
