@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import LyricsBody from "./LyricsBody";
+import LyricsSection from "./LyricsSection";
 
 import counter from "../../../logic/counter";
 
@@ -11,8 +11,8 @@ class Lyrics extends Component {
 
    upadteLyricsBody = function() {
       this.setState({
-         bar: counter.clock.bar,
-         barSet: counter.clock.barSet
+         bar: counter.clock.current.bar,
+         barSet: counter.clock.current.barSet
       });
    };
    upadteLyricsBody = this.upadteLyricsBody.bind(this);
@@ -26,6 +26,7 @@ class Lyrics extends Component {
          counter.lyricsData.body[this.state.barSet].text[this.state.bar];
       const chords =
          counter.lyricsData.body[this.state.barSet].chords[this.state.bar];
+
       return (
          <div>
             <div className="lyrics-header">
@@ -47,7 +48,21 @@ class Lyrics extends Component {
                   </a>
                </p>
             </div>
-            <LyricsBody text={text} chords={chords} />
+            <LyricsSection
+               sectionName={"previous-section"}
+               text={text}
+               chords={chords}
+            />
+            <LyricsSection
+               sectionName={"current-section"}
+               text={text}
+               chords={chords}
+            />
+            <LyricsSection
+               sectionName={"next-section"}
+               text={text}
+               chords={chords}
+            />
          </div>
       );
    }

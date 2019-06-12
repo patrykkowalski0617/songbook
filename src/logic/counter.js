@@ -27,40 +27,52 @@ class Counter {
       };
 
       this.clock = {
-         knock: 0, // knocks are like seconds in regural clock
-         knocksPerBar: tt.time(tt.meter), // how many knocks is needed to increment bar
-         bar: 0, // bars are like minutes in regural clock
-         barPerBarSet: 0, // how many bars is needed to increment barSet
-         barSet: 0, // barSets are like hours in regural clock
-         updateBarSetLength(newLength) {
-            this.barPerBarSet = newLength;
+         previous: {},
+         current: {
+            knock: 0, // knocks are like seconds in regural clock
+            bar: 0, // bars are like minutes in regural clock
+            _barPerBarSet: 0, // how many bars is needed to increment barSet
+            get barPerBarSet() {
+               return this._barPerBarSet;
+            },
+            set barPerBarSet(value) {
+               this._barPerBarSet = value;
+            },
+            barSet: 0 // barSets are like hours in regural clock
          },
+         next: {},
+         knocksPerBar: tt.time(tt.meter), // how many knocks is needed to increment bar
+         // updateBarSetLength(newLength) {
+         //    this.current.barPerBarSet = newLength;
+         // },
          reset: function() {
-            this.knock = 0;
-            this.bar = 0;
-            this.barSet = 0;
+            this.current.knock = 0;
+            this.current.bar = 0;
+            this.current.barSet = 0;
          },
          isRun: 0
       };
       this.start = function() {
          const timeout = tt.timeout(tt.tempo);
          const delay = setTimeout(function() {
-            // callback();
             if (tt.callback) {
                tt.callback();
             } else {
                console.warn("Assign function to counter.callback");
             }
             tt.clock.isRun = setInterval(function() {
-               tt.clock.knock++;
-               if (tt.clock.knock % tt.clock.knocksPerBar === 0) {
-                  tt.clock.updateBarSetLength(
-                     tt.lyricsData.body[tt.clock.barSet].chords.length
-                  );
-                  tt.clock.bar++;
-                  if (tt.clock.bar % tt.clock.barPerBarSet === 0) {
-                     tt.clock.barSet++;
-                     tt.clock.bar = 0;
+               console.log("knock: " + tt.clock.current.knock);
+               tt.clock.current.knock++;
+               if (tt.clock.current.knock % tt.clock.knocksPerBar === 0) {
+                  tt.clock.barPerBarSet =
+                     tt.lyricsData.body[tt.clock.current.barSet].chords.length;
+                  tt.clock.current.bar++;
+                  if (
+                     tt.clock.current.bar % tt.clock.current.barPerBarSet ===
+                     0
+                  ) {
+                     tt.clock.current.barSet++;
+                     tt.clock.current.bar = 0;
                   }
                }
                if (tt.callback) {
@@ -99,5 +111,5 @@ class Counter {
 }
 
 const counter = new Counter(kings_of_leon_sex_on_fire, 4);
-
+console.log(counter);
 export default counter;
