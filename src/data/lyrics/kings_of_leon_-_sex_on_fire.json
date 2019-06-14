@@ -1,119 +1,63 @@
 {
-   "title": "Kings of Leon - Sex On Fire",
+   "title": "Lyrics Test",
    "link": "https://www.youtube.com/watch?v=RF0HhrwIwp0",
-   "tempo": 75,
+   "tempo": 120,
    "time": "4/4",
-   "body": [
+   "sections": [
       {
-         "name": "intro",
-         "text": ["Intro"],
-         "chords": ["E", "E", "cis", "cis", "E", "E", "cis", "cis"]
+         "name": "test",
+         "bars": [
+            {
+               "text": "0",
+               "chords": "0"
+            },
+            {
+               "text": "0",
+               "chords": "1"
+            },
+            {
+               "text": "0",
+               "chords": "2"
+            },
+            {
+               "text": "0",
+               "chords": "3"
+            }
+         ]
       },
       {
-         "name": "verse",
-         "text": [
-            "Lay where you're laying",
-            "Don't make a sound",
-            "I know they're watching",
-            "They're watching"
-         ],
-         "chords": ["E", "E", "cis", "cis"]
+         "name": "test",
+         "bars": [
+            {
+               "text": "1",
+               "chords": "0"
+            },
+            {
+               "text": "1",
+               "chords": "1"
+            }
+         ]
       },
       {
-         "name": "verse",
-         "text": [
-            "All the commotion",
-            "the kiddie like play",
-            "Has people talking",
-            "Talking"
-         ],
-         "chords": ["E", "E", "cis", "cis"]
-      },
-      {
-         "name": "chorus",
-         "text": ["You", "Your sex is on fire"],
-         "chords": ["E", "E", "cis", "cis"]
-      },
-      {
-         "name": "verse",
-         "text": [
-            "The dark of the alley",
-            "The break of the day",
-            "Head while I'm driving",
-            "I'm driving"
-         ],
-         "chords": ["E", "E", "cis", "cis"]
-      },
-      {
-         "name": "verse",
-         "text": [
-            "Soft lips are open",
-            "Them knuckles are pale",
-            "Feels like you're dying",
-            "You're dying"
-         ],
-         "chords": ["E", "E", "cis", "cis"]
-      },
-      {
-         "name": "chorus",
-         "text": [
-            "You",
-            "Your sex is on fire",
-            "",
-            "Consumed",
-            "With what's just transpired"
-         ],
-         "chords": ["E", "E", "cis", "cis"]
-      },
-      {
-         "name": "verse",
-         "text": [
-            "Hot as a fever",
-            "Rattling bones",
-            "I could just taste it",
-            "Taste it"
-         ],
-         "chords": ["E", "E", "cis", "cis"]
-      },
-      {
-         "name": "verse",
-         "text": [
-            "But it's not forever",
-            "But it's just tonight",
-            "Oh we're still the greatest",
-            "The greatest The greatest"
-         ],
-         "chords": ["E", "E", "cis", "cis"]
-      },
-      {
-         "name": "chorus",
-         "text": ["You", "your sex is on fire"],
-         "chords": ["E", "E", "cis", "cis"]
-      },
-      {
-         "name": "chorus",
-         "text": ["You", "your sex is on fire"],
-         "chords": ["E", "E", "cis", "cis"]
-      },
-      {
-         "name": "chorus",
-         "text": ["Consumed", "With what's just transpired"],
-         "chords": ["E", "E", "cis", "cis"]
-      },
-      {
-         "name": "chorus",
-         "text": ["And you", "your sex is on fire"],
-         "chords": ["E", "E", "cis", "cis"]
-      },
-      {
-         "name": "chorus",
-         "text": ["Consumed", "With what's just transpired"],
-         "chords": ["E", "E", "cis", "cis"]
-      },
-      {
-         "name": "outro",
-         "text": ["Outro"],
-         "chords": ["E"]
+         "name": "test",
+         "bars": [
+            {
+               "text": "2",
+               "chords": "0"
+            },
+            {
+               "text": "2",
+               "chords": "1"
+            },
+            {
+               "text": "2",
+               "chords": "2"
+            },
+            {
+               "text": "2",
+               "chords": "3"
+            }
+         ]
       }
    ]
 }

@@ -4,29 +4,21 @@ import LyricsSection from "./LyricsSection";
 import counter from "../../../logic/counter";
 
 class Lyrics extends Component {
-   state = {
-      bar: 0,
-      barSet: 0
-   };
+   state = { sectionIndex: 0, barIndex: 0 };
 
    upadteLyricsBody = function() {
       this.setState({
-         bar: counter.clock.current.bar,
-         barSet: counter.clock.current.barSet
+         sectionIndex: counter.data.locationOf.currentBar[0],
+         barIndex: counter.data.locationOf.currentBar[1]
       });
    };
    upadteLyricsBody = this.upadteLyricsBody.bind(this);
 
    componentDidMount() {
-      counter.callback = this.upadteLyricsBody;
+      counter.data.callbackOn.barChange = this.upadteLyricsBody;
    }
 
    render() {
-      const text =
-         counter.lyricsData.body[this.state.barSet].text[this.state.bar];
-      const chords =
-         counter.lyricsData.body[this.state.barSet].chords[this.state.bar];
-
       return (
          <div>
             <div className="lyrics-header">
@@ -49,19 +41,17 @@ class Lyrics extends Component {
                </p>
             </div>
             <LyricsSection
-               sectionName={"previous-section"}
-               text={text}
-               chords={chords}
-            />
-            <LyricsSection
                sectionName={"current-section"}
-               text={text}
-               chords={chords}
-            />
-            <LyricsSection
-               sectionName={"next-section"}
-               text={text}
-               chords={chords}
+               text={
+                  counter.lyricsData.sections[this.state.sectionIndex].bars[
+                     this.state.barIndex
+                  ].text
+               }
+               chords={
+                  counter.lyricsData.sections[this.state.sectionIndex].bars[
+                     this.state.barIndex
+                  ].chords
+               }
             />
          </div>
       );

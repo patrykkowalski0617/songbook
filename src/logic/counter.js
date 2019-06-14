@@ -4,112 +4,128 @@ class Counter {
    constructor(lyricsData, startDelay) {
       const tt = this;
 
-      this.lyricsData = lyricsData;
-      this.callback = null;
-      this.tempo = lyricsData.tempo;
-      this.timeout = function(tempo) {
-         return (60 / tempo) * 1000;
-      };
-      this.time = function() {
-         const slashIndex = lyricsData.time.search("/");
-         const meterString = lyricsData.time.substring(0, slashIndex);
-         return Number(meterString);
-      };
-      this.startDelay = startDelay;
-      this.setNewTempo = function(newTempo) {
-         tt.tempo = newTempo;
-         if (tt.clock.isRun) {
-            tt.pause();
-            tt.start();
-         }
+      this.knock = 0;
+      this.locationOfCurrentBarIndex = 0;
+      this.action = {
+         start: function() {
+            const delay = (60 / tt.data.tempo) * 1000;
+            const allBars = tt.data.locationOf.allBars();
+            const songTiming = tt.data.songTiming();
+            const callback = callback => {
+               callback
+                  ? callback()
+                  : console.warn(
+                       "Assign function to both properties of counter.data.callbackOn"
+                    );
+            };
 
-         return newTempo;
-      };
-
-      this.clock = {
-         previous: {},
-         current: {
-            knock: 0, // knocks are like seconds in regural clock
-            bar: 0, // bars are like minutes in regural clock
-            _barPerBarSet: 0, // how many bars is needed to increment barSet
-            get barPerBarSet() {
-               return this._barPerBarSet;
-            },
-            set barPerBarSet(value) {
-               this._barPerBarSet = value;
-            },
-            barSet: 0 // barSets are like hours in regural clock
+            tt.isRun = setInterval(function() {
+               if (!tt.data.locationOf.currentBar) {
+                  tt.action.pause();
+               }
+               callback(tt.data.callbackOn.knockChange);
+               tt.data.locationOf.currentBar =
+                  allBars[tt.locationOfCurrentBarIndex];
+               tt.knock++;
+               if (tt.knock % songTiming === 0) {
+                  callback(tt.data.callbackOn.barChange);
+                  tt.locationOfCurrentBarIndex++;
+               }
+            }, delay);
          },
-         next: {},
-         knocksPerBar: tt.time(tt.meter), // how many knocks is needed to increment bar
-         // updateBarSetLength(newLength) {
-         //    this.current.barPerBarSet = newLength;
-         // },
-         reset: function() {
-            this.current.knock = 0;
-            this.current.bar = 0;
-            this.current.barSet = 0;
+         pause: function() {
+            clearInterval(tt.isRun);
+            tt.isRun = 0;
          },
-         isRun: 0
-      };
-      this.start = function() {
-         const timeout = tt.timeout(tt.tempo);
-         const delay = setTimeout(function() {
-            if (tt.callback) {
-               tt.callback();
+         stop: function() {
+            if (tt.isRun) {
+               this.pause();
+               this.reset();
             } else {
-               console.warn("Assign function to counter.callback");
+               this.reset();
             }
-            tt.clock.isRun = setInterval(function() {
-               console.log("knock: " + tt.clock.current.knock);
-               tt.clock.current.knock++;
-               if (tt.clock.current.knock % tt.clock.knocksPerBar === 0) {
-                  tt.clock.barPerBarSet =
-                     tt.lyricsData.body[tt.clock.current.barSet].chords.length;
-                  tt.clock.current.bar++;
-                  if (
-                     tt.clock.current.bar % tt.clock.current.barPerBarSet ===
-                     0
-                  ) {
-                     tt.clock.current.barSet++;
-                     tt.clock.current.bar = 0;
-                  }
-               }
-               if (tt.callback) {
-                  tt.callback();
-               } else {
-                  console.warn("Assign function to counter.callback");
-               }
-            }, timeout);
-            clearTimeout(delay);
-         }, tt.startDelay);
-
-         return tt.clock.isRun;
-      };
-      this.pause = function() {
-         clearInterval(tt.clock.isRun);
-         tt.clock.isRun = 0;
-
-         return tt.clock.isRun;
-      };
-      this.stop = function() {
-         if (tt.clock.isRun) {
-            tt.pause();
-            tt.clock.reset();
-         } else {
-            tt.clock.reset();
+         },
+         toggle: function(currentBarSetLength) {
+            if (tt.isRun) {
+               this.pause();
+            } else {
+               this.start(currentBarSetLength);
+            }
+         },
+         reset: function() {
+            tt.knock = 0;
+            tt.locationOfCurrentBarIndex = 0;
          }
       };
-      this.toggle = function(currentBarSetLength) {
-         if (tt.clock.isRun) {
-            tt.pause();
-         } else {
-            tt.start(currentBarSetLength);
+
+      this.data = {
+         callbackOn: {
+            _knockChange: null,
+            set knockChange(knockChange) {
+               this._knockChange = knockChange;
+            },
+            get knockChange() {
+               return this._knockChange;
+            },
+            _barChange: null,
+            set barChange(barChange) {
+               this._barChange = barChange;
+            },
+            get barChange() {
+               return this._barChange;
+            }
+         },
+         _tempo: lyricsData.tempo,
+         set tempo(tempo) {
+            this._tempo = tempo;
+            if (tt.data.isRun) {
+               tt.pause();
+               tt.start();
+            }
+         },
+         get tempo() {
+            return this._tempo;
+         },
+         songTiming: function() {
+            const slashIndex = lyricsData.time.search("/");
+            const meterString = lyricsData.time.substring(0, slashIndex);
+            return Number(meterString);
+         },
+         locationOf: {
+            allBars: function() {
+               const sections = counter.lyricsData.sections;
+               const map = sections.map(function(section, secIndex) {
+                  return section.bars.map(function(bar, barIndex) {
+                     return [secIndex, barIndex];
+                  });
+               });
+               const reduced = map.reduce(function(total, item) {
+                  return total.concat(item);
+               });
+               return reduced;
+            },
+            _currentBar: [],
+            set currentBar(currentBar) {
+               this._currentBar = currentBar;
+            },
+            get currentBar() {
+               return this._currentBar;
+            }
+         },
+         _startDelay: null,
+         set startDelay(startDelay) {
+            this._startDelay = startDelay;
+         },
+         get startDelay() {
+            return this._startDelay;
          }
       };
+
+      this.lyricsData = lyricsData;
+      this.isRun = 0;
    }
 }
 
-const counter = new Counter(kings_of_leon_sex_on_fire, 4);
-console.log(counter);
+const counter = new Counter(kings_of_leon_sex_on_fire);
+
 export default counter;

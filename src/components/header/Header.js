@@ -23,13 +23,13 @@ class Header extends Component {
             this.props.displayLyricsList();
          },
          () => {
-            counter.toggle();
+            counter.action.toggle();
          },
          () => {
-            if (counter.clock.isRun) {
+            if (counter.isRun) {
                this.switchIcon(1);
             }
-            counter.stop();
+            counter.action.stop();
          }
       ]
    };
