@@ -4,8 +4,8 @@ class Counter {
    constructor(lyricsData, startDelay) {
       const tt = this;
 
-      this.knock = 0;
-      this.locationOfCurrentBarIndex = 0;
+      this.iteration = 0;
+      this.locationOfCurrentBarIndex = 1;
       this.action = {
          start: function() {
             const delay = (60 / tt.data.tempo) * 1000;
@@ -23,11 +23,11 @@ class Counter {
                if (!tt.data.locationOf.currentBar) {
                   tt.action.pause();
                }
-               callback(tt.data.callbackOn.knockChange);
+               callback(tt.data.callbackOn.eachIteration);
                tt.data.locationOf.currentBar =
                   allBars[tt.locationOfCurrentBarIndex];
-               tt.knock++;
-               if (tt.knock % songTiming === 0) {
+               tt.iteration++;
+               if (tt.iteration % songTiming === 0) {
                   callback(tt.data.callbackOn.barChange);
                   tt.locationOfCurrentBarIndex++;
                }
@@ -44,6 +44,7 @@ class Counter {
             } else {
                this.reset();
             }
+            tt.data.callbackOn.barChange();
          },
          toggle: function(currentBarSetLength) {
             if (tt.isRun) {
@@ -53,19 +54,21 @@ class Counter {
             }
          },
          reset: function() {
-            tt.knock = 0;
-            tt.locationOfCurrentBarIndex = 0;
+            const allBars = tt.data.locationOf.allBars();
+            tt.iteration = 0;
+            tt.locationOfCurrentBarIndex = 1;
+            tt.data.locationOf.currentBar = allBars[0];
          }
       };
 
       this.data = {
          callbackOn: {
-            _knockChange: null,
-            set knockChange(knockChange) {
-               this._knockChange = knockChange;
+            _eachIteration: null,
+            set eachIteration(eachIteration) {
+               this._eachIteration = eachIteration;
             },
-            get knockChange() {
-               return this._knockChange;
+            get eachIteration() {
+               return this._eachIteration;
             },
             _barChange: null,
             set barChange(barChange) {
