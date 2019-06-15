@@ -2,15 +2,15 @@ import kings_of_leon_sex_on_fire from "../data/lyrics/kings_of_leon_-_sex_on_fir
 
 class Counter {
    constructor(lyricsData, startDelay) {
-      const tt = this;
+      const counter = this;
 
       this.iteration = 0;
-      this.locationOfCurrentBarIndex = 1;
+      this.locationOfCurrentBarIndex = 0;
       this.action = {
          start: function() {
-            const delay = (60 / tt.data.tempo) * 1000;
-            const allBars = tt.data.locationOf.allBars();
-            const songTiming = tt.data.songTiming();
+            const delay = (60 / counter.data.tempo) * 1000;
+            const locationOfAllBars = counter.data.locationOf.allBars();
+            const songTiming = counter.data.songTiming();
             const callback = callback => {
                callback
                   ? callback()
@@ -18,46 +18,43 @@ class Counter {
                        "Assign function to both properties of counter.data.callbackOn"
                     );
             };
-
-            tt.isRun = setInterval(function() {
-               if (!tt.data.locationOf.currentBar) {
-                  tt.action.pause();
+            const checkIfLyricsEnd = function() {
+               if (!counter.data.locationOf.currentBar) {
+                  counter.action.pause();
                }
-               callback(tt.data.callbackOn.eachIteration);
-               tt.data.locationOf.currentBar =
-                  allBars[tt.locationOfCurrentBarIndex];
-               tt.iteration++;
-               if (tt.iteration % songTiming === 0) {
-                  callback(tt.data.callbackOn.barChange);
-                  tt.locationOfCurrentBarIndex++;
+            };
+
+            counter.isRun = setInterval(function() {
+               checkIfLyricsEnd();
+               callback(counter.data.callbackOn.eachIteration);
+               counter.data.locationOf.currentBar =
+                  locationOfAllBars[counter.locationOfCurrentBarIndex];
+               counter.iteration++;
+               if (counter.iteration % songTiming === 0) {
+                  counter.locationOfCurrentBarIndex++;
+                  callback(counter.data.callbackOn.barChange);
                }
             }, delay);
          },
          pause: function() {
-            clearInterval(tt.isRun);
-            tt.isRun = 0;
+            clearInterval(counter.isRun);
+            counter.isRun = 0;
+            counter.iteration = 0;
          },
          stop: function() {
-            if (tt.isRun) {
-               this.pause();
-               this.reset();
-            } else {
-               this.reset();
-            }
-            tt.data.callbackOn.barChange();
+            const locationOfAllBars = counter.data.locationOf.allBars();
+
+            this.pause();
+            counter.locationOfCurrentBarIndex = 0;
+            counter.data.locationOf.currentBar = locationOfAllBars[0];
+            counter.data.callbackOn.barChange();
          },
          toggle: function(currentBarSetLength) {
-            if (tt.isRun) {
+            if (counter.isRun) {
                this.pause();
             } else {
                this.start(currentBarSetLength);
             }
-         },
-         reset: function() {
-            const allBars = tt.data.locationOf.allBars();
-            tt.iteration = 0;
-            tt.locationOfCurrentBarIndex = 1;
-            tt.data.locationOf.currentBar = allBars[0];
          }
       };
 
@@ -81,9 +78,9 @@ class Counter {
          _tempo: lyricsData.tempo,
          set tempo(tempo) {
             this._tempo = tempo;
-            if (tt.data.isRun) {
-               tt.pause();
-               tt.start();
+            if (counter.data.isRun) {
+               counter.pause();
+               counter.start();
             }
          },
          get tempo() {

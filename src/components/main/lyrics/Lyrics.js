@@ -4,12 +4,11 @@ import LyricsSection from "./LyricsSection";
 import counter from "../../../logic/counter";
 
 class Lyrics extends Component {
-   state = { sectionIndex: 0, barIndex: 0 };
+   state = { currentLocation: 0 };
 
    upadteLyricsBody = function() {
       this.setState({
-         sectionIndex: counter.data.locationOf.currentBar[0],
-         barIndex: counter.data.locationOf.currentBar[1]
+         currentLocation: counter.locationOfCurrentBarIndex
       });
    };
    upadteLyricsBody = this.upadteLyricsBody.bind(this);
@@ -19,6 +18,35 @@ class Lyrics extends Component {
    }
 
    render() {
+      const timeZones = [-2, -1, 0, 1, 2];
+      const allLocations = counter.data.locationOf.allBars();
+      const currentBar = timeZone => {
+         return allLocations[
+            this.state.currentLocation + timeZones[timeZone]
+         ] && this.state.currentLocation + timeZones[timeZone] >= 0
+            ? counter.lyricsData.sections[
+                 allLocations[
+                    this.state.currentLocation + timeZones[timeZone]
+                 ][0]
+              ].bars[
+                 allLocations[
+                    this.state.currentLocation + timeZones[timeZone]
+                 ][1]
+              ]
+            : { text: "-", chords: "-" };
+      };
+
+      const lyricsSections = timeZones.map((item, index) => {
+         const currentB = currentBar(index);
+         return (
+            <LyricsSection
+               key={index}
+               text={currentB.text}
+               chords={currentB.chords}
+            />
+         );
+      });
+
       return (
          <div>
             <div className="lyrics-header">
@@ -40,19 +68,7 @@ class Lyrics extends Component {
                   </a>
                </p>
             </div>
-            <LyricsSection
-               sectionName={"current-section"}
-               text={
-                  counter.lyricsData.sections[this.state.sectionIndex].bars[
-                     this.state.barIndex
-                  ].text
-               }
-               chords={
-                  counter.lyricsData.sections[this.state.sectionIndex].bars[
-                     this.state.barIndex
-                  ].chords
-               }
-            />
+            {lyricsSections}
          </div>
       );
    }
