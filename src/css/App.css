@@ -537,6 +537,31 @@ ol {
   background-color: #ffffff;
   color: #000000; }
 
+.lyrics-body {
+  height: 240px;
+  overflow-y: scroll;
+  background: #aaa; }
+  .lyrics-body .lyrics-section {
+    height: 80px;
+    font-size: 30px;
+    position: relative;
+    background-color: #999; }
+    .lyrics-body .lyrics-section:first-child {
+      margin-top: 80px; }
+    .lyrics-body .lyrics-section .section-content {
+      height: 70px;
+      position: absolute;
+      -webkit-transform: translate(0, -50%) scale(0.7);
+              transform: translate(0, -50%) scale(0.7);
+      top: 50%;
+      background-color: #777; }
+      .lyrics-body .lyrics-section .section-content .lyrics-text,
+      .lyrics-body .lyrics-section .section-content .lyrics-chords {
+        height: 35px;
+        background-color: #555;
+        line-height: 35px;
+        vertical-align: middle; }
+
 .footer {
   height: 40px;
   text-align: center; }

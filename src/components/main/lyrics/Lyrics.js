@@ -1,48 +1,47 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import LyricsSection from "./LyricsSection";
 
 import counter from "../../../logic/counter";
 
 class Lyrics extends Component {
-   state = { currentLocation: 0 };
+   state = {};
 
-   upadteLyricsBody = function() {
-      this.setState({
-         currentLocation: counter.locationOfCurrentBarIndex
-      });
-   };
-   upadteLyricsBody = this.upadteLyricsBody.bind(this);
+   // upadteLyricsBody = function() {
+   //    this.setState({});
+   // };
+   // upadteLyricsBody = this.upadteLyricsBody.bind(this);
 
    componentDidMount() {
-      counter.data.callbackOn.barChange = this.upadteLyricsBody;
+      counter.data.callbackOn.barChange = function() {
+         console.log("scroll to next section");
+      };
    }
 
-   render() {
-      const timeZones = [-2, -1, 0, 1, 2];
-      const allLocations = counter.data.locationOf.allBars();
-      const currentBar = timeZone => {
-         return allLocations[
-            this.state.currentLocation + timeZones[timeZone]
-         ] && this.state.currentLocation + timeZones[timeZone] >= 0
-            ? counter.lyricsData.sections[
-                 allLocations[
-                    this.state.currentLocation + timeZones[timeZone]
-                 ][0]
-              ].bars[
-                 allLocations[
-                    this.state.currentLocation + timeZones[timeZone]
-                 ][1]
-              ]
-            : { text: "-", chords: "-" };
-      };
+   handleScroll() {
+      console.log(
+         ReactDOM.findDOMNode(this).getBoundingClientRect().y -
+            ReactDOM.findDOMNode(this)
+               .querySelectorAll(".lyrics-section")[1]
+               .getBoundingClientRect().y +
+            ReactDOM.findDOMNode(this)
+               .querySelectorAll(".lyrics-header")[0]
+               .getBoundingClientRect().height
+      );
+   }
+   handleScroll = this.handleScroll.bind(this);
 
-      const lyricsSections = timeZones.map((item, index) => {
-         const currentB = currentBar(index);
+   render() {
+      const allLocations = counter.data.locationOf.allBars();
+
+      const lyricsSections = allLocations.map((item, index) => {
+         const currentBar = counter.lyricsData.sections[item[0]].bars[item[1]];
+
          return (
             <LyricsSection
                key={index}
-               text={currentB.text}
-               chords={currentB.chords}
+               text={currentBar.text}
+               chords={currentBar.chords}
             />
          );
       });
@@ -68,7 +67,9 @@ class Lyrics extends Component {
                   </a>
                </p>
             </div>
-            {lyricsSections}
+            <div className="lyrics-body" onScroll={this.handleScroll}>
+               {lyricsSections}
+            </div>
          </div>
       );
    }

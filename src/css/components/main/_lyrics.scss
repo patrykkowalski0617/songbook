@@ -1,6 +1,28 @@
-.lyrics-header {
-   .lyrics-info {
-      .lyrics-info-item {
+.lyrics-body {
+   height: 240px;
+   overflow-y: scroll;
+   background: #aaa;
+   .lyrics-section {
+      &:first-child {
+         margin-top: 80px;
+      }
+      height: 80px;
+      font-size: 30px;
+      position: relative;
+      background-color: #999;
+      .section-content {
+         height: 70px;
+         position: absolute;
+         transform: translate(0, -50%) scale(0.7);
+         top: 50%;
+         background-color: #777;
+         .lyrics-text,
+         .lyrics-chords {
+            height: 35px;
+            background-color: #555;
+            line-height: 35px;
+            vertical-align: middle;
+         }
       }
    }
 }
