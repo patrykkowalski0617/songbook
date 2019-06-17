@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import LyricsSection from "./LyricsSection";
 
 import counter from "../../../logic/counter";
+import sectionAnimation from "./logic/section-animation";
 
 class Lyrics extends Component {
    state = {};
@@ -19,15 +19,7 @@ class Lyrics extends Component {
    }
 
    handleScroll() {
-      console.log(
-         ReactDOM.findDOMNode(this).getBoundingClientRect().y -
-            ReactDOM.findDOMNode(this)
-               .querySelectorAll(".lyrics-section")[1]
-               .getBoundingClientRect().y +
-            ReactDOM.findDOMNode(this)
-               .querySelectorAll(".lyrics-header")[0]
-               .getBoundingClientRect().height
-      );
+      sectionAnimation("lyrics-body", "lyrics-section");
    }
    handleScroll = this.handleScroll.bind(this);
 
