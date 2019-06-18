@@ -19,7 +19,7 @@ class Lyrics extends Component {
    }
 
    handleScroll() {
-      sectionAnimation("lyrics-body", "lyrics-section");
+      sectionAnimation("lyrics-body", "lyrics-section", "section-content");
    }
    handleScroll = this.handleScroll.bind(this);
 
