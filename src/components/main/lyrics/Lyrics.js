@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import LyricsSection from "./LyricsSection";
 
 import counter from "../../../logic/counter";
-import sectionAnimation from "./logic/section-animation";
+import SectionAnimation from "./logic/section-animation";
 
 class Lyrics extends Component {
    state = {};
@@ -16,10 +16,15 @@ class Lyrics extends Component {
       counter.data.callbackOn.barChange = function() {
          console.log("scroll to next section");
       };
+      this.sectionAnimation = new SectionAnimation(
+         "lyrics-body",
+         "lyrics-section",
+         "section-content"
+      );
    }
 
    handleScroll() {
-      sectionAnimation("lyrics-body", "lyrics-section", "section-content");
+      console.log(this.sectionAnimation.anim());
    }
    handleScroll = this.handleScroll.bind(this);
 
