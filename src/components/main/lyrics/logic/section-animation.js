@@ -37,46 +37,55 @@ class SectionAnimation {
       const minScale = 0.5;
 
       this.currentAnimated = [];
-
+      let markedSection;
       this.anim = function() {
          const range = getRange(1);
 
          tt.currentAnimated = [];
-         for (let i = 0; i < sections.length; i++) {
-            const sectionOffset =
-               parent.getBoundingClientRect().y -
-               sections[i].getBoundingClientRect().y;
 
-            aplyTransformStyle(minScale, sections[i]);
+         let timeout;
+         clearTimeout(timeout);
+         timeout = setTimeout(function() {
+            for (let i = 0; i < sections.length; i++) {
+               const sectionOffset =
+                  parent.getBoundingClientRect().y -
+                  sections[i].getBoundingClientRect().y;
 
-            if (sectionOffset < range.top && sectionOffset > range.bottom) {
-               const scale = getScale(sectionOffset);
+               aplyTransformStyle(minScale, sections[i]);
 
-               if (scale > minScale) {
-                  aplyTransformStyle(scale, sections[i]);
-                  tt.currentAnimated.push({ index: i, scale: scale });
-               }
-            }
-         }
+               if (sectionOffset < range.top && sectionOffset > range.bottom) {
+                  const scale = getScale(sectionOffset);
 
-         if (tt.currentAnimated.length === 1) {
-            return tt.currentAnimated[0].index;
-         } else {
-            for (var key in tt.currentAnimated) {
-               if (tt.currentAnimated.hasOwnProperty(key)) {
-                  const biggestScale = Math.max.apply(
-                     Math,
-                     tt.currentAnimated.map(function(o) {
-                        return o.scale;
-                     })
-                  );
-
-                  if (tt.currentAnimated[key].scale === biggestScale) {
-                     return tt.currentAnimated[key].index;
+                  if (scale > minScale) {
+                     aplyTransformStyle(scale, sections[i]);
+                     tt.currentAnimated.push({ index: i, scale: scale });
                   }
                }
+               const getMarkedSection = function() {
+                  if (tt.currentAnimated.length === 1) {
+                     return tt.currentAnimated[0].index;
+                  } else {
+                     for (var key in tt.currentAnimated) {
+                        if (tt.currentAnimated.hasOwnProperty(key)) {
+                           const biggestScale = Math.max.apply(
+                              Math,
+                              tt.currentAnimated.map(function(o) {
+                                 return o.scale;
+                              })
+                           );
+
+                           if (tt.currentAnimated[key].scale === biggestScale) {
+                              return tt.currentAnimated[key].index;
+                           }
+                        }
+                     }
+                  }
+               };
+               markedSection = getMarkedSection();
             }
-         }
+         }, 50);
+
+         return markedSection;
       };
    }
 }

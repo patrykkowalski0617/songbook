@@ -5,12 +5,7 @@ import counter from "../../../logic/counter";
 import SectionAnimation from "./logic/section-animation";
 
 class Lyrics extends Component {
-   state = {};
-
-   // upadteLyricsBody = function() {
-   //    this.setState({});
-   // };
-   // upadteLyricsBody = this.upadteLyricsBody.bind(this);
+   state = { markedSection: 0 };
 
    componentDidMount() {
       counter.data.callbackOn.barChange = function() {
@@ -21,10 +16,14 @@ class Lyrics extends Component {
          "lyrics-section",
          "section-content"
       );
+      this.sectionAnimation.anim();
    }
 
    handleScroll() {
-      console.log(this.sectionAnimation.anim());
+      const currentlyMarkedSection = this.sectionAnimation.anim();
+      if (this.state.markedSection !== currentlyMarkedSection) {
+         this.setState({ markedSection: currentlyMarkedSection });
+      }
    }
    handleScroll = this.handleScroll.bind(this);
 
