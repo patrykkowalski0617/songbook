@@ -1,11 +1,5 @@
 class SectionAnimation {
-   constructor(parentClassName, childClassName, animatedElementClassName) {
-      const tt = this;
-
-      // elements
-      const sections = document.querySelectorAll("." + childClassName);
-      const parent = document.querySelector("." + parentClassName);
-
+   constructor(parent, sections) {
       // return range whera animation supposed to be performed
       const getRange = function(rangeSize) {
          const sectionH = sections[0].clientHeight;
@@ -27,21 +21,21 @@ class SectionAnimation {
          return scale;
       };
 
-      // aply transform style for elements content
+      // aply transform style for element's content
       const aplyTransformStyle = function(scale, elements) {
          elements.querySelector(
-            "." + animatedElementClassName
+            ".section-content"
          ).style.transform = `translate(0, -50%) scale(${scale})`;
       };
 
       const minScale = 0.5;
 
-      this.currentAnimated = [];
+      let currentAnimated = [];
       let markedSection;
       this.anim = function() {
          const range = getRange(1);
 
-         tt.currentAnimated = [];
+         currentAnimated = [];
 
          let timeout;
          clearTimeout(timeout);
@@ -58,24 +52,24 @@ class SectionAnimation {
 
                   if (scale > minScale) {
                      aplyTransformStyle(scale, sections[i]);
-                     tt.currentAnimated.push({ index: i, scale: scale });
+                     currentAnimated.push({ index: i, scale: scale });
                   }
                }
                const getMarkedSection = function() {
-                  if (tt.currentAnimated.length === 1) {
-                     return tt.currentAnimated[0].index;
+                  if (currentAnimated.length === 1) {
+                     return currentAnimated[0].index;
                   } else {
-                     for (var key in tt.currentAnimated) {
-                        if (tt.currentAnimated.hasOwnProperty(key)) {
+                     for (var key in currentAnimated) {
+                        if (currentAnimated.hasOwnProperty(key)) {
                            const biggestScale = Math.max.apply(
                               Math,
-                              tt.currentAnimated.map(function(o) {
+                              currentAnimated.map(function(o) {
                                  return o.scale;
                               })
                            );
 
-                           if (tt.currentAnimated[key].scale === biggestScale) {
-                              return tt.currentAnimated[key].index;
+                           if (currentAnimated[key].scale === biggestScale) {
+                              return currentAnimated[key].index;
                            }
                         }
                      }

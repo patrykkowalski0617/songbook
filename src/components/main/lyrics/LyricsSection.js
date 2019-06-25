@@ -1,14 +1,22 @@
-import React from "react";
+import React, { Component } from "react";
 
-const LyricsSection = function(props) {
-   return (
-      <div className={"lyrics-section"}>
-         <div className="section-content">
-            <p className="lyrics-text">{props.text}</p>
-            <p className="lyrics-chords">{props.chords}</p>
+class LyricsSection extends Component {
+   ref = React.createRef();
+
+   componentDidMount() {
+      this.props.getLyricsSections(this.ref.current);
+   }
+
+   render() {
+      return (
+         <div className={"lyrics-section"} ref={this.ref}>
+            <div className="section-content">
+               <p className="lyrics-text">{this.props.text}</p>
+               <p className="lyrics-chords">{this.props.chords}</p>
+            </div>
          </div>
-      </div>
-   );
-};
+      );
+   }
+}
 
 export default LyricsSection;

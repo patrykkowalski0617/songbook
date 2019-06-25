@@ -7,14 +7,23 @@ import SectionAnimation from "./logic/section-animation";
 class Lyrics extends Component {
    state = { markedSection: 0 };
 
+   lyricsBody = React.createRef();
+   lyricsSections = [];
+   getLyricsSections = function(item) {
+      const lyricsSectionsList = this.lyricsSections.slice();
+      const i = [item];
+      this.lyricsSections = lyricsSectionsList.concat(i);
+   };
+   getLyricsSections = this.getLyricsSections.bind(this);
+
    componentDidMount() {
       counter.data.callbackOn.barChange = function() {
          console.log("scroll to next section");
       };
+
       this.sectionAnimation = new SectionAnimation(
-         "lyrics-body",
-         "lyrics-section",
-         "section-content"
+         this.lyricsBody.current,
+         this.lyricsSections
       );
       this.sectionAnimation.anim();
    }
@@ -38,6 +47,7 @@ class Lyrics extends Component {
                key={index}
                text={currentBar.text}
                chords={currentBar.chords}
+               getLyricsSections={this.getLyricsSections}
             />
          );
       });
@@ -63,7 +73,11 @@ class Lyrics extends Component {
                   </a>
                </p>
             </div>
-            <div className="lyrics-body" onScroll={this.handleScroll}>
+            <div
+               className="lyrics-body"
+               ref={this.lyricsBody}
+               onScroll={this.handleScroll}
+            >
                {lyricsSections}
             </div>
          </div>
