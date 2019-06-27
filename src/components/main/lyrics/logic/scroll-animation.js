@@ -1,37 +1,48 @@
 class ScrollAnimation {
-   constructor(parent, lyricsSections, markedSectionIndex) {
-      let startTime = null;
+   constructor(container, lyricsSections, markedSectionIndex) {
+      const tt = this;
 
       const easing = function(t, b, c, d) {
-         t /= d / 2;
-         if (t < 1) {
-            return (c / 2) * t * t + b;
-         }
-         t--;
-         return (-c / 2) * (t * (t - 2) - 1) + b;
+         return (c * t) / d + b;
       };
+      // http://www.gizma.com/easing
 
-      this.currentlyMarkedSection = lyricsSections[markedSectionIndex];
+      this.markedSectionIndex = markedSectionIndex;
 
       this.updateData = function(markedSectionIndex) {
-         this.currentlyMarkedSection = lyricsSections[markedSectionIndex];
+         this.markedSectionIndex = markedSectionIndex;
       };
 
-      this.anim = function() {
+      this.anim = function(duration) {
+         let startTime = null;
+         const markedSectionIndex = tt.markedSectionIndex;
          const animation = function(currentTime) {
             if (startTime === null) {
                startTime = currentTime;
             }
 
+            const target = lyricsSections[markedSectionIndex + 1];
+            const containerPosition = container.getBoundingClientRect().top;
+            const getTopDistance = function() {
+               const marginTop = window.getComputedStyle(lyricsSections[0])
+                  .marginTop;
+               return Number(marginTop.replace(/px/, ""));
+            };
+            const targetPosition =
+               target.getBoundingClientRect().top +
+               container.scrollTop -
+               containerPosition -
+               getTopDistance();
             const timeElapsed = currentTime - startTime;
-            console.log(timeElapsed);
-            // const run = easing(timeElapsed, startPosition, distance, duration);
+            const startPosition = container.scrollTop;
+            const distance = targetPosition - startPosition;
+            const run = easing(timeElapsed, startPosition, distance, duration);
 
-            // window.scrollTo(0, run);
+            container.scrollTo(0, run);
 
-            // if (timeElapsed < duration) {
-            //    requestAnimationFrame(animation);
-            // }
+            if (timeElapsed < duration) {
+               requestAnimationFrame(animation);
+            }
          };
 
          requestAnimationFrame(animation);

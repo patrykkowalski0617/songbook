@@ -45,7 +45,7 @@ class Lyrics extends Component {
    handleScroll = this.handleScroll.bind(this);
 
    test = function() {
-      this.scrollAnimation.anim();
+      this.scrollAnimation.anim(2000);
    };
    test = this.test.bind(this);
 
