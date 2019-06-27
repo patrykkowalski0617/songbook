@@ -548,6 +548,8 @@ ol {
     background-color: #999; }
     .lyrics-body .lyrics-section:first-child {
       margin-top: 80px; }
+    .lyrics-body .lyrics-section:last-child {
+      margin-bottom: 80px; }
     .lyrics-body .lyrics-section .section-content {
       height: 70px;
       position: absolute;

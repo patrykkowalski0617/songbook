@@ -35,6 +35,27 @@ class SectionAnimation {
       this.anim = function() {
          const range = getRange(1);
 
+         const getMarkedSection = function() {
+            if (currentAnimated.length === 1) {
+               return currentAnimated[0].index;
+            } else {
+               for (var key in currentAnimated) {
+                  if (currentAnimated.hasOwnProperty(key)) {
+                     const biggestScale = Math.max.apply(
+                        Math,
+                        currentAnimated.map(function(o) {
+                           return o.scale;
+                        })
+                     );
+
+                     if (currentAnimated[key].scale === biggestScale) {
+                        return currentAnimated[key].index;
+                     }
+                  }
+               }
+            }
+         };
+
          currentAnimated = [];
 
          let timeout;
@@ -55,26 +76,7 @@ class SectionAnimation {
                      currentAnimated.push({ index: i, scale: scale });
                   }
                }
-               const getMarkedSection = function() {
-                  if (currentAnimated.length === 1) {
-                     return currentAnimated[0].index;
-                  } else {
-                     for (var key in currentAnimated) {
-                        if (currentAnimated.hasOwnProperty(key)) {
-                           const biggestScale = Math.max.apply(
-                              Math,
-                              currentAnimated.map(function(o) {
-                                 return o.scale;
-                              })
-                           );
 
-                           if (currentAnimated[key].scale === biggestScale) {
-                              return currentAnimated[key].index;
-                           }
-                        }
-                     }
-                  }
-               };
                markedSection = getMarkedSection();
             }
          }, 50);

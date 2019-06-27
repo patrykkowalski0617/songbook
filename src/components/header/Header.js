@@ -15,7 +15,7 @@ class Header extends Component {
 
    buttonData = {
       // possible icons for each button
-      icons: [["lyrics-list", "close"], ["play", "pause"], ["stop"]],
+      icons: [["lyrics-list", "close"], ["play", "pause"]],
       // methods for each button
       methods: [
          () => {
@@ -24,12 +24,6 @@ class Header extends Component {
          },
          () => {
             counter.action.toggle();
-         },
-         () => {
-            if (counter.isRun) {
-               this.switchIcon(1);
-            }
-            counter.action.stop();
          }
       ]
    };

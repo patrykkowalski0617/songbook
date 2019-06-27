@@ -3,9 +3,10 @@ import LyricsSection from "./LyricsSection";
 
 import counter from "../../../logic/counter";
 import SectionAnimation from "./logic/section-animation";
+import ScrollAnimation from "./logic/scroll-animation";
 
 class Lyrics extends Component {
-   state = { markedSection: 0 };
+   state = { markedSectionIndex: 0 };
 
    lyricsBody = React.createRef();
    lyricsSections = [];
@@ -17,6 +18,12 @@ class Lyrics extends Component {
    getLyricsSections = this.getLyricsSections.bind(this);
 
    componentDidMount() {
+      this.scrollAnimation = new ScrollAnimation(
+         this.lyricsBody.current,
+         this.lyricsSections,
+         this.state.markedSectionIndex
+      );
+
       counter.data.callbackOn.barChange = function() {
          console.log("scroll to next section");
       };
@@ -29,15 +36,21 @@ class Lyrics extends Component {
    }
 
    handleScroll() {
-      const currentlyMarkedSection = this.sectionAnimation.anim();
-      if (this.state.markedSection !== currentlyMarkedSection) {
-         this.setState({ markedSection: currentlyMarkedSection });
+      const currentlyMarkedSectionIndex = this.sectionAnimation.anim();
+      if (this.state.markedSectionIndex !== currentlyMarkedSectionIndex) {
+         this.setState({ markedSectionIndex: currentlyMarkedSectionIndex });
+         this.scrollAnimation.updateData(currentlyMarkedSectionIndex);
       }
    }
    handleScroll = this.handleScroll.bind(this);
 
+   test = function() {
+      this.scrollAnimation.anim();
+   };
+   test = this.test.bind(this);
+
    render() {
-      const allLocations = counter.data.locationOf.allBars();
+      const allLocations = counter.data.locationOfAllBars();
 
       const lyricsSections = allLocations.map((item, index) => {
          const currentBar = counter.lyricsData.sections[item[0]].bars[item[1]];
@@ -53,7 +66,7 @@ class Lyrics extends Component {
       });
 
       return (
-         <div>
+         <div onClick={this.test}>
             <div className="lyrics-header">
                <h2>{counter.lyricsData.title}</h2>
                <p className="lyrics-info row">
