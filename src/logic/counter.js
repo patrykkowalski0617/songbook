@@ -16,18 +16,18 @@ class Counter {
                        "Assign function to both properties of counter.data.callbackOn"
                     );
             };
-            const checkIfLyricsEnd = function() {
-               // if (!counter.data.markedSectionIndex) {
-               //    counter.action.pause();
-               // }
-            };
 
             counter.isRun = setInterval(function() {
-               checkIfLyricsEnd();
                callback(counter.data.callbackOn.eachIteration);
                counter.iteration++;
                if (counter.iteration % songTiming === 0) {
-                  callback(counter.data.callbackOn.barChange);
+                  if (counter.data.lyricsEnd()) {
+                     counter.action.pause();
+                     counter.data.callbackOn.lyricsEnd();
+                     counter.data.currentlyMarkedSectionIndex = 0;
+                  } else {
+                     callback(counter.data.callbackOn.barChange);
+                  }
                }
             }, delay);
          },
@@ -48,23 +48,30 @@ class Counter {
       this.data = {
          callbackOn: {
             _eachIteration: null,
-            set eachIteration(eachIteration) {
-               this._eachIteration = eachIteration;
+            set eachIteration(value) {
+               this._eachIteration = value;
             },
             get eachIteration() {
                return this._eachIteration;
             },
             _barChange: null,
-            set barChange(barChange) {
-               this._barChange = barChange;
+            set barChange(value) {
+               this._barChange = value;
             },
             get barChange() {
                return this._barChange;
+            },
+            _lyricsEnd: null,
+            set lyricsEnd(value) {
+               this._lyricsEnd = value;
+            },
+            get lyricsEnd() {
+               return this._lyricsEnd;
             }
          },
          _tempo: lyricsData.tempo,
-         set tempo(tempo) {
-            this._tempo = tempo;
+         set tempo(value) {
+            this._tempo = value;
             if (counter.data.isRun) {
                counter.pause();
                counter.start();
@@ -89,6 +96,19 @@ class Counter {
                return total.concat(item);
             });
             return reduced;
+         },
+         _currentlyMarkedSectionIndex: 0,
+         get currentlyMarkedSectionIndex() {
+            return this._currentlyMarkedSectionIndex;
+         },
+         set currentlyMarkedSectionIndex(value) {
+            this._currentlyMarkedSectionIndex = value;
+         },
+         lyricsEnd: function() {
+            return (
+               counter.data.currentlyMarkedSectionIndex ===
+               counter.data.locationOfAllBars().length - 1
+            );
          }
       };
 

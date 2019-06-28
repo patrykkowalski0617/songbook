@@ -28,6 +28,10 @@ class Header extends Component {
       ]
    };
 
+   componentDidMount() {
+      counter.data.callbackOn.lyricsEnd = () => this.switchIcon(1);
+   }
+
    switchIcon(buttonIndex) {
       let currentSate = this.state.iconInitialIndex.slice();
       let iconIndex = currentSate[buttonIndex];

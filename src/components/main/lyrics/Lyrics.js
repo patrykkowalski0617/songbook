@@ -18,6 +18,8 @@ class Lyrics extends Component {
    getLyricsSections = this.getLyricsSections.bind(this);
 
    componentDidMount() {
+      const tt = this;
+
       this.scrollAnimation = new ScrollAnimation(
          this.lyricsBody.current,
          this.lyricsSections,
@@ -25,7 +27,7 @@ class Lyrics extends Component {
       );
 
       counter.data.callbackOn.barChange = function() {
-         console.log("scroll to next section");
+         tt.scrollAnimation.anim(500);
       };
 
       this.sectionAnimation = new SectionAnimation(
@@ -40,14 +42,10 @@ class Lyrics extends Component {
       if (this.state.markedSectionIndex !== currentlyMarkedSectionIndex) {
          this.setState({ markedSectionIndex: currentlyMarkedSectionIndex });
          this.scrollAnimation.updateData(currentlyMarkedSectionIndex);
+         counter.data.currentlyMarkedSectionIndex = currentlyMarkedSectionIndex;
       }
    }
    handleScroll = this.handleScroll.bind(this);
-
-   test = function() {
-      this.scrollAnimation.anim(2000);
-   };
-   test = this.test.bind(this);
 
    render() {
       const allLocations = counter.data.locationOfAllBars();
@@ -66,7 +64,7 @@ class Lyrics extends Component {
       });
 
       return (
-         <div onClick={this.test}>
+         <div>
             <div className="lyrics-header">
                <h2>{counter.lyricsData.title}</h2>
                <p className="lyrics-info row">
