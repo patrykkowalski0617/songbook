@@ -23,7 +23,13 @@ class Lyrics extends Component {
       this.scrollAnimation = new ScrollAnimation(
          this.lyricsBody.current,
          this.lyricsSections,
-         this.state.markedSectionIndex
+         this.state.markedSectionIndex,
+         function() {
+            counter.data.allowRestart = false;
+         },
+         function() {
+            counter.data.allowRestart = true;
+         }
       );
 
       counter.data.callbackOn.barChange = function() {
@@ -39,11 +45,12 @@ class Lyrics extends Component {
 
    handleScroll() {
       const currentlyMarkedSectionIndex = this.sectionAnimation.anim();
-      counter.action.restart();
+
       if (this.state.markedSectionIndex !== currentlyMarkedSectionIndex) {
          this.setState({ markedSectionIndex: currentlyMarkedSectionIndex });
          this.scrollAnimation.updateData(currentlyMarkedSectionIndex);
          counter.data.currentlyMarkedSectionIndex = currentlyMarkedSectionIndex;
+         counter.action.restart();
       }
    }
    handleScroll = this.handleScroll.bind(this);

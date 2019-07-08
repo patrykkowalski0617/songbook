@@ -1,5 +1,11 @@
 class ScrollAnimation {
-   constructor(container, lyricsSections, markedSectionIndex) {
+   constructor(
+      container,
+      lyricsSections,
+      markedSectionIndex,
+      callbackOnStart,
+      callbackOnEnd
+   ) {
       const tt = this;
 
       const easing = function(t, b, c, d) {
@@ -16,6 +22,10 @@ class ScrollAnimation {
       this.anim = function(duration) {
          let startTime = null;
          const markedSectionIndex = tt.markedSectionIndex;
+         if (callbackOnStart) {
+            callbackOnStart();
+         }
+
          const animation = function(currentTime) {
             if (startTime === null) {
                startTime = currentTime;
@@ -42,6 +52,8 @@ class ScrollAnimation {
 
             if (timeElapsed < duration) {
                requestAnimationFrame(animation);
+            } else if (callbackOnEnd) {
+               callbackOnEnd();
             }
          };
          requestAnimationFrame(animation);

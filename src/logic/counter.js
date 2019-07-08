@@ -51,7 +51,7 @@ class Counter {
             }
          },
          restart: function() {
-            if (counter.isRun) {
+            if (counter.isRun && counter.data.allowRestart) {
                console.log("restart");
                this.pause();
                this.start();
@@ -124,12 +124,19 @@ class Counter {
                counter.data.locationOfAllBars().length - 1
             );
          },
-         _barDelay: 1,
+         _barDelay: 0,
          get barDelay() {
             return this._barDelay;
          },
          set barDelay(value) {
             this._barDelay = value;
+         },
+         _allowRestart: true,
+         get allowRestart() {
+            return this._allowRestart;
+         },
+         set allowRestart(value) {
+            this._allowRestart = value;
          }
       };
 
