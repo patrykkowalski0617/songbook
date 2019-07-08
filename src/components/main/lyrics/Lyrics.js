@@ -39,6 +39,7 @@ class Lyrics extends Component {
 
    handleScroll() {
       const currentlyMarkedSectionIndex = this.sectionAnimation.anim();
+      counter.action.restart();
       if (this.state.markedSectionIndex !== currentlyMarkedSectionIndex) {
          this.setState({ markedSectionIndex: currentlyMarkedSectionIndex });
          this.scrollAnimation.updateData(currentlyMarkedSectionIndex);

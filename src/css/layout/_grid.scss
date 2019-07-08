@@ -128,7 +128,7 @@ article {
    margin-left: 100%;
 }
 
-@media (min-width: $breakS) {
+@media (min-width: $break-s) {
    .col-s-1 {
       max-width: 8.33%;
       flex: 0 0 8.33%;
@@ -218,7 +218,7 @@ article {
       margin-left: 100%;
    }
 }
-@media (min-width: $breakM) {
+@media (min-width: $break-m) {
    .col-m-1 {
       max-width: 8.33%;
       flex: 0 0 8.33%;
@@ -308,7 +308,7 @@ article {
       margin-left: 100%;
    }
 }
-@media (min-width: $breakL) {
+@media (min-width: $break-l) {
    .col-l-1 {
       max-width: 8.33%;
       flex: 0 0 8.33%;

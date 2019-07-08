@@ -9,6 +9,8 @@ class Counter {
          start: function() {
             const delay = (60 / counter.data.tempo) * 1000;
             const songTiming = counter.data.songTiming();
+            const iterationDelay =
+               counter.data.songTiming() * counter.data.barDelay;
             const callback = callback => {
                callback
                   ? callback()
@@ -19,8 +21,13 @@ class Counter {
 
             counter.isRun = setInterval(function() {
                callback(counter.data.callbackOn.eachIteration);
+               console.log(counter.iteration);
                counter.iteration++;
-               if (counter.iteration % songTiming === 0) {
+               if (
+                  (counter.iteration - 1) % songTiming === 0 &&
+                  counter.iteration !== 1 &&
+                  counter.iteration > iterationDelay + 1
+               ) {
                   if (counter.data.lyricsEnd()) {
                      counter.action.pause();
                      counter.data.callbackOn.lyricsEnd();
@@ -36,11 +43,18 @@ class Counter {
             counter.isRun = 0;
             counter.iteration = 0;
          },
-         toggle: function(currentBarSetLength) {
+         toggle: function() {
             if (counter.isRun) {
                this.pause();
             } else {
-               this.start(currentBarSetLength);
+               this.start();
+            }
+         },
+         restart: function() {
+            if (counter.isRun) {
+               console.log("restart");
+               this.pause();
+               this.start();
             }
          }
       };
@@ -109,6 +123,13 @@ class Counter {
                counter.data.currentlyMarkedSectionIndex ===
                counter.data.locationOfAllBars().length - 1
             );
+         },
+         _barDelay: 1,
+         get barDelay() {
+            return this._barDelay;
+         },
+         set barDelay(value) {
+            this._barDelay = value;
          }
       };
 

@@ -44,7 +44,6 @@ class ScrollAnimation {
                requestAnimationFrame(animation);
             }
          };
-
          requestAnimationFrame(animation);
       };
    }

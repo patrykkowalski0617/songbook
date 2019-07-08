@@ -1,10 +1,10 @@
 class SectionAnimation {
    constructor(parent, sections) {
       // return range whera animation supposed to be performed
-      const getRange = function(rangeSize) {
+      const getRange = function() {
          const sectionH = sections[0].clientHeight;
-         const rangeTop = (sectionH - sectionH * rangeSize) * -1;
-         const rangeBottom = (sectionH + sectionH * rangeSize) * -1;
+         const rangeTop = (sectionH - sectionH) * -1;
+         const rangeBottom = (sectionH + sectionH) * -1;
 
          return { top: rangeTop, bottom: rangeBottom };
       };
@@ -28,12 +28,12 @@ class SectionAnimation {
          ).style.transform = `translate(-50%, -50%) scale(${scale})`;
       };
 
-      const minScale = 0.5;
+      const minScale = 0.7;
 
       let currentAnimated = [];
       let markedSection;
       this.anim = function() {
-         const range = getRange(1);
+         const range = getRange();
 
          const getMarkedSection = function() {
             if (currentAnimated.length === 1) {

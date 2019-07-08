@@ -11,8 +11,8 @@ class LyricsSection extends Component {
       return (
          <div className={"lyrics-section"} ref={this.ref}>
             <div className="section-content">
-               <p className="lyrics-text">{this.props.text}</p>
                <p className="lyrics-chords">{this.props.chords}</p>
+               <p className="lyrics-text">{this.props.text}</p>
             </div>
          </div>
       );

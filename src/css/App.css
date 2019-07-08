@@ -554,6 +554,9 @@ ol {
       margin-top: 80px; }
     .lyrics-body .lyrics-section:last-child {
       margin-bottom: 80px; }
+    @media (max-width: 580px) {
+      .lyrics-body .lyrics-section {
+        font-size: 20px; } }
     .lyrics-body .lyrics-section .section-content {
       text-align: center;
       height: 70px;
