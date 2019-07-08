@@ -1,7 +1,13 @@
+.lyrics-header {
+   h2 {
+      margin-bottom: $space-2;
+   }
+   margin: $space-4 0;
+}
 .lyrics-body {
    height: 240px;
    overflow-y: scroll;
-   background: #aaa;
+   border: 1px solid $dark;
    .lyrics-section {
       &:first-child {
          margin-top: 80px;
@@ -12,17 +18,17 @@
       height: 80px;
       font-size: 30px;
       position: relative;
-      background-color: #999;
       .section-content {
+         text-align: center;
          height: 70px;
          position: absolute;
-         transform: translate(0, -50%) scale(0.7);
+         transform: translate(-50%, -50%) scale(0.7);
          top: 50%;
-         background-color: #777;
+         left: 50%;
+         width: 100%;
          .lyrics-text,
          .lyrics-chords {
             height: 35px;
-            background-color: #555;
             line-height: 35px;
             vertical-align: middle;
          }

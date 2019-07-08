@@ -64,9 +64,19 @@ class Lyrics extends Component {
       });
 
       return (
-         <div>
+         <div className="lyrics">
             <div className="lyrics-header">
-               <h2>{counter.lyricsData.title}</h2>
+               <h2>
+                  {counter.lyricsData.title}
+                  <a
+                     className="lyrics-info-item"
+                     href={counter.lyricsData.link}
+                     target="_blank"
+                     rel="noopener noreferrer"
+                  >
+                     <i className="icon icon-youtube" />
+                  </a>
+               </h2>
                <p className="lyrics-info row">
                   <span className="lyrics-info-item col">
                      Tempo: {counter.lyricsData.tempo}
@@ -74,14 +84,6 @@ class Lyrics extends Component {
                   <span className="lyrics-info-item col">
                      Time: {counter.lyricsData.time}
                   </span>
-                  <a
-                     className="lyrics-info-item col"
-                     href={counter.lyricsData.link}
-                     target="_blank"
-                     rel="noopener noreferrer"
-                  >
-                     <i>YT</i>
-                  </a>
                </p>
             </div>
             <div

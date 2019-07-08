@@ -25,7 +25,7 @@ class SectionAnimation {
       const aplyTransformStyle = function(scale, elements) {
          elements.querySelector(
             ".section-content"
-         ).style.transform = `translate(0, -50%) scale(${scale})`;
+         ).style.transform = `translate(-50%, -50%) scale(${scale})`;
       };
 
       const minScale = 0.5;

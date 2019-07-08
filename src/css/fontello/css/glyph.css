@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'glyph';
-  src: url('../font/glyph.eot?77432462');
-  src: url('../font/glyph.eot?77432462#iefix') format('embedded-opentype'),
-       url('../font/glyph.woff2?77432462') format('woff2'),
-       url('../font/glyph.woff?77432462') format('woff'),
-       url('../font/glyph.ttf?77432462') format('truetype'),
-       url('../font/glyph.svg?77432462#glyph') format('svg');
+  src: url('../font/glyph.eot?57963174');
+  src: url('../font/glyph.eot?57963174#iefix') format('embedded-opentype'),
+       url('../font/glyph.woff2?57963174') format('woff2'),
+       url('../font/glyph.woff?57963174') format('woff'),
+       url('../font/glyph.ttf?57963174') format('truetype'),
+       url('../font/glyph.svg?57963174#glyph') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'glyph';
-    src: url('../font/glyph.svg?77432462#glyph') format('svg');
+    src: url('../font/glyph.svg?57963174#glyph') format('svg');
   }
 }
 */
@@ -62,3 +62,4 @@
 .icon-lyrics-list:before { content: '\e804'; } /* '' */
 .icon-close:before { content: '\e805'; } /* '' */
 .icon-cancel:before { content: '\e806'; } /* '' */
+.icon-youtube:before { content: '\f167'; } /* '' */

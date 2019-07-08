@@ -5,57 +5,23 @@
    "time": "4/4",
    "sections": [
       {
-         "name": "test",
+         "name": "verse",
          "bars": [
             {
-               "text": "0",
-               "chords": "0"
+               "text": "Lay where you're laying",
+               "chords": "E"
             },
             {
-               "text": "0",
-               "chords": "1"
+               "text": "Don't make a sound",
+               "chords": "E"
             },
             {
-               "text": "0",
-               "chords": "2"
+               "text": "I know they're watching",
+               "chords": "cis"
             },
             {
-               "text": "0",
-               "chords": "3"
-            }
-         ]
-      },
-      {
-         "name": "test",
-         "bars": [
-            {
-               "text": "1",
-               "chords": "0"
-            },
-            {
-               "text": "1",
-               "chords": "1"
-            }
-         ]
-      },
-      {
-         "name": "test",
-         "bars": [
-            {
-               "text": "2",
-               "chords": "0"
-            },
-            {
-               "text": "2",
-               "chords": "1"
-            },
-            {
-               "text": "2",
-               "chords": "2"
-            },
-            {
-               "text": "2",
-               "chords": "3"
+               "text": "They're watching",
+               "chords": "cis"
             }
          ]
       }
