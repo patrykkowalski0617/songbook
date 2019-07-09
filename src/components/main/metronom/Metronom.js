@@ -43,12 +43,18 @@ class Metronom extends Component {
             tt.setState({
                 knock: tt.updateMetronom()
             });
-            console.log(tt.state.knock);
         };
     }
 
     render() {
-        return <div className="metronom row">{this.metronom()}</div>;
+        return (
+            <div className="metronom">
+                <p className="description">metronom</p>
+                <div className="metronom-body row vertical-padding">
+                    {this.metronom()}
+                </div>
+            </div>
+        );
     }
 }
 

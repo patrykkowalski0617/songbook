@@ -6,7 +6,6 @@ import Metronom from "./metronom/Metronom";
 function Main(props) {
     return (
         <main className="main">
-            <Metronom />
             <div className="container">
                 <LyricsList
                     display={props.display}
@@ -17,6 +16,7 @@ function Main(props) {
                     bar={props.bar}
                     barSet={props.barSet}
                 />
+                <Metronom />
             </div>
         </main>
     );

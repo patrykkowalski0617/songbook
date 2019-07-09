@@ -1,9 +1,13 @@
-.metronom {
-  border: 1px solid #000000; }
-  .metronom .metronom-element {
+.metronom .description {
+  margin: 0.7rem 0 -0.3rem 0;
+  font-size: 0.7rem; }
+.metronom .metronom-body {
+  margin: 0; }
+  .metronom .metronom-body .metronom-element {
     height: 20px;
-    border-right: 1px solid #000000; }
-    .metronom .metronom-element:last-child {
-      border: none; }
-    .metronom .metronom-element.active {
+    border: 0px solid #000000;
+    border-right-width: 1px; }
+    .metronom .metronom-body .metronom-element:first-child {
+      border-left-width: 1px; }
+    .metronom .metronom-body .metronom-element.active {
       background-color: #000000; }

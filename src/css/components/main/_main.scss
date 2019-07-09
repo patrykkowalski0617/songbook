@@ -1,6 +1,5 @@
 .main {
     height: calc(100vh - #{$headerH} - #{$footerH});
-    overflow-y: scroll;
     background-color: $light;
     color: $dark;
- }
+}

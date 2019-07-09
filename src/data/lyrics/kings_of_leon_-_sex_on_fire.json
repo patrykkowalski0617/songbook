@@ -1,29 +1,29 @@
 {
-   "title": "Lyrics Test",
-   "link": "https://www.youtube.com/watch?v=RF0HhrwIwp0",
-   "tempo": 120,
-   "time": "4/4",
-   "sections": [
-      {
-         "name": "verse",
-         "bars": [
-            {
-               "text": "Lay where you're laying",
-               "chords": "E"
-            },
-            {
-               "text": "Don't make a sound",
-               "chords": "E"
-            },
-            {
-               "text": "I know they're watching",
-               "chords": "cis"
-            },
-            {
-               "text": "They're watching",
-               "chords": "cis"
-            }
-         ]
-      }
-   ]
+    "title": "Lyrics Test",
+    "link": "https://www.youtube.com/watch?v=RF0HhrwIwp0",
+    "tempo": 120,
+    "time": "4/4",
+    "sections": [
+        {
+            "name": "verse",
+            "bars": [
+                {
+                    "text": "Lay where you're laying",
+                    "chords": "E"
+                },
+                {
+                    "text": "Don't make a sound",
+                    "chords": "E"
+                },
+                {
+                    "text": "I know they're watching",
+                    "chords": "cis"
+                },
+                {
+                    "text": "They're watching",
+                    "chords": "cis"
+                }
+            ]
+        }
+    ]
 }
