@@ -1,0 +1,9 @@
+.metronom {
+  border: 1px solid #000000; }
+  .metronom .metronom-element {
+    height: 20px;
+    border-right: 1px solid #000000; }
+    .metronom .metronom-element:last-child {
+      border: none; }
+    .metronom .metronom-element.active {
+      background-color: #000000; }

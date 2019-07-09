@@ -1,0 +1,15 @@
+@import "../../../css/abstracts/variables";
+
+.metronom {
+    border: 1px solid $dark;
+    .metronom-element {
+        height: 20px;
+        border-right: 1px solid $dark;
+        &:last-child {
+            border: none;
+        }
+        &.active {
+            background-color: $dark;
+        }
+    }
+}
