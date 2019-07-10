@@ -42,16 +42,22 @@ class Lyrics extends Component {
         );
         this.sectionAnimation.anim();
     }
-
+    currentlyMarkedSectionIndex = null;
     handleScroll() {
-        const currentlyMarkedSectionIndex = this.sectionAnimation.anim();
+        if (this.sectionAnimation.anim()) {
+            this.currentlyMarkedSectionIndex = this.sectionAnimation.anim();
+        }
 
-        console.log(currentlyMarkedSectionIndex);
+        console.log(this.currentlyMarkedSectionIndex);
 
-        if (this.state.markedSectionIndex !== currentlyMarkedSectionIndex) {
-            this.setState({ markedSectionIndex: currentlyMarkedSectionIndex });
-            this.scrollAnimation.updateData(currentlyMarkedSectionIndex);
-            counter.data.currentlyMarkedSectionIndex = currentlyMarkedSectionIndex;
+        if (
+            this.state.markedSectionIndex !== this.currentlyMarkedSectionIndex
+        ) {
+            this.setState({
+                markedSectionIndex: this.currentlyMarkedSectionIndex
+            });
+            this.scrollAnimation.updateData(this.currentlyMarkedSectionIndex);
+            counter.data.currentlyMarkedSectionIndex = this.currentlyMarkedSectionIndex;
             counter.action.restart();
         }
     }
