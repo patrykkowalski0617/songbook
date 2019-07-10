@@ -26,7 +26,7 @@ class Counter {
                     if (
                         (counter.iteration - 1) % songTiming === 0 &&
                         counter.iteration !== 1 &&
-                        counter.iteration > iterationDelay + 1
+                        counter.iteration - 1 > iterationDelay
                     ) {
                         if (counter.data.lyricsEnd()) {
                             counter.action.pause();
@@ -132,7 +132,7 @@ class Counter {
                     counter.data.locationOfAllBars().length - 1
                 );
             },
-            _barDelay: 1,
+            _barDelay: 0,
             get barDelay() {
                 return this._barDelay;
             },

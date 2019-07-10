@@ -33,7 +33,8 @@ class Lyrics extends Component {
         );
 
         counter.data.callbackOn.barChange = function() {
-            tt.scrollAnimation.anim(500);
+            const time = counter.data.songTiming() * 1000 - 100;
+            tt.scrollAnimation.anim(time);
         };
 
         this.sectionAnimation = new SectionAnimation(

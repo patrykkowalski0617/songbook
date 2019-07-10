@@ -18,7 +18,7 @@ class SectionAnimation {
             };
             const d = getTopDistance();
             const o = sectionOffset;
-            const scale = Math.pow((o / -d) * (2 - o / -d), 1.5);
+            const scale = (o / -d) * (2 - o / -d);
             return scale;
         };
 
@@ -29,7 +29,7 @@ class SectionAnimation {
             ).style.transform = `translate(-50%, -50%) scale(${scale})`;
         };
 
-        const minScale = 0.7;
+        const minScale = 0.9;
 
         let currentAnimated = [];
         let markedSection;

@@ -9,9 +9,6 @@ class ScrollAnimation {
         const tt = this;
 
         const easing = function(t, b, c, d) {
-            console.log("");
-            console.log(t, b, c, d);
-            console.log((c * t) / d + b);
             return (c * t) / d + b;
         };
         // http://www.gizma.com/easing

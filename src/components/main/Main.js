@@ -11,11 +11,7 @@ function Main(props) {
                     display={props.display}
                     searchResult={props.searchResult}
                 />
-                <Lyrics
-                    lyrics={props.lyrics}
-                    bar={props.bar}
-                    barSet={props.barSet}
-                />
+                <Lyrics />
                 <Metronom />
             </div>
         </main>
