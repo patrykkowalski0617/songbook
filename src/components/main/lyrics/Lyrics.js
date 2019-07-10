@@ -42,13 +42,13 @@ class Lyrics extends Component {
         );
         this.sectionAnimation.anim();
     }
+
     currentlyMarkedSectionIndex = null;
+
     handleScroll() {
         if (this.sectionAnimation.anim()) {
             this.currentlyMarkedSectionIndex = this.sectionAnimation.anim();
         }
-
-        console.log(this.currentlyMarkedSectionIndex);
 
         if (
             this.state.markedSectionIndex !== this.currentlyMarkedSectionIndex

@@ -42,6 +42,7 @@ class Counter {
                 clearInterval(counter.isRun);
                 counter.isRun = 0;
                 counter.iteration = 0;
+                counter.data.callbackOn.metronomStop();
             },
             toggle: function() {
                 if (counter.isRun) {
@@ -81,6 +82,13 @@ class Counter {
                 },
                 get lyricsEnd() {
                     return this._lyricsEnd;
+                },
+                _metronomStop: null,
+                set metronomStop(value) {
+                    this._metronomStop = value;
+                },
+                get metronomStop() {
+                    return this._metronomStop;
                 }
             },
             _tempo: lyricsData.tempo,

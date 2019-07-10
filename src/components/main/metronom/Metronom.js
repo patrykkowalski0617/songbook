@@ -10,7 +10,7 @@ class Metronom extends Component {
     songTiming = counter.data.songTiming();
     colSize = 12 / this.songTiming;
     metronomParts = Array(this.songTiming).fill(null);
-    metronom = function() {
+    createMetronom = function() {
         return this.metronomParts.map((item, index) => {
             let marker = "";
             if (index === this.state.knock) {
@@ -27,7 +27,7 @@ class Metronom extends Component {
         });
     };
 
-    updateMetronom = function() {
+    updateKnock = function() {
         let no = this.state.knock;
         if (no < this.songTiming - 1) {
             no++;
@@ -41,7 +41,12 @@ class Metronom extends Component {
         const tt = this;
         counter.data.callbackOn.eachIteration = function() {
             tt.setState({
-                knock: tt.updateMetronom()
+                knock: tt.updateKnock()
+            });
+        };
+        counter.data.callbackOn.metronomStop = function() {
+            tt.setState({
+                knock: -1
             });
         };
     }
@@ -51,7 +56,7 @@ class Metronom extends Component {
             <div className="metronom">
                 <p className="description">metronom</p>
                 <div className="metronom-body row vertical-padding">
-                    {this.metronom()}
+                    {this.createMetronom()}
                 </div>
             </div>
         );
