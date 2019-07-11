@@ -1,57 +1,55 @@
 // .SEARCH
 .search.anim-show {
-   max-width: 650px;
-   opacity: 1;
+    max-width: 650px;
+    opacity: 1;
 }
 .search.anim-hide {
-   opacity: 0;
-   max-width: 0;
+    opacity: 0;
+    max-width: 0;
 }
 
 .search.anim-show,
 .search.anim-hide {
-   transition: 0.3s ease-in-out;
-   transition-property: max-width, opacity;
+    transition: 0.3s ease-in-out;
+    transition-property: max-width, opacity;
 }
 
 // .LOGO
 .logo.anim-show {
-   width: 60px;
-   opacity: 1;
+    width: 60px;
+    opacity: 1;
 }
 .logo.anim-hide {
-   opacity: 0;
-   width: 0px;
+    opacity: 0;
+    width: 0px;
 }
 
 .logo.anim-show,
 .logo.anim-hide {
-   transition: 0.3s ease-in-out;
-   transition-property: width, opacity;
-   // position absolute needed because element keeps its space efter transition to width: 0
-   // when parent has content-justify: spae-between
-   position: absolute;
-   overflow: hidden;
+    transition: 0.3s ease-in-out;
+    transition-property: width, opacity;
+    // position absolute needed because element keeps its space efter transition to width: 0
+    // when parent has content-justify: spae-between
+    position: absolute;
 }
 
 // .LYRICS-LIST
 .lyrics-list.anim-show {
-   opacity: 1;
+    opacity: 1;
 }
 .lyrics-list.anim-hide {
-   opacity: 0;
+    opacity: 0;
 }
 
 .lyrics-list {
-   display: none;
-   overflow: hidden;
+    display: none;
 }
 .lyrics-list.anim-show {
-   display: block;
+    display: block;
 }
 
 .lyrics-list.anim-show,
 .lyrics-list.anim-hide {
-   transition: 0.3s ease-in-out;
-   transition-property: opacity;
+    transition: 0.3s ease-in-out;
+    transition-property: opacity;
 }

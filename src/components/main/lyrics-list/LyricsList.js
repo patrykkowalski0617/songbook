@@ -17,7 +17,11 @@ const LyricsList = props => {
         }
         return "Jeszcze nie znam tej pioseki :(";
     };
-    return <ul className={`lyrics-list ${props.display}`}>{lyricsItems()}</ul>;
+    return (
+        <ul className={`lyrics-list ${props.displayLyricsList}`}>
+            {lyricsItems()}
+        </ul>
+    );
 };
 
 export default LyricsList;

@@ -8,11 +8,11 @@ function Main(props) {
         <main className="main">
             <div className="container">
                 <LyricsList
-                    display={props.display}
+                    displayLyricsList={props.displayLyricsList}
                     searchResult={props.searchResult}
                 />
-                <Lyrics />
-                <Metronom />
+                {/* <Lyrics /> */}
+                {/* <Metronom /> */}
             </div>
         </main>
     );

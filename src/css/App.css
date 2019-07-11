@@ -495,7 +495,8 @@ body {
   font-weight: 400;
   font-size: 15px;
   background-color: #000000;
-  color: #ffffff; }
+  color: #ffffff;
+  overflow: hidden; }
 
 a:link,
 a:visited,
@@ -560,8 +561,6 @@ ol {
       text-align: center;
       height: 70px;
       position: absolute;
-      -webkit-transform: translate(-50%, -50%) scale(0.7);
-              transform: translate(-50%, -50%) scale(0.7);
       top: 50%;
       left: 50%;
       width: 100%; }
@@ -604,8 +603,7 @@ ol {
   transition: 0.3s ease-in-out;
   -webkit-transition-property: width, opacity;
   transition-property: width, opacity;
-  position: absolute;
-  overflow: hidden; }
+  position: absolute; }
 
 .lyrics-list.anim-show {
   opacity: 1; }
@@ -614,8 +612,7 @@ ol {
   opacity: 0; }
 
 .lyrics-list {
-  display: none;
-  overflow: hidden; }
+  display: none; }
 
 .lyrics-list.anim-show {
   display: block; }
