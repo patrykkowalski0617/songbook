@@ -3,7 +3,6 @@ import HeaderButton from "./HeaderButton";
 
 class ButtonContainer extends Component {
     render() {
-        console.log(this.props.icons);
         const icons = this.props.icons;
         const buttons = icons.map((item, index) => {
             if (item) {
