@@ -28,6 +28,10 @@ class App extends Component {
     }
     searchClick = this.searchClick.bind(this);
 
+    lyricsData(lyricsData) {
+        console.log(lyricsData);
+    }
+
     render() {
         return (
             <div>
@@ -41,6 +45,7 @@ class App extends Component {
                         this.state.displayLyricsList ? "anim-show" : "anim-hide"
                     }
                     searchResult={this.state.searchResult}
+                    lyricsData={this.lyricsData}
                 />
                 <Footer />
             </div>

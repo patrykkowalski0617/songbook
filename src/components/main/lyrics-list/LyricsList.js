@@ -3,30 +3,22 @@ import LyricsItem from "./LyricsItem";
 import axios from "axios";
 
 class LyricsList extends Component {
+    state = { lyricsData: null };
     handleClick = function(buttonText) {
-        console.log(buttonText);
+        this.getLyricsJson(buttonText);
     };
     handleClick = this.handleClick.bind(this);
 
-    componentDidMount() {
-        axios
-            .get("lyrics/kings_of_leon_-_sex_on_fire.json")
-            .then(res => console.log(res.data));
-        // this.request = function() {
-        // const xmlhttp = new XMLHttpRequest();
-        // const url = "./kings_of_leon_-_sex_on_fire.json";
-        // xmlhttp.onreadystatechange = function() {
-        //     if (this.readyState === 4 && this.status === 200) {
-        //         // const lyricsObj = JSON.parse(this.responseText);
-        //         console.log(this);
-        //     }
-        // };
-        // xmlhttp.open("GET", url, true);
-        // xmlhttp.send();
-        // };
-
-        // this.request = this.request.bind(this);
-    }
+    getLyricsJson = function(lyricsName) {
+        const tt = this;
+        const fileFormat = "json";
+        const fileName = lyricsName.toLowerCase().replace(/ /g, "_");
+        const filePath = `lyrics/${fileName}.${fileFormat}`;
+        axios.get(filePath).then(res => {
+            const lyricsData = res.data;
+            tt.setState({ lyricsData: lyricsData });
+        });
+    };
 
     lyricsItems = function() {
         if (this.props.searchResult.length) {
@@ -34,7 +26,7 @@ class LyricsList extends Component {
                 <LyricsItem
                     key={lyricsNames.id}
                     lyricsName={lyricsNames.lyricsName}
-                    handleClick={this.request}
+                    handleClick={this.handleClick}
                 />
             ));
         }
@@ -43,6 +35,7 @@ class LyricsList extends Component {
     lyricsItems = this.lyricsItems.bind(this);
 
     render() {
+        this.props.lyricsData(this.state.lyricsData);
         return (
             <ul className={`lyrics-list ${this.props.displayLyricsList}`}>
                 {this.lyricsItems()}

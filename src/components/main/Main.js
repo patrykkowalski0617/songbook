@@ -10,6 +10,7 @@ function Main(props) {
                 <LyricsList
                     displayLyricsList={props.displayLyricsList}
                     searchResult={props.searchResult}
+                    lyricsData={props.lyricsData}
                 />
                 {/* <Lyrics /> */}
                 {/* <Metronom /> */}
