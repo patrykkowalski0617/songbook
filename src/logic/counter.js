@@ -1,5 +1,3 @@
-import kings_of_leon_sex_on_fire from "../data/lyrics/kings_of_leon_-_sex_on_fire";
-
 class Counter {
     constructor(lyricsData) {
         const counter = this;
@@ -153,6 +151,4 @@ class Counter {
     }
 }
 
-const counter = new Counter(kings_of_leon_sex_on_fire);
-
-export default counter;
+export default Counter;

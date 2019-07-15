@@ -4,7 +4,7 @@ import Logo from "./Logo";
 import Search from "./Search";
 import HeaderButtonContainer from "./header-buttons/HeaderButtonContainer";
 
-import counter from "../../logic/counter";
+import Counter from "../../logic/Counter";
 
 class Header extends Component {
     state = {
@@ -23,13 +23,13 @@ class Header extends Component {
                 this.props.displayLyricsList();
             },
             () => {
-                counter.action.toggle();
+                this.props.counter.action.toggle();
             }
         ]
     };
 
     componentDidMount() {
-        counter.data.callbackOn.lyricsEnd = () => this.switchIcon(1);
+        // counter.data.callbackOn.lyricsEnd = () => this.switchIcon(1);
     }
 
     switchIcon(buttonIndex) {

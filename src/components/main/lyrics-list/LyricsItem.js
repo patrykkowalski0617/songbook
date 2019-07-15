@@ -11,7 +11,7 @@ function LyricsItem(props) {
         <li>
             <button
                 style={style}
-                onClick={e => props.handleClick(e.target.innerText)}
+                onClick={e => props.getLyricsName(e.target.innerText)}
             >
                 {props.lyricsName}
             </button>

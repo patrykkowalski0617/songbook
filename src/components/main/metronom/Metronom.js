@@ -2,12 +2,10 @@ import React, { Component } from "react";
 import "./metronom.css";
 import MetronomElement from "./MetronomElement";
 
-import counter from "../../../logic/counter";
-
 class Metronom extends Component {
     state = { knock: -1 };
 
-    songTiming = counter.data.songTiming();
+    songTiming = this.props.counter.data.songTiming();
     colSize = 12 / this.songTiming;
     metronomParts = Array(this.songTiming).fill(null);
     createMetronom = function() {
@@ -39,12 +37,12 @@ class Metronom extends Component {
 
     componentDidMount() {
         const tt = this;
-        counter.data.callbackOn.eachIteration = function() {
+        this.props.counter.data.callbackOn.eachIteration = function() {
             tt.setState({
                 knock: tt.updateKnock()
             });
         };
-        counter.data.callbackOn.metronomStop = function() {
+        this.props.counter.data.callbackOn.metronomStop = function() {
             tt.setState({
                 knock: -1
             });

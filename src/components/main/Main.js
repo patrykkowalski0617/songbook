@@ -4,16 +4,20 @@ import Lyrics from "./lyrics/Lyrics";
 import Metronom from "./metronom/Metronom";
 
 function Main(props) {
+    let lyrics;
+    if (props.lyricsData) {
+        lyrics = <Lyrics counter={props.counter} />;
+    }
     return (
         <main className="main">
             <div className="container">
                 <LyricsList
                     displayLyricsList={props.displayLyricsList}
                     searchResult={props.searchResult}
-                    lyricsData={props.lyricsData}
+                    getLyricsName={props.getLyricsName}
                 />
-                {/* <Lyrics /> */}
-                {/* <Metronom /> */}
+                {lyrics}
+                {/* <Metronom counter={props.counter} /> */}
             </div>
         </main>
     );

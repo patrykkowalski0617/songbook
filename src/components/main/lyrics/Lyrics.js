@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import LyricsSection from "./LyricsSection";
 
-import counter from "../../../logic/counter";
+import Counter from "../../../logic/Counter";
 import SectionAnimation from "./logic/section-animation";
 import ScrollAnimation from "./logic/scroll-animation";
 
@@ -17,23 +17,25 @@ class Lyrics extends Component {
     };
     getLyricsSections = this.getLyricsSections.bind(this);
 
+    // componentWillMount() {
+    //     this.counter = this.props.counter;
+    // }
     componentDidMount() {
         const tt = this;
-
         this.scrollAnimation = new ScrollAnimation(
             this.lyricsBody.current,
             this.lyricsSections,
             this.state.markedSectionIndex,
             function() {
-                counter.data.allowRestart = false;
+                this.props.counter.data.allowRestart = false;
             },
             function() {
-                counter.data.allowRestart = true;
+                this.props.counter.data.allowRestart = true;
             }
         );
 
-        counter.data.callbackOn.barChange = function() {
-            const time = counter.data.songTiming() * 1000 - 100;
+        this.props.counter.data.callbackOn.barChange = function() {
+            const time = this.props.counter.data.songTiming() * 1000 - 100;
             tt.scrollAnimation.anim(time);
         };
 
@@ -50,18 +52,18 @@ class Lyrics extends Component {
         if (this.state.markedSectionIndex !== currentlyMarkedSectionIndex) {
             this.setState({ markedSectionIndex: currentlyMarkedSectionIndex });
             this.scrollAnimation.updateData(currentlyMarkedSectionIndex);
-            counter.data.currentlyMarkedSectionIndex = currentlyMarkedSectionIndex;
-            counter.action.restart();
+            this.props.counter.data.currentlyMarkedSectionIndex = currentlyMarkedSectionIndex;
+            this.props.counter.action.restart();
         }
     }
     handleScroll = this.handleScroll.bind(this);
 
     render() {
-        const allLocations = counter.data.locationOfAllBars();
+        const allLocations = this.props.counter.data.locationOfAllBars();
 
         const lyricsSections = allLocations.map((item, index) => {
-            const currentBar =
-                counter.lyricsData.sections[item[0]].bars[item[1]];
+            const currentBar = this.props.counter.lyricsData.sections[item[0]]
+                .bars[item[1]];
 
             return (
                 <LyricsSection
@@ -77,10 +79,10 @@ class Lyrics extends Component {
             <div className="lyrics">
                 <div className="lyrics-header">
                     <h2>
-                        {counter.lyricsData.title}
+                        {this.props.counter.lyricsData.title}
                         <a
                             className="lyrics-info-item"
-                            href={counter.lyricsData.link}
+                            href={this.props.counter.lyricsData.link}
                             target="_blank"
                             rel="noopener noreferrer"
                         >
@@ -89,10 +91,10 @@ class Lyrics extends Component {
                     </h2>
                     <p className="lyrics-info row">
                         <span className="lyrics-info-item col">
-                            Tempo: {counter.lyricsData.tempo}
+                            Tempo: {this.props.counter.lyricsData.tempo}
                         </span>
                         <span className="lyrics-info-item col">
-                            Time: {counter.lyricsData.time}
+                            Time: {this.props.counter.lyricsData.time}
                         </span>
                     </p>
                 </div>
