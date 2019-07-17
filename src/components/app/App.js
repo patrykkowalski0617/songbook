@@ -54,6 +54,7 @@ class App extends Component {
         axios.get(filePath).then(res => {
             const lyricsData = res.data;
             tt.counter = new Counter(res.data);
+            tt.counter.data.callbackOn.lyricsEnd = () => tt.switchIcon(1);
             tt.setState({ lyricsData: lyricsData });
             tt.setState({ displayPlayButton: true });
             tt.setState({ displayLyrics: true });
@@ -79,7 +80,7 @@ class App extends Component {
                 this.display.lyricsList();
             },
             () => {
-                this.props.counter.action.toggle();
+                this.counter.action.toggle();
             }
         ]
     };

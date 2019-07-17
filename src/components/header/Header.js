@@ -5,10 +5,6 @@ import Search from "./Search";
 import HeaderButtonContainer from "./header-buttons/HeaderButtonContainer";
 
 class Header extends Component {
-    componentDidMount() {
-        // counter.data.callbackOn.lyricsEnd = () => this.switchIcon(1);
-    }
-
     handleClick(buttonIndex) {
         this.props.switchIcon(buttonIndex);
         this.props.buttonData.methods[buttonIndex]();

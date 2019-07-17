@@ -7,6 +7,8 @@ import ScrollAnimation from "./logic/scroll-animation";
 class Lyrics extends Component {
     state = { markedSectionIndex: 0 };
 
+    counter = this.props.counter;
+
     lyricsBody = React.createRef();
     lyricsSections = [];
     getLyricsSections = function(item) {
@@ -23,15 +25,15 @@ class Lyrics extends Component {
             this.lyricsSections,
             this.state.markedSectionIndex,
             function() {
-                this.props.counter.data.allowRestart = false;
+                tt.counter.data.allowRestart = false;
             },
             function() {
-                this.props.counter.data.allowRestart = true;
+                tt.counter.data.allowRestart = true;
             }
         );
 
-        this.props.counter.data.callbackOn.barChange = function() {
-            const time = this.props.counter.data.songTiming() * 1000 - 100;
+        this.counter.data.callbackOn.barChange = function() {
+            const time = tt.counter.data.songTiming() * 1000 - 100;
             tt.scrollAnimation.anim(time);
         };
 
@@ -48,18 +50,19 @@ class Lyrics extends Component {
         if (this.state.markedSectionIndex !== currentlyMarkedSectionIndex) {
             this.setState({ markedSectionIndex: currentlyMarkedSectionIndex });
             this.scrollAnimation.updateData(currentlyMarkedSectionIndex);
-            this.props.counter.data.currentlyMarkedSectionIndex = currentlyMarkedSectionIndex;
-            this.props.counter.action.restart();
+            this.counter.data.currentlyMarkedSectionIndex = currentlyMarkedSectionIndex;
+            this.counter.action.restart();
         }
     }
     handleScroll = this.handleScroll.bind(this);
 
     render() {
-        const allLocations = this.props.counter.data.locationOfAllBars();
+        const allLocations = this.counter.data.locationOfAllBars();
 
         const lyricsSections = allLocations.map((item, index) => {
-            const currentBar = this.props.counter.lyricsData.sections[item[0]]
-                .bars[item[1]];
+            const currentBar = this.counter.lyricsData.sections[item[0]].bars[
+                item[1]
+            ];
 
             return (
                 <LyricsSection
@@ -75,10 +78,10 @@ class Lyrics extends Component {
             <div className="lyrics">
                 <div className="lyrics-header">
                     <h2>
-                        {this.props.counter.lyricsData.title}
+                        {this.counter.lyricsData.title}
                         <a
                             className="lyrics-info-item"
-                            href={this.props.counter.lyricsData.link}
+                            href={this.counter.lyricsData.link}
                             target="_blank"
                             rel="noopener noreferrer"
                         >
@@ -87,10 +90,10 @@ class Lyrics extends Component {
                     </h2>
                     <p className="lyrics-info row">
                         <span className="lyrics-info-item col">
-                            Tempo: {this.props.counter.lyricsData.tempo}
+                            Tempo: {this.counter.lyricsData.tempo}
                         </span>
                         <span className="lyrics-info-item col">
-                            Time: {this.props.counter.lyricsData.time}
+                            Time: {this.counter.lyricsData.time}
                         </span>
                     </p>
                 </div>
