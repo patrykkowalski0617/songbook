@@ -7,7 +7,7 @@ import lyrics_list from "../../data/lyrics_list";
 import filterLyricsList from "./logic/filterLyricsList";
 import getLyricsItems from "./logic/getLyricsItems";
 import axios from "axios";
-import Counter from "../../logic/Counter";
+import Counter from "../../logic/counter";
 
 class App extends Component {
     lyricsList = getLyricsItems(lyrics_list);

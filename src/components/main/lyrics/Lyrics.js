@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import LyricsSection from "./LyricsSection";
 
-import Counter from "../../../logic/Counter";
 import SectionAnimation from "./logic/section-animation";
 import ScrollAnimation from "./logic/scroll-animation";
 
@@ -17,9 +16,6 @@ class Lyrics extends Component {
     };
     getLyricsSections = this.getLyricsSections.bind(this);
 
-    // componentWillMount() {
-    //     this.counter = this.props.counter;
-    // }
     componentDidMount() {
         const tt = this;
         this.scrollAnimation = new ScrollAnimation(
