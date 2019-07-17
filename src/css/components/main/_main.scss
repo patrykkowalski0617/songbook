@@ -2,4 +2,5 @@
     height: calc(100vh - #{$headerH} - #{$footerH});
     background-color: $light;
     color: $dark;
+    overflow: auto;
 }

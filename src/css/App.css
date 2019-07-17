@@ -535,7 +535,8 @@ ol {
 .main {
   height: calc(100vh - 60px - 40px);
   background-color: #ffffff;
-  color: #000000; }
+  color: #000000;
+  overflow: auto; }
 
 .lyrics-header {
   margin: 1.3rem 0; }
