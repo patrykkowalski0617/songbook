@@ -10,10 +10,6 @@
     position: relative;
     padding-top: 10px;
     padding-bottom: 10px; }
-    .header > .container .logo {
-      font-weight: 700;
-      font-size: 1.3rem;
-      line-height: 20px; }
     .header > .container .search {
       margin-right: 0.4rem;
       width: 100%;

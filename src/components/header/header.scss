@@ -1,50 +1,50 @@
 @import "../../css/abstracts/variables";
 .header {
-   height: $headerH;
-   > .container {
-      display: flex;
-      justify-content: space-between;
-      position: relative;
-      padding-top: $headerPadding;
-      padding-bottom: $headerPadding;
-      .logo {
-         font-weight: 700;
-         font-size: $space-4;
-         line-height: 20px;
-      }
-      .search {
-         margin-right: $space-1;
-         width: 100%;
-         position: relative;
-         overflow: hidden;
-         border-radius: 20px;
-         button {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
+    height: $headerH;
+    > .container {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        padding-top: $headerPadding;
+        padding-bottom: $headerPadding;
+        // .logo {
+        //    font-weight: 700;
+        //    font-size: $space-4;
+        //    line-height: 20px;
+        // }
+        .search {
+            margin-right: $space-1;
             width: 100%;
-            max-width: 60px;
-            cursor: pointer;
-            position: absolute;
-            right: 0;
-         }
-         input {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-            border-right: 1px solid $dark;
-            width: calc(100% - 60px);
-            position: absolute;
-         }
-      }
-   }
-   .header-buttons {
-      margin-right: -$space-1;
-      margin-left: 0;
-      .header-button {
-         padding: 0 0.4rem;
-         .icon {
-            font-size: 20px;
-            cursor: pointer;
-         }
-      }
-   }
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            button {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                width: 100%;
+                max-width: 60px;
+                cursor: pointer;
+                position: absolute;
+                right: 0;
+            }
+            input {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                border-right: 1px solid $dark;
+                width: calc(100% - 60px);
+                position: absolute;
+            }
+        }
+    }
+    .header-buttons {
+        margin-right: -$space-1;
+        margin-left: 0;
+        .header-button {
+            padding: 0 0.4rem;
+            .icon {
+                font-size: 20px;
+                cursor: pointer;
+            }
+        }
+    }
 }
