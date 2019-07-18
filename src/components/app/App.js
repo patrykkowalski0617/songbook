@@ -113,9 +113,7 @@ class App extends Component {
                     buttonData={this.buttonData}
                 />
                 <Main
-                    displayLyricsList={
-                        this.state.displayLyricsList ? "anim-show" : "anim-hide"
-                    }
+                    displayLyricsList={this.state.displayLyricsList}
                     searchResult={this.state.searchResult}
                     getLyricsName={this.getLyricsName}
                     lyricsData={this.state.lyricsData}

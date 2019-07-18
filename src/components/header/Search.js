@@ -6,8 +6,8 @@ class Search extends Component {
     };
 
     render() {
-        return (
-            <div className={`search ${this.props.display}`}>
+        return this.props.display ? (
+            <div className={`search`}>
                 <input
                     className="bar-input"
                     type="search"
@@ -34,6 +34,8 @@ class Search extends Component {
                     Search
                 </button>
             </div>
+        ) : (
+            ""
         );
     }
 }

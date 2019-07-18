@@ -26,19 +26,9 @@ class Header extends Component {
         return (
             <header className="header">
                 <div className="container">
-                    <Logo
-                        display={
-                            this.props.displayLyricsList
-                                ? "anim-hide"
-                                : "anim-show"
-                        }
-                    />
+                    <Logo display={this.props.displayLyricsList} />
                     <Search
-                        display={
-                            this.props.displayLyricsList
-                                ? "anim-show"
-                                : "anim-hide"
-                        }
+                        display={this.props.displayLyricsList}
                         searchClick={this.props.searchClick}
                     />
                     <HeaderButtonContainer

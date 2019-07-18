@@ -17,10 +17,10 @@ class LyricsList extends Component {
     lyricsItems = this.lyricsItems.bind(this);
 
     render() {
-        return (
-            <ul className={`lyrics-list ${this.props.displayLyricsList}`}>
-                {this.lyricsItems()}
-            </ul>
+        return this.props.displayLyricsList ? (
+            <ul className={`lyrics-list`}>{this.lyricsItems()}</ul>
+        ) : (
+            ""
         );
     }
 }
