@@ -1,5 +1,12 @@
 import React, { Component } from "react";
 import HeaderButton from "./HeaderButton";
+import styled from "styled-components";
+import { space } from "../../style_abstract/variables";
+
+export const HeaderButtonContainer = styled.div`
+    margin-right: -${space.s1};
+    margin-left: 0;
+`;
 
 class ButtonContainer extends Component {
     render() {
@@ -16,7 +23,11 @@ class ButtonContainer extends Component {
             }
         });
 
-        return <div className="row header-buttons">{buttons}</div>;
+        return (
+            <HeaderButtonContainer className="row">
+                {buttons}
+            </HeaderButtonContainer>
+        );
     }
 }
 

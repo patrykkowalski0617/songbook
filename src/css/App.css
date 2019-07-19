@@ -538,39 +538,6 @@ ol {
   color: #000000;
   overflow: auto; }
 
-.lyrics-header {
-  margin: 1.3rem 0; }
-  .lyrics-header h2 {
-    margin-bottom: 0.7rem; }
-
-.lyrics-body {
-  height: 240px;
-  overflow-y: scroll;
-  border: 1px solid #000000; }
-  .lyrics-body .lyrics-section {
-    height: 80px;
-    font-size: 30px;
-    position: relative; }
-    .lyrics-body .lyrics-section:first-child {
-      margin-top: 80px; }
-    .lyrics-body .lyrics-section:last-child {
-      margin-bottom: 80px; }
-    @media (max-width: 580px) {
-      .lyrics-body .lyrics-section {
-        font-size: 20px; } }
-    .lyrics-body .lyrics-section .section-content {
-      text-align: center;
-      height: 70px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100%; }
-      .lyrics-body .lyrics-section .section-content .lyrics-text,
-      .lyrics-body .lyrics-section .section-content .lyrics-chords {
-        height: 35px;
-        line-height: 35px;
-        vertical-align: middle; }
-
 .footer {
   height: 40px;
   text-align: center; }

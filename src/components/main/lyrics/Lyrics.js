@@ -1,8 +1,23 @@
 import React, { Component } from "react";
 import LyricsSection from "./LyricsSection";
-
 import SectionAnimation from "./logic/section-animation";
 import ScrollAnimation from "./logic/scroll-animation";
+import styled from "styled-components";
+import { space, color } from "../../style_abstract/variables";
+
+export const LyricsHeader = styled.div`
+    margin: ${space.s4} 0;
+`;
+
+export const H2 = styled.h2`
+    margin-bottom: ${space.s2};
+`;
+
+export const LyricsBody = styled.div`
+    height: 240px;
+    overflow-y: scroll;
+    border: 1px solid ${color.dark};
+`;
 
 class Lyrics extends Component {
     state = { markedSectionIndex: 0 };
@@ -75,9 +90,9 @@ class Lyrics extends Component {
         });
 
         return (
-            <div className="lyrics">
-                <div className="lyrics-header">
-                    <h2>
+            <div>
+                <LyricsHeader>
+                    <H2>
                         {this.counter.lyricsData.title}
                         <a
                             className="lyrics-info-item"
@@ -87,7 +102,7 @@ class Lyrics extends Component {
                         >
                             <i className="icon icon-youtube" />
                         </a>
-                    </h2>
+                    </H2>
                     <p className="lyrics-info row">
                         <span className="lyrics-info-item col">
                             Tempo: {this.counter.lyricsData.tempo}
@@ -96,14 +111,10 @@ class Lyrics extends Component {
                             Time: {this.counter.lyricsData.time}
                         </span>
                     </p>
-                </div>
-                <div
-                    className="lyrics-body"
-                    ref={this.lyricsBody}
-                    onScroll={this.handleScroll}
-                >
+                </LyricsHeader>
+                <LyricsBody ref={this.lyricsBody} onScroll={this.handleScroll}>
                     {lyricsSections}
-                </div>
+                </LyricsBody>
             </div>
         );
     }

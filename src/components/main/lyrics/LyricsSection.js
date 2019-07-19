@@ -1,22 +1,54 @@
 import React, { Component } from "react";
+import styled from "styled-components";
+// import { space, color } from "../../style_abstract/variables";
+
+export const LyricsSectionElement = styled.div`
+    height: 80px;
+    font-size: 30px;
+    position: relative;
+    &:first-child {
+        margin-top: 80px;
+    }
+    &:last-child {
+        margin-bottom: 80px;
+    }
+    @media (max-width: $break-l) {
+        font-size: 20px;
+    }
+`;
+
+export const SectionContent = styled.div`
+    text-align: center;
+    height: 70px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    .lyrics-text,
+    .lyrics-chords {
+        height: 35px;
+        line-height: 35px;
+        vertical-align: middle;
+    }
+`;
 
 class LyricsSection extends Component {
-   ref = React.createRef();
+    ref = React.createRef();
 
-   componentDidMount() {
-      this.props.getLyricsSections(this.ref.current);
-   }
+    componentDidMount() {
+        this.props.getLyricsSections(this.ref.current);
+    }
 
-   render() {
-      return (
-         <div className={"lyrics-section"} ref={this.ref}>
-            <div className="section-content">
-               <p className="lyrics-chords">{this.props.chords}</p>
-               <p className="lyrics-text">{this.props.text}</p>
-            </div>
-         </div>
-      );
-   }
+    render() {
+        return (
+            <LyricsSectionElement className={"lyrics-section"} ref={this.ref}>
+                <SectionContent className="section-content">
+                    <p className="lyrics-chords">{this.props.chords}</p>
+                    <p className="lyrics-text">{this.props.text}</p>
+                </SectionContent>
+            </LyricsSectionElement>
+        );
+    }
 }
 
 export default LyricsSection;

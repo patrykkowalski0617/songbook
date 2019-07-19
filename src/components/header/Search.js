@@ -1,4 +1,32 @@
 import React, { Component } from "react";
+import styled from "styled-components";
+import { space, color } from "../style_abstract/variables";
+
+export const SearchContainer = styled.div`
+    margin-right: ${space.s1};
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+`;
+
+export const Input = styled.input`
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: 1px solid ${color.dark};
+    width: calc(100% - 60px);
+    position: absolute;
+`;
+
+export const Button = styled.button`
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    width: 100%;
+    max-width: 60px;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+`;
 
 class Search extends Component {
     state = {
@@ -7,11 +35,12 @@ class Search extends Component {
 
     render() {
         return this.props.display ? (
-            <div className={`search`}>
-                <input
+            <SearchContainer>
+                <Input
                     className="bar-input"
                     type="search"
-                    placeholder="wyszukaj: artysta - tytuł"
+                    placeholder="wyszukaj:
+                    artysta - tytuł"
                     onChange={e => {
                         const value = e.target.value;
                         this.setState({ inputValue: value });
@@ -25,15 +54,15 @@ class Search extends Component {
                         }
                     }}
                 />
-                <button
+                <Button
                     className="circle-input"
                     onClick={() =>
                         this.props.searchClick(this.state.inputValue)
                     }
                 >
                     Search
-                </button>
-            </div>
+                </Button>
+            </SearchContainer>
         ) : (
             ""
         );

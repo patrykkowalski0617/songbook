@@ -3,6 +3,20 @@ import "./header.css";
 import Logo from "./Logo";
 import Search from "./Search";
 import HeaderButtonContainer from "./header-buttons/HeaderButtonContainer";
+import styled from "styled-components";
+import { headerH, headerPadding } from "../style_abstract/variables";
+
+export const HeaderElement = styled.header`
+    height: ${headerH};
+`;
+
+export const Container = styled.div`
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding-top: ${headerPadding};
+    padding-bottom: ${headerPadding};
+`;
 
 class Header extends Component {
     handleClick(buttonIndex) {
@@ -24,8 +38,8 @@ class Header extends Component {
         };
 
         return (
-            <header className="header">
-                <div className="container">
+            <HeaderElement className="header">
+                <Container className="container">
                     <Logo display={this.props.displayLyricsList} />
                     <Search
                         display={this.props.displayLyricsList}
@@ -35,8 +49,8 @@ class Header extends Component {
                         icons={getIcons()}
                         handleClick={this.handleClick}
                     />
-                </div>
-            </header>
+                </Container>
+            </HeaderElement>
         );
     }
 }
