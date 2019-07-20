@@ -13,15 +13,17 @@ const color = {
     light: `#ffffff`
 };
 
-const headerH = "60px;";
-const headerPadding = "10px;";
+const footerH = "40px";
+const headerH = "60px";
+const headerPadding = "10px";
 
 const variables = {
     color: color,
     space: space,
     headerH: headerH,
+    footerH: footerH,
     headerPadding: headerPadding
 };
 
-export { space, color, headerH, headerPadding };
+export { space, color, footerH, headerH, headerPadding };
 export default variables;

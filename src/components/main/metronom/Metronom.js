@@ -1,6 +1,15 @@
 import React, { Component } from "react";
-import "./metronom.css";
 import MetronomElement from "./MetronomElement";
+import styled from "styled-components";
+
+export const Description = styled.div`
+    margin: 0.7rem 0 -0.3rem 0;
+    font-size: 0.7rem;
+`;
+
+export const MetronomBody = styled.div`
+    margin: 0;
+`;
 
 class Metronom extends Component {
     state = { knock: -1 };
@@ -51,9 +60,9 @@ class Metronom extends Component {
 
     render() {
         return (
-            <div className="metronom">
-                <p className="description">metronom</p>
-                <div className="metronom-body row vertical-padding">
+            <div className="container">
+                <Description>metronom</Description>
+                <div className="row vertical-padding">
                     {this.createMetronom()}
                 </div>
             </div>

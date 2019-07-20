@@ -2,6 +2,15 @@ import React from "react";
 import LyricsList from "./lyrics-list/LyricsList";
 import Lyrics from "./lyrics/Lyrics";
 import Metronom from "./metronom/Metronom";
+import styled from "styled-components";
+import { headerH, footerH, color } from "../style_abstract/variables";
+
+export const MainElement = styled.main`
+    height: calc(100vh - ${headerH} - ${footerH});
+    background-color: ${color.light};
+    color: ${color.dark};
+    overflow: auto;
+`;
 
 function Main(props) {
     let lyrics, metronom;
@@ -11,7 +20,7 @@ function Main(props) {
     }
 
     return (
-        <main className="main">
+        <MainElement>
             <div className="container">
                 <LyricsList
                     displayLyricsList={props.displayLyricsList}
@@ -21,7 +30,7 @@ function Main(props) {
                 {lyrics}
                 {metronom}
             </div>
-        </main>
+        </MainElement>
     );
 }
 

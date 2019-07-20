@@ -2,12 +2,12 @@ import React, { Component } from "react";
 
 import Header from "../header/Header";
 import Main from "../main/Main";
-import Footer from "../Footer";
+import Footer from "../footer/Footer";
 import lyrics_list from "../../data/lyrics_list";
 import filterLyricsList from "./logic/filterLyricsList";
 import getLyricsItems from "./logic/getLyricsItems";
+import Counter from "./logic/counter";
 import axios from "axios";
-import Counter from "../../logic/counter";
 
 class App extends Component {
     lyricsList = getLyricsItems(lyrics_list);
