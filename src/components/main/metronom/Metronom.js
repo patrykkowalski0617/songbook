@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import MetronomElement from "./MetronomElement";
 import styled from "styled-components";
-
+import MetronomSound from "./metronom_sound/MetronomSound";
 export const Description = styled.div`
     margin: 0.7rem 0 -0.3rem 0;
     font-size: 0.7rem;
@@ -12,7 +12,7 @@ export const MetronomBody = styled.div`
 `;
 
 class Metronom extends Component {
-    state = { knock: -1 };
+    state = { knock: -1, playStatus: "STOPPED" };
 
     songTiming = this.props.counter.data.songTiming();
     colSize = 12 / this.songTiming;
@@ -48,7 +48,8 @@ class Metronom extends Component {
         const tt = this;
         this.props.counter.data.callbackOn.eachIteration = function() {
             tt.setState({
-                knock: tt.updateKnock()
+                knock: tt.updateKnock(),
+                playStatus: "PLAYING"
             });
         };
         this.props.counter.data.callbackOn.metronomStop = function() {
@@ -61,6 +62,7 @@ class Metronom extends Component {
     render() {
         return (
             <div className="container">
+                <MetronomSound playStatus={this.state.playStatus} />
                 <Description>metronom</Description>
                 <div className="row vertical-padding">
                     {this.createMetronom()}
