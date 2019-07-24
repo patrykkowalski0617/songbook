@@ -3,20 +3,20 @@ import LyricsSection from "./LyricsSection";
 import SectionAnimation from "./logic/section-animation";
 import ScrollAnimation from "./logic/scroll-animation";
 import styled from "styled-components";
-import { space, color } from "../../style_abstract/variables";
+import v from "../../style_abstract/variables";
 
 export const LyricsHeader = styled.div`
-    margin: ${space.s4} 0;
+    margin: ${v.space.s4} 0;
 `;
 
 export const H2 = styled.h2`
-    margin-bottom: ${space.s2};
+    margin-bottom: ${v.space.s2};
 `;
 
 export const LyricsBody = styled.div`
     height: 240px;
     overflow-y: scroll;
-    border: 1px solid ${color.dark};
+    border: 1px solid ${v.color.dark};
 `;
 
 class Lyrics extends Component {

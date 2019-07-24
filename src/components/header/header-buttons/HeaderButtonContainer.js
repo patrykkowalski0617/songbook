@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import HeaderButton from "./HeaderButton";
 import styled from "styled-components";
-import { space } from "../../style_abstract/variables";
+import v from "../../style_abstract/variables";
 
 export const HeaderButtonContainer = styled.div`
-    margin-right: -${space.s1};
+    margin-right: -${v.space.s1};
     margin-left: 0;
 `;
 

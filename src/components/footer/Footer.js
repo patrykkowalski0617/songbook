@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { footerH } from "../style_abstract/variables";
+import v from "../style_abstract/variables";
 
 export const FooterElement = styled.footer`
-    height: ${footerH};
+    height: ${v.footerH};
     text-align: center;
 `;
 

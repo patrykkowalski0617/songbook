@@ -3,12 +3,12 @@ import LyricsList from "./lyrics-list/LyricsList";
 import Lyrics from "./lyrics/Lyrics";
 import Metronom from "./metronom/Metronom";
 import styled from "styled-components";
-import { headerH, footerH, color } from "../style_abstract/variables";
+import v from "../style_abstract/variables";
 
 export const MainElement = styled.main`
-    height: calc(100vh - ${headerH} - ${footerH});
-    background-color: ${color.light};
-    color: ${color.dark};
+    height: calc(100vh - ${v.headerH} - ${v.footerH});
+    background-color: ${v.color.light};
+    color: ${v.color.dark};
     overflow: auto;
 `;
 

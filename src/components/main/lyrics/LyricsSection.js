@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { media } from "../../style_abstract/variables";
+import v from "../../style_abstract/variables";
 
 export const LyricsSectionElement = styled.div`
     height: 80px;
@@ -12,7 +12,7 @@ export const LyricsSectionElement = styled.div`
     &:last-child {
         margin-bottom: 80px;
     }
-    @media (max-width: ${media.l}) {
+    @media (max-width: ${v.media.l}) {
         font-size: 20px;
     }
 `;

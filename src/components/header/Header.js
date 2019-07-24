@@ -3,18 +3,18 @@ import Logo from "./Logo";
 import Search from "./Search";
 import HeaderButtonContainer from "./header-buttons/HeaderButtonContainer";
 import styled from "styled-components";
-import { headerH, headerPadding } from "../style_abstract/variables";
+import v from "../style_abstract/variables";
 
 export const HeaderElement = styled.header`
-    height: ${headerH};
+    height: ${v.headerH};
 `;
 
 export const Container = styled.div`
     display: flex;
     justify-content: space-between;
     position: relative;
-    padding-top: ${headerPadding};
-    padding-bottom: ${headerPadding};
+    padding-top: ${v.headerPadding};
+    padding-bottom: ${v.headerPadding};
 `;
 
 class Header extends Component {

@@ -60,34 +60,10 @@ class Counter {
 
         this.data = {
             callbackOn: {
-                _eachIteration: null,
-                set eachIteration(value) {
-                    this._eachIteration = value;
-                },
-                get eachIteration() {
-                    return this._eachIteration;
-                },
-                _barChange: null,
-                set barChange(value) {
-                    this._barChange = value;
-                },
-                get barChange() {
-                    return this._barChange;
-                },
-                _lyricsEnd: null,
-                set lyricsEnd(value) {
-                    this._lyricsEnd = value;
-                },
-                get lyricsEnd() {
-                    return this._lyricsEnd;
-                },
-                _metronomStop: null,
-                set metronomStop(value) {
-                    this._metronomStop = value;
-                },
-                get metronomStop() {
-                    return this._metronomStop;
-                }
+                eachIteration: null,
+                barChange: null,
+                lyricsEnd: null,
+                metronomStop: null
             },
             _tempo: lyricsData.tempo,
             set tempo(value) {
@@ -117,33 +93,15 @@ class Counter {
                 });
                 return reduced;
             },
-            _currentlyMarkedSectionIndex: 0,
-            get currentlyMarkedSectionIndex() {
-                return this._currentlyMarkedSectionIndex;
-            },
-            set currentlyMarkedSectionIndex(value) {
-                this._currentlyMarkedSectionIndex = value;
-            },
+            currentlyMarkedSectionIndex: 0,
             lyricsEnd: function() {
                 return (
                     _this.data.currentlyMarkedSectionIndex ===
                     _this.data.locationOfAllBars().length - 1
                 );
             },
-            _barDelay: 0,
-            get barDelay() {
-                return this._barDelay;
-            },
-            set barDelay(value) {
-                this._barDelay = value;
-            },
-            _allowRestart: true,
-            get allowRestart() {
-                return this._allowRestart;
-            },
-            set allowRestart(value) {
-                this._allowRestart = value;
-            }
+            barDelay: 0,
+            allowRestart: true
         };
 
         this.lyricsData = lyricsData;

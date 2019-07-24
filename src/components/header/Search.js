@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { space, color } from "../style_abstract/variables";
+import v from "../style_abstract/variables";
 
 export const SearchContainer = styled.div`
-    margin-right: ${space.s1};
+    margin-right: ${v.space.s1};
     width: 100%;
     position: relative;
     overflow: hidden;
@@ -13,7 +13,7 @@ export const SearchContainer = styled.div`
 export const Input = styled.input`
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    border-right: 1px solid ${color.dark};
+    border-right: 1px solid ${v.color.dark};
     width: calc(100% - 60px);
     position: absolute;
 `;

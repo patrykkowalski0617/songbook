@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import MetronomElement from "./MetronomElement";
 import styled from "styled-components";
 import MetronomSound from "./metronom_sound/MetronomSound";
+
 export const Description = styled.div`
     margin: 0.7rem 0 -0.3rem 0;
     font-size: 0.7rem;
