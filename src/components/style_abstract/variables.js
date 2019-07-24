@@ -17,13 +17,20 @@ const footerH = "40px";
 const headerH = "60px";
 const headerPadding = "10px";
 
+const media = {
+    s: "320px",
+    m: "450px",
+    l: "580px"
+};
+
 const variables = {
     color: color,
     space: space,
     headerH: headerH,
     footerH: footerH,
-    headerPadding: headerPadding
+    headerPadding: headerPadding,
+    media: media
 };
 
-export { space, color, footerH, headerH, headerPadding };
+export { space, color, footerH, headerH, headerPadding, media };
 export default variables;

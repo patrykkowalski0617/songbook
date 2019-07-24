@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Header from "../header/Header";
 import Main from "../main/Main";
 import Footer from "../footer/Footer";
-import lyrics_list from "../../data/lyrics_list";
+import lyrics_list from "./data/lyrics_list";
 import filterLyricsList from "./logic/filterLyricsList";
 import getLyricsItems from "./logic/getLyricsItems";
 import Counter from "./logic/counter";

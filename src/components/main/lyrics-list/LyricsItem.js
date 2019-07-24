@@ -1,20 +1,23 @@
 import React from "react";
+import styled from "styled-components";
+
+export const LyricsItemButton = styled.button`
+    background: none;
+    border: none;
+    margin: 0.3rem;
+    cursor: pointer;
+    text-align: left;
+    line-height: 150%;
+`;
 
 function LyricsItem(props) {
-    const style = {
-        background: "none",
-        border: "none",
-        margin: ".3rem",
-        cursor: "pointer"
-    };
     return (
         <li>
-            <button
-                style={style}
+            <LyricsItemButton
                 onClick={e => props.getLyricsName(e.target.innerText)}
             >
                 {props.lyricsName}
-            </button>
+            </LyricsItemButton>
         </li>
     );
 }
