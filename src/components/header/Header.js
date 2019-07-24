@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./header.css";
 import Logo from "./Logo";
 import Search from "./Search";
 import HeaderButtonContainer from "./header-buttons/HeaderButtonContainer";

@@ -1,56 +1,56 @@
 class Counter {
     constructor(lyricsData) {
-        const counter = this;
+        const _this = this;
 
         this.iteration = 0;
         this.action = {
             start: function() {
-                const delay = (60 / counter.data.tempo) * 1000;
-                const songTiming = counter.data.songTiming();
+                const delay = (60 / _this.data.tempo) * 1000;
+                const songTiming = _this.data.songTiming();
                 const iterationDelay =
-                    counter.data.songTiming() * counter.data.barDelay;
+                    _this.data.songTiming() * _this.data.barDelay;
                 const callback = callback => {
                     callback
                         ? callback()
                         : console.warn(
-                              "Assign function to both properties of counter.data.callbackOn"
+                              "Assign function to both properties of _this.data.callbackOn"
                           );
                 };
 
-                counter.isRun = setInterval(function() {
-                    callback(counter.data.callbackOn.eachIteration);
+                _this.isRun = setInterval(function() {
+                    callback(_this.data.callbackOn.eachIteration);
 
-                    counter.iteration++;
+                    _this.iteration++;
                     if (
-                        (counter.iteration - 1) % songTiming === 0 &&
-                        counter.iteration !== 1 &&
-                        counter.iteration - 1 > iterationDelay
+                        (_this.iteration - 1) % songTiming === 0 &&
+                        _this.iteration !== 1 &&
+                        _this.iteration - 1 > iterationDelay
                     ) {
-                        if (counter.data.lyricsEnd()) {
-                            counter.action.pause();
-                            counter.data.callbackOn.lyricsEnd();
-                            counter.data.currentlyMarkedSectionIndex = 0;
+                        if (_this.data.lyricsEnd()) {
+                            _this.action.pause();
+                            _this.data.callbackOn.lyricsEnd();
+                            _this.data.currentlyMarkedSectionIndex = 0;
                         } else {
-                            callback(counter.data.callbackOn.barChange);
+                            callback(_this.data.callbackOn.barChange);
                         }
                     }
                 }, delay);
             },
             pause: function() {
-                clearInterval(counter.isRun);
-                counter.isRun = 0;
-                counter.iteration = 0;
-                counter.data.callbackOn.metronomStop();
+                clearInterval(_this.isRun);
+                _this.isRun = 0;
+                _this.iteration = 0;
+                _this.data.callbackOn.metronomStop();
             },
             toggle: function() {
-                if (counter.isRun) {
+                if (_this.isRun) {
                     this.pause();
                 } else {
                     this.start();
                 }
             },
             restart: function() {
-                if (counter.isRun && counter.data.allowRestart) {
+                if (_this.isRun && _this.data.allowRestart) {
                     console.log("restart");
                     this.pause();
                     this.start();
@@ -92,9 +92,9 @@ class Counter {
             _tempo: lyricsData.tempo,
             set tempo(value) {
                 this._tempo = value;
-                if (counter.data.isRun) {
-                    counter.pause();
-                    counter.start();
+                if (_this.data.isRun) {
+                    _this.pause();
+                    _this.start();
                 }
             },
             get tempo() {
@@ -106,7 +106,7 @@ class Counter {
                 return Number(meterString);
             },
             locationOfAllBars: function() {
-                const sections = counter.lyricsData.sections;
+                const sections = _this.lyricsData.sections;
                 const map = sections.map(function(section, secIndex) {
                     return section.bars.map(function(bar, barIndex) {
                         return [secIndex, barIndex];
@@ -126,8 +126,8 @@ class Counter {
             },
             lyricsEnd: function() {
                 return (
-                    counter.data.currentlyMarkedSectionIndex ===
-                    counter.data.locationOfAllBars().length - 1
+                    _this.data.currentlyMarkedSectionIndex ===
+                    _this.data.locationOfAllBars().length - 1
                 );
             },
             _barDelay: 0,

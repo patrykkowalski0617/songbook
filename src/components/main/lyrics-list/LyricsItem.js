@@ -14,7 +14,7 @@ function LyricsItem(props) {
     return (
         <li>
             <LyricsItemButton
-                onClick={e => props.getLyricsName(e.target.innerText)}
+                onClick={e => props.getLyricsJson(e.target.innerText)}
             >
                 {props.lyricsName}
             </LyricsItemButton>

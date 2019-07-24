@@ -1,16 +1,16 @@
 import React, { Component } from "react";
-
 import Header from "../header/Header";
 import Main from "../main/Main";
 import Footer from "../footer/Footer";
 import lyrics_list from "./data/lyrics_list";
 import filterLyricsList from "./logic/filterLyricsList";
 import getLyricsItems from "./logic/getLyricsItems";
-import Counter from "./logic/counter";
-import axios from "axios";
+import getLyricsJson from "./logic/getLyricsJson";
+import switchIcon from "./logic/switchIcon";
 
 class App extends Component {
     lyricsList = getLyricsItems(lyrics_list);
+
     state = {
         displayLyricsList: false,
         displayPlayButton: false,
@@ -38,39 +38,6 @@ class App extends Component {
         }.bind(this)
     };
 
-    searchClick(value) {
-        const lyricsList = this.lyricsList.slice();
-        const searchResult = filterLyricsList(value, lyricsList);
-        this.setState({ searchResult: searchResult });
-    }
-    searchClick = this.searchClick.bind(this);
-
-    getLyricsJson = function(lyricsName) {
-        const tt = this;
-        const fileFormat = "json";
-        const fileName = lyricsName.toLowerCase().replace(/ /g, "_");
-        const filePath = `lyrics/${fileName}.${fileFormat}`;
-
-        axios.get(filePath).then(res => {
-            const lyricsData = res.data;
-            tt.counter = new Counter(res.data);
-            tt.counter.data.callbackOn.lyricsEnd = () => tt.switchIcon(1);
-            tt.setState({ lyricsData: lyricsData });
-            tt.setState({ displayPlayButton: true });
-            tt.setState({ displayLyrics: true });
-        });
-    };
-
-    getLyricsName(lyricsName) {
-        this.getLyricsJson(lyricsName);
-        this.setState({
-            displayLyricsList: false,
-            displayHeaderButtons: [true, true]
-        });
-        this.switchIcon(0);
-    }
-    getLyricsName = this.getLyricsName.bind(this);
-
     buttonData = {
         // possible icons for each button
         icons: [["lyrics-list", "close"], ["play", "pause"]],
@@ -85,20 +52,16 @@ class App extends Component {
         ]
     };
 
-    switchIcon(buttonIndex) {
-        let currentSate = this.state.headerButtonsIconIndex.slice();
-        let iconIndex = currentSate[buttonIndex];
+    switchIcon = switchIcon(this);
 
-        if (iconIndex < this.buttonData.icons[buttonIndex].length - 1) {
-            iconIndex++;
-        } else {
-            iconIndex = 0;
-        }
-        currentSate[buttonIndex] = iconIndex;
+    getLyricsJson = getLyricsJson(this);
 
-        this.setState({ headerButtonsIconIndex: currentSate });
+    searchClick(value) {
+        const lyricsList = this.lyricsList.slice();
+        const searchResult = filterLyricsList(value, lyricsList);
+        this.setState({ searchResult: searchResult });
     }
-    switchIcon = this.switchIcon.bind(this);
+    searchClick = this.searchClick.bind(this);
 
     render() {
         return (
@@ -115,7 +78,7 @@ class App extends Component {
                 <Main
                     displayLyricsList={this.state.displayLyricsList}
                     searchResult={this.state.searchResult}
-                    getLyricsName={this.getLyricsName}
+                    getLyricsJson={this.getLyricsJson}
                     lyricsData={this.state.lyricsData}
                     counter={this.counter}
                     displayLyrics={this.state.displayLyrics}

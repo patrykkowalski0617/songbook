@@ -6,7 +6,7 @@ class ScrollAnimation {
         callbackOnStart,
         callbackOnEnd
     ) {
-        const tt = this;
+        const _this = this;
 
         const easing = function(t, b, c, d) {
             return (c * t) / d + b;
@@ -22,7 +22,7 @@ class ScrollAnimation {
         this.anim = function(duration) {
             let startTime = null;
             const startPosition = container.scrollTop;
-            const markedSectionIndex = tt.markedSectionIndex;
+            const markedSectionIndex = _this.markedSectionIndex;
             if (callbackOnStart) {
                 callbackOnStart();
             }

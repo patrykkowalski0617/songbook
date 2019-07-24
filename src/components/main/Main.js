@@ -25,7 +25,7 @@ function Main(props) {
                 <LyricsList
                     displayLyricsList={props.displayLyricsList}
                     searchResult={props.searchResult}
-                    getLyricsName={props.getLyricsName}
+                    getLyricsJson={props.getLyricsJson}
                 />
                 {lyrics}
                 {metronom}

@@ -8,7 +8,7 @@ class LyricsList extends Component {
                 <LyricsItem
                     key={lyricsNames.id}
                     lyricsName={lyricsNames.lyricsName}
-                    getLyricsName={this.props.getLyricsName}
+                    getLyricsJson={this.props.getLyricsJson}
                 />
             ));
         }
