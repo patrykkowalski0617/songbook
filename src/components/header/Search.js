@@ -6,7 +6,6 @@ export const SearchContainer = styled.div`
     margin-right: ${v.space.s1};
     width: 100%;
     position: relative;
-    overflow: hidden;
     border-radius: 20px;
 `;
 
@@ -16,6 +15,9 @@ export const Input = styled.input`
     border-right: 1px solid ${v.color.dark};
     width: calc(100% - 60px);
     position: absolute;
+    &:focus {
+        border-right: none;
+    }
 `;
 
 export const Button = styled.button`
@@ -53,6 +55,7 @@ class Search extends Component {
                             this.props.searchClick(this.state.inputValue);
                         }
                     }}
+                    autoFocus
                 />
                 <Button
                     className="circle-input"

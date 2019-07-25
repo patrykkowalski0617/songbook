@@ -1,6 +1,8 @@
 * {
     box-sizing: border-box;
 }
+
+// Body
 body {
     margin: 0;
     padding: 0;
@@ -11,6 +13,16 @@ body {
     color: $light;
     overflow: hidden;
 }
+
+// Header and footer
+.header,
+.footer {
+    width: 100%;
+    background-color: $dark;
+    color: $light;
+}
+
+// Links
 a:link,
 a:visited,
 a:active,
@@ -20,16 +32,14 @@ a:hover {
 a {
     text-decoration: none;
 }
-.header,
-.footer {
-    width: 100%;
-    background-color: $dark;
-    color: $light;
-}
+
+// Lists
 ul,
 ol {
     list-style-type: none;
 }
+
+// Inputs and buttons
 .circle-input,
 .bar-input {
     height: 40px;
@@ -44,4 +54,13 @@ ol {
 .bar-input {
     padding-left: 20px;
     padding-right: 20px;
+}
+
+// Focus, hover
+input:focus,
+button:focus,
+a:focus {
+    outline: none;
+    box-shadow: outset rgb(255, 30, 0) 0px 0px 0px 2px;
+    z-index: 1;
 }

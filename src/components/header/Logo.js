@@ -8,14 +8,15 @@ export const H1 = styled.h1`
     line-height: 20px;
 `;
 
+export const Link = styled.a`
+    display: block;
+    width: 49px;
+`;
+
 const Logo = props => {
     return !props.display ? (
         <H1 className={`logo`}>
-            <a href="/">
-                Song
-                <br />
-                Book
-            </a>
+            <Link href="/">Song Book</Link>
         </H1>
     ) : (
         ""
