@@ -1,6 +1,9 @@
 // colors
 $dark: #000000;
 $light: #ffffff;
+$mintcream: #defffa;
+$mintsemi: #6f807d;
+$mintdark: "#37403F";
 
 // space
 $space-1: 0.4rem;
@@ -22,11 +25,11 @@ $headerPadding: 10px;
 $footerH: 40px;
 
 @mixin margin-center {
-   margin-left: auto;
-   margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @mixin align-items-center {
-   display: flex;
-   align-items: center;
+    display: flex;
+    align-items: center;
 }

@@ -16,7 +16,7 @@ export const H2 = styled.h2`
 export const LyricsBody = styled.div`
     height: 240px;
     overflow-y: scroll;
-    border: 1px solid ${v.color.dark};
+    background-color: ${v.color.mintcream};
 `;
 
 class Lyrics extends Component {

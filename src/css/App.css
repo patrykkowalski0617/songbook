@@ -536,6 +536,7 @@ input:focus,
 button:focus,
 a:focus {
   outline: none;
-  -webkit-box-shadow: #ff1e00 0px 0px 0px 2px;
-          box-shadow: #ff1e00 0px 0px 0px 2px;
+  -webkit-box-shadow: #6f807d 0px 0px 0px 2px;
+          box-shadow: #6f807d 0px 0px 0px 2px;
+  background-color: #defffa;
   z-index: 1; }

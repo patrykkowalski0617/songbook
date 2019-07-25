@@ -1,7 +1,10 @@
 const variables = {
     color: {
         dark: `#000000`,
-        light: `#ffffff`
+        light: `#ffffff`,
+        mintcream: "#DEFFFA",
+        mintsemi: "#6F807D",
+        mintdark: "#37403F"
     },
     space: {
         s1: `0.4rem`,
