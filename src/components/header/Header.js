@@ -47,6 +47,9 @@ class Header extends Component {
                     <HeaderButtonContainer
                         icons={getIcons()}
                         handleClick={this.handleClick}
+                        headerFocusedButtounIndex={
+                            this.props.headerFocusedButtounIndex
+                        }
                     />
                 </Container>
             </HeaderElement>

@@ -18,6 +18,7 @@ const getLyricsJson = function(_this) {
                 displayLyricsList: false,
                 displayHeaderButtons: [true, true]
             });
+            _this.setState({ headerFocusedButtounIndex: 1 });
             _this.switchIcon(0);
         });
     };

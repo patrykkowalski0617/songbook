@@ -17,6 +17,7 @@ class App extends Component {
         displayHeaderButtons: [true, false],
         displayLyrics: false,
         headerButtonsIconIndex: [0, 0],
+        headerFocusedButtounIndex: 0,
         searchResult: this.lyricsList,
         lyricsData: null
     };
@@ -74,6 +75,9 @@ class App extends Component {
                     headerButtonsIconIndex={this.state.headerButtonsIconIndex}
                     switchIcon={this.switchIcon}
                     buttonData={this.buttonData}
+                    headerFocusedButtounIndex={
+                        this.state.headerFocusedButtounIndex
+                    }
                 />
                 <Main
                     displayLyricsList={this.state.displayLyricsList}

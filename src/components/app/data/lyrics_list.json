@@ -179,11 +179,11 @@
     },
     {
         "id": 9,
-        "artist": "AAA Kings of Leon",
+        "artist": "Kings of Leon",
         "songs": [
             {
                 "id": 109,
-                "name": "Sex On Fire <<<<<<<<<<<<<<<<<<<<<<<< ONLY WORKING!!! !!! !!!",
+                "name": "Sex On Fire",
                 "fileVersion": 1
             }
         ]
