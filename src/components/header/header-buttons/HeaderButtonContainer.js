@@ -13,7 +13,7 @@ class ButtonContainer extends Component {
         const icons = this.props.icons;
         let autoFocus;
         const autoFocusIndex = this.props.headerFocusedButtounIndex;
-        const buttons = icons.map(function(item, index) {
+        const buttons = icons.map((item, index) => {
             if (index === autoFocusIndex) {
                 autoFocus = "autofocus";
             } else {
