@@ -61,6 +61,6 @@ input:focus,
 button:focus,
 a:focus {
     outline: none;
-    box-shadow: outset rgb(255, 30, 0) 0px 0px 0px 2px;
+    box-shadow: rgb(255, 30, 0) 0px 0px 0px 2px;
     z-index: 1;
 }
