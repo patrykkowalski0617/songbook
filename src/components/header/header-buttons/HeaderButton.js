@@ -1,24 +1,25 @@
 import React from "react";
 import styled from "styled-components";
 
-export const HeaderButton = styled.div`
+export const ButtonContainer = styled.div`
     padding: 0 0.4rem;
 `;
 
-export const Icon = styled.button`
+export const ButtonElement = styled.button`
     font-size: 20px;
     cursor: pointer;
 `;
 
 const Button = props => {
     return (
-        <HeaderButton className="col">
+        <ButtonContainer className="col">
             {props.test}
-            <Icon
+            <ButtonElement
                 className={`icon-${props.icon} circle-input`}
                 onClick={props.onClick}
+                autoFocus={props.autoFocus ? props.autoFocus : ""}
             />
-        </HeaderButton>
+        </ButtonContainer>
     );
 };
 

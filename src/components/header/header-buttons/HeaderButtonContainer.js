@@ -11,13 +11,21 @@ export const HeaderButtonContainer = styled.div`
 class ButtonContainer extends Component {
     render() {
         const icons = this.props.icons;
+        let autoFocus;
+        const autoFocusIndex = 1;
         const buttons = icons.map((item, index) => {
             if (item) {
+                if (index === autoFocusIndex) {
+                    autoFocus = "autofocus";
+                } else {
+                    autoFocus = "";
+                }
                 return (
                     <HeaderButton
                         key={index}
                         icon={icons[index]}
                         onClick={() => this.props.handleClick(index)}
+                        autoFocus={autoFocus}
                     />
                 );
             }
