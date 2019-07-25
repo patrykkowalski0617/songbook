@@ -14,14 +14,12 @@ const getLyricsJson = function(_this) {
             _this.setState({ lyricsData: lyricsData });
             _this.setState({ displayPlayButton: true });
             _this.setState({ displayLyrics: true });
+            _this.setState({
+                displayLyricsList: false,
+                displayHeaderButtons: [true, true]
+            });
+            _this.switchIcon(0);
         });
-
-        _this.setState({
-            displayLyricsList: false,
-            displayHeaderButtons: [true, true]
-        });
-
-        _this.switchIcon(0);
     };
 };
 export default getLyricsJson;
