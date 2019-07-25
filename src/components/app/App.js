@@ -16,6 +16,7 @@ class App extends Component {
         displayPlayButton: false,
         displayHeaderButtons: [true, false],
         displayLyrics: false,
+        displayWelcomeInfo: true,
         headerButtonsIconIndex: [0, 0],
         headerFocusedButtounIndex: 0,
         searchResult: this.lyricsList,
@@ -86,6 +87,7 @@ class App extends Component {
                     lyricsData={this.state.lyricsData}
                     counter={this.counter}
                     displayLyrics={this.state.displayLyrics}
+                    displayWelcomeInfo={this.state.displayWelcomeInfo}
                 />
                 <Footer />
             </div>

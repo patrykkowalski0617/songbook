@@ -2,6 +2,7 @@ import React from "react";
 import LyricsList from "./lyrics-list/LyricsList";
 import Lyrics from "./lyrics/Lyrics";
 import Metronom from "./metronom/Metronom";
+import WelcomeInfo from "./welcome_info/WelcomeInfo";
 import styled from "styled-components";
 import v from "../style_abstract/variables";
 
@@ -13,10 +14,14 @@ export const MainElement = styled.main`
 `;
 
 function Main(props) {
-    let lyrics, metronom;
+    let lyrics, metronom, welcomeInfo;
     if (props.lyricsData && props.displayLyrics) {
         lyrics = <Lyrics counter={props.counter} />;
         metronom = <Metronom counter={props.counter} />;
+    }
+
+    if (props.displayWelcomeInfo) {
+        welcomeInfo = <WelcomeInfo />;
     }
 
     return (
@@ -27,6 +32,7 @@ function Main(props) {
                     searchResult={props.searchResult}
                     getLyricsJson={props.getLyricsJson}
                 />
+                {welcomeInfo}
                 {lyrics}
                 {metronom}
             </div>
