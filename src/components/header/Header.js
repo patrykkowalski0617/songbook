@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Logo from "./Logo";
 import Search from "./Search";
 import HeaderButtonContainer from "./header-buttons/HeaderButtonContainer";
@@ -17,44 +17,40 @@ export const Container = styled.div`
     padding-bottom: ${v.headerPadding};
 `;
 
-class Header extends Component {
-    handleClick(buttonIndex) {
-        this.props.switchIcon(buttonIndex);
-        this.props.buttonData.methods[buttonIndex]();
-    }
-    handleClick = this.handleClick.bind(this);
+const Header = function(props) {
+    const handleClick = function(buttonIndex) {
+        props.switchIcon(buttonIndex);
+        props.buttonData.methods[buttonIndex]();
+    };
 
-    render() {
-        const tt = this;
-        const indexes = this.props.headerButtonsIconIndex.slice();
-        const icons = this.props.buttonData.icons.slice();
-        const getIcons = function() {
-            return icons.map(function(item, index) {
-                if (tt.props.displayHeaderButtons[index]) {
-                    return item[indexes[index]];
-                }
-            });
-        };
+    const indexes = props.headerButtonsIconIndex.slice();
+    const icons = props.buttonData.icons.slice();
+    const getIcons = function() {
+        return icons.map(function(item, index) {
+            let selectedItem;
+            if (props.displayHeaderButtons[index]) {
+                selectedItem = item[indexes[index]];
+            }
+            return selectedItem;
+        });
+    };
 
-        return (
-            <HeaderElement className="header">
-                <Container className="container">
-                    <Logo display={this.props.displayLyricsList} />
-                    <Search
-                        display={this.props.displayLyricsList}
-                        searchClick={this.props.searchClick}
-                    />
-                    <HeaderButtonContainer
-                        icons={getIcons()}
-                        handleClick={this.handleClick}
-                        headerFocusedButtounIndex={
-                            this.props.headerFocusedButtounIndex
-                        }
-                    />
-                </Container>
-            </HeaderElement>
-        );
-    }
-}
+    return (
+        <HeaderElement className="header">
+            <Container className="container">
+                <Logo display={props.displayLyricsList} />
+                <Search
+                    display={props.displayLyricsList}
+                    searchClick={props.searchClick}
+                />
+                <HeaderButtonContainer
+                    icons={getIcons()}
+                    handleClick={handleClick}
+                    headerFocusedButtounIndex={props.headerFocusedButtounIndex}
+                />
+            </Container>
+        </HeaderElement>
+    );
+};
 
 export default Header;

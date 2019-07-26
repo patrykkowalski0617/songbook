@@ -1,28 +1,25 @@
-import React, { Component } from "react";
+import React from "react";
 import LyricsItem from "./LyricsItem";
 
-class LyricsList extends Component {
-    lyricsItems = function() {
-        if (this.props.searchResult.length) {
-            return this.props.searchResult.map(lyricsNames => (
+const LyricsList = function(props) {
+    const lyricsItems = function() {
+        if (props.searchResult.length) {
+            return props.searchResult.map(lyricsNames => (
                 <LyricsItem
                     key={lyricsNames.id}
                     lyricsName={lyricsNames.lyricsName}
-                    getLyricsJson={this.props.getLyricsJson}
+                    getLyricsJson={props.getLyricsJson}
                 />
             ));
         }
         return "Jeszcze nie znam tej pioseki :(";
     };
-    lyricsItems = this.lyricsItems.bind(this);
 
-    render() {
-        return this.props.displayLyricsList ? (
-            <ul className={`lyrics-list`}>{this.lyricsItems()}</ul>
-        ) : (
-            ""
-        );
-    }
-}
+    return props.displayLyricsList ? (
+        <ul className={`lyrics-list`}>{lyricsItems()}</ul>
+    ) : (
+        ""
+    );
+};
 
 export default LyricsList;
