@@ -23,22 +23,22 @@ class App extends Component {
         lyricsData: null
     };
 
-    display = {
-        lyricsList: function() {
-            let displayPlayButton;
-            if (this.state.displayPlayButton) {
-                displayPlayButton = !this.state.displayHeaderButtons[1];
-            }
+    displayLyricsList = function() {
+        let displayPlayButton;
+        if (this.state.displayPlayButton) {
+            displayPlayButton = !this.state.displayHeaderButtons[1];
+        }
 
-            const displayLyrics = !this.state.displayLyrics;
+        const displayLyrics = !this.state.displayLyrics;
 
-            this.setState({
-                displayLyricsList: !this.state.displayLyricsList,
-                displayHeaderButtons: [true, displayPlayButton],
-                displayLyrics: displayLyrics
-            });
-        }.bind(this)
+        this.setState({
+            displayLyricsList: !this.state.displayLyricsList,
+            displayHeaderButtons: [true, displayPlayButton],
+            displayLyrics: displayLyrics,
+            displayWelcomeInfo: !this.state.displayWelcomeInfo
+        });
     };
+    displayLyricsList = this.displayLyricsList.bind(this);
 
     buttonData = {
         // possible icons for each button
@@ -46,7 +46,7 @@ class App extends Component {
         // methods for each button
         methods: [
             () => {
-                this.display.lyricsList();
+                this.displayLyricsList();
             },
             () => {
                 this.counter.action.toggle();
