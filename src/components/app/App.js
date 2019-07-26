@@ -3,10 +3,11 @@ import Header from "../header/Header";
 import Main from "../main/Main";
 import Footer from "../footer/Footer";
 import lyrics_list from "./data/lyrics_list";
-import filterLyricsList from "./logic/filterLyricsList";
+import searchClick from "./logic/searchClick";
 import getLyricsItems from "./logic/getLyricsItems";
 import getLyricsJson from "./logic/getLyricsJson";
 import switchIcon from "./logic/switchIcon";
+import displayLyricsList from "./logic/displayLyricsList";
 
 class App extends Component {
     lyricsList = getLyricsItems(lyrics_list);
@@ -23,23 +24,6 @@ class App extends Component {
         lyricsData: null
     };
 
-    displayLyricsList = function() {
-        let displayPlayButton;
-        if (this.state.displayPlayButton) {
-            displayPlayButton = !this.state.displayHeaderButtons[1];
-        }
-
-        const displayLyrics = !this.state.displayLyrics;
-
-        this.setState({
-            displayLyricsList: !this.state.displayLyricsList,
-            displayHeaderButtons: [true, displayPlayButton],
-            displayLyrics: displayLyrics,
-            displayWelcomeInfo: !this.state.displayWelcomeInfo
-        });
-    };
-    displayLyricsList = this.displayLyricsList.bind(this);
-
     buttonData = {
         // possible icons for each button
         icons: [["lyrics-list", "close"], ["play", "pause"]],
@@ -54,16 +38,13 @@ class App extends Component {
         ]
     };
 
+    displayLyricsList = displayLyricsList(this);
+
     switchIcon = switchIcon(this);
 
     getLyricsJson = getLyricsJson(this);
 
-    searchClick(value) {
-        const lyricsList = this.lyricsList.slice();
-        const searchResult = filterLyricsList(value, lyricsList);
-        this.setState({ searchResult: searchResult });
-    }
-    searchClick = this.searchClick.bind(this);
+    searchClick = searchClick(this, this.lyricsList);
 
     render() {
         return (
