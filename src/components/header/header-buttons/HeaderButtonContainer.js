@@ -14,13 +14,14 @@ const ButtonContainer = function(props) {
     const autoFocusIndex = props.headerFocusedButtounIndex;
 
     const buttons = icons.map((item, index) => {
+        let headerButton;
         if (index === autoFocusIndex) {
             autoFocus = "autofocus";
         } else {
             autoFocus = "";
         }
         if (item) {
-            return (
+            headerButton = (
                 <HeaderButton
                     key={index}
                     icon={icons[index]}
@@ -29,6 +30,7 @@ const ButtonContainer = function(props) {
                 />
             );
         }
+        return headerButton;
     });
 
     return (
