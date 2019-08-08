@@ -5,13 +5,10 @@ const displayLyricsList = function(_this) {
             displayPlayButton = !_this.state.displayHeaderButtons[1];
         }
 
-        const displayLyrics = !_this.state.displayLyrics;
-
         _this.setState({
             displayLyricsList: !_this.state.displayLyricsList,
             displayHeaderButtons: [true, displayPlayButton],
-            displayLyrics: displayLyrics,
-            displayWelcomeInfo: !_this.state.displayWelcomeInfo
+            displayLyrics: !_this.state.displayLyrics
         });
     };
 };
