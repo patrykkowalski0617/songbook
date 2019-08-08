@@ -18,23 +18,6 @@ export const Container = styled.div`
 `;
 
 const Header = function(props) {
-    const handleClick = function(buttonIndex) {
-        props.switchIcon(buttonIndex);
-        props.buttonData.methods[buttonIndex]();
-    };
-
-    const indexes = props.headerButtonsIconIndex.slice();
-    const icons = props.buttonData.icons.slice();
-    const getIcons = function() {
-        return icons.map(function(item, index) {
-            let selectedItem;
-            if (props.displayHeaderButtons[index]) {
-                selectedItem = item[indexes[index]];
-            }
-            return selectedItem;
-        });
-    };
-
     return (
         <HeaderElement className="header">
             <Container className="container">
@@ -44,8 +27,8 @@ const Header = function(props) {
                     searchClick={props.searchClick}
                 />
                 <HeaderButtonContainer
-                    icons={getIcons()}
-                    handleClick={handleClick}
+                    displayHeaderButtons={props.displayHeaderButtons}
+                    buttonsData={props.buttonsData}
                     headerFocusedButtounIndex={props.headerFocusedButtounIndex}
                 />
             </Container>

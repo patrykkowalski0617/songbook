@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import HeaderButton from "./HeaderButton";
 import styled from "styled-components";
 import v from "../../style_abstract/variables";
@@ -8,34 +8,54 @@ export const HeaderButtonContainer = styled.div`
     margin-left: 0;
 `;
 
-const ButtonContainer = function(props) {
-    const icons = props.icons;
-    let autoFocus;
-    const autoFocusIndex = props.headerFocusedButtounIndex;
+class ButtonContainer extends Component {
+    state = {
+        buttonsOnState: [true, true]
+    };
 
-    const buttons = icons.map((item, index) => {
-        let headerButton;
-        if (index === autoFocusIndex) {
-            autoFocus = "autofocus";
+    autoFocus = null;
+
+    buttonsElements = this.props.buttonsData.map((item, index) => {
+        let headerButton, icon;
+
+        const _this = this;
+
+        if (index === this.props.headerFocusedButtounIndex) {
+            this.autoFocus = "autofocus";
         } else {
-            autoFocus = "";
+            this.autoFocus = "";
         }
-        if (item) {
+
+        if (_this.state.buttonsOnState[index]) {
+            icon = item.onIcon;
+        } else {
+            icon = item.offIcon;
+        }
+
+        if (this.props.displayHeaderButtons[index]) {
             headerButton = (
                 <HeaderButton
                     key={index}
-                    icon={icons[index]}
-                    onClick={() => props.handleClick(index)}
-                    autoFocus={autoFocus}
+                    icon={icon}
+                    onClick={() => {
+                        item.onClickHandler();
+                    }}
+                    autoFocus={this.autoFocus}
                 />
             );
         }
+
         return headerButton;
     });
 
-    return (
-        <HeaderButtonContainer className="row">{buttons}</HeaderButtonContainer>
-    );
-};
+    render() {
+        console.log("render");
+        return (
+            <HeaderButtonContainer className="row">
+                {this.buttonsElements}
+            </HeaderButtonContainer>
+        );
+    }
+}
 
 export default ButtonContainer;

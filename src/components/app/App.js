@@ -6,7 +6,6 @@ import lyrics_list from "./data/lyrics_list";
 import searchClick from "./logic/searchClick";
 import getLyricsItems from "./logic/getLyricsItems";
 import getLyricsJson from "./logic/getLyricsJson";
-import switchIcon from "./logic/switchIcon";
 import displayLyricsList from "./logic/displayLyricsList";
 
 class App extends Component {
@@ -14,11 +13,9 @@ class App extends Component {
 
     state = {
         displayLyricsList: false,
-        displayPlayButton: false,
         displayHeaderButtons: [true, false],
         displayLyrics: false,
         displayWelcomeInfo: true,
-        headerButtonsIconIndex: [0, 0],
         headerFocusedButtounIndex: 0,
         searchResult: this.lyricsList,
         lyricsData: null
@@ -38,9 +35,20 @@ class App extends Component {
         ]
     };
 
-    displayLyricsList = displayLyricsList(this);
+    buttonsData = [
+        {
+            onIcon: "lyrics-list",
+            offIcon: "close",
+            onClickHandler: () => this.displayLyricsList()
+        },
+        {
+            onIcon: "play",
+            offIcon: "pause",
+            onClickHandler: () => this.counter.action.toggle()
+        }
+    ];
 
-    switchIcon = switchIcon(this);
+    displayLyricsList = displayLyricsList(this);
 
     getLyricsJson = getLyricsJson(this);
 
@@ -54,9 +62,7 @@ class App extends Component {
                     displayHeaderButtons={this.state.displayHeaderButtons}
                     searchClick={this.searchClick}
                     counter={this.counter}
-                    headerButtonsIconIndex={this.state.headerButtonsIconIndex}
-                    switchIcon={this.switchIcon}
-                    buttonData={this.buttonData}
+                    buttonsData={this.buttonsData}
                     headerFocusedButtounIndex={
                         this.state.headerFocusedButtounIndex
                     }
