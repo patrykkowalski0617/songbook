@@ -8,7 +8,8 @@ const displayLyricsList = function(_this) {
         _this.setState({
             displayLyricsList: !_this.state.displayLyricsList,
             displayHeaderButtons: [true, displayPlayButton],
-            displayLyrics: !_this.state.displayLyrics
+            displayLyrics: !_this.state.displayLyrics,
+            displayWelcomeInfo: !_this.state.displayWelcomeInfo
         });
     };
 };

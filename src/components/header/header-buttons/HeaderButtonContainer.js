@@ -9,50 +9,54 @@ export const HeaderButtonContainer = styled.div`
 `;
 
 class ButtonContainer extends Component {
-    state = {
-        buttonsOnState: [true, true]
-    };
+    // state = {
+    //     buttonsOnState: [true, true]
+    // };
 
     autoFocus = null;
 
-    buttonsElements = this.props.buttonsData.map((item, index) => {
-        let headerButton, icon;
+    // switchIcon(index, buttonsCurrentState) {
+    //     const buttonState = buttonsCurrentState.slice();
 
-        const _this = this;
+    //     buttonState[index] = !buttonState[index];
 
-        if (index === this.props.headerFocusedButtounIndex) {
-            this.autoFocus = "autofocus";
-        } else {
-            this.autoFocus = "";
-        }
+    //     return { buttonsOnState: buttonState };
+    // }
 
-        if (_this.state.buttonsOnState[index]) {
-            icon = item.onIcon;
-        } else {
-            icon = item.offIcon;
-        }
+    render() {
+        const buttonsElements = this.props.buttonsData.map((item, index) => {
+            const icon = this.props.buttonsOnStates[index]
+                ? item.onIcon
+                : item.offIcon;
 
-        if (this.props.displayHeaderButtons[index]) {
-            headerButton = (
+            this.autoFocus =
+                index === this.props.headerFocusedButtounIndex
+                    ? "autofocus"
+                    : "";
+
+            return this.props.displayHeaderButtons[index] ? (
                 <HeaderButton
                     key={index}
                     icon={icon}
                     onClick={() => {
+                        // const buttonsCurrentState = this.state.buttonsOnState;
+                        // const newState = this.switchIcon(
+                        //     index,
+                        //     buttonsCurrentState
+                        // );
+
                         item.onClickHandler();
+                        this.props.switchButtonIcon(index);
+                        // this.setState(newState);
                     }}
                     autoFocus={this.autoFocus}
                 />
-            );
-        }
+            ) : null;
+        });
 
-        return headerButton;
-    });
-
-    render() {
-        console.log("render");
         return (
             <HeaderButtonContainer className="row">
-                {this.buttonsElements}
+                {buttonsElements}
             </HeaderButtonContainer>
         );
     }

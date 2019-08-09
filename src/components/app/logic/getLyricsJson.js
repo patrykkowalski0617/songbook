@@ -13,7 +13,7 @@ const getLyricsJson = function(_this) {
                 const lyricsData = res.data;
                 _this.counter = new Counter(res.data);
                 _this.counter.data.callbackOn.lyricsEnd = () =>
-                    _this.switchIcon(1);
+                    _this.switchButtonIcon(1);
                 _this.setState({
                     lyricsData: lyricsData,
                     displayPlayButton: true,
@@ -23,7 +23,7 @@ const getLyricsJson = function(_this) {
                     displayWelcomeInfo: false,
                     headerFocusedButtounIndex: 1
                 });
-                _this.switchIcon(0);
+                _this.switchButtonIcon(0);
             })
             .catch(() =>
                 alert('W tej chwili działa tylko "Kings of Leon - Sex On Fire"')

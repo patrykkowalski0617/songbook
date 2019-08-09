@@ -5,6 +5,7 @@ import Footer from "../footer/Footer";
 import lyrics_list from "./data/lyrics_list";
 import searchClick from "./logic/searchClick";
 import getLyricsItems from "./logic/getLyricsItems";
+import switchButtonIcon from "./logic/switchButtonIcon";
 import getLyricsJson from "./logic/getLyricsJson";
 import displayLyricsList from "./logic/displayLyricsList";
 
@@ -17,23 +18,18 @@ class App extends Component {
         displayLyrics: false,
         displayWelcomeInfo: true,
         headerFocusedButtounIndex: 0,
+        buttonsOnStates: [true, true],
         searchResult: this.lyricsList,
         lyricsData: null
     };
 
-    buttonData = {
-        // possible icons for each button
-        icons: [["lyrics-list", "close"], ["play", "pause"]],
-        // methods for each button
-        methods: [
-            () => {
-                this.displayLyricsList();
-            },
-            () => {
-                this.counter.action.toggle();
-            }
-        ]
-    };
+    // switchIcon(index) {
+    //     const buttonsOnStates = this.state.buttonsOnStates.slice();
+
+    //     buttonsOnStates[index] = !buttonsOnStates[index];
+
+    //     this.setState({ buttonsOnStates });
+    // }
 
     buttonsData = [
         {
@@ -52,6 +48,8 @@ class App extends Component {
 
     getLyricsJson = getLyricsJson(this);
 
+    switchButtonIcon = switchButtonIcon(this);
+
     searchClick = searchClick(this, this.lyricsList);
 
     render() {
@@ -63,6 +61,8 @@ class App extends Component {
                     searchClick={this.searchClick}
                     counter={this.counter}
                     buttonsData={this.buttonsData}
+                    buttonsOnStates={this.state.buttonsOnStates}
+                    switchButtonIcon={index => this.switchButtonIcon(index)}
                     headerFocusedButtounIndex={
                         this.state.headerFocusedButtounIndex
                     }

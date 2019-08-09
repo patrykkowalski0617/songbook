@@ -29,6 +29,8 @@ const Header = function(props) {
                 <HeaderButtonContainer
                     displayHeaderButtons={props.displayHeaderButtons}
                     buttonsData={props.buttonsData}
+                    buttonsOnStates={props.buttonsOnStates}
+                    switchButtonIcon={props.switchButtonIcon}
                     headerFocusedButtounIndex={props.headerFocusedButtounIndex}
                 />
             </Container>
