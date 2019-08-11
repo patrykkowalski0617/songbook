@@ -23,14 +23,6 @@ class App extends Component {
         lyricsData: null
     };
 
-    // switchIcon(index) {
-    //     const buttonsOnStates = this.state.buttonsOnStates.slice();
-
-    //     buttonsOnStates[index] = !buttonsOnStates[index];
-
-    //     this.setState({ buttonsOnStates });
-    // }
-
     buttonsData = [
         {
             onIcon: "lyrics-list",
