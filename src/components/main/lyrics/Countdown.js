@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import v from "../../style_abstract/variables";
 
 export const CountdownElement = styled.div`
@@ -16,17 +16,17 @@ export const CountdownElement = styled.div`
     font-size: 200px;
 `;
 
-const animation = keyframes`{
-    from: {opacity: 0},
-    to: {opacity: 1}
-  }`;
+const myanimation = keyframes`  
+    0% { transform: translate(-50%, -50%) scale(0)}
+    100% {transform: translate(-50%, -50%) scale(1)}
+`;
 
 export const P = styled.p`
     position: absolute;
     top: 50%;
     left: 50%
     transform: translate(-50%, -50%);
-    animation: ${animation}
+    animation: ${myanimation} 2s linear;
 `;
 
 const Coundown = function() {
