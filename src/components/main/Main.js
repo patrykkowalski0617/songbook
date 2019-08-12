@@ -16,7 +16,12 @@ export const MainElement = styled.main`
 function Main(props) {
     let lyrics, metronom, welcomeInfo;
     if (props.lyricsData && props.displayLyrics) {
-        lyrics = <Lyrics counter={props.counter} />;
+        lyrics = (
+            <Lyrics
+                counter={props.counter}
+                displayCountdown={props.displayCountdown}
+            />
+        );
         metronom = <Metronom counter={props.counter} />;
     }
 

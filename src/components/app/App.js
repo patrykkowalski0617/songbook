@@ -17,6 +17,7 @@ class App extends Component {
         displayHeaderButtons: [true, false],
         displayLyrics: false,
         displayWelcomeInfo: true,
+        displayCountdown: false,
         headerFocusedButtounIndex: 0,
         buttonsOnStates: [true, true],
         searchResult: this.lyricsList,
@@ -32,7 +33,10 @@ class App extends Component {
         {
             onIcon: "play",
             offIcon: "pause",
-            onClickHandler: () => this.counter.action.toggle()
+            onClickHandler: () => {
+                this.counter.action.toggle();
+                this.setState({ displayCountdown: true });
+            }
         }
     ];
 
@@ -67,6 +71,7 @@ class App extends Component {
                     counter={this.counter}
                     displayLyrics={this.state.displayLyrics}
                     displayWelcomeInfo={this.state.displayWelcomeInfo}
+                    displayCountdown={this.state.displayCountdown}
                 />
                 <Footer />
             </div>

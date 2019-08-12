@@ -4,6 +4,7 @@ import SectionAnimation from "./logic/section-animation";
 import ScrollAnimation from "./logic/scroll-animation";
 import styled from "styled-components";
 import v from "../../style_abstract/variables";
+import Countdown from "./Countdown";
 
 export const LyricsHeader = styled.div`
     margin: ${v.space.s4} 0;
@@ -11,6 +12,10 @@ export const LyricsHeader = styled.div`
 
 export const H2 = styled.h2`
     margin-bottom: ${v.space.s2};
+`;
+
+export const LyricsBodyContainer = styled.div`
+    position: relative;
 `;
 
 export const LyricsBody = styled.div`
@@ -89,6 +94,8 @@ class Lyrics extends Component {
             );
         });
 
+        const countdown = this.props.displayCountdown ? <Countdown /> : "";
+
         return (
             <div>
                 <LyricsHeader>
@@ -112,9 +119,15 @@ class Lyrics extends Component {
                         </span>
                     </p>
                 </LyricsHeader>
-                <LyricsBody ref={this.lyricsBody} onScroll={this.handleScroll}>
-                    {lyricsSections}
-                </LyricsBody>
+                <LyricsBodyContainer>
+                    {countdown}
+                    <LyricsBody
+                        ref={this.lyricsBody}
+                        onScroll={this.handleScroll}
+                    >
+                        {lyricsSections}
+                    </LyricsBody>
+                </LyricsBodyContainer>
             </div>
         );
     }
