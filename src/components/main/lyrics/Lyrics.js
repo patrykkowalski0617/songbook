@@ -4,28 +4,31 @@ import SectionAnimation from "./logic/section-animation";
 import ScrollAnimation from "./logic/scroll-animation";
 import styled from "styled-components";
 import v from "../../style_abstract/variables";
-import Countdown from "./Countdown";
+import Metronom from "./metronom/Metronom";
+import Countdown from "./metronom/countdown/Countdown";
 
-export const LyricsHeader = styled.div`
+const LyricsHeader = styled.div`
     margin: ${v.space.s4} 0;
 `;
 
-export const H2 = styled.h2`
+const H2 = styled.h2`
     margin-bottom: ${v.space.s2};
 `;
 
-export const LyricsBodyContainer = styled.div`
+const LyricsBodyContainer = styled.div`
     position: relative;
 `;
 
-export const LyricsBody = styled.div`
+const LyricsBody = styled.div`
     height: 240px;
     overflow-y: scroll;
     background-color: ${v.color.mintcream};
 `;
 
 class Lyrics extends Component {
-    state = { markedSectionIndex: 0 };
+    state = {
+        markedSectionIndex: 0
+    };
 
     counter = this.props.counter;
 
@@ -39,24 +42,23 @@ class Lyrics extends Component {
     getLyricsSections = this.getLyricsSections.bind(this);
 
     componentDidMount() {
-        const tt = this;
+        const _this = this;
         this.scrollAnimation = new ScrollAnimation(
             this.lyricsBody.current,
             this.lyricsSections,
             this.state.markedSectionIndex,
             function() {
-                tt.counter.data.allowRestart = false;
+                _this.counter.data.allowRestart = false;
             },
             function() {
-                tt.counter.data.allowRestart = true;
+                _this.counter.data.allowRestart = true;
             }
         );
-
+        this.time = _this.counter.data.songTiming() * 1000;
         this.counter.data.callbackOn.barChange = function() {
-            const time = tt.counter.data.songTiming() * 1000 - 100;
-            tt.scrollAnimation.anim(time);
+            _this.scrollAnimation.anim(_this.time - 100);
         };
-
+        this.setState({ countdownNumer: this.counter.data.songTiming() });
         this.sectionAnimation = new SectionAnimation(
             this.lyricsBody.current,
             this.lyricsSections
@@ -94,8 +96,6 @@ class Lyrics extends Component {
             );
         });
 
-        const countdown = this.props.displayCountdown ? <Countdown /> : "";
-
         return (
             <div>
                 <LyricsHeader>
@@ -120,7 +120,7 @@ class Lyrics extends Component {
                     </p>
                 </LyricsHeader>
                 <LyricsBodyContainer>
-                    {countdown}
+                    <Countdown counter={this.props.counter} />
                     <LyricsBody
                         ref={this.lyricsBody}
                         onScroll={this.handleScroll}
@@ -128,6 +128,7 @@ class Lyrics extends Component {
                         {lyricsSections}
                     </LyricsBody>
                 </LyricsBodyContainer>
+                <Metronom counter={this.props.counter} />
             </div>
         );
     }

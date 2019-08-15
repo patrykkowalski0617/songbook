@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-export const ButtonContainer = styled.div`
+const ButtonContainer = styled.div`
     padding: 0 0.4rem;
 `;
 
-export const ButtonElement = styled.button`
+const ButtonElement = styled.button`
     font-size: 20px;
     cursor: pointer;
 `;

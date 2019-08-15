@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import v from "../../style_abstract/variables";
 
-export const LyricsSectionElement = styled.div`
+const LyricsSectionElement = styled.div`
     height: 80px;
     font-size: 30px;
     position: relative;
@@ -17,7 +17,7 @@ export const LyricsSectionElement = styled.div`
     }
 `;
 
-export const SectionContent = styled.div`
+const SectionContent = styled.div`
     text-align: center;
     height: 70px;
     position: absolute;

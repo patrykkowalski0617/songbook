@@ -5,11 +5,11 @@ import HeaderButtonContainer from "./header-buttons/HeaderButtonContainer";
 import styled from "styled-components";
 import v from "../style_abstract/variables";
 
-export const HeaderElement = styled.header`
+const HeaderElement = styled.header`
     height: ${v.headerH};
 `;
 
-export const Container = styled.div`
+const Container = styled.div`
     display: flex;
     justify-content: space-between;
     position: relative;

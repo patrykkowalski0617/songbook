@@ -1,12 +1,11 @@
 import React from "react";
 import LyricsList from "./lyrics-list/LyricsList";
 import Lyrics from "./lyrics/Lyrics";
-import Metronom from "./metronom/Metronom";
 import WelcomeInfo from "./welcome_info/WelcomeInfo";
 import styled from "styled-components";
 import v from "../style_abstract/variables";
 
-export const MainElement = styled.main`
+const MainElement = styled.main`
     height: calc(100vh - ${v.headerH} - ${v.footerH});
     background-color: ${v.color.light};
     color: ${v.color.dark};
@@ -14,7 +13,7 @@ export const MainElement = styled.main`
 `;
 
 function Main(props) {
-    let lyrics, metronom, welcomeInfo;
+    let lyrics, welcomeInfo;
     if (props.lyricsData && props.displayLyrics) {
         lyrics = (
             <Lyrics
@@ -22,7 +21,6 @@ function Main(props) {
                 displayCountdown={props.displayCountdown}
             />
         );
-        metronom = <Metronom counter={props.counter} />;
     }
 
     if (props.displayWelcomeInfo) {
@@ -39,7 +37,6 @@ function Main(props) {
                 />
                 {welcomeInfo}
                 {lyrics}
-                {metronom}
             </div>
         </MainElement>
     );

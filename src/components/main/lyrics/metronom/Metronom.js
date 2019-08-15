@@ -3,13 +3,9 @@ import MetronomElement from "./MetronomElement";
 import styled from "styled-components";
 import MetronomSound from "./metronom_sound/MetronomSound";
 
-export const Description = styled.div`
+const Description = styled.div`
     margin: 0.7rem 0 -0.3rem 0;
     font-size: 0.7rem;
-`;
-
-export const MetronomBody = styled.div`
-    margin: 0;
 `;
 
 class Metronom extends Component {

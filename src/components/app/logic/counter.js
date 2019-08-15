@@ -2,7 +2,6 @@ class Counter {
     constructor(lyricsData) {
         const _this = this;
 
-        this.iteration = 0;
         this.action = {
             start: function() {
                 const delay = (60 / _this.data.tempo) * 1000;
@@ -13,18 +12,25 @@ class Counter {
                     callback
                         ? callback()
                         : console.warn(
-                              "Assign function to both properties of _this.data.callbackOn"
+                              "Assign function to all properties of _this.data.callbackOn"
                           );
                 };
+                let countdownNumber = songTiming * _this.data.barDelay;
+                let iteration = 0;
 
                 _this.isRun = setInterval(function() {
                     callback(_this.data.callbackOn.eachIteration);
+                    _this.data.callbackOn.countdown(countdownNumber);
 
-                    _this.iteration++;
+                    if (countdownNumber > 0) {
+                        countdownNumber--;
+                    }
+
+                    iteration++;
                     if (
-                        (_this.iteration - 1) % songTiming === 0 &&
-                        _this.iteration !== 1 &&
-                        _this.iteration - 1 > iterationDelay
+                        (iteration - 1) % songTiming === 0 &&
+                        iteration !== 1 &&
+                        iteration - 1 > iterationDelay
                     ) {
                         if (_this.data.lyricsEnd()) {
                             _this.action.pause();
@@ -39,8 +45,8 @@ class Counter {
             pause: function() {
                 clearInterval(_this.isRun);
                 _this.isRun = 0;
-                _this.iteration = 0;
                 _this.data.callbackOn.metronomStop();
+                _this.data.callbackOn.countdown(0);
             },
             toggle: function() {
                 if (_this.isRun) {
@@ -63,7 +69,8 @@ class Counter {
                 eachIteration: null,
                 barChange: null,
                 lyricsEnd: null,
-                metronomStop: null
+                metronomStop: null,
+                countdown: null
             },
             _tempo: lyricsData.tempo,
             set tempo(value) {
@@ -100,7 +107,7 @@ class Counter {
                     _this.data.locationOfAllBars().length - 1
                 );
             },
-            barDelay: 0,
+            barDelay: 2,
             allowRestart: true
         };
 

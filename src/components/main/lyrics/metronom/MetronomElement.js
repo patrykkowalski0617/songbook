@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import v from "../../style_abstract/variables";
+import v from "../../../style_abstract/variables";
 
-export const MetronomEl = styled.div`
+const MetronomEl = styled.div`
     height: 20px;
     border: 0px solid ${v.color.mintdark};
     border-right-width: 1px;

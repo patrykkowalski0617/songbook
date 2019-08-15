@@ -3,7 +3,7 @@ import HeaderButton from "./HeaderButton";
 import styled from "styled-components";
 import v from "../../style_abstract/variables";
 
-export const HeaderButtonContainer = styled.div`
+const HeaderButtonContainer = styled.div`
     margin-right: -${v.space.s1};
     margin-left: 0;
 `;

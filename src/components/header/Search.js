@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import v from "../style_abstract/variables";
 
-export const SearchContainer = styled.div`
+const SearchContainer = styled.div`
     margin-right: ${v.space.s1};
     width: 100%;
     position: relative;
     border-radius: 20px;
 `;
 
-export const Input = styled.input`
+const Input = styled.input`
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     border-right: 1px solid ${v.color.dark};
@@ -20,7 +20,7 @@ export const Input = styled.input`
     }
 `;
 
-export const Button = styled.button`
+const Button = styled.button`
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     width: 100%;
