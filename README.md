@@ -1,8 +1,8 @@
-### Deploy on Netlify:
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Deploy on Netlify:
 
 https://hopeful-jones-daa3c7.netlify.com/
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
