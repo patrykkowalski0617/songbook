@@ -63,11 +63,11 @@ class Lyrics extends Component {
             this.lyricsBody.current,
             this.lyricsSections
         );
-        this.sectionAnimation.anim();
+        this.sectionAnimation.animate();
     }
 
     handleScroll() {
-        const currentlyMarkedSectionIndex = this.sectionAnimation.anim();
+        const currentlyMarkedSectionIndex = this.sectionAnimation.animate();
 
         if (this.state.markedSectionIndex !== currentlyMarkedSectionIndex) {
             this.setState({ markedSectionIndex: currentlyMarkedSectionIndex });

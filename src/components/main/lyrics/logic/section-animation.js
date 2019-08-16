@@ -1,91 +1,51 @@
 class SectionAnimation {
     constructor(parent, sections) {
-        // return range whera animation supposed to be performed
-        const getRange = function() {
-            const sectionH = sections[0].clientHeight;
-            const rangeTop = (sectionH - sectionH) * -1;
-            const rangeBottom = (sectionH + sectionH) * -1;
+        const getSectionOffset = function(parent, section) {
+            const offset =
+                parent.getBoundingClientRect().y -
+                section.getBoundingClientRect().y;
 
-            return { top: rangeTop, bottom: rangeBottom };
+            return offset;
         };
 
-        // return scale value for css style
-        const getScale = function(sectionOffset) {
-            const getTopDistance = function() {
-                const marginTop = window.getComputedStyle(sections[0])
-                    .marginTop;
-                return Number(marginTop.replace(/px/, ""));
-            };
-            const d = getTopDistance();
-            const o = sectionOffset;
-            const scale = (o / -d) * (2 - o / -d);
+        const getScaleValue = function(sectionOffset, minimumScale) {
+            const basePosition = Number(
+                window.getComputedStyle(sections[0]).marginTop.replace(/px/, "")
+            );
+            const currentPosition = sectionOffset * -1;
+
+            const deflection =
+                (basePosition - currentPosition) /
+                (basePosition / (1 - minimumScale));
+            let scale;
+
+            if (currentPosition > 80) {
+                scale = 1 + deflection;
+            } else {
+                scale = 1 - deflection;
+            }
+
+            scale = Math.round(scale * 100) / 100;
+
             return scale;
         };
 
-        // aply transform style for element's content
-        const aplyTransformStyle = function(scale, elements) {
-            elements.querySelector(
+        const aplyTransformStyle = function(scale, section) {
+            section.querySelector(
                 ".section-content"
             ).style.transform = `translate(-50%, -50%) scale(${scale})`;
         };
 
-        const minScale = 0.9;
+        let mainMarkedSection;
 
-        let currentAnimated = [];
-        let markedSection;
-        this.anim = function() {
-            const range = getRange();
+        this.animate = function() {
+            for (let i = 0; i < sections.length; i++) {
+                const sectionOffset = getSectionOffset(parent, sections[i]);
+                const scale = getScaleValue(sectionOffset, 0.7);
+                aplyTransformStyle(scale, sections[i]);
+            }
 
-            const getMarkedSection = function() {
-                if (currentAnimated.length === 1) {
-                    return currentAnimated[0].index;
-                } else {
-                    for (var key in currentAnimated) {
-                        if (currentAnimated.hasOwnProperty(key)) {
-                            const biggestScale = Math.max.apply(
-                                Math,
-                                currentAnimated.map(function(o) {
-                                    return o.scale;
-                                })
-                            );
-
-                            if (currentAnimated[key].scale === biggestScale) {
-                                return currentAnimated[key].index;
-                            }
-                        }
-                    }
-                }
-            };
-
-            currentAnimated = [];
-
-            let timeout;
-            clearTimeout(timeout);
-            timeout = setTimeout(function() {
-                for (let i = 0; i < sections.length; i++) {
-                    const sectionOffset =
-                        parent.getBoundingClientRect().y -
-                        sections[i].getBoundingClientRect().y;
-
-                    aplyTransformStyle(minScale, sections[i]);
-
-                    if (
-                        sectionOffset < range.top &&
-                        sectionOffset > range.bottom
-                    ) {
-                        const scale = getScale(sectionOffset);
-
-                        if (scale > minScale) {
-                            aplyTransformStyle(scale, sections[i]);
-                            currentAnimated.push({ index: i, scale: scale });
-                        }
-                    }
-
-                    markedSection = getMarkedSection();
-                }
-            }, 50);
-
-            return markedSection;
+            return mainMarkedSection;
         };
     }
 }
