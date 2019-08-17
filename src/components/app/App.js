@@ -48,11 +48,6 @@ class App extends Component {
 
     searchClick = searchClick(this, this.lyricsList);
 
-    // load file for test
-    componentDidMount() {
-        this.getLyricsJson("Kings of Leon - Sex On Fire");
-    }
-
     render() {
         return (
             <div>
