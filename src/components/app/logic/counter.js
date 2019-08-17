@@ -107,7 +107,7 @@ class Counter {
                     _this.data.locationOfAllBars().length - 1
                 );
             },
-            barDelay: 2,
+            barDelay: 1,
             allowRestart: true
         };
 
