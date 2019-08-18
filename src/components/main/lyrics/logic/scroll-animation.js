@@ -20,7 +20,7 @@ class ScrollAnimation {
             this.markedSectionIndex = markedSectionIndex;
         };
 
-        this.anim = function(duration) {
+        this.animate = function(duration, targetSectionIndex) {
             let startTime = null;
             const startPosition = container.scrollTop;
             const markedSectionIndex = _this.markedSectionIndex;
@@ -32,7 +32,9 @@ class ScrollAnimation {
                     startTime = currentTime;
                 }
 
-                const target = lyricsSections[markedSectionIndex + 1];
+                const target =
+                    lyricsSections[targetSectionIndex] ||
+                    lyricsSections[markedSectionIndex + 1];
                 const containerPosition = container.getBoundingClientRect().top;
                 const getTopDistance = function() {
                     const marginTop = window.getComputedStyle(lyricsSections[0])

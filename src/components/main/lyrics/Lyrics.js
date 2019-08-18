@@ -47,19 +47,24 @@ class Lyrics extends Component {
             this.lyricsBody.current,
             this.lyricsSections,
             this.state.markedSectionIndex,
-            function() {
-                _this.counter.data.allowRestart = false;
+            () => {
+                this.counter.data.allowRestart = false;
             },
-            function() {
-                _this.counter.data.allowRestart = true;
+            () => {
+                this.counter.data.allowRestart = true;
             },
-            function() {
-                return _this.counter.isRun;
+            () => {
+                return this.counter.isRun || this.counter.timeoutForScrollTop;
             }
         );
         this.time = _this.counter.data.songTiming() * 1000;
-        this.counter.data.callbackOn.barChange = function() {
-            _this.scrollAnimation.anim(_this.time - 100);
+        this.counter.data.callbackOn.barChange = () => {
+            this.scrollAnimation.animate(_this.time - 100);
+        };
+        this.counter.data.callbackOn.scrollToTop = () => {
+            const time = 1000;
+            this.scrollAnimation.animate(time, 0);
+            return time;
         };
         this.setState({ countdownNumer: this.counter.data.songTiming() });
         this.sectionAnimation = new SectionAnimation(
