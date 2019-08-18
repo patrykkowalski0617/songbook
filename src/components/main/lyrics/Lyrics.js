@@ -52,6 +52,9 @@ class Lyrics extends Component {
             },
             function() {
                 _this.counter.data.allowRestart = true;
+            },
+            function() {
+                return _this.counter.isRun;
             }
         );
         this.time = _this.counter.data.songTiming() * 1000;

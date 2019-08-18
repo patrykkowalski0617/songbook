@@ -4,7 +4,8 @@ class ScrollAnimation {
         lyricsSections,
         markedSectionIndex,
         callbackOnStart,
-        callbackOnEnd
+        callbackOnEnd,
+        stopAnimationState
     ) {
         const _this = this;
 
@@ -55,7 +56,7 @@ class ScrollAnimation {
 
                 container.scrollTo(0, run);
 
-                if (timeElapsed < duration) {
+                if (timeElapsed < duration && stopAnimationState()) {
                     requestAnimationFrame(animation);
                 } else if (callbackOnEnd) {
                     callbackOnEnd();
