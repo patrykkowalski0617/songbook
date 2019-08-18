@@ -55,7 +55,7 @@ class SectionAnimation {
                     mainMarkedSectionIndex = i;
                 }
             }
-            console.log(mainMarkedSectionIndex);
+
             return mainMarkedSectionIndex;
         };
     }

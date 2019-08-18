@@ -17,28 +17,28 @@ class Counter {
                 };
                 let countdownNumber = songTiming * _this.data.barDelay;
                 let iteration = 0;
-
+                if (!_this.data.lyricsEnd()) {
+                }
                 _this.isRun = setInterval(function() {
-                    callback(_this.data.callbackOn.eachIteration);
-                    _this.data.callbackOn.countdown(countdownNumber);
+                    if (!_this.data.lyricsEnd()) {
+                        callback(_this.data.callbackOn.eachIteration);
 
-                    if (countdownNumber > 0) {
-                        countdownNumber--;
-                    }
+                        _this.data.callbackOn.countdown(countdownNumber);
+                        if (countdownNumber > 0) {
+                            countdownNumber--;
+                        }
 
-                    iteration++;
-                    if (
-                        (iteration - 1) % songTiming === 0 &&
-                        iteration !== 1 &&
-                        iteration - 1 > iterationDelay
-                    ) {
-                        if (_this.data.lyricsEnd()) {
-                            _this.action.pause();
-                            _this.data.callbackOn.lyricsEnd();
-                            _this.data.currentlyMarkedSectionIndex = 0;
-                        } else {
+                        iteration++;
+
+                        if (
+                            iteration > iterationDelay &&
+                            iteration % songTiming === 2
+                        ) {
                             callback(_this.data.callbackOn.barChange);
                         }
+                    } else {
+                        _this.action.pause();
+                        _this.data.callbackOn.lyricsEnd();
                     }
                 }, delay);
             },
@@ -57,7 +57,6 @@ class Counter {
             },
             restart: function() {
                 if (_this.isRun && _this.data.allowRestart) {
-                    console.log("restart");
                     this.pause();
                     this.start();
                 }

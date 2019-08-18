@@ -51,7 +51,8 @@ class Metronom extends Component {
         };
         this.props.counter.data.callbackOn.metronomStop = function() {
             tt.setState({
-                knock: -1
+                knock: -1,
+                playStatus: "STOPPED"
             });
         };
     }
