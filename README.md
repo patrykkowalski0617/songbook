@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Description
+
+Songbook application is used to display lyrics and much more. User can to search favorite song and then display its lyrics. Build-in metronome helps to play and/or sing song in the right tempo - because of that lyrics is scrolled down synchronously with the performer.
+
 ## Deploy on Netlify:
 
 https://hopeful-jones-daa3c7.netlify.com/
