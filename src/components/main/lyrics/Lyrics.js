@@ -22,6 +22,7 @@ const LyricsBodyContainer = styled.div`
 const LyricsBody = styled.div`
     height: 240px;
     overflow-y: scroll;
+    overflow-x: hidden;
     background-color: ${v.color.mintcream};
 `;
 
@@ -93,12 +94,14 @@ class Lyrics extends Component {
             const currentBar = this.counter.lyricsData.sections[item[0]].bars[
                 item[1]
             ];
-
+            const sectionName = this.counter.lyricsData.sections[item[0]].name;
+            console.log(sectionName);
             return (
                 <LyricsSection
                     key={index}
                     text={currentBar.text}
                     chords={currentBar.chords}
+                    sectionName={sectionName}
                     getLyricsSections={this.getLyricsSections}
                 />
             );

@@ -22,6 +22,35 @@
                 {
                     "text": "They're watching",
                     "chords": "cis"
+                },
+                {
+                    "text": "All the commotion",
+                    "chords": "E"
+                },
+                {
+                    "text": "The kiddie like play",
+                    "chords": "E"
+                },
+                {
+                    "text": "It has people talkin'",
+                    "chords": "cis"
+                },
+                {
+                    "text": "Talkin'",
+                    "chords": "cis"
+                }
+            ]
+        },
+        {
+            "name": "chorus",
+            "bars": [
+                {
+                    "text": "chorus",
+                    "chords": ""
+                },
+                {
+                    "text": "chorus",
+                    "chords": ""
                 }
             ]
         }

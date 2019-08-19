@@ -25,6 +25,10 @@ const SectionContent = styled.div`
     left: 50%;
     width: 100%;
     transform: translate(-50%, -50%);
+    &.chorus {
+        font-style: italic;
+        color: ${v.color.mintdark};
+    }
     .lyrics-text,
     .lyrics-chords {
         height: 35px;
@@ -43,7 +47,9 @@ class LyricsSection extends Component {
     render() {
         return (
             <LyricsSectionElement className={"lyrics-section"} ref={this.ref}>
-                <SectionContent className="section-content">
+                <SectionContent
+                    className={`section-content ${this.props.sectionName}`}
+                >
                     <p className="lyrics-chords">{this.props.chords}</p>
                     <p className="lyrics-text">{this.props.text}</p>
                 </SectionContent>
