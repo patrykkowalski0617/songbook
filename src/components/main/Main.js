@@ -23,7 +23,7 @@ function Main(props) {
         );
     }
 
-    if (props.displayWelcomeInfo) {
+    if (props.displayWelcomeInfo && !props.displayLyricsList) {
         welcomeInfo = <WelcomeInfo />;
     }
 
