@@ -45,12 +45,126 @@
             "name": "chorus",
             "bars": [
                 {
-                    "text": "chorus",
+                    "text": "You",
+                    "chords": "E"
+                },
+                {
+                    "text": "Your sex is on fire",
+                    "chords": "cis"
+                },
+                {
+                    "text": "-",
+                    "chords": "E"
+                },
+                {
+                    "text": "-",
+                    "chords": "cis"
+                }
+            ]
+        },
+        {
+            "name": "verse",
+            "bars": [
+                {
+                    "text": "The dark of the alley",
+                    "chords": "E"
+                },
+                {
+                    "text": "The breaking of day",
+                    "chords": "cis"
+                },
+                {
+                    "text": "Head while I'm driving",
+                    "chords": "E"
+                },
+                {
+                    "text": "I'm driving",
+                    "chords": "cis"
+                },
+                {
+                    "text": "Soft lips are open",
+                    "chords": "E"
+                },
+                {
+                    "text": "Them knuckles are pale",
+                    "chords": "cis"
+                },
+                {
+                    "text": "Feels like you're dying",
+                    "chords": "E"
+                },
+                {
+                    "text": "You're dying",
+                    "chords": "cis"
+                }
+            ]
+        },
+        {
+            "name": "chorus",
+            "bars": [
+                {
+                    "text": "You",
+                    "chords": "E"
+                },
+                {
+                    "text": "Your sex is on fire",
+                    "chords": "cis"
+                },
+                {
+                    "text": "-",
+                    "chords": "E"
+                },
+                {
+                    "text": "-",
+                    "chords": "cis"
+                },
+                {
+                    "text": "You",
+                    "chords": "E"
+                },
+                {
+                    "text": "Your sex is on fire, ahh",
+                    "chords": "cis"
+                },
+                {
+                    "text": "-",
+                    "chords": "E"
+                },
+                {
+                    "text": "-",
+                    "chords": "cis"
+                },
+                {
+                    "text": "Consumed",
+                    "chords": "E"
+                },
+                {
+                    "text": "With what's to transpire",
+                    "chords": "cis"
+                },
+                {
+                    "text": "-",
+                    "chords": "E"
+                },
+                {
+                    "text": "-",
+                    "chords": "cis"
+                },
+                {
+                    "text": "Consumed!",
                     "chords": ""
                 },
                 {
-                    "text": "chorus",
+                    "text": "With what's to transpire",
                     "chords": ""
+                },
+                {
+                    "text": "-",
+                    "chords": "E"
+                },
+                {
+                    "text": "-",
+                    "chords": "cis"
                 }
             ]
         }
