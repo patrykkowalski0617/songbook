@@ -11,7 +11,7 @@ const LyricsItemButton = styled.button`
 `;
 
 class LyricsList extends Component {
-    _input = null;
+    firstButtonRef = null;
 
     lyricsItems = function() {
         if (this.props.searchResult.length) {
@@ -22,12 +22,12 @@ class LyricsList extends Component {
                             onClick={e =>
                                 this.props.getLyricsJson(e.target.innerText)
                             }
-                            ref={c => {
+                            ref={ref => {
                                 if (
                                     index === 0 &&
                                     this.props.lyricsListAutoFocus
                                 ) {
-                                    this._input = c;
+                                    this.firstButtonRef = ref;
                                 }
                             }}
                         >
@@ -41,8 +41,8 @@ class LyricsList extends Component {
     };
 
     componentDidUpdate() {
-        if (this._input) {
-            this._input.focus();
+        if (this.firstButtonRef) {
+            this.firstButtonRef.focus();
         }
     }
 

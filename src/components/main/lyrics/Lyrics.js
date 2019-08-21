@@ -21,7 +21,7 @@ const LyricsBodyContainer = styled.div`
 
 const LyricsBody = styled.div`
     height: 240px;
-    overflow-y: scroll;
+    overflow-y: ${props => props.scrollY};
     overflow-x: hidden;
     background-color: ${v.color.mintcream};
 `;
@@ -107,6 +107,8 @@ class Lyrics extends Component {
             );
         });
 
+        const scrollY = this.counter.isRun ? "hidden" : "scroll";
+
         return (
             <div>
                 <LyricsHeader>
@@ -135,6 +137,7 @@ class Lyrics extends Component {
                     <LyricsBody
                         ref={this.lyricsBody}
                         onScroll={this.handleScroll}
+                        scrollY={scrollY}
                     >
                         {lyricsSections}
                     </LyricsBody>
