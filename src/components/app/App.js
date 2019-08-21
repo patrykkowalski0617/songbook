@@ -19,6 +19,8 @@ class App extends Component {
         displayWelcomeInfo: true,
         displayCountdown: false,
         headerFocusedButtounIndex: 0,
+        inputAutoFocus: true,
+        lyricsListAutoFocus: "",
         buttonsOnStates: [true, true],
         searchResult: this.lyricsList,
         lyricsData: null
@@ -60,8 +62,11 @@ class App extends Component {
                     buttonsOnStates={this.state.buttonsOnStates}
                     switchButtonIcon={index => this.switchButtonIcon(index)}
                     headerFocusedButtounIndex={
-                        this.state.headerFocusedButtounIndex
+                        this.state.displayLyricsList
+                            ? null
+                            : this.state.headerFocusedButtounIndex
                     }
+                    inputAutoFocus={this.state.inputAutoFocus}
                 />
                 <Main
                     displayLyricsList={this.state.displayLyricsList}
@@ -72,6 +77,7 @@ class App extends Component {
                     displayLyrics={this.state.displayLyrics}
                     displayWelcomeInfo={this.state.displayWelcomeInfo}
                     displayCountdown={this.state.displayCountdown}
+                    lyricsListAutoFocus={this.state.lyricsListAutoFocus}
                 />
                 <Footer />
             </div>

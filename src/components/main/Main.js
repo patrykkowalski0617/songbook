@@ -1,7 +1,7 @@
 import React from "react";
-import LyricsList from "./lyrics-list/LyricsList";
+import LyricsList from "./LyricsList";
 import Lyrics from "./lyrics/Lyrics";
-import WelcomeInfo from "./welcome_info/WelcomeInfo";
+import WelcomeInfo from "./WelcomeInfo";
 import styled from "styled-components";
 import v from "../style_abstract/variables";
 
@@ -34,6 +34,7 @@ function Main(props) {
                     displayLyricsList={props.displayLyricsList}
                     searchResult={props.searchResult}
                     getLyricsJson={props.getLyricsJson}
+                    lyricsListAutoFocus={props.lyricsListAutoFocus}
                 />
                 {welcomeInfo}
                 {lyrics}

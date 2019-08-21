@@ -35,6 +35,18 @@ class Search extends Component {
         inputValue: ""
     };
 
+    onChangeHandler = e => {
+        const value = e.target.value;
+        this.setState({ inputValue: value });
+        if (value === "") {
+            this.props.searchClick("");
+        }
+    };
+
+    onClickHandler = () => {
+        this.props.searchClick(this.state.inputValue);
+    };
+
     render() {
         return this.props.display ? (
             <SearchContainer>
@@ -43,26 +55,20 @@ class Search extends Component {
                     type="search"
                     placeholder="wyszukaj:
                     artysta - tytuł"
-                    onChange={e => {
-                        const value = e.target.value;
-                        this.setState({ inputValue: value });
-                        if (value === "") {
-                            this.props.searchClick("");
-                        }
-                    }}
+                    onChange={this.onChangeHandler}
                     onKeyUp={e => {
                         if (e.which === 13) {
                             this.props.searchClick(this.state.inputValue);
                         }
                     }}
-                    autoFocus
-                />
-                <Button
-                    className="circle-input"
-                    onClick={() =>
-                        this.props.searchClick(this.state.inputValue)
+                    value={this.state.inputValue}
+                    autoFocus={
+                        this.props.inputAutoFocus
+                            ? this.props.inputAutoFocus
+                            : ""
                     }
-                >
+                />
+                <Button className="circle-input" onClick={this.onClickHandler}>
                     Search
                 </Button>
             </SearchContainer>

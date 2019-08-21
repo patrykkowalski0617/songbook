@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import v from "../../style_abstract/variables";
+import v from "../style_abstract/variables";
 
 export const ContainerElement = styled.div`
     font-size: ${v.space.s5};

@@ -9,7 +9,11 @@ const searchClick = function(_this) {
     return function(value) {
         const lyricsList = _this.lyricsList.slice();
         const searchResult = filterLyricsList(value, lyricsList);
-        _this.setState({ searchResult: searchResult });
+        _this.setState({
+            searchResult: searchResult,
+            inputAutoFocus: "",
+            lyricsListAutoFocus: true
+        });
     };
 };
 

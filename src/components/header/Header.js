@@ -38,6 +38,7 @@ const Header = function(props) {
                 <Search
                     display={props.displayLyricsList}
                     searchClick={props.searchClick}
+                    inputAutoFocus={props.inputAutoFocus}
                 />
                 <HeaderButtons
                     displayHeaderButtons={props.displayHeaderButtons}
