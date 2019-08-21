@@ -3,8 +3,6 @@ class ScrollAnimation {
         container,
         lyricsSections,
         markedSectionIndex,
-        callbackOnStart,
-        callbackOnEnd,
         stopAnimationState
     ) {
         const _this = this;
@@ -24,9 +22,6 @@ class ScrollAnimation {
             let startTime = null;
             const startPosition = container.scrollTop;
             const markedSectionIndex = _this.markedSectionIndex;
-            if (callbackOnStart) {
-                callbackOnStart();
-            }
             const animation = function(currentTime) {
                 if (startTime === null) {
                     startTime = currentTime;
@@ -60,8 +55,6 @@ class ScrollAnimation {
 
                 if (timeElapsed < duration && stopAnimationState()) {
                     requestAnimationFrame(animation);
-                } else if (callbackOnEnd) {
-                    callbackOnEnd();
                 }
             };
             requestAnimationFrame(animation);

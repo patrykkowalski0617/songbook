@@ -49,18 +49,12 @@ class Lyrics extends Component {
             this.lyricsSections,
             this.state.markedSectionIndex,
             () => {
-                this.counter.data.allowRestart = false;
-            },
-            () => {
-                this.counter.data.allowRestart = true;
-            },
-            () => {
                 return this.counter.isRun || this.counter.timeoutForScrollTop;
             }
         );
         this.time = _this.counter.data.songTiming() * 1000;
         this.counter.data.callbackOn.barChange = () => {
-            this.scrollAnimation.animate(_this.time - 100);
+            this.scrollAnimation.animate(_this.time);
         };
         this.counter.data.callbackOn.scrollToTop = () => {
             const time = 1000;
@@ -82,7 +76,6 @@ class Lyrics extends Component {
             this.setState({ markedSectionIndex: currentlyMarkedSectionIndex });
             this.scrollAnimation.updateData(currentlyMarkedSectionIndex);
             this.counter.data.currentlyMarkedSectionIndex = currentlyMarkedSectionIndex;
-            this.counter.action.restart();
         }
     }
     handleScroll = this.handleScroll.bind(this);

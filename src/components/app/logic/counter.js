@@ -58,12 +58,6 @@ class Counter {
                     const time = _this.data.callbackOn.scrollToTop();
                     _this.timeoutForScrollTop = setTimeout(this.start, time);
                 }
-            },
-            restart: function() {
-                if (_this.isRun && _this.data.allowRestart) {
-                    this.pause();
-                    this.start();
-                }
             }
         };
 
@@ -111,8 +105,7 @@ class Counter {
                     _this.data.locationOfAllBars().length - 1
                 );
             },
-            barDelay: 1,
-            allowRestart: true
+            barDelay: 1
         };
 
         this.lyricsData = lyricsData;
