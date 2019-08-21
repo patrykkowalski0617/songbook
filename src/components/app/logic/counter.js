@@ -43,20 +43,20 @@ class Counter {
             },
             pause: function() {
                 clearInterval(_this.isRun);
-                clearTimeout(_this.timeoutForScrollTop);
+                clearTimeout(_this.scrollUp);
                 _this.isRun = 0;
-                _this.timeoutForScrollTop = 0;
+                _this.scrollUp = 0;
                 _this.data.callbackOn.metronomStop();
                 _this.data.callbackOn.countdown(0);
             },
             toggle: function() {
-                if (_this.isRun || _this.timeoutForScrollTop) {
+                if (_this.isRun || _this.scrollUp) {
                     this.pause();
                 } else if (!_this.data.lyricsEnd()) {
                     this.start();
                 } else {
                     const time = _this.data.callbackOn.scrollToTop();
-                    _this.timeoutForScrollTop = setTimeout(this.start, time);
+                    _this.scrollUp = setTimeout(this.start, time);
                 }
             }
         };
@@ -110,7 +110,7 @@ class Counter {
 
         this.lyricsData = lyricsData;
         this.isRun = 0;
-        this.timeoutForScrollTop = null;
+        this.scrollUp = 0;
     }
 }
 

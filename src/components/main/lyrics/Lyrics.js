@@ -49,7 +49,7 @@ class Lyrics extends Component {
             this.lyricsSections,
             this.state.markedSectionIndex,
             () => {
-                return this.counter.isRun || this.counter.timeoutForScrollTop;
+                return this.counter.isRun || this.counter.scrollUp;
             }
         );
         this.time = _this.counter.data.songTiming() * 1000;
@@ -100,7 +100,8 @@ class Lyrics extends Component {
             );
         });
 
-        const scrollY = this.counter.isRun ? "hidden" : "scroll";
+        const scrollY =
+            this.counter.isRun || this.counter.scrollUp ? "hidden" : "scroll";
 
         return (
             <div>

@@ -11,8 +11,6 @@ const LyricsItemButton = styled.button`
 `;
 
 class LyricsList extends Component {
-    firstButtonRef = null;
-
     lyricsItems = function() {
         if (this.props.searchResult.length) {
             return this.props.searchResult.map((lyricsNames, index) => {
@@ -22,14 +20,6 @@ class LyricsList extends Component {
                             onClick={e =>
                                 this.props.getLyricsJson(e.target.innerText)
                             }
-                            ref={ref => {
-                                if (
-                                    index === 0 &&
-                                    this.props.lyricsListAutoFocus
-                                ) {
-                                    this.firstButtonRef = ref;
-                                }
-                            }}
                         >
                             {lyricsNames.lyricsName}
                         </LyricsItemButton>

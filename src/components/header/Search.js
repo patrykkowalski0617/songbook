@@ -47,7 +47,16 @@ class Search extends Component {
         this.props.searchClick(this.state.inputValue);
     };
 
+    componentWillReceiveProps() {
+        if (!this.props.display) {
+            this.setState({
+                inputValue: ""
+            });
+        }
+    }
+
     render() {
+        console.log(this.state.inputValue);
         return this.props.display ? (
             <SearchContainer>
                 <Input
@@ -62,11 +71,7 @@ class Search extends Component {
                         }
                     }}
                     value={this.state.inputValue}
-                    autoFocus={
-                        this.props.inputAutoFocus
-                            ? this.props.inputAutoFocus
-                            : ""
-                    }
+                    autoFocus={this.props.inputAutoFocus ? true : false}
                 />
                 <Button className="circle-input" onClick={this.onClickHandler}>
                     Search

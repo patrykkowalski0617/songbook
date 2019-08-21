@@ -20,7 +20,6 @@ class App extends Component {
         displayCountdown: false,
         headerFocusedButtounIndex: 0,
         inputAutoFocus: true,
-        lyricsListAutoFocus: "",
         buttonsOnStates: [true, true],
         searchResult: this.lyricsList,
         lyricsData: null
@@ -30,7 +29,10 @@ class App extends Component {
         {
             onIcon: "lyrics-list",
             offIcon: "close",
-            onClickHandler: () => this.displayLyricsList()
+            onClickHandler: () => {
+                this.displayLyricsList();
+                this.searchClick("");
+            }
         },
         {
             onIcon: "play",
