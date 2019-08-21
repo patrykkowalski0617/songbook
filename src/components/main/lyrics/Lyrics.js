@@ -95,7 +95,7 @@ class Lyrics extends Component {
                 item[1]
             ];
             const sectionName = this.counter.lyricsData.sections[item[0]].name;
-            console.log(sectionName);
+
             return (
                 <LyricsSection
                     key={index}

@@ -1,6 +1,6 @@
 import React from "react";
 import Search from "./Search";
-import HeaderButtonContainer from "./header-buttons/HeaderButtonContainer";
+import HeaderButtons from "./HeaderButtons";
 import styled from "styled-components";
 import v from "../style_abstract/variables";
 
@@ -46,7 +46,7 @@ const Header = function(props) {
                     display={props.displayLyricsList}
                     searchClick={props.searchClick}
                 />
-                <HeaderButtonContainer
+                <HeaderButtons
                     displayHeaderButtons={props.displayHeaderButtons}
                     buttonsData={props.buttonsData}
                     buttonsOnStates={props.buttonsOnStates}
