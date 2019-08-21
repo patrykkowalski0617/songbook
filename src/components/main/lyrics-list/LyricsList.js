@@ -1,15 +1,26 @@
 import React from "react";
-import LyricsItem from "./LyricsItem";
+import styled from "styled-components";
+
+const LyricsItemButton = styled.button`
+    background: none;
+    border: none;
+    margin: 0.3rem;
+    cursor: pointer;
+    text-align: left;
+    line-height: 150%;
+`;
 
 const LyricsList = function(props) {
     const lyricsItems = function() {
         if (props.searchResult.length) {
             return props.searchResult.map(lyricsNames => (
-                <LyricsItem
-                    key={lyricsNames.id}
-                    lyricsName={lyricsNames.lyricsName}
-                    getLyricsJson={props.getLyricsJson}
-                />
+                <li key={lyricsNames.id}>
+                    <LyricsItemButton
+                        onClick={e => props.getLyricsJson(e.target.innerText)}
+                    >
+                        {lyricsNames.lyricsName}
+                    </LyricsItemButton>
+                </li>
             ));
         }
         return "Jeszcze nie znam tej pioseki :(";
