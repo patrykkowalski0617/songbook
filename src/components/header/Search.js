@@ -52,11 +52,7 @@ class Search extends Component {
     };
 
     render() {
-<<<<<<< HEAD
         return this.props.display ? (
-=======
-        return this.props.redux.displayLyricsList ? (
->>>>>>> redux_learning
             <SearchContainer>
                 <Input
                     className="bar-input"
