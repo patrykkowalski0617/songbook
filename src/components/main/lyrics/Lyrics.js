@@ -5,7 +5,7 @@ import ScrollAnimation from "./logic/scroll-animation";
 import styled from "styled-components";
 import v from "../../style_abstract/variables";
 import Metronom from "./metronom/Metronom";
-import Countdown from "./logic/Countdown";
+import Countdown from "./Countdown";
 import Counter from "./Counter";
 import { counterSetSongTiming } from "../../../redux/actions";
 import { connect } from "react-redux";

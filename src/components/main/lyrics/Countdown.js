@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import v from "../../../style_abstract/variables";
+import v from "../../style_abstract/variables";
 import { connect } from "react-redux";
 
 const CountdownElement = styled.div`
