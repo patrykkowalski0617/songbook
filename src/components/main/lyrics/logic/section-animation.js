@@ -1,5 +1,6 @@
 class SectionAnimation {
-    constructor(parent, sections) {
+    constructor(parent) {
+        const sections = parent.querySelectorAll(".lyrics-bar");
         const getSectionOffset = function(parent, section) {
             const offset =
                 parent.getBoundingClientRect().y -
@@ -35,7 +36,7 @@ class SectionAnimation {
 
         const aplyTransformStyle = function(scale, section) {
             section.querySelector(
-                ".section-content"
+                ".bar-content"
             ).style.transform = `translate(-50%, -50%) scale(${scale})`;
         };
 
@@ -58,6 +59,7 @@ class SectionAnimation {
 
             return mainMarkedSectionIndex;
         };
+        this.animate();
     }
 }
 

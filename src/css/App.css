@@ -529,7 +529,6 @@ a:focus {
   outline: none;
   -webkit-box-shadow: #6f807d 0px 0px 0px 2px;
           box-shadow: #6f807d 0px 0px 0px 2px;
-  background-color: #defffa;
   z-index: 1; }
 
 a:link,

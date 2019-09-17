@@ -1,5 +1,13 @@
 import React, { Component } from "react";
+import lyrics_list from "../app/data/lyrics_list";
 import styled from "styled-components";
+import axios from "axios";
+import { connect } from "react-redux";
+import {
+    lyricsListToggle,
+    keepLyricsData,
+    keepSearchResult
+} from "./../../redux/actions";
 
 const LyricsItemButton = styled.button`
     background: none;
@@ -11,17 +19,66 @@ const LyricsItemButton = styled.button`
 `;
 
 class LyricsList extends Component {
-    lyricsItems = function() {
-        if (this.props.searchResult.length) {
-            return this.props.searchResult.map((lyricsNames, index) => {
+    componentWillMount() {
+        this.props.keepSearchResult(lyrics_list);
+    }
+
+    reduceLyricsListJson = function(lyricsListJson) {
+        const pairedNames = lyricsListJson.map(item => {
+            return item.songs.map(function(song) {
+                return {
+                    lyricsName: item.artist + " - " + song.name,
+                    fileVersion: song.fileVersion
+                };
+            });
+        });
+        const reducedPairedNames = pairedNames.reduce(function(total, item) {
+            const arr = total.concat(item),
+                addId = a => {
+                    for (let i = 0; i < a.length; i++) {
+                        a[i].id = i;
+                    }
+                    return a;
+                };
+            return addId(arr);
+        });
+
+        reducedPairedNames.sort((a, b) => {
+            return a.lyricsName < b.lyricsName ? -1 : 1;
+        });
+
+        return reducedPairedNames;
+    };
+
+    filterLyricsList = (searchedValue, lyricsList) => {
+        const filterLyricsList = searchedValue => {
+            const filteredList = lyricsList.filter(item =>
+                item.lyricsName
+                    .toLowerCase()
+                    .includes(searchedValue.toLowerCase())
+            );
+            return filteredList;
+        };
+        const searchResult = filterLyricsList(searchedValue);
+
+        return searchResult;
+    };
+
+    lyricsList = () => {
+        const filteredLyricsList = this.filterLyricsList(
+            this.props.redux.searchedValue,
+            this.reduceLyricsListJson(this.props.redux.searchResult)
+        );
+        if (this.props.redux.searchResult.length) {
+            return filteredLyricsList.map((item, index) => {
                 return (
                     <li key={index}>
                         <LyricsItemButton
-                            onClick={e =>
-                                this.props.getLyricsJson(e.target.innerText)
-                            }
+                            onClick={e => {
+                                this.getLyricsJson(e.target.innerText);
+                            }}
                         >
-                            {lyricsNames.lyricsName}
+                            {item.lyricsName}
                         </LyricsItemButton>
                     </li>
                 );
@@ -30,19 +87,41 @@ class LyricsList extends Component {
         return "Jeszcze nie znam tej pioseki :(";
     };
 
-    componentDidUpdate() {
-        if (this.firstButtonRef) {
-            this.firstButtonRef.focus();
-        }
-    }
+    getLyricsJson = lyricsName => {
+        const fileFormat = "json";
+        const fileName = lyricsName.toLowerCase().replace(/ /g, "_");
+        const filePath = `lyrics/${fileName}.${fileFormat}`;
+
+        axios
+            .get(filePath)
+            .then(res => {
+                const lyricsData = res.data;
+                this.props.lyricsListToggle();
+                this.props.keepLyricsData(lyricsData);
+            })
+            .catch(() =>
+                alert('W tej chwili działa tylko "Kings of Leon - Sex On Fire"')
+            );
+    };
 
     render() {
-        return this.props.displayLyricsList ? (
-            <ul>{this.lyricsItems()}</ul>
+        return this.props.redux.displayLyricsList ? (
+            <ul>{this.lyricsList()}</ul>
         ) : (
             ""
         );
     }
 }
 
-export default LyricsList;
+const mapStateToProps = state => {
+    return { redux: state };
+};
+const mapDispatchToProps = {
+    lyricsListToggle,
+    keepLyricsData,
+    keepSearchResult
+};
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LyricsList);

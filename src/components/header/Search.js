@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import v from "../style_abstract/variables";
+import { connect } from "react-redux";
+import { keepSearchedValue, lyricsListToggle } from "./../../redux/actions";
 
 const SearchContainer = styled.div`
     margin-right: ${v.space.s1};
@@ -38,25 +40,23 @@ class Search extends Component {
     onChangeHandler = e => {
         const value = e.target.value;
         this.setState({ inputValue: value });
-        if (value === "") {
-            this.props.searchClick("");
+
+        if (e.target.value === "") {
+            this.setState({ inputValue: "" });
+            this.onClickHandler("");
         }
     };
 
-    onClickHandler = () => {
-        this.props.searchClick(this.state.inputValue);
+    onClickHandler = inputValue => {
+        this.props.keepSearchedValue(inputValue);
     };
-
-    componentWillReceiveProps() {
-        if (!this.props.display) {
-            this.setState({
-                inputValue: ""
-            });
-        }
-    }
 
     render() {
+<<<<<<< HEAD
         return this.props.display ? (
+=======
+        return this.props.redux.displayLyricsList ? (
+>>>>>>> redux_learning
             <SearchContainer>
                 <Input
                     className="bar-input"
@@ -66,13 +66,14 @@ class Search extends Component {
                     onChange={this.onChangeHandler}
                     onKeyUp={e => {
                         if (e.which === 13) {
-                            this.props.searchClick(this.state.inputValue);
+                            this.onClickHandler(this.state.inputValue);
                         }
                     }}
-                    value={this.state.inputValue}
-                    autoFocus={this.props.inputAutoFocus ? true : false}
                 />
-                <Button className="circle-input" onClick={this.onClickHandler}>
+                <Button
+                    className="circle-input"
+                    onClick={() => this.onClickHandler(this.state.inputValue)}
+                >
                     Search
                 </Button>
             </SearchContainer>
@@ -82,4 +83,14 @@ class Search extends Component {
     }
 }
 
-export default Search;
+const mapStateToProps = state => {
+    return { redux: state };
+};
+const mapDispatchToProps = {
+    keepSearchedValue: keepSearchedValue,
+    lyricsListToggle: lyricsListToggle
+};
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Search);

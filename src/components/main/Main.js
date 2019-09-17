@@ -4,6 +4,7 @@ import Lyrics from "./lyrics/Lyrics";
 import WelcomeInfo from "./WelcomeInfo";
 import styled from "styled-components";
 import v from "../style_abstract/variables";
+import { connect } from "react-redux";
 
 const MainElement = styled.main`
     height: calc(100vh - ${v.headerH} - ${v.footerH});
@@ -14,28 +15,18 @@ const MainElement = styled.main`
 
 function Main(props) {
     let lyrics, welcomeInfo;
-    if (props.lyricsData && props.displayLyrics) {
-        lyrics = (
-            <Lyrics
-                counter={props.counter}
-                displayCountdown={props.displayCountdown}
-            />
-        );
+    if (props.redux.lyricsData && !props.redux.displayLyricsList) {
+        lyrics = <Lyrics displayCountdown={props.displayCountdown} />;
     }
 
-    if (props.displayWelcomeInfo && !props.displayLyricsList) {
+    if (!props.redux.lyricsData && !props.redux.displayLyricsList) {
         welcomeInfo = <WelcomeInfo />;
     }
 
     return (
         <MainElement>
             <div className="container">
-                <LyricsList
-                    displayLyricsList={props.displayLyricsList}
-                    searchResult={props.searchResult}
-                    getLyricsJson={props.getLyricsJson}
-                    lyricsListAutoFocus={props.lyricsListAutoFocus}
-                />
+                <LyricsList />
                 {welcomeInfo}
                 {lyrics}
             </div>
@@ -43,4 +34,8 @@ function Main(props) {
     );
 }
 
-export default Main;
+const mapStateToProps = state => {
+    return { redux: state };
+};
+
+export default connect(mapStateToProps)(Main);

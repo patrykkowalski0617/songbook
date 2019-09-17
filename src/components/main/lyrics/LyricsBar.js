@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import v from "../../style_abstract/variables";
 
-const LyricsSectionElement = styled.div`
+const LyricsBarElement = styled.div`
     height: 80px;
     font-size: 30px;
     position: relative;
@@ -17,7 +17,7 @@ const LyricsSectionElement = styled.div`
     }
 `;
 
-const SectionContent = styled.div`
+const BarContent = styled.div`
     text-align: center;
     height: 70px;
     position: absolute;
@@ -37,25 +37,23 @@ const SectionContent = styled.div`
     }
 `;
 
-class LyricsSection extends Component {
+class LyricsBar extends Component {
     ref = React.createRef();
 
-    componentDidMount() {
-        this.props.getLyricsSections(this.ref.current);
-    }
+    // componentDidMount() {
+    //     this.props.getLyricsBars(this.ref.current);
+    // }
 
     render() {
         return (
-            <LyricsSectionElement className={"lyrics-section"} ref={this.ref}>
-                <SectionContent
-                    className={`section-content ${this.props.sectionName}`}
-                >
+            <LyricsBarElement className={"lyrics-bar"} ref={this.ref}>
+                <BarContent className={`bar-content ${this.props.barType}`}>
                     <p className="lyrics-chords">{this.props.chords}</p>
                     <p className="lyrics-text">{this.props.text}</p>
-                </SectionContent>
-            </LyricsSectionElement>
+                </BarContent>
+            </LyricsBarElement>
         );
     }
 }
 
-export default LyricsSection;
+export default LyricsBar;

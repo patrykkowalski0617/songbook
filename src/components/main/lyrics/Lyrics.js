@@ -1,11 +1,14 @@
 import React, { Component } from "react";
-import LyricsSection from "./LyricsSection";
+import LyricsBar from "./LyricsBar";
 import SectionAnimation from "./logic/section-animation";
 import ScrollAnimation from "./logic/scroll-animation";
 import styled from "styled-components";
 import v from "../../style_abstract/variables";
 import Metronom from "./metronom/Metronom";
-import Countdown from "./metronom/countdown/Countdown";
+import Countdown from "./logic/Countdown";
+import Counter from "./Counter";
+import { counterSetSongTiming } from "../../../redux/actions";
+import { connect } from "react-redux";
 
 const LyricsHeader = styled.div`
     margin: ${v.space.s4} 0;
@@ -31,86 +34,94 @@ class Lyrics extends Component {
         markedSectionIndex: 0
     };
 
-    counter = this.props.counter;
-
     lyricsBody = React.createRef();
-    lyricsSections = [];
-    getLyricsSections = function(item) {
-        const lyricsSectionsList = this.lyricsSections.slice();
-        const i = [item];
-        this.lyricsSections = lyricsSectionsList.concat(i);
-    };
-    getLyricsSections = this.getLyricsSections.bind(this);
+
+    componentWillMount() {
+        this.songTiming = () => {
+            const slashIndex = this.props.redux.lyricsData.time.search("/");
+            const meterString = this.props.redux.lyricsData.time.substring(
+                0,
+                slashIndex
+            );
+            return Number(meterString);
+        };
+        this.props.counterSetSongTiming(this.songTiming());
+    }
 
     componentDidMount() {
-        const _this = this;
         this.scrollAnimation = new ScrollAnimation(
             this.lyricsBody.current,
-            this.lyricsSections,
-            this.state.markedSectionIndex,
             () => {
-                return this.counter.isRun || this.counter.scrollUp;
+                return this.props.redux.counterIsRun;
             }
         );
-        this.time = _this.counter.data.songTiming() * 1000;
-        this.counter.data.callbackOn.barChange = () => {
-            this.scrollAnimation.animate(_this.time);
-        };
-        this.counter.data.callbackOn.scrollToTop = () => {
-            const time = 1000;
-            this.scrollAnimation.animate(time, 0);
-            return time;
-        };
-        this.setState({ countdownNumer: this.counter.data.songTiming() });
-        this.sectionAnimation = new SectionAnimation(
-            this.lyricsBody.current,
-            this.lyricsSections
-        );
-        this.sectionAnimation.animate();
+        this.sectionAnimation = new SectionAnimation(this.lyricsBody.current);
     }
 
     handleScroll() {
         const currentlyMarkedSectionIndex = this.sectionAnimation.animate();
-
         if (this.state.markedSectionIndex !== currentlyMarkedSectionIndex) {
             this.setState({ markedSectionIndex: currentlyMarkedSectionIndex });
-            this.scrollAnimation.updateData(currentlyMarkedSectionIndex);
-            this.counter.data.currentlyMarkedSectionIndex = currentlyMarkedSectionIndex;
         }
     }
     handleScroll = this.handleScroll.bind(this);
 
     render() {
-        const allLocations = this.counter.data.locationOfAllBars();
+        const lyricsSections = () => {
+            const sectionsData = this.props.redux.lyricsData.sections;
 
-        const lyricsSections = allLocations.map((item, index) => {
-            const currentBar = this.counter.lyricsData.sections[item[0]].bars[
-                item[1]
-            ];
-            const sectionName = this.counter.lyricsData.sections[item[0]].name;
+            const barsData = sectionsData.map(item => {
+                const barType = item.name;
+                return item.bars.map(item => {
+                    return { barType, text: item.text, chords: item.chords };
+                });
+            });
 
-            return (
-                <LyricsSection
-                    key={index}
-                    text={currentBar.text}
-                    chords={currentBar.chords}
-                    sectionName={sectionName}
-                    getLyricsSections={this.getLyricsSections}
-                />
-            );
-        });
+            const barsDataReduced = barsData.reduce((total, item) => {
+                return total.concat(item);
+            });
 
-        const scrollY =
-            this.counter.isRun || this.counter.scrollUp ? "hidden" : "scroll";
+            const bars = barsDataReduced.map((item, index) => {
+                return (
+                    <LyricsBar
+                        key={index}
+                        text={item.text}
+                        chords={item.chords}
+                        barType={item.barType}
+                    />
+                );
+            });
+            return bars;
+        };
+
+        const scrollY = this.props.redux.counterIsRun ? "hidden" : "scroll";
+
+        const counter = this.props.redux.counterIsRun ? (
+            <Counter
+                onBarChange={() =>
+                    this.scrollAnimation.animate(
+                        (60 / this.props.redux.lyricsData.tempo) *
+                            1000 *
+                            this.props.redux.songTiming,
+                        this.state.markedSectionIndex + 1
+                    )
+                }
+                markedSectionIndex={this.state.markedSectionIndex}
+                lastSectionIndex={lyricsSections().length - 1}
+            />
+        ) : (
+            ""
+        );
 
         return (
             <div>
+                {counter}
                 <LyricsHeader>
                     <H2>
-                        {this.counter.lyricsData.title}
+                        {this.props.redux.lyricsData.title}
                         <a
                             className="lyrics-info-item"
-                            href={this.counter.lyricsData.link}
+                            href={this.props.redux.lyricsData.link}
                             target="_blank"
                             rel="noopener noreferrer"
                         >
@@ -119,27 +130,36 @@ class Lyrics extends Component {
                     </H2>
                     <p className="lyrics-info row">
                         <span className="lyrics-info-item col">
-                            Tempo: {this.counter.lyricsData.tempo}
+                            Tempo: {this.props.redux.lyricsData.tempo}
                         </span>
                         <span className="lyrics-info-item col">
-                            Time: {this.counter.lyricsData.time}
+                            Time: {this.props.redux.lyricsData.time}
                         </span>
                     </p>
                 </LyricsHeader>
                 <LyricsBodyContainer>
-                    <Countdown counter={this.props.counter} />
+                    <Countdown />
                     <LyricsBody
                         ref={this.lyricsBody}
                         onScroll={this.handleScroll}
                         scrollY={scrollY}
                     >
-                        {lyricsSections}
+                        {lyricsSections()}
                     </LyricsBody>
                 </LyricsBodyContainer>
-                <Metronom counter={this.props.counter} />
+                <Metronom counter={this.counter} />
             </div>
         );
     }
 }
 
-export default Lyrics;
+const mapStateToProps = state => {
+    return { redux: state };
+};
+const mapDispatchToProps = {
+    counterSetSongTiming
+};
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Lyrics);

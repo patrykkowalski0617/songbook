@@ -3,6 +3,7 @@ import Search from "./Search";
 import HeaderButtons from "./HeaderButtons";
 import styled from "styled-components";
 import v from "../style_abstract/variables";
+import { connect } from "react-redux";
 
 const HeaderElement = styled.header`
     height: ${v.headerH};
@@ -29,7 +30,7 @@ const LogoLink = styled.a`
 `;
 
 const Header = function(props) {
-    const displayLogo = props.displayLyricsList ? "none" : "block";
+    const displayLogo = props.redux.displayLyricsList ? "none" : "block";
 
     return (
         <HeaderElement className="header">
@@ -37,21 +38,15 @@ const Header = function(props) {
                 <Logo displayLogo={displayLogo}>
                     <LogoLink href="/">Song Book</LogoLink>
                 </Logo>
-                <Search
-                    display={props.displayLyricsList}
-                    searchClick={props.searchClick}
-                    inputAutoFocus={props.inputAutoFocus}
-                />
-                <HeaderButtons
-                    displayHeaderButtons={props.displayHeaderButtons}
-                    buttonsData={props.buttonsData}
-                    buttonsOnStates={props.buttonsOnStates}
-                    switchButtonIcon={props.switchButtonIcon}
-                    headerFocusedButtounIndex={props.headerFocusedButtounIndex}
-                />
+                <Search />
+                <HeaderButtons buttonsData={props.buttonsData} />
             </Container>
         </HeaderElement>
     );
 };
 
-export default Header;
+const mapStateToProps = state => {
+    return { redux: state };
+};
+
+export default connect(mapStateToProps)(Header);
