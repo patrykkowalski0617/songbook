@@ -8,7 +8,6 @@ import counterToggleReducer from "./counterToggleReducer";
 import counterIterationReducer from "./counterIterationReducer";
 import counterSetScrollDelayReducer from "./counterSetScrollDelayReducer";
 import counterSetSongTimingReducer from "./counterSetSongTimingReducer";
-// import metronomPlayStatusReducer from "./metronomPlayStatusReducer";
 
 const allReducers = combineReducers({
     displayLyricsList: lyricsListToggleReducer,
@@ -19,7 +18,6 @@ const allReducers = combineReducers({
     counterIterationNumber: counterIterationReducer,
     counterScrollDelay: counterSetScrollDelayReducer,
     songTiming: counterSetSongTimingReducer
-    // metronomPlayStatus: metronomPlayStatusReducer
 });
 
 export default allReducers;
