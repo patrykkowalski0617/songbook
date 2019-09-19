@@ -1,34 +1,45 @@
 import React from "react";
-import MetronomElement from "./MetronomElement";
 import styled from "styled-components";
+import styleVariables from "../../style_abstract/styleVariables";
 import { connect } from "react-redux";
+
+const { color } = styleVariables;
+
+const MetronomElement = styled.div`
+    height: 20px;
+    border: 0px solid ${color.mintdark};
+    border-right-width: 1px;
+    &:first-child {
+        border-left-width: 1px;
+    }
+    &.active {
+        background-color: ${color.mintsemi};
+    }
+`;
 
 const Description = styled.div`
     margin: 0.7rem 0 -0.3rem 0;
     font-size: 0.7rem;
 `;
 
-const Metronom = function(props) {
-    const colSize = 12 / props.redux.songTiming;
+const Metronom = props => {
+    const { songTiming, counterIsRun, counterIterationNumber } = props.redux;
 
-    const metronomParts = Array(props.redux.songTiming).fill(null);
+    const colSize = 12 / songTiming;
 
-    const createMetronom = function() {
+    const metronomParts = Array(songTiming).fill(null);
+
+    const createMetronom = () => {
         return metronomParts.map((item, index) => {
             let marker = "";
-            if (
-                props.redux.counterIsRun &&
-                index ===
-                    props.redux.counterIterationNumber % props.redux.songTiming
-            ) {
+            if (counterIsRun && index === counterIterationNumber % songTiming) {
                 marker = "active";
             }
 
             return (
                 <MetronomElement
                     key={index}
-                    colSize={colSize}
-                    marker={marker}
+                    className={`col-${colSize} ${marker}`}
                 />
             );
         });

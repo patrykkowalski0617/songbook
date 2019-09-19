@@ -2,49 +2,75 @@ import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import { counterIteration, counterToggle } from "../../../redux/actions";
 import Sound from "react-sound-dkadrios";
-import metronomAudio from "./metronom/metronom_audio/metronom.mp3";
 
 class Counter extends PureComponent {
     componentWillMount() {
         this.intervalId = 0;
     }
+
     componentDidMount() {
-        const intervalTime = (60 / this.props.redux.lyricsData.tempo) * 1000;
-        const delay =
-            this.props.redux.counterScrollDelay * this.props.redux.songTiming;
+        const { lyricsData, counterScrollDelay, songTiming } = this.props.redux;
+
+        const {
+            lastSectionIndex,
+            counterIteration,
+            onBarChange,
+            counterToggle
+        } = this.props;
+
+        const intervalTime = (60 / lyricsData.tempo) * 1000;
+        const startDelay = counterScrollDelay * songTiming;
+        const endDelay = 1;
+
+        let counterIterationNumber = 0;
+        let markedSectionIndex = 0;
+        let isLyricsEnd;
+        let endDelayIteration = 0;
+
         this.intervalId = setInterval(() => {
-            if (
-                this.props.markedSectionIndex !== this.props.lastSectionIndex ||
-                (this.props.markedSectionIndex ===
-                    this.props.lastSectionIndex &&
-                    this.props.redux.counterIterationNumber %
-                        this.props.redux.songTiming <
-                        3)
-            ) {
-                this.props.counterIteration(true);
+            counterIterationNumber = this.props.redux.counterIterationNumber;
+            markedSectionIndex = this.props.markedSectionIndex;
+
+            isLyricsEnd = () => {
+                return (
+                    markedSectionIndex === lastSectionIndex &&
+                    (counterIterationNumber % songTiming) - songTiming === -1
+                );
+            };
+
+            if (!isLyricsEnd()) {
+                counterIteration(true);
+                //  if second bar is active
                 if (
-                    this.props.redux.counterIterationNumber > delay &&
-                    this.props.redux.counterIterationNumber %
-                        this.props.redux.songTiming ===
-                        2
+                    counterIterationNumber >= startDelay &&
+                    counterIterationNumber % songTiming === 0
                 ) {
-                    this.props.onBarChange();
+                    onBarChange();
                 }
             } else {
-                this.props.counterToggle(false);
+                if (endDelayIteration === endDelay) {
+                    counterToggle();
+                } else {
+                    counterIteration(true);
+                }
+
+                endDelayIteration++;
             }
         }, intervalTime);
     }
 
     componentWillUnmount() {
         clearInterval(this.intervalId);
-
         counterIteration(false);
     }
 
     render() {
         return (
-            <Sound url={metronomAudio} playStatus={"PLAYING"} autoLoad={true} />
+            <Sound
+                url={"metronom_audio/metronom.mp3"}
+                playStatus={"PLAYING"}
+                autoLoad={true}
+            />
         );
     }
 }

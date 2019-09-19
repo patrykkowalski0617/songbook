@@ -19,6 +19,8 @@ const LyricsItemButton = styled.button`
 
 class LyricsList extends Component {
     componentWillMount() {
+        const { keepSearchResult } = this.props;
+
         this.getLyricsListJson = lyricsName => {
             const filePath = `data/lyrics_list.json`;
 
@@ -26,34 +28,34 @@ class LyricsList extends Component {
                 .get(filePath)
                 .then(res => {
                     const data = res.data;
-                    this.props.keepSearchResult(data);
+                    keepSearchResult(data);
                 })
                 .catch(() => alert("Nie można załadować listy piosenek"));
         };
+
         this.getLyricsListJson();
     }
 
     componentDidMount() {
         this.reduceLyricsListJson = lyricsListJson => {
             const pairedNames = lyricsListJson.map(item => {
-                return item.songs.map(function(song) {
+                return item.songs.map(song => {
                     return {
                         lyricsName: item.artist + " - " + song.name,
                         fileVersion: song.fileVersion
                     };
                 });
             });
-            const reducedPairedNames = pairedNames.reduce(function(
-                total,
-                item
-            ) {
+            const reducedPairedNames = pairedNames.reduce((total, item) => {
                 const arr = total.concat(item),
                     addId = a => {
                         for (let i = 0; i < a.length; i++) {
                             a[i].id = i;
                         }
+
                         return a;
                     };
+
                 return addId(arr);
             });
 
@@ -71,8 +73,10 @@ class LyricsList extends Component {
                         .toLowerCase()
                         .includes(searchedValue.toLowerCase())
                 );
+
                 return filteredList;
             };
+
             const searchResult = filterLyricsList(searchedValue);
 
             return searchResult;
@@ -83,7 +87,8 @@ class LyricsList extends Component {
                 this.props.redux.searchedValue,
                 this.reduceLyricsListJson(this.props.redux.searchResult)
             );
-            if (this.props.redux.searchResult.length) {
+
+            if (filteredLyricsList.length) {
                 return filteredLyricsList.map((item, index) => {
                     return (
                         <li key={index}>
@@ -97,8 +102,9 @@ class LyricsList extends Component {
                         </li>
                     );
                 });
+            } else {
+                return "Jeszcze nie znam tej pioseki :(";
             }
-            return "Jeszcze nie znam tej pioseki :(";
         };
 
         this.getLyricsJson = lyricsName => {
@@ -122,11 +128,9 @@ class LyricsList extends Component {
     }
 
     render() {
-        return this.props.redux.displayLyricsList ? (
-            <ul>{this.lyricsList()}</ul>
-        ) : (
-            ""
-        );
+        const { displayLyricsList } = this.props.redux;
+
+        return displayLyricsList ? <ul>{this.lyricsList()}</ul> : null;
     }
 }
 

@@ -1,6 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
-import v from "../../style_abstract/variables";
+import styleVariables from "../../style_abstract/styleVariables";
+
+const { media } = styleVariables;
 
 const LyricsBarElement = styled.div`
     height: 80px;
@@ -12,7 +14,7 @@ const LyricsBarElement = styled.div`
     &:last-child {
         margin-bottom: 80px;
     }
-    @media (max-width: ${v.media.l}) {
+    @media (max-width: ${media.l}) {
         font-size: 20px;
     }
 `;
@@ -25,35 +27,25 @@ const BarContent = styled.div`
     left: 50%;
     width: 100%;
     transform: translate(-50%, -50%);
-    &.chorus {
-        font-style: italic;
-        color: ${v.color.mintdark};
-    }
-    .lyrics-text,
-    .lyrics-chords {
-        height: 35px;
-        line-height: 35px;
-        vertical-align: middle;
-    }
 `;
 
-class LyricsBar extends Component {
-    ref = React.createRef();
+const BarSection = styled.p`
+    height: 35px;
+    line-height: 35px;
+    vertical-align: middle;
+`;
 
-    // componentDidMount() {
-    //     this.props.getLyricsBars(this.ref.current);
-    // }
+const LyricsBar = props => {
+    const { barType, chords, text } = props;
 
-    render() {
-        return (
-            <LyricsBarElement className={"lyrics-bar"} ref={this.ref}>
-                <BarContent className={`bar-content ${this.props.barType}`}>
-                    <p className="lyrics-chords">{this.props.chords}</p>
-                    <p className="lyrics-text">{this.props.text}</p>
-                </BarContent>
-            </LyricsBarElement>
-        );
-    }
-}
+    return (
+        <LyricsBarElement className={"lyrics-bar"}>
+            <BarContent className={`bar-content ${barType}`}>
+                <BarSection>{chords}</BarSection>
+                <BarSection>{text}</BarSection>
+            </BarContent>
+        </LyricsBarElement>
+    );
+};
 
 export default LyricsBar;

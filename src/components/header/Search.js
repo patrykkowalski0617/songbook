@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import v from "../style_abstract/variables";
+import styleVariables from "../style_abstract/styleVariables";
 import { connect } from "react-redux";
 import { keepSearchedValue, lyricsListToggle } from "./../../redux/actions";
 
+const { space, color } = styleVariables;
+
 const SearchContainer = styled.div`
-    margin-right: ${v.space.s1};
+    margin-right: ${space.s1};
     width: 100%;
     position: relative;
     border-radius: 20px;
@@ -14,7 +16,7 @@ const SearchContainer = styled.div`
 const Input = styled.input`
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    border-right: 1px solid ${v.color.dark};
+    border-right: 1px solid ${color.dark};
     width: calc(100% - 60px);
     position: absolute;
     &:focus {
@@ -37,22 +39,29 @@ class Search extends Component {
         inputValue: ""
     };
 
-    onChangeHandler = e => {
-        const value = e.target.value;
-        this.setState({ inputValue: value });
+    componentDidMount() {
+        const { keepSearchedValue } = this.props;
 
-        if (e.target.value === "") {
-            this.setState({ inputValue: "" });
-            this.onClickHandler("");
-        }
-    };
+        this.onChangeHandler = e => {
+            const value = e.target.value;
 
-    onClickHandler = inputValue => {
-        this.props.keepSearchedValue(inputValue);
-    };
+            this.setState({ inputValue: value });
+
+            if (value === "") {
+                this.setState({ inputValue: "" });
+                this.onClickHandler("");
+            }
+        };
+
+        this.onClickHandler = inputValue => {
+            keepSearchedValue(inputValue);
+        };
+    }
 
     render() {
-        return this.props.redux.displayLyricsList ? (
+        const { displayLyricsList } = this.props.redux;
+
+        return displayLyricsList ? (
             <SearchContainer>
                 <Input
                     className="bar-input"
@@ -73,9 +82,7 @@ class Search extends Component {
                     Search
                 </Button>
             </SearchContainer>
-        ) : (
-            ""
-        );
+        ) : null;
     }
 }
 

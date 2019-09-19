@@ -1,4 +1,4 @@
-const variables = {
+const styleVariables = {
     color: {
         dark: `#000000`,
         light: `#ffffff`,
@@ -25,4 +25,4 @@ const variables = {
     }
 };
 
-export default variables;
+export default styleVariables;

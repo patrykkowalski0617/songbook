@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import v from "../style_abstract/variables";
+import styleVariables from "../style_abstract/styleVariables";
 import {
     keepSearchedValue,
     lyricsListToggle,
@@ -8,8 +8,10 @@ import {
 } from "./../../redux/actions";
 import { connect } from "react-redux";
 
+const { space } = styleVariables;
+
 const HeaderButtonsElement = styled.div`
-    margin-right: -${v.space.s1};
+    margin-right: -${space.s1};
     margin-left: 0;
 `;
 
@@ -22,32 +24,36 @@ const ButtonElement = styled.button`
     cursor: pointer;
 `;
 
-const HeaderButtons = function(props) {
-    const buttonsDataLocal = [
+const HeaderButtons = props => {
+    const { counterIsRun, displayLyricsList, lyricsData } = props.redux;
+    const { counterToggle, keepSearchedValue, lyricsListToggle } = props;
+
+    const buttonsData = [
         {
             onIcon: "play",
             offIcon: "pause",
-            onStatus: !props.redux.counterIsRun,
-            display: !props.redux.displayLyricsList && props.redux.lyricsData,
+            onStatus: !counterIsRun,
+            display: !displayLyricsList && lyricsData,
             onClickHandler: () => {
-                props.counterToggle(true);
+                counterToggle(true);
             }
         },
         {
             onIcon: "lyrics-list",
             offIcon: "close",
-            onStatus: !props.redux.displayLyricsList,
+            onStatus: !displayLyricsList,
             display: true,
             onClickHandler: () => {
-                props.keepSearchedValue("");
-                props.lyricsListToggle();
-                if (props.redux.counterIsRun) {
-                    props.counterToggle(false);
+                keepSearchedValue("");
+                lyricsListToggle();
+                if (counterIsRun) {
+                    counterToggle(false);
                 }
             }
         }
     ];
-    const buttonElements = buttonsDataLocal.map((item, index) => {
+
+    const buttonElements = buttonsData.map((item, index) => {
         const icon = item.onStatus ? item.onIcon : item.offIcon;
 
         return item.display ? (

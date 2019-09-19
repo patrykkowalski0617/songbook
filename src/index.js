@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./css/App.css";
 import "./css/fontello/css/glyph.css";
-import App from "./components/app/App";
+import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 
 import store from "./redux/store";

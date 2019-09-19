@@ -2,24 +2,26 @@ import React from "react";
 import Search from "./Search";
 import HeaderButtons from "./HeaderButtons";
 import styled from "styled-components";
-import v from "../style_abstract/variables";
+import styleVariables from "../style_abstract/styleVariables";
 import { connect } from "react-redux";
 
+const { headerH, headerPadding, space } = styleVariables;
+
 const HeaderElement = styled.header`
-    height: ${v.headerH};
+    height: ${headerH};
 `;
 
 const Container = styled.div`
     display: flex;
     justify-content: space-between;
     position: relative;
-    padding-top: ${v.headerPadding};
-    padding-bottom: ${v.headerPadding};
+    padding-top: ${headerPadding};
+    padding-bottom: ${headerPadding};
 `;
 
 const Logo = styled.h1`
     font-weight: 700;
-    font-size: ${v.space.s4};
+    font-size: ${space.s4};
     line-height: 20px;
     display: ${props => props.displayLogo};
 `;
@@ -30,16 +32,16 @@ const LogoLink = styled.a`
 `;
 
 const Header = function(props) {
-    const displayLogo = props.redux.displayLyricsList ? "none" : "block";
+    const { displayLyricsList } = props.redux;
 
     return (
         <HeaderElement className="header">
             <Container className="container">
-                <Logo displayLogo={displayLogo}>
+                <Logo displayLogo={displayLyricsList ? "none" : "block"}>
                     <LogoLink href="/">Song Book</LogoLink>
                 </Logo>
                 <Search />
-                <HeaderButtons buttonsData={props.buttonsData} />
+                <HeaderButtons />
             </Container>
         </HeaderElement>
     );
