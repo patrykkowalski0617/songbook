@@ -7,6 +7,8 @@ import styleVariables from "../../style_abstract/styleVariables";
 import Metronom from "./Metronom";
 import Countdown from "./Countdown";
 import Counter from "./Counter";
+import ProgressBar from "./ProgressBar";
+import ScrollProgress from "./logic/ScrollProgress";
 import { counterSetSongTiming } from "../../../redux/actions";
 import { connect } from "react-redux";
 
@@ -35,8 +37,6 @@ class Lyrics extends Component {
     state = {
         markedSectionIndex: 0
     };
-
-    lyricsBody = React.createRef();
 
     componentWillMount() {
         const { lyricsData } = this.props.redux;
@@ -70,6 +70,8 @@ class Lyrics extends Component {
         if (this.state.markedSectionIndex !== currentlyMarkedSectionIndex) {
             this.setState({ markedSectionIndex: currentlyMarkedSectionIndex });
         }
+
+        this.scrollProgress = ScrollProgress(this.lyricsBody.current);
     }
     handleScroll = this.handleScroll.bind(this);
 
@@ -144,6 +146,7 @@ class Lyrics extends Component {
                         {lyricsSections()}
                     </LyricsBody>
                 </LyricsBodyContainer>
+                <ProgressBar scrollProgress={this.scrollProgress} />
                 <Metronom />
             </div>
         );
