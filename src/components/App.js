@@ -8,7 +8,7 @@ import { counterSetScrollDelay } from "../redux/actions";
 class App extends Component {
     componentWillMount() {
         const { counterSetScrollDelay } = this.props;
-        
+
         counterSetScrollDelay();
     }
 

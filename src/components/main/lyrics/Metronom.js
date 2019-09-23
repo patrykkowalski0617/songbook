@@ -1,19 +1,30 @@
 import React from "react";
 import styled from "styled-components";
-import styleVariables from "../../style_abstract/styleVariables";
+import { colorScheme, grid } from "../../style";
 import { connect } from "react-redux";
 
-const { color } = styleVariables;
+const Container = styled.div`
+    ${grid.container}
+`;
+
+const MetronomElements = styled.div`
+    ${grid.container}
+    ${grid.row}
+`;
 
 const MetronomElement = styled.div`
+    ${props => {
+        const colSize = props.colSize;
+        return grid.col[colSize];
+    }}
     height: 20px;
-    border: 0px solid ${color.mintdark};
+    border: 0px solid ${colorScheme[0].light1};
     border-right-width: 1px;
     &:first-child {
         border-left-width: 1px;
     }
     &.active {
-        background-color: ${color.mintsemi};
+        background-color: ${colorScheme[0].contrast1};
     }
 `;
 
@@ -39,17 +50,18 @@ const Metronom = props => {
             return (
                 <MetronomElement
                     key={index}
-                    className={`col-${colSize} ${marker}`}
+                    className={`${marker}`}
+                    colSize={colSize}
                 />
             );
         });
     };
 
     return (
-        <div className="container">
+        <Container>
             <Description>metronom</Description>
-            <div className="row vertical-padding">{createMetronom()}</div>
-        </div>
+            <MetronomElements>{createMetronom()}</MetronomElements>
+        </Container>
     );
 };
 

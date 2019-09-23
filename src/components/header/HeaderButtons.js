@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import styleVariables from "../style_abstract/styleVariables";
+import { space, circleInput, grid } from "../style";
 import {
     keepSearchedValue,
     lyricsListToggle,
@@ -8,20 +8,19 @@ import {
 } from "./../../redux/actions";
 import { connect } from "react-redux";
 
-const { space } = styleVariables;
-
 const HeaderButtonsElement = styled.div`
+    ${grid.row}
     margin-right: -${space.s1};
     margin-left: 0;
 `;
 
 const ButtonContainer = styled.div`
+    ${grid.col[0]}
     padding: 0 0.4rem;
 `;
 
 const ButtonElement = styled.button`
-    font-size: 20px;
-    cursor: pointer;
+    ${circleInput}
 `;
 
 const HeaderButtons = props => {
@@ -53,24 +52,22 @@ const HeaderButtons = props => {
         }
     ];
 
-    const buttonElements = buttonsData.map((item, index) => {
-        const icon = item.onStatus ? item.onIcon : item.offIcon;
-
-        return item.display ? (
-            <ButtonContainer className="col" key={index}>
-                <ButtonElement
-                    className={`icon-${icon} circle-input`}
-                    onClick={() => {
-                        item.onClickHandler();
-                    }}
-                />
-            </ButtonContainer>
-        ) : null;
-    });
-
     return (
-        <HeaderButtonsElement className="row">
-            {buttonElements}
+        <HeaderButtonsElement>
+            {buttonsData.map((item, index) => {
+                const icon = item.onStatus ? item.onIcon : item.offIcon;
+
+                return item.display ? (
+                    <ButtonContainer key={index}>
+                        <ButtonElement
+                            className={`icon-${icon}`}
+                            onClick={() => {
+                                item.onClickHandler();
+                            }}
+                        />
+                    </ButtonContainer>
+                ) : null;
+            })}
         </HeaderButtonsElement>
     );
 };

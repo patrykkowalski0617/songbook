@@ -1,9 +1,9 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { counterIteration, counterToggle } from "../../../redux/actions";
 import Sound from "react-sound-dkadrios";
 
-class Counter extends PureComponent {
+class Counter extends Component {
     componentWillMount() {
         this.intervalId = 0;
     }
@@ -62,6 +62,13 @@ class Counter extends PureComponent {
     componentWillUnmount() {
         clearInterval(this.intervalId);
         counterIteration(false);
+    }
+
+    shouldComponentUpdate(nextProps) {
+        return (
+            nextProps.redux.counterIterationNumber -
+            this.props.redux.counterIterationNumber
+        );
     }
 
     render() {

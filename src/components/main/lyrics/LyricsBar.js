@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import styleVariables from "../../style_abstract/styleVariables";
-
-const { media } = styleVariables;
+import { media } from "../../style";
 
 const LyricsBarElement = styled.div`
     height: 80px;
@@ -38,6 +36,8 @@ const BarSection = styled.p`
 const LyricsBar = props => {
     const { barType, chords, text } = props;
 
+    // className lyrics-bar and bar-content are instead of rel
+    // and are needed for animation scripts
     return (
         <LyricsBarElement className={"lyrics-bar"}>
             <BarContent className={`bar-content ${barType}`}>

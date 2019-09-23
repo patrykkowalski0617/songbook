@@ -3,7 +3,7 @@ import LyricsBar from "./LyricsBar";
 import BarAnimation from "./logic/BarAnimation";
 import ScrollAnimation from "./logic/ScrollAnimation";
 import styled from "styled-components";
-import styleVariables from "../../style_abstract/styleVariables";
+import { space, grid } from "../../style";
 import Metronom from "./Metronom";
 import Countdown from "./Countdown";
 import Counter from "./Counter";
@@ -12,10 +12,24 @@ import ScrollProgress from "./logic/ScrollProgress";
 import { counterSetSongTiming } from "../../../redux/actions";
 import { connect } from "react-redux";
 
-const { space, color } = styleVariables;
+const LyricsElement = styled.div`
+    position: absolute;
+    left: ${space.s2};
+    right: ${space.s2};
+    top: 50%;
+    transform: translateY(-50%);
+`;
 
 const LyricsHeader = styled.div`
     margin: ${space.s4} 0;
+`;
+
+const LyricsData = styled.p`
+    ${grid.row}
+`;
+
+const LyricsDataContent = styled.span`
+    ${grid.col[0]}
 `;
 
 const H2 = styled.h2`
@@ -30,12 +44,12 @@ const LyricsBody = styled.div`
     height: 240px;
     overflow-y: ${props => props.scrollY};
     overflow-x: hidden;
-    background-color: ${color.mintcream};
 `;
 
 class Lyrics extends Component {
     state = {
-        markedSectionIndex: 0
+        markedSectionIndex: 0,
+        scrollProgress: "0%"
     };
 
     componentWillMount() {
@@ -67,11 +81,14 @@ class Lyrics extends Component {
 
     handleScroll() {
         const currentlyMarkedSectionIndex = this.barAnimation.animate();
+
+        const scrollProgress = ScrollProgress(this.lyricsBody.current);
+
+        this.setState({ scrollProgress });
+
         if (this.state.markedSectionIndex !== currentlyMarkedSectionIndex) {
             this.setState({ markedSectionIndex: currentlyMarkedSectionIndex });
         }
-
-        this.scrollProgress = ScrollProgress(this.lyricsBody.current);
     }
     handleScroll = this.handleScroll.bind(this);
 
@@ -107,7 +124,7 @@ class Lyrics extends Component {
         };
 
         return (
-            <div>
+            <LyricsElement>
                 {counterIsRun ? (
                     <Counter
                         onBarChange={() =>
@@ -131,10 +148,14 @@ class Lyrics extends Component {
                             <i className="icon icon-youtube" />
                         </a>
                     </H2>
-                    <p className="row">
-                        <span className="col">Tempo: {lyricsData.tempo}</span>
-                        <span className="col">Time: {lyricsData.time}</span>
-                    </p>
+                    <LyricsData>
+                        <LyricsDataContent>
+                            Tempo: {lyricsData.tempo}
+                        </LyricsDataContent>
+                        <LyricsDataContent>
+                            Time: {lyricsData.time}
+                        </LyricsDataContent>
+                    </LyricsData>
                 </LyricsHeader>
                 <LyricsBodyContainer>
                     <Countdown />
@@ -146,9 +167,9 @@ class Lyrics extends Component {
                         {lyricsSections()}
                     </LyricsBody>
                 </LyricsBodyContainer>
-                <ProgressBar scrollProgress={this.scrollProgress} />
+                <ProgressBar scrollProgress={this.state.scrollProgress} />
                 <Metronom />
-            </div>
+            </LyricsElement>
         );
     }
 }

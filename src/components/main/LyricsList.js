@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { colorScheme, focus } from "../style";
 import axios from "axios";
 import { connect } from "react-redux";
 import {
@@ -8,6 +9,12 @@ import {
     keepSearchResult
 } from "./../../redux/actions";
 
+const Ul = styled.ul`
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+`;
+
 const LyricsItemButton = styled.button`
     background: none;
     border: none;
@@ -15,6 +22,8 @@ const LyricsItemButton = styled.button`
     cursor: pointer;
     text-align: left;
     line-height: 150%;
+    color: ${colorScheme[0].light1};
+    ${focus}
 `;
 
 class LyricsList extends Component {
@@ -130,7 +139,7 @@ class LyricsList extends Component {
     render() {
         const { displayLyricsList } = this.props.redux;
 
-        return displayLyricsList ? <ul>{this.lyricsList()}</ul> : null;
+        return displayLyricsList ? <Ul>{this.lyricsList()}</Ul> : null;
     }
 }
 

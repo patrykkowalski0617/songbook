@@ -1,9 +1,7 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import styleVariables from "../../style_abstract/styleVariables";
+import { colorScheme } from "../../style";
 import { connect } from "react-redux";
-
-const { color } = styleVariables;
 
 const CountdownElement = styled.div`
     position: absolute;
@@ -11,8 +9,8 @@ const CountdownElement = styled.div`
     right: 0;
     bottom: 0;
     left: 0;
-    background: ${color.dark};
-    color: ${color.light};
+    background: ${colorScheme[0].dark1};
+    color: ${colorScheme[0].light1};
     text-align: center;
     opacity: 0.5;
     z-index: 1;

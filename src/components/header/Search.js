@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import styleVariables from "../style_abstract/styleVariables";
+import { space, colorScheme, barInput, circleInput } from "../style";
 import { connect } from "react-redux";
 import { keepSearchedValue, lyricsListToggle } from "./../../redux/actions";
-
-const { space, color } = styleVariables;
 
 const SearchContainer = styled.div`
     margin-right: ${space.s1};
@@ -14,24 +12,28 @@ const SearchContainer = styled.div`
 `;
 
 const Input = styled.input`
+    ${barInput}
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    border-right: 1px solid ${color.dark};
-    width: calc(100% - 60px);
+    border-right: 1px solid ${colorScheme[0].dark1};
+    width: calc(100% - 70px);
     position: absolute;
     &:focus {
         border-right: none;
     }
+    font-size: ${space.s3};
 `;
 
 const Button = styled.button`
+    ${circleInput}
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     width: 100%;
-    max-width: 60px;
+    max-width: 70px;
     cursor: pointer;
     position: absolute;
     right: 0;
+    font-size: ${space.s3};
 `;
 
 class Search extends Component {
@@ -64,7 +66,6 @@ class Search extends Component {
         return displayLyricsList ? (
             <SearchContainer>
                 <Input
-                    className="bar-input"
                     type="search"
                     placeholder="wyszukaj:
                     artysta - tytuł"
@@ -76,7 +77,6 @@ class Search extends Component {
                     }}
                 />
                 <Button
-                    className="circle-input"
                     onClick={() => this.onClickHandler(this.state.inputValue)}
                 >
                     Search

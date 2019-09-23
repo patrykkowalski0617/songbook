@@ -1,18 +1,22 @@
 import React from "react";
 import styled from "styled-components";
-import styleVariables from "../style_abstract/styleVariables";
-
-const { footerH } = styleVariables;
+import { footerH, colorScheme, grid } from "../style";
 
 const FooterElement = styled.footer`
     height: ${footerH};
     text-align: center;
+    background-color: ${colorScheme[0].dark1};
+    color: ${colorScheme[0].light1};
+`;
+
+const Container = styled.div`
+    ${grid.container}
 `;
 
 const Footer = () => {
     return (
-        <FooterElement className="footer">
-            <div className="container">&copy; SongBook</div>
+        <FooterElement>
+            <Container>&copy; SongBook</Container>
         </FooterElement>
     );
 };

@@ -1,4 +1,26 @@
-@import "abstracts/variables";
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-@import "layout/grid";
-@import "layout/general";
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    overflow: hidden;
+}
+
+a {
+    &:link,
+    &:visited,
+    &:active,
+    &:focus,
+    &:hover {
+        color: inherit;
+        background: inherit;
+    }
+    text-decoration: none;
+}

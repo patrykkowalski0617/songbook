@@ -1,20 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import styleVariables from "../../style_abstract/styleVariables";
-
-const { color } = styleVariables;
+import { colorScheme } from "../../style";
 
 const ProgreesBarContainer = styled.div`
     width: 100%;
-    height: 8px;
-    background: ${color.mintsemi};
+    height: 5px;
+    background: ${colorScheme[0].muted};
     overflow: hidden;
 `;
 const ProgreesBarElement = styled.div`
     width: ${props => props.scrollProgress || "0%"};
-    height: 8px;
-    background: ${color.mintcream};
-    margin: 0 -5px;
+    height: 5px;
+    background: ${colorScheme[0].contrast1};
 `;
 
 const ProgreesBar = props => {
