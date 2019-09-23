@@ -2,7 +2,7 @@ class BarAnimation {
     constructor(componentElement) {
         const targetElements = componentElement.querySelectorAll(".lyrics-bar");
 
-        const gettargetElementOffset = function(
+        const getTargetElementOffset = function(
             componentElement,
             targetElement
         ) {
@@ -30,7 +30,7 @@ class BarAnimation {
 
             let scale;
 
-            if (currentPosition > 80) {
+            if (currentPosition > basePosition) {
                 scale = 1 + deflection;
             } else {
                 scale = 1 - deflection;
@@ -55,7 +55,7 @@ class BarAnimation {
 
         this.animate = function() {
             for (let i = 0; i < targetElements.length; i++) {
-                const targetElementOffset = gettargetElementOffset(
+                const targetElementOffset = getTargetElementOffset(
                     componentElement,
                     targetElements[i]
                 );
