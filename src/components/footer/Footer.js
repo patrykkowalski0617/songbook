@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { footerH, colorScheme, grid } from "../style";
+import { footerH, colorScheme, container } from "../style";
 
 const FooterElement = styled.footer`
     height: ${footerH};
@@ -10,7 +10,7 @@ const FooterElement = styled.footer`
 `;
 
 const Container = styled.div`
-    ${grid.container}
+    ${container}
 `;
 
 const Footer = () => {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { space, grid, colorScheme, focus, linkStyle } from "../../style";
+import { space, row, col, colorScheme, focus, linkStyle } from "../../style";
 import Metronom from "./Metronom";
 import LyricsBody from "./LyricsBody";
 import { connect } from "react-redux";
@@ -18,11 +18,11 @@ const LyricsHeader = styled.div`
 `;
 
 const LyricsData = styled.p`
-    ${grid.row}
+    ${row}
 `;
 
 const LyricsDataContent = styled.span`
-    ${grid.col[0]}
+    ${col[0]}
 `;
 
 const H2 = styled.h2`

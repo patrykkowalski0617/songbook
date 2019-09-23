@@ -2,7 +2,14 @@ import React from "react";
 import LyricsList from "./LyricsList";
 import Lyrics from "./lyrics/Lyrics";
 import styled from "styled-components";
-import { headerH, footerH, space, colorScheme, media, grid } from "../style";
+import {
+    headerH,
+    footerH,
+    space,
+    colorScheme,
+    media,
+    container
+} from "../style";
 import { connect } from "react-redux";
 
 const colorSchemeNo = 0;
@@ -28,7 +35,7 @@ const Container = styled.div`
     overflow: auto;
     position: relative;
     background: ${colorScheme[colorSchemeNo].dark1Fade};
-    ${grid.container};
+    ${container};
 `;
 
 const ContainerElement = styled.div`

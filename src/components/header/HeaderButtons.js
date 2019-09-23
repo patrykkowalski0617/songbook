@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { space, circleInput, grid } from "../style";
+import { space, circleInput, row, col } from "../style";
 import {
     keepSearchedValue,
     lyricsListToggle,
@@ -9,13 +9,13 @@ import {
 import { connect } from "react-redux";
 
 const HeaderButtonsElement = styled.div`
-    ${grid.row}
+    ${row}
     margin-right: -${space.s1};
     margin-left: 0;
 `;
 
 const ButtonContainer = styled.div`
-    ${grid.col[0]}
+    ${col[0]}
     padding: 0 0.4rem;
 `;
 

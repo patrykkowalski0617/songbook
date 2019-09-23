@@ -1,21 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import { colorScheme, grid } from "../../style";
+import { colorScheme, container, verticalPadding, row, col } from "../../style";
 import { connect } from "react-redux";
 
 const Container = styled.div`
-    ${grid.container}
+    ${container}
 `;
 
 const MetronomElements = styled.div`
-    ${grid.verticalPadding}
-    ${grid.row}
+    ${verticalPadding}
+    ${row}
 `;
 
 const MetronomElement = styled.div`
     ${props => {
         const colSize = props.colSize;
-        return grid.col[colSize];
+        return col[colSize];
     }}
     height: 8px;
     border: 0px solid ${colorScheme[0].muted};

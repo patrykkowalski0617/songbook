@@ -1,4 +1,4 @@
-import { colorScheme } from "./styleVariables";
+import { colorScheme } from "./";
 
 export const focus = `
     &:focus {

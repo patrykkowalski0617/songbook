@@ -2,7 +2,14 @@ import React from "react";
 import Search from "./Search";
 import HeaderButtons from "./HeaderButtons";
 import styled from "styled-components";
-import { headerH, space, colorScheme, grid, focus, linkStyle } from "../style";
+import {
+    headerH,
+    space,
+    colorScheme,
+    container,
+    focus,
+    linkStyle
+} from "../style";
 import { connect } from "react-redux";
 
 const HeaderElement = styled.header`
@@ -12,7 +19,7 @@ const HeaderElement = styled.header`
 `;
 
 const Container = styled.div`
-    ${grid.container}
+    ${container}
     display: flex;
     justify-content: space-between;
     position: relative;
