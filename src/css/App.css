@@ -11,9 +11,3 @@ body {
   font-weight: 400;
   font-size: 15px;
   overflow: hidden; }
-
-a {
-  text-decoration: none; }
-  a:link, a:visited, a:active, a:focus, a:hover {
-    color: inherit;
-    background: inherit; }

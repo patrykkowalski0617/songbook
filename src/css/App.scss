@@ -12,15 +12,3 @@ body {
     font-size: 15px;
     overflow: hidden;
 }
-
-a {
-    &:link,
-    &:visited,
-    &:active,
-    &:focus,
-    &:hover {
-        color: inherit;
-        background: inherit;
-    }
-    text-decoration: none;
-}

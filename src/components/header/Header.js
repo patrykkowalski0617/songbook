@@ -2,7 +2,7 @@ import React from "react";
 import Search from "./Search";
 import HeaderButtons from "./HeaderButtons";
 import styled from "styled-components";
-import { headerH, space, colorScheme, grid, focus } from "../style";
+import { headerH, space, colorScheme, grid, focus, linkStyle } from "../style";
 import { connect } from "react-redux";
 
 const HeaderElement = styled.header`
@@ -31,6 +31,7 @@ const LogoLink = styled.a`
     display: block;
     width: 49px;
     ${focus}
+    ${linkStyle()}
 `;
 
 const Header = function(props) {

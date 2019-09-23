@@ -3,7 +3,9 @@ import { colorScheme } from "./styleVariables";
 export const focus = `
     &:focus {
         outline: none;
-        box-shadow: ${colorScheme[0].contrast2} 0px 0px 0px 2px;
+        box-shadow: 
+            ${colorScheme[0].secondary1} 0px 0px 0px 1px, 
+            ${colorScheme[0].contrast2} 0px 0px 0px 3px;
         z-index: 1;
     }
 `;
@@ -19,6 +21,12 @@ const input = `
     &:hover{
         color: ${colorScheme[0].contrast2};
         background-color: ${colorScheme[0].light2};
+        &::placeholder {
+            color: ${colorScheme[0].contrast2};
+        }
+    }
+    &::placeholder {
+        color: ${colorScheme[0].secondary1};
     }
     ${focus}
 `;
@@ -32,4 +40,16 @@ export const barInput = `
 export const circleInput = `
     ${input}
     width: 40px;
+`;
+
+export const linkStyle = (color = "inherit", bg = "inherit") => `
+        &:link,
+        &:visited,
+        &:active,
+        &:focus,
+        &:hover {
+            color: ${color};
+            background: ${bg};
+        }
+        text-decoration: none;
 `;

@@ -8,7 +8,7 @@ const Container = styled.div`
 `;
 
 const MetronomElements = styled.div`
-    ${grid.container}
+    ${grid.verticalPadding}
     ${grid.row}
 `;
 
@@ -17,8 +17,8 @@ const MetronomElement = styled.div`
         const colSize = props.colSize;
         return grid.col[colSize];
     }}
-    height: 20px;
-    border: 0px solid ${colorScheme[0].light1};
+    height: 8px;
+    border: 0px solid ${colorScheme[0].muted};
     border-right-width: 1px;
     &:first-child {
         border-left-width: 1px;
@@ -31,6 +31,7 @@ const MetronomElement = styled.div`
 const Description = styled.div`
     margin: 0.7rem 0 -0.3rem 0;
     font-size: 0.7rem;
+    color: ${colorScheme[0].light1};
 `;
 
 const Metronom = props => {

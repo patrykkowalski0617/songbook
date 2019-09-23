@@ -4,7 +4,7 @@ import BarAnimation from "./logic/BarAnimation";
 import ScrollAnimation from "./logic/ScrollAnimation";
 import ProgressBarAnimation from "./logic/ProgressBarAnimation";
 import styled from "styled-components";
-import { colorScheme } from "../../style";
+import { colorScheme, space } from "../../style";
 import Countdown from "./Countdown";
 import Counter from "./Counter";
 import { counterSetSongTiming } from "../../../redux/actions";
@@ -22,20 +22,21 @@ const LyricsBodyElement = styled.div`
 
 const ProgressBarContainer = styled.div`
     width: 100%;
-    height: 5px;
+    height: 8px;
     background: ${colorScheme[0].muted};
     overflow: hidden;
+    margin-top: ${space.s5};
+    border-radius: 4px;
 `;
 const ProgressBarElement = styled.div`
-    height: 5px;
+    height: 8px;
     background: ${colorScheme[0].contrast1};
     width: 0%;
 `;
 
 class LyricsBody extends Component {
     state = {
-        markedSectionIndex: 0,
-        scrollProgress: "0%"
+        markedSectionIndex: 0
     };
 
     componentWillMount() {

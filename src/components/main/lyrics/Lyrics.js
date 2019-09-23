@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { space, grid } from "../../style";
+import { space, grid, colorScheme, focus, linkStyle } from "../../style";
 import Metronom from "./Metronom";
 import LyricsBody from "./LyricsBody";
 import { connect } from "react-redux";
@@ -29,6 +29,14 @@ const H2 = styled.h2`
     margin-bottom: ${space.s2};
 `;
 
+const YouTubeIcon = styled.a`
+    ${linkStyle(colorScheme[0].contrast2)}
+    ${focus}
+    &:hover {
+        color: ${colorScheme[0].contrast1};
+    }
+`;
+
 class Lyrics extends Component {
     render() {
         const { lyricsData } = this.props.redux;
@@ -38,13 +46,13 @@ class Lyrics extends Component {
                 <LyricsHeader>
                     <H2>
                         {lyricsData.title}
-                        <a
+                        <YouTubeIcon
                             href={lyricsData.link}
                             target="_blank"
                             rel="noopener noreferrer"
                         >
                             <i className="icon icon-youtube" />
-                        </a>
+                        </YouTubeIcon>
                     </H2>
                     <LyricsData>
                         <LyricsDataContent>

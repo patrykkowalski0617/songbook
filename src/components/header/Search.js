@@ -15,7 +15,7 @@ const Input = styled.input`
     ${barInput}
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    border-right: 1px solid ${colorScheme[0].dark1};
+    border-right: 1px solid ${colorScheme[0].secondary1};
     width: calc(100% - 70px);
     position: absolute;
     &:focus {

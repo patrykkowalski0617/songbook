@@ -25,7 +25,7 @@ export const grid = {
         display: flex;
         flex-flow: row wrap;
    `,
-    // col[0] == auto size
+    /* col[0] == auto size */
     col: [
         `
             ${col}
