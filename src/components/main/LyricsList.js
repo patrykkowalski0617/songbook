@@ -6,7 +6,8 @@ import { connect } from "react-redux";
 import {
     lyricsListToggle,
     keepLyricsData,
-    keepSearchResult
+    keepSearchResult,
+    colorSchemeNoUpdate
 } from "./../../redux/actions";
 
 const Ul = styled.ul`
@@ -22,8 +23,11 @@ const LyricsItemButton = styled.button`
     cursor: pointer;
     text-align: left;
     line-height: 150%;
-    color: ${colorScheme[0].light1};
-    ${focus}
+    color: ${props => colorScheme[props.colorSchemeNo].light1};
+    ${props => {
+        const no = props.colorSchemeNo;
+        return focus(no);
+    }}
 `;
 
 class LyricsList extends Component {
@@ -105,6 +109,7 @@ class LyricsList extends Component {
                                 onClick={e => {
                                     this.getLyricsJson(e.target.innerText);
                                 }}
+                                colorSchemeNo={this.props.redux.colorSchemeNo}
                             >
                                 {item.lyricsName}
                             </LyricsItemButton>
@@ -139,7 +144,14 @@ class LyricsList extends Component {
     render() {
         const { displayLyricsList } = this.props.redux;
 
-        return displayLyricsList ? <Ul>{this.lyricsList()}</Ul> : null;
+        return displayLyricsList ? (
+            <Ul>
+                <button onClick={() => this.props.colorSchemeNoUpdate(1)}>
+                    change color
+                </button>
+                {this.lyricsList()}
+            </Ul>
+        ) : null;
     }
 }
 
@@ -149,7 +161,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
     lyricsListToggle,
     keepLyricsData,
-    keepSearchResult
+    keepSearchResult,
+    colorSchemeNoUpdate
 };
 export default connect(
     mapStateToProps,

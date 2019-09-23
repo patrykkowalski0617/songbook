@@ -9,8 +9,8 @@ const CountdownElement = styled.div`
     right: 0;
     bottom: 0;
     left: 0;
-    background: ${colorScheme[0].dark1};
-    color: ${colorScheme[0].light1};
+    background: ${props => colorScheme[props.colorSchemeNo].dark1};
+    color: ${props => colorScheme[props.colorSchemeNo].light1};
     text-align: center;
     opacity: 0.5;
     z-index: 1;
@@ -28,7 +28,8 @@ const Coundown = props => {
         counterScrollDelay,
         songTiming,
         counterIsRun,
-        counterIterationNumber
+        counterIterationNumber,
+        colorSchemeNo
     } = props.redux;
 
     const time = (60 / lyricsData.tempo) * 1000 * 0.25;
@@ -44,7 +45,7 @@ const Coundown = props => {
     `;
 
     return counterIsRun && counterIterationNumber + 1 <= delay ? (
-        <CountdownElement>
+        <CountdownElement colorSchemeNo={colorSchemeNo}>
             <P time={time}>{songTiming - counterIterationNumber}</P>
         </CountdownElement>
     ) : null;

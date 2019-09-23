@@ -12,10 +12,14 @@ const SearchContainer = styled.div`
 `;
 
 const Input = styled.input`
-    ${barInput}
+    ${props => {
+        const no = props.colorSchemeNo;
+        return barInput(no);
+    }}
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    border-right: 1px solid ${colorScheme[0].secondary1};
+    border-right: 1px solid
+        ${props => colorScheme[props.colorSchemeNo].secondary1};
     width: calc(100% - 70px);
     position: absolute;
     &:focus {
@@ -25,7 +29,10 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-    ${circleInput}
+    ${props => {
+        const no = props.colorSchemeNo;
+        return circleInput(no);
+    }}
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     width: 100%;
@@ -61,7 +68,7 @@ class Search extends Component {
     }
 
     render() {
-        const { displayLyricsList } = this.props.redux;
+        const { displayLyricsList, colorSchemeNo } = this.props.redux;
 
         return displayLyricsList ? (
             <SearchContainer>
@@ -75,9 +82,11 @@ class Search extends Component {
                             this.onClickHandler(this.state.inputValue);
                         }
                     }}
+                    colorSchemeNo={colorSchemeNo}
                 />
                 <Button
                     onClick={() => this.onClickHandler(this.state.inputValue)}
+                    colorSchemeNo={colorSchemeNo}
                 >
                     Search
                 </Button>

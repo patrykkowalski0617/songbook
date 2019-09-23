@@ -1,24 +1,30 @@
 import React from "react";
 import styled from "styled-components";
 import { footerH, colorScheme, container } from "../style";
+import { connect } from "react-redux";
 
 const FooterElement = styled.footer`
     height: ${footerH};
     text-align: center;
-    background-color: ${colorScheme[0].dark1};
-    color: ${colorScheme[0].light1};
+    background-color: ${props => colorScheme[props.colorSchemeNo].dark1};
+    color: ${props => colorScheme[props.colorSchemeNo].light1};
 `;
 
 const Container = styled.div`
     ${container}
 `;
 
-const Footer = () => {
+const Footer = props => {
+    const { colorSchemeNo } = props.redux;
+
     return (
-        <FooterElement>
+        <FooterElement colorSchemeNo={colorSchemeNo}>
             <Container>&copy; SongBook</Container>
         </FooterElement>
     );
 };
 
-export default Footer;
+const mapStateToProps = state => {
+    return { redux: state };
+};
+export default connect(mapStateToProps)(Footer);

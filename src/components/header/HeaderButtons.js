@@ -20,11 +20,19 @@ const ButtonContainer = styled.div`
 `;
 
 const ButtonElement = styled.button`
-    ${circleInput}
+    ${props => {
+        const no = props.colorSchemeNo;
+        return circleInput(no);
+    }}
 `;
 
 const HeaderButtons = props => {
-    const { counterIsRun, displayLyricsList, lyricsData } = props.redux;
+    const {
+        counterIsRun,
+        displayLyricsList,
+        lyricsData,
+        colorSchemeNo
+    } = props.redux;
     const { counterToggle, keepSearchedValue, lyricsListToggle } = props;
 
     const buttonsData = [
@@ -64,6 +72,7 @@ const HeaderButtons = props => {
                             onClick={() => {
                                 item.onClickHandler();
                             }}
+                            colorSchemeNo={colorSchemeNo}
                         />
                     </ButtonContainer>
                 ) : null;

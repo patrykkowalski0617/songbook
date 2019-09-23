@@ -18,24 +18,30 @@ const MetronomElement = styled.div`
         return col[colSize];
     }}
     height: 8px;
-    border: 0px solid ${colorScheme[0].muted};
+    border: 0px solid ${props => colorScheme[props.colorSchemeNo].muted};
     border-right-width: 1px;
     &:first-child {
         border-left-width: 1px;
     }
     &.active {
-        background-color: ${colorScheme[0].contrast1};
+        background-color: ${props =>
+            colorScheme[props.colorSchemeNo].contrast1};
     }
 `;
 
 const Description = styled.div`
     margin: 0.7rem 0 -0.3rem 0;
     font-size: 0.7rem;
-    color: ${colorScheme[0].light1};
+    color: ${props => colorScheme[props.colorSchemeNo].light1};
 `;
 
 const Metronom = props => {
-    const { songTiming, counterIsRun, counterIterationNumber } = props.redux;
+    const {
+        songTiming,
+        counterIsRun,
+        counterIterationNumber,
+        colorSchemeNo
+    } = props.redux;
 
     const colSize = 12 / songTiming;
 
@@ -53,6 +59,7 @@ const Metronom = props => {
                     key={index}
                     className={`${marker}`}
                     colSize={colSize}
+                    colorSchemeNo={colorSchemeNo}
                 />
             );
         });
@@ -60,7 +67,7 @@ const Metronom = props => {
 
     return (
         <Container>
-            <Description>metronom</Description>
+            <Description colorSchemeNo={colorSchemeNo}>metronom</Description>
             <MetronomElements>{createMetronom()}</MetronomElements>
         </Container>
     );

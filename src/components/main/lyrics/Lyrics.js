@@ -30,16 +30,22 @@ const H2 = styled.h2`
 `;
 
 const YouTubeIcon = styled.a`
-    ${linkStyle(colorScheme[0].contrast2)}
-    ${focus}
+    ${props => {
+        const color = colorScheme[props.colorSchemeNo].contrast2;
+        return linkStyle(color);
+    }}
+    ${props => {
+        const no = props.colorSchemeNo;
+        return focus(no);
+    }}
     &:hover {
-        color: ${colorScheme[0].contrast1};
+        color: ${props => colorScheme[props.colorSchemeNo].contrast1};
     }
 `;
 
 class Lyrics extends Component {
     render() {
-        const { lyricsData } = this.props.redux;
+        const { lyricsData, colorSchemeNo } = this.props.redux;
 
         return (
             <LyricsElement>
@@ -50,6 +56,7 @@ class Lyrics extends Component {
                             href={lyricsData.link}
                             target="_blank"
                             rel="noopener noreferrer"
+                            colorSchemeNo={colorSchemeNo}
                         >
                             <i className="icon icon-youtube" />
                         </YouTubeIcon>

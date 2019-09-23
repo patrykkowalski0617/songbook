@@ -1,44 +1,44 @@
 import { colorScheme } from "./";
 
-export const focus = `
+export const focus = colorSchemeNo => `
     &:focus {
         outline: none;
         box-shadow: 
-            ${colorScheme[0].secondary1} 0px 0px 0px 1px, 
-            ${colorScheme[0].contrast2} 0px 0px 0px 3px;
+            ${colorScheme[colorSchemeNo].secondary1} 0px 0px 0px 1px, 
+            ${colorScheme[colorSchemeNo].contrast2} 0px 0px 0px 3px;
         z-index: 1;
     }
 `;
 
-const input = `
+const input = colorSchemeNo => `
     height: 40px;
     border-radius: 20px;
     border: none;
-    background-color: ${colorScheme[0].light1};
-    color: ${colorScheme[0].secondary1};
+    background-color: ${colorScheme[colorSchemeNo].light1};
+    color: ${colorScheme[colorSchemeNo].secondary1};
     font-size: 20px;
     cursor: pointer;
     &:hover{
-        color: ${colorScheme[0].contrast2};
-        background-color: ${colorScheme[0].light2};
+        color: ${colorScheme[colorSchemeNo].contrast2};
+        background-color: ${colorScheme[colorSchemeNo].light2};
         &::placeholder {
-            color: ${colorScheme[0].contrast2};
+            color: ${colorScheme[colorSchemeNo].contrast2};
         }
     }
     &::placeholder {
-        color: ${colorScheme[0].secondary1};
+        color: ${colorScheme[colorSchemeNo].secondary1};
     }
-    ${focus}
+    ${focus(colorSchemeNo)}
 `;
 
-export const barInput = `
-    ${input}
+export const barInput = colorSchemeNo => `
+    ${input(colorSchemeNo)}
     padding-left: 20px;
     padding-right: 20px;
 `;
 
-export const circleInput = `
-    ${input}
+export const circleInput = colorSchemeNo => `
+    ${input(colorSchemeNo)}
     width: 40px;
 `;
 

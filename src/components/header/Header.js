@@ -14,8 +14,8 @@ import { connect } from "react-redux";
 
 const HeaderElement = styled.header`
     height: ${headerH};
-    background-color: ${colorScheme[0].dark1};
-    color: ${colorScheme[0].light1};
+    background-color: ${props => colorScheme[props.colorSchemeNo].dark1};
+    color: ${props => colorScheme[props.colorSchemeNo].light1};
 `;
 
 const Container = styled.div`
@@ -37,18 +37,23 @@ const Logo = styled.h1`
 const LogoLink = styled.a`
     display: block;
     width: 49px;
-    ${focus}
+    ${props => {
+        const no = props.colorSchemeNo;
+        return focus(no);
+    }}
     ${linkStyle()}
 `;
 
 const Header = function(props) {
-    const { displayLyricsList } = props.redux;
+    const { displayLyricsList, colorSchemeNo } = props.redux;
 
     return (
-        <HeaderElement>
+        <HeaderElement colorSchemeNo={colorSchemeNo}>
             <Container>
                 <Logo displayLogo={displayLyricsList ? "none" : "block"}>
-                    <LogoLink href="/">Song Book</LogoLink>
+                    <LogoLink href="/" colorSchemeNo={colorSchemeNo}>
+                        Song Book
+                    </LogoLink>
                 </Logo>
                 <Search />
                 <HeaderButtons />

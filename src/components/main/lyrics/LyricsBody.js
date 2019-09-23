@@ -23,14 +23,14 @@ const LyricsBodyElement = styled.div`
 const ProgressBarContainer = styled.div`
     width: 100%;
     height: 8px;
-    background: ${colorScheme[0].muted};
+    background: ${props => colorScheme[props.colorSchemeNo].muted};
     overflow: hidden;
     margin-top: ${space.s5};
     border-radius: 4px;
 `;
 const ProgressBarElement = styled.div`
     height: 8px;
-    background: ${colorScheme[0].contrast1};
+    background: ${props => colorScheme[props.colorSchemeNo].contrast1};
     width: 0%;
 `;
 
@@ -85,7 +85,12 @@ class LyricsBody extends Component {
     handleScroll = this.handleScroll.bind(this);
 
     render() {
-        const { lyricsData, counterIsRun, songTiming } = this.props.redux;
+        const {
+            lyricsData,
+            counterIsRun,
+            songTiming,
+            colorSchemeNo
+        } = this.props.redux;
 
         const lyricsBars = () => {
             const barsData = lyricsData.bars;
@@ -139,8 +144,9 @@ class LyricsBody extends Component {
                         {lyricsBars()}
                     </LyricsBodyElement>
                 </LyricsBodyContainer>
-                <ProgressBarContainer>
+                <ProgressBarContainer colorSchemeNo={colorSchemeNo}>
                     <ProgressBarElement
+                        colorSchemeNo={colorSchemeNo}
                         ref={this.progressBarElement}
                     ></ProgressBarElement>
                 </ProgressBarContainer>
