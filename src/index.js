@@ -4,7 +4,6 @@ import "./css/App.css";
 import "./css/fontello/css/glyph.css";
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
-
 import store from "./redux/store";
 import { Provider } from "react-redux";
 
