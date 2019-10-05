@@ -11,7 +11,7 @@ export const colorScheme = [
         light1: "#F2F1DF", // lighter
         light2: "#CCCBBC", // darker
 
-        muted: "#A6A598", // darker than textColor
+        muted: "#A6A598", // darker than light2
 
         // contrast to the restof the colors
         contrast1: "#02593A", // darker
