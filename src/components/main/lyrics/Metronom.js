@@ -32,6 +32,7 @@ const MetronomElement = styled.div`
 const Description = styled.div`
     margin: 0.7rem 0 -0.3rem 0;
     font-size: 0.7rem;
+    text-align: right;
     color: ${props => colorScheme[props.colorSchemeNo].light1};
 `;
 
