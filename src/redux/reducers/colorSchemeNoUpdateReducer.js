@@ -1,12 +1,12 @@
 import { COLOR_SCHEME_NO_UPDATE } from "../actions/types";
 
-const colorSchemeNoUpdateReducer = (state, action) => {
-    const newState = state || 0;
+const colorSchemeNoUpdateReducer = (state = 0, action) => {
     switch (action.type) {
         case COLOR_SCHEME_NO_UPDATE:
-            return (state = action.payload);
+            state = action.payload;
+            return state;
         default:
-            return newState;
+            return state;
     }
 };
 
