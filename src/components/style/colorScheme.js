@@ -1,21 +1,36 @@
+// dark1 - darker
+// dark1Fade - dark1 with alpha
+// dark2 - lighter
+
+////// 'light' cannot has similar hue to 'contrast'
+// light1 - lighter!!
+// light2 - darker!!
+// muted - darker than light2
+
+////// 'contrast' to the rest of the colors
+// contrast1 - darker
+// contrast2 - lighter
+// primary1 - darker
+// primary2 - lighter
+// secondary1 - darker
+// sceondary2 - lighter
+
 export const colorScheme = [
     {
         name: "Instruments",
         bgImgName: "instruments",
-        dark1: "#0D0000", // darker
-        dark1Fade: "rgba(13,0,0,0.85)", // dark1 with alpha
-        dark2: "#260101", // lighter
-        // light cannot comes from contrast. the best if it comes from secondary
-        light1: "#F2F1DF", // lighter
-        light2: "#CCCBBC", // darker
-        muted: "#A6A598", // darker than textColor
-        // contrast to the restof the colors
-        contrast1: "#02593A", // darker
-        contrast2: "#038054", // lighter
-        primary1: "#A62F14", // darker
-        primary2: "#CC3918", // lighter
-        secondary1: "#591902", // darker
-        sceondary2: "#802403" // lighter
+        dark1: "#0D0000",
+        dark1Fade: "rgba(13,0,0,0.85)",
+        dark2: "#260101",
+        light1: "#F2F1DF",
+        light2: "#CCCBBC",
+        muted: "#A6A598",
+        contrast1: "#02593A",
+        contrast2: "#038054",
+        primary1: "#A62F14",
+        primary2: "#CC3918",
+        secondary1: "#591902",
+        sceondary2: "#802403"
     },
     {
         name: "Music Tape",
