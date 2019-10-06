@@ -6,8 +6,7 @@ import { connect } from "react-redux";
 import {
     lyricsListToggle,
     keepLyricsData,
-    keepSearchResult,
-    colorSchemeNoUpdate
+    keepSearchResult
 } from "./../../redux/actions";
 
 const Ul = styled.ul`
@@ -144,14 +143,7 @@ class LyricsList extends Component {
     render() {
         const { displayLyricsList } = this.props.redux;
 
-        return displayLyricsList ? (
-            <Ul>
-                <button onClick={() => this.props.colorSchemeNoUpdate(1)}>
-                    change color
-                </button>
-                {this.lyricsList()}
-            </Ul>
-        ) : null;
+        return displayLyricsList ? <Ul>{this.lyricsList()}</Ul> : null;
     }
 }
 
@@ -161,8 +153,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
     lyricsListToggle,
     keepLyricsData,
-    keepSearchResult,
-    colorSchemeNoUpdate
+    keepSearchResult
 };
 export default connect(
     mapStateToProps,
