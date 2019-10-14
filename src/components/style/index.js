@@ -14,3 +14,4 @@ export { barInput, circleInput, focus, linkStyle } from "./mixin";
 
 export const headerH = "80px";
 export const footerH = "40px";
+export const lyricsBarH = "80px";

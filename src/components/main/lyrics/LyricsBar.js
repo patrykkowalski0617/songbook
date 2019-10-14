@@ -1,18 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import { media } from "../../style";
+import { media, lyricsBarH } from "../../style";
 
 const LyricsBarElement = styled.div`
-    height: 80px;
+    height: ${lyricsBarH};
     font-size: 30px;
     position: relative;
-    &:first-child {
-        margin-top: 80px;
-    }
-    &:last-child {
-        margin-bottom: 80px;
-    }
-    @media (max-width: ${media.l}) {
+    width: 100%;
+    overflow: hidden;
+    @media (max-width: ${media.m}) {
         font-size: 20px;
     }
 `;
@@ -34,12 +30,12 @@ const BarSection = styled.p`
 `;
 
 const LyricsBar = props => {
-    const { barType, chords, text } = props;
+    const { barType, chords, text, style } = props;
 
     // className lyrics-bar and bar-content are instead of rel
     // and are needed for animation scripts
     return (
-        <LyricsBarElement className={"lyrics-bar"}>
+        <LyricsBarElement className={"lyrics-bar"} style={style}>
             <BarContent className={`bar-content ${barType}`}>
                 <BarSection>{chords}</BarSection>
                 <BarSection>{text}</BarSection>

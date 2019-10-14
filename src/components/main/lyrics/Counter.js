@@ -32,6 +32,7 @@ class Counter extends Component {
             markedSectionIndex = this.props.markedSectionIndex;
 
             isLyricsEnd = () => {
+                console.log(markedSectionIndex, lastSectionIndex);
                 return (
                     markedSectionIndex === lastSectionIndex &&
                     (counterIterationNumber % songTiming) - songTiming === -1
