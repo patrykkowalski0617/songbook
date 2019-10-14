@@ -17,6 +17,16 @@ const CountdownElement = styled.div`
     font-size: 200px;
 `;
 
+const PreventScrollCover = styled.div`
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 1;
+`;
+
 const numberZoomAnimation = keyframes`
     0% { transform: translate(-50%, -50%) scale(0); opacity: 0}
     100% {transform: translate(-50%, -50%) scale(1); opacity: 1}
@@ -48,6 +58,8 @@ const Coundown = props => {
         <CountdownElement colorSchemeNo={colorSchemeNo}>
             <P time={time}>{songTiming - counterIterationNumber}</P>
         </CountdownElement>
+    ) : counterIsRun ? (
+        <PreventScrollCover />
     ) : null;
 };
 

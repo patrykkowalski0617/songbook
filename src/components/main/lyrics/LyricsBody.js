@@ -16,12 +16,6 @@ const LyricsBodyContainer = styled.div`
     position: relative;
 `;
 
-// const LyricsBodyElement = styled.div`
-// //     height: 240px;
-// //     overflow-y: ${props => props.scrollY};
-// //     overflow-x: hidden;
-// `;
-
 const ProgressBarContainer = styled.div`
     width: 100%;
     height: 8px;
@@ -118,7 +112,6 @@ class LyricsBody extends Component {
                     marginTop = lyricsBarH;
                 }
 
-                console.log(item, marginBottom);
                 return (
                     <LyricsBar
                         key={index}
@@ -149,25 +142,13 @@ class LyricsBody extends Component {
                 ) : null}
                 <LyricsBodyContainer>
                     <Countdown />
-                    {/* <PerfectScrollbar> */}
-                    {/* <ScrollArea> */}
-
                     <PerfectScrollbar
                         ref={this.perfectScrollContainerRef}
                         style={{ height: 240 }}
-                        suppressScrollX={true}
                         onScrollY={this.handleScroll}
                     >
-                        {/* <LyricsBodyElement
-                            ref={this.lyricsBodyRef}
-                            // onScroll={this.handleScroll}
-                            // scrollY={counterIsRun ? "hidden" : "scroll"}
-                        > */}
                         {lyricsBars()}
-                        {/* </LyricsBodyElement> */}
                     </PerfectScrollbar>
-                    {/* </ScrollArea> */}
-                    {/* </PerfectScrollbar> */}
                 </LyricsBodyContainer>
                 <ProgressBarContainer colorSchemeNo={colorSchemeNo}>
                     <ProgressBarElement

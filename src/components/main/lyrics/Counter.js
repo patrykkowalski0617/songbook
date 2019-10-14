@@ -31,13 +31,9 @@ class Counter extends Component {
             counterIterationNumber = this.props.redux.counterIterationNumber;
             markedSectionIndex = this.props.markedSectionIndex;
 
-            isLyricsEnd = () => {
-                console.log(markedSectionIndex, lastSectionIndex);
-                return (
-                    markedSectionIndex === lastSectionIndex &&
-                    (counterIterationNumber % songTiming) - songTiming === -1
-                );
-            };
+            isLyricsEnd = () =>
+                markedSectionIndex === lastSectionIndex &&
+                (counterIterationNumber % songTiming) - songTiming === -1;
 
             if (!isLyricsEnd()) {
                 counterIteration(true);
