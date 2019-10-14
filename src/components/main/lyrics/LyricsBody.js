@@ -9,6 +9,9 @@ import Countdown from "./Countdown";
 import Counter from "./Counter";
 import { counterSetSongTiming } from "../../../redux/actions";
 import { connect } from "react-redux";
+// import ScrollArea from "react-scrollbar";
+import "react-perfect-scrollbar/dist/css/styles.css";
+import PerfectScrollbar from "react-perfect-scrollbar";
 
 const LyricsBodyContainer = styled.div`
     position: relative;
@@ -44,7 +47,7 @@ class LyricsBody extends Component {
 
         const { counterSetSongTiming } = this.props;
 
-        this.lyricsBody = React.createRef();
+        this.lyricsBodyRef = React.createRef();
 
         this.progressBarElement = React.createRef();
 
@@ -58,19 +61,17 @@ class LyricsBody extends Component {
     }
 
     componentDidMount() {
-        this.scrollAnimation = new ScrollAnimation(
-            this.lyricsBody.current,
-            () => {
-                return this.props.redux.counterIsRun;
-            }
-        );
-
-        this.barAnimation = new BarAnimation(this.lyricsBody.current);
-
-        this.progressBarAnimation = new ProgressBarAnimation(
-            this.lyricsBody.current,
-            this.progressBarElement.current
-        );
+        // this.scrollAnimation = new ScrollAnimation(
+        //     this.lyricsBodyRef.current,
+        //     () => {
+        //         return this.props.redux.counterIsRun;
+        //     }
+        // );
+        // this.barAnimation = new BarAnimation(this.lyricsBodyRef.current);
+        // this.progressBarAnimation = new ProgressBarAnimation(
+        //     this.lyricsBodyRef.current,
+        //     this.progressBarElement.current
+        // );
     }
 
     handleScroll() {
@@ -136,13 +137,19 @@ class LyricsBody extends Component {
                 ) : null}
                 <LyricsBodyContainer>
                     <Countdown />
-                    <LyricsBodyElement
-                        ref={this.lyricsBody}
-                        onScroll={this.handleScroll}
-                        scrollY={counterIsRun ? "hidden" : "scroll"}
-                    >
+                    {/* <PerfectScrollbar> */}
+                    {/* <ScrollArea> */}
+                    {/* <LyricsBodyElement
+                        ref={this.lyricsBodyRef}
+                        // onScroll={this.handleScroll}
+                        // scrollY={counterIsRun ? "hidden" : "scroll"}
+                    > */}
+                    <PerfectScrollbar style={{ height: 240 }}>
                         {lyricsBars()}
-                    </LyricsBodyElement>
+                    </PerfectScrollbar>
+                    {/* </LyricsBodyElement> */}
+                    {/* </ScrollArea> */}
+                    {/* </PerfectScrollbar> */}
                 </LyricsBodyContainer>
                 <ProgressBarContainer colorSchemeNo={colorSchemeNo}>
                     <ProgressBarElement
