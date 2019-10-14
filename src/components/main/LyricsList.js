@@ -8,6 +8,8 @@ import {
     keepLyricsData,
     keepSearchResult
 } from "./../../redux/actions";
+import "react-perfect-scrollbar/dist/css/styles.css";
+import PerfectScrollbar from "react-perfect-scrollbar";
 
 const Ul = styled.ul`
     padding: 0;
@@ -143,7 +145,11 @@ class LyricsList extends Component {
     render() {
         const { displayLyricsList } = this.props.redux;
 
-        return displayLyricsList ? <Ul>{this.lyricsList()}</Ul> : null;
+        return displayLyricsList ? (
+            <PerfectScrollbar>
+                <Ul>{this.lyricsList()}</Ul>
+            </PerfectScrollbar>
+        ) : null;
     }
 }
 
