@@ -11,6 +11,7 @@ import counterSetSongTimingReducer from "./counterSetSongTimingReducer";
 import colorSchemeNoUpdateReducer from "./colorSchemeNoUpdateReducer";
 import tutorialDeactivateReducer from "./tutorialDeactivateReducer";
 import tutorialNextStepReducer from "./tutorialNextStepReducer";
+import lyricsLastBarIsMarkedReducer from "./lyricsLastBarIsMarkedReducer";
 
 const allReducers = combineReducers({
     displayLyricsList: lyricsListToggleReducer,
@@ -23,7 +24,8 @@ const allReducers = combineReducers({
     songTiming: counterSetSongTimingReducer,
     colorSchemeNo: colorSchemeNoUpdateReducer,
     tutorialIsInactive: tutorialDeactivateReducer,
-    tutorialStep: tutorialNextStepReducer
+    tutorialStep: tutorialNextStepReducer,
+    lyricsIsLastBarMarked: lyricsLastBarIsMarkedReducer
 });
 
 export default allReducers;

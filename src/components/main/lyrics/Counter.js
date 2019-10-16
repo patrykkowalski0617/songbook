@@ -10,7 +10,7 @@ class Counter extends Component {
 
     componentDidMount() {
         const {
-            lastSectionIndex,
+            indexOfLastBar,
             counterIteration,
             onBarChange,
             counterToggle,
@@ -31,7 +31,7 @@ class Counter extends Component {
             markedSectionIndex = this.props.markedSectionIndex;
 
             isLyricsEnd = () =>
-                markedSectionIndex === lastSectionIndex &&
+                markedSectionIndex === indexOfLastBar &&
                 (counterIterationNumber % songTiming) - songTiming === -1;
 
             if (!isLyricsEnd()) {

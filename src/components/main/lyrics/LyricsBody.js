@@ -3,7 +3,10 @@ import { LyricsBar, Countdown, Counter } from "./";
 import { BarAnimation, ScrollAnimation, ProgressBarAnimation } from "./logic/";
 import styled from "styled-components";
 import { colorScheme, space, lyricsBarH } from "../../style";
-import { counterSetSongTiming } from "../../../redux/actions";
+import {
+    counterSetSongTiming,
+    lyricsLastBarIsMarked
+} from "../../../redux/actions";
 import { connect } from "react-redux";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import PerfectScrollbar from "react-perfect-scrollbar";
@@ -53,7 +56,9 @@ class LyricsBody extends Component {
     componentDidMount() {
         const perfectScrollContainer = this.perfectScrollContainerRef.current
             ._ps.element;
+
         const progressBar = this.progressBarElementRef.current;
+
         this.scrollAnimation = new ScrollAnimation(
             perfectScrollContainer,
             () => {
@@ -62,17 +67,29 @@ class LyricsBody extends Component {
         );
 
         this.barAnimation = new BarAnimation(perfectScrollContainer);
+
         this.progressBarAnimation = new ProgressBarAnimation(
             perfectScrollContainer,
             progressBar
         );
     }
 
+    indexOfLastBar = 0;
+
     handleScroll() {
         const currentlyMarkedSectionIndex = this.barAnimation.animate();
+        const {
+            lyricsLastBarIsMarked,
+            redux: { lyricsIsLastBarMarked }
+        } = this.props;
 
         if (this.state.markedSectionIndex !== currentlyMarkedSectionIndex) {
             this.setState({ markedSectionIndex: currentlyMarkedSectionIndex });
+            if (currentlyMarkedSectionIndex === this.indexOfLastBar) {
+                lyricsLastBarIsMarked(true);
+            } else if (lyricsIsLastBarMarked) {
+                lyricsLastBarIsMarked(false);
+            }
         }
 
         this.progressBarAnimation.updateProgressBar();
@@ -117,6 +134,8 @@ class LyricsBody extends Component {
                 );
             });
 
+            this.indexOfLastBar = bars.length - 1;
+
             return bars;
         };
 
@@ -131,7 +150,7 @@ class LyricsBody extends Component {
                             )
                         }
                         markedSectionIndex={this.state.markedSectionIndex}
-                        lastSectionIndex={lyricsBars().length - 1}
+                        indexOfLastBar={this.indexOfLastBar}
                     />
                 ) : null}
                 <LyricsBodyContainer>
@@ -159,7 +178,8 @@ const mapStateToProps = state => {
     return { redux: state };
 };
 const mapDispatchToProps = {
-    counterSetSongTiming
+    counterSetSongTiming,
+    lyricsLastBarIsMarked
 };
 export default connect(
     mapStateToProps,

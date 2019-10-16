@@ -9,3 +9,4 @@ export { counterSetSongTiming } from "./counterSetSongTiming";
 export { colorSchemeNoUpdate } from "./colorSchemeNoUpdate";
 export { tutorialDeactivate } from "./tutorialDeactivate";
 export { tutorialNextStep } from "./tutorialNextStep";
+export { lyricsLastBarIsMarked } from "./lyricsLastBarIsMarked";

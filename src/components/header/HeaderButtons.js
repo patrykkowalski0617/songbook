@@ -47,7 +47,8 @@ const HeaderButtons = props => {
             lyricsData,
             colorSchemeNo,
             tutorialIsInactive,
-            tutorialStep
+            tutorialStep,
+            lyricsIsLastBarMarked
         }
     } = props;
 
@@ -58,7 +59,13 @@ const HeaderButtons = props => {
             onStatus: !counterIsRun,
             display: !displayLyricsList && lyricsData,
             onClickHandler: () => {
-                counterToggle(true);
+                if (!lyricsIsLastBarMarked) {
+                    counterToggle(true);
+                } else {
+                    alert(
+                        "To koniec tekstu piosenki. Przewiń go, aby zacząć w innym miejscu."
+                    );
+                }
                 tutorialNextStep();
                 localStorage.setItem("tutorialIsInactive", true);
             },
