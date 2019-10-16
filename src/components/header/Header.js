@@ -44,7 +44,7 @@ const LogoLink = styled.a`
     ${linkStyle()}
 `;
 
-const Header = function(props) {
+const Header = props => {
     const { displayLyricsList, colorSchemeNo } = props.redux;
 
     return (

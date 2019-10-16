@@ -1,12 +1,14 @@
 import React from "react";
-import styled from "styled-components";
-import { space, circleInput, row, col } from "../style";
+import styled, { css } from "styled-components";
+import { space, circleInput, row, col, pulse, colorScheme } from "../style";
 import {
     keepSearchedValue,
     lyricsListToggle,
-    counterToggle
+    counterToggle,
+    tutorialNextStep
 } from "./../../redux/actions";
 import { connect } from "react-redux";
+import { TutorialPopUp } from "../global";
 
 const HeaderButtonsElement = styled.div`
     ${row}
@@ -17,23 +19,37 @@ const HeaderButtonsElement = styled.div`
 const ButtonContainer = styled.div`
     ${col[0]}
     padding: 0 0.4rem;
+    z-index: 1;
+    position: relative;
 `;
 
 const ButtonElement = styled.button`
     ${props => {
-        const no = props.colorSchemeNo;
-        return circleInput(no);
+        return circleInput(props.colorSchemeNo);
     }}
+    animation: ${props =>
+        props.tutorialMode
+            ? css`
+                  ${pulse(props)} 3s ease-out infinite;
+              `
+            : "none"}
 `;
 
 const HeaderButtons = props => {
     const {
-        counterIsRun,
-        displayLyricsList,
-        lyricsData,
-        colorSchemeNo
-    } = props.redux;
-    const { counterToggle, keepSearchedValue, lyricsListToggle } = props;
+        counterToggle,
+        keepSearchedValue,
+        lyricsListToggle,
+        tutorialNextStep,
+        redux: {
+            counterIsRun,
+            displayLyricsList,
+            lyricsData,
+            colorSchemeNo,
+            tutorialIsInactive,
+            tutorialStep
+        }
+    } = props;
 
     const buttonsData = [
         {
@@ -43,7 +59,13 @@ const HeaderButtons = props => {
             display: !displayLyricsList && lyricsData,
             onClickHandler: () => {
                 counterToggle(true);
-            }
+                tutorialNextStep();
+                localStorage.setItem("tutorialIsInactive", true);
+            },
+            tutorialMode: !tutorialIsInactive && tutorialStep === 1,
+            tipText: `Rozpocznij zabawę.
+            Metronom pomoże Ci utrzymać właściwe tempo podczas wykonywania utworu. 
+            Po oliczaniu tekst zacznie przewijać się synchronicznie.`
         },
         {
             onIcon: "lyrics-list",
@@ -56,7 +78,10 @@ const HeaderButtons = props => {
                 if (counterIsRun) {
                     counterToggle(false);
                 }
-            }
+                tutorialNextStep();
+            },
+            tutorialMode: !tutorialIsInactive && tutorialStep === 0,
+            tipText: "Wybierz piosenkę z listy."
         }
     ];
 
@@ -64,6 +89,13 @@ const HeaderButtons = props => {
         <HeaderButtonsElement>
             {buttonsData.map((item, index) => {
                 const icon = item.onStatus ? item.onIcon : item.offIcon;
+                const tutorialPopUp = item.tutorialMode ? (
+                    <TutorialPopUp
+                        position={`left: -220px; bottom: -100px;`}
+                        bubblesPosition={"top right"}
+                        tipText={item.tipText}
+                    />
+                ) : null;
 
                 return item.display ? (
                     <ButtonContainer key={index}>
@@ -73,7 +105,12 @@ const HeaderButtons = props => {
                                 item.onClickHandler();
                             }}
                             colorSchemeNo={colorSchemeNo}
+                            tutorialMode={item.tutorialMode}
+                            animationColor={
+                                colorScheme[colorSchemeNo].contrast1
+                            }
                         />
+                        {tutorialPopUp}
                     </ButtonContainer>
                 ) : null;
             })}
@@ -87,7 +124,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
     keepSearchedValue,
     lyricsListToggle,
-    counterToggle
+    counterToggle,
+    tutorialNextStep
 };
 export default connect(
     mapStateToProps,

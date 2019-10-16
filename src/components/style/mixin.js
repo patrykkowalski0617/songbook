@@ -1,4 +1,4 @@
-import { colorScheme } from "./";
+import { colorScheme, space } from "./";
 
 export const focus = colorSchemeNo => `
     &:focus {
@@ -10,36 +10,49 @@ export const focus = colorSchemeNo => `
     }
 `;
 
-const input = colorSchemeNo => `
-    height: 40px;
-    border-radius: 20px;
-    border: none;
-    background-color: ${colorScheme[colorSchemeNo].light1};
-    color: ${colorScheme[colorSchemeNo].secondary1};
-    font-size: 20px;
-    cursor: pointer;
-    &:hover{
-        color: ${colorScheme[colorSchemeNo].contrast2};
-        background-color: ${colorScheme[colorSchemeNo].light2};
-        &::placeholder {
-            color: ${colorScheme[colorSchemeNo].contrast2};
-        }
-    }
-    &::placeholder {
-        color: ${colorScheme[colorSchemeNo].secondary1};
-    }
-    ${focus(colorSchemeNo)}
-`;
+const input = (colorSchemeNo, size) => {
+    size =
+        size === "lg"
+            ? (size = 40)
+            : size === "md"
+            ? (size = 30)
+            : size === "sm"
+            ? (size = 20)
+            : (size = 40);
 
-export const barInput = colorSchemeNo => `
-    ${input(colorSchemeNo)}
-    padding-left: 20px;
-    padding-right: 20px;
+    return `
+        height: ${size}px;
+        border-radius: ${size / 2}px;
+        font-size: ${size / 2}px;
+        padding-left: ${size / 2}px;
+        padding-right: ${size / 2}px;
+        border: none;
+        background-color: ${colorScheme[colorSchemeNo].light1};
+        color: ${colorScheme[colorSchemeNo].secondary1};
+        cursor: pointer;
+        &:hover{
+            color: ${colorScheme[colorSchemeNo].contrast2};
+            background-color: ${colorScheme[colorSchemeNo].light2};
+            &::placeholder {
+                color: ${colorScheme[colorSchemeNo].contrast2};
+            }
+        }
+        &::placeholder {
+            color: ${colorScheme[colorSchemeNo].secondary1};
+        }
+        ${focus(colorSchemeNo)}
+`;
+};
+
+export const barInput = (colorSchemeNo, size) => `
+    ${input(colorSchemeNo, size)}
+    margin-top: ${space.s3}
 `;
 
 export const circleInput = colorSchemeNo => `
-    ${input(colorSchemeNo)}
+    ${input(colorSchemeNo, "lg")}
     width: 40px;
+    padding: 0;
 `;
 
 export const linkStyle = (color = "inherit", bg = "inherit") => `

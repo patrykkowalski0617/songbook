@@ -35,7 +35,7 @@ const Container = styled.div`
     height: 100%;
     overflow: auto;
     position: relative;
-    background: ${props => colorScheme[props.colorSchemeNo].dark1Fade};
+    background: ${props => colorScheme[props.colorSchemeNo].dark1}ee;
     ${container};
 `;
 
@@ -54,9 +54,7 @@ const Main = props => {
                 <LyricsList />
                 {lyricsData && !displayLyricsList ? <Lyrics /> : null}
                 {!lyricsData && !displayLyricsList ? (
-                    <ContainerElement>
-                        <p>Wybierz piosenkę z listy</p>
-                    </ContainerElement>
+                    <ContainerElement></ContainerElement>
                 ) : null}
             </Container>
         </MainElement>

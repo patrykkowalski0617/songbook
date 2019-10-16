@@ -3,13 +3,18 @@ import Header from "./header/Header";
 import Main from "./main/Main";
 import Footer from "./footer/Footer";
 import { connect } from "react-redux";
-import { counterSetScrollDelay } from "../redux/actions";
+import { counterSetScrollDelay, tutorialDeactivate } from "../redux/actions";
 
 class App extends Component {
     componentWillMount() {
-        const { counterSetScrollDelay } = this.props;
+        const { counterSetScrollDelay, tutorialDeactivate } = this.props;
 
         counterSetScrollDelay();
+
+        const tutorialIsInactive = localStorage.getItem("tutorialIsInactive");
+        if (tutorialIsInactive) {
+            tutorialDeactivate();
+        }
     }
 
     render() {
@@ -27,7 +32,8 @@ const mapStateToProps = state => {
     return { redux: state };
 };
 const mapDispatchToProps = {
-    counterSetScrollDelay
+    counterSetScrollDelay,
+    tutorialDeactivate
 };
 export default connect(
     mapStateToProps,

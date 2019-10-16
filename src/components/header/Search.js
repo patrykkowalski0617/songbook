@@ -16,6 +16,7 @@ const Input = styled.input`
         const no = props.colorSchemeNo;
         return barInput(no);
     }}
+    margin: 0;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     border-right: 1px solid

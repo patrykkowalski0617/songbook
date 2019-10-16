@@ -51,7 +51,7 @@ const Coundown = props => {
         top: 50%;
         left: 50%
         transform: translate(-50%, -50%);
-        animation: ${numberZoomAnimation} ${props => time}ms linear 1;
+        animation: ${numberZoomAnimation} ${props => time}ms ease-out 1;
     `;
 
     return counterIsRun && counterIterationNumber + 1 <= delay ? (

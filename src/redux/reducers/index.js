@@ -9,6 +9,8 @@ import counterIterationReducer from "./counterIterationReducer";
 import counterSetScrollDelayReducer from "./counterSetScrollDelayReducer";
 import counterSetSongTimingReducer from "./counterSetSongTimingReducer";
 import colorSchemeNoUpdateReducer from "./colorSchemeNoUpdateReducer";
+import tutorialDeactivateReducer from "./tutorialDeactivateReducer";
+import tutorialNextStepReducer from "./tutorialNextStepReducer";
 
 const allReducers = combineReducers({
     displayLyricsList: lyricsListToggleReducer,
@@ -19,7 +21,9 @@ const allReducers = combineReducers({
     counterIterationNumber: counterIterationReducer,
     counterScrollDelay: counterSetScrollDelayReducer,
     songTiming: counterSetSongTimingReducer,
-    colorSchemeNo: colorSchemeNoUpdateReducer
+    colorSchemeNo: colorSchemeNoUpdateReducer,
+    tutorialIsInactive: tutorialDeactivateReducer,
+    tutorialStep: tutorialNextStepReducer
 });
 
 export default allReducers;
