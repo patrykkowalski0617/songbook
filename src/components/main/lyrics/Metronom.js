@@ -38,11 +38,13 @@ const Description = styled.div`
 
 const Metronom = props => {
     const {
-        songTiming,
-        counterIsRun,
-        counterIterationNumber,
-        colorSchemeNo
-    } = props.redux;
+        redux: {
+            songTiming,
+            counterIsRun,
+            counterIterationNumber,
+            colorSchemeNo
+        }
+    } = props;
 
     const colSize = 12 / songTiming;
 

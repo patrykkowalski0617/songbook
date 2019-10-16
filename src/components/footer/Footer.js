@@ -15,7 +15,9 @@ const Container = styled.div`
 `;
 
 const Footer = props => {
-    const { colorSchemeNo } = props.redux;
+    const {
+        redux: { colorSchemeNo }
+    } = props;
 
     return (
         <FooterElement colorSchemeNo={colorSchemeNo}>

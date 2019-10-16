@@ -44,7 +44,9 @@ const LogoLink = styled.a`
 `;
 
 const Header = props => {
-    const { displayLyricsList, colorSchemeNo } = props.redux;
+    const {
+        redux: { displayLyricsList, colorSchemeNo }
+    } = props;
 
     return (
         <HeaderElement colorSchemeNo={colorSchemeNo}>

@@ -1,14 +1,17 @@
 import { colorScheme, space } from "./";
 
-export const focus = colorSchemeNo => `
+export const focus = colorSchemeNo => {
+    const { secondary1, contrast2 } = colorScheme[colorSchemeNo];
+    return `
     &:focus {
         outline: none;
         box-shadow: 
-            ${colorScheme[colorSchemeNo].secondary1} 0px 0px 0px 1px, 
-            ${colorScheme[colorSchemeNo].contrast2} 0px 0px 0px 3px;
+            ${secondary1} 0px 0px 0px 1px, 
+            ${contrast2} 0px 0px 0px 3px;
         z-index: 1;
     }
 `;
+};
 
 const input = (colorSchemeNo, size) => {
     size =
@@ -20,6 +23,10 @@ const input = (colorSchemeNo, size) => {
             ? (size = 20)
             : (size = 40);
 
+    const { light1, secondary1, contrast2, light2 } = colorScheme[
+        colorSchemeNo
+    ];
+
     return `
         height: ${size}px;
         border-radius: ${size / 2}px;
@@ -27,18 +34,18 @@ const input = (colorSchemeNo, size) => {
         padding-left: ${size / 2}px;
         padding-right: ${size / 2}px;
         border: none;
-        background-color: ${colorScheme[colorSchemeNo].light1};
-        color: ${colorScheme[colorSchemeNo].secondary1};
+        background-color: ${light1};
+        color: ${secondary1};
         cursor: pointer;
         &:hover{
-            color: ${colorScheme[colorSchemeNo].contrast2};
-            background-color: ${colorScheme[colorSchemeNo].light2};
+            color: ${contrast2};
+            background-color: ${light2};
             &::placeholder {
-                color: ${colorScheme[colorSchemeNo].contrast2};
+                color: ${contrast2};
             }
         }
         &::placeholder {
-            color: ${colorScheme[colorSchemeNo].secondary1};
+            color: ${secondary1};
         }
         ${focus(colorSchemeNo)}
 `;

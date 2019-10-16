@@ -9,13 +9,12 @@ class Counter extends Component {
     }
 
     componentDidMount() {
-        const { lyricsData, counterScrollDelay, songTiming } = this.props.redux;
-
         const {
             lastSectionIndex,
             counterIteration,
             onBarChange,
-            counterToggle
+            counterToggle,
+            redux: { lyricsData, counterScrollDelay, songTiming }
         } = this.props;
 
         const intervalTime = (60 / lyricsData.tempo) * 1000;

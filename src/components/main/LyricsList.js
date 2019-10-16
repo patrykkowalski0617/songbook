@@ -143,7 +143,9 @@ class LyricsList extends Component {
     }
 
     render() {
-        const { displayLyricsList } = this.props.redux;
+        const {
+            redux: { displayLyricsList }
+        } = this.props;
 
         return displayLyricsList ? (
             <PerfectScrollbar>

@@ -69,7 +69,9 @@ class Search extends Component {
     }
 
     render() {
-        const { displayLyricsList, colorSchemeNo } = this.props.redux;
+        const {
+            redux: { displayLyricsList, colorSchemeNo }
+        } = this.props;
 
         return displayLyricsList ? (
             <SearchContainer>

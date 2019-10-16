@@ -32,9 +32,10 @@ class LyricsBody extends Component {
     };
 
     componentWillMount() {
-        const { lyricsData } = this.props.redux;
-
-        const { counterSetSongTiming } = this.props;
+        const {
+            counterSetSongTiming,
+            redux: { lyricsData }
+        } = this.props;
 
         this.lyricsBodyRef = React.createRef();
         this.perfectScrollContainerRef = React.createRef();
@@ -80,11 +81,8 @@ class LyricsBody extends Component {
 
     render() {
         const {
-            lyricsData,
-            counterIsRun,
-            songTiming,
-            colorSchemeNo
-        } = this.props.redux;
+            redux: { lyricsData, counterIsRun, songTiming, colorSchemeNo }
+        } = this.props;
 
         const lyricsBars = () => {
             const barsData = lyricsData.bars;

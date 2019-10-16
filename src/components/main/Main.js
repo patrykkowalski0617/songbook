@@ -46,7 +46,9 @@ const ContainerElement = styled.div`
 `;
 
 const Main = props => {
-    const { lyricsData, displayLyricsList, colorSchemeNo } = props.redux;
+    const {
+        redux: { lyricsData, displayLyricsList, colorSchemeNo }
+    } = props;
 
     return (
         <MainElement colorSchemeNo={colorSchemeNo}>

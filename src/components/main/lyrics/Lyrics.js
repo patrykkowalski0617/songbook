@@ -44,7 +44,9 @@ const YouTubeIcon = styled.a`
 
 class Lyrics extends Component {
     render() {
-        const { lyricsData, colorSchemeNo } = this.props.redux;
+        const {
+            redux: { lyricsData, colorSchemeNo }
+        } = this.props;
 
         return (
             <LyricsElement>
