@@ -4,17 +4,23 @@ import { colorScheme, container, space, barInput } from "../style";
 import { tutorialNextStep, tutorialDeactivate } from "./../../redux/actions";
 import { connect } from "react-redux";
 
-const TutorialPopUpElement = styled.div`
-    ${container}
-    width: 200px;
-    max-height: 300px;
+const TutorialPopUpWrapper = styled.div`
+    ${props =>
+        `background-color: ${colorScheme[props.colorSchemeNo].dark1};  ${props.position};`}
     border-radius: 5px;
     position: absolute;
+    width: 200px;
+    max-height: 300px;
     transform: translate(0, 100%);
-    ${props =>
-        `background-color: ${colorScheme[props.colorSchemeNo].contrast1}88;
-        ${props.position};`}
+`;
 
+const TutorialPopUpElement = styled.div`
+    ${container}
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    ${props =>
+        `background-color: ${colorScheme[props.colorSchemeNo].contrast1}88;`}
     &::before {
         content: "";
         position: absolute;
@@ -44,13 +50,13 @@ const TutorialPopUpElement = styled.div`
             props.bubblesPosition === "bottom right"
                 ? "-"
                 : ""
-        }16px -21px 0px -3px ${colorScheme[props.colorSchemeNo].contrast1}88,
+        }15px -21px 0px -3px ${colorScheme[props.colorSchemeNo].contrast1}88,
         ${
             props.bubblesPosition === "top left" ||
             props.bubblesPosition === "bottom right"
                 ? "-"
                 : ""
-        }22px -40px 0px -6px ${colorScheme[props.colorSchemeNo].contrast1}88`};
+        }19px -40px 0px -6px ${colorScheme[props.colorSchemeNo].contrast1}88`};
     }
 `;
 
@@ -78,24 +84,25 @@ const TutorialPopUp = props => {
     } = props;
 
     return (
-        <TutorialPopUpElement
-            colorSchemeNo={colorSchemeNo}
-            position={position}
-            bubblesPosition={bubblesPosition}
-        >
-            <Header>Krok {tutorialStep + 1}.</Header>
-            <p>{tipText}</p>
-            <Button
-                type="button"
+        <TutorialPopUpWrapper colorSchemeNo={colorSchemeNo} position={position}>
+            <TutorialPopUpElement
                 colorSchemeNo={colorSchemeNo}
-                onClick={() => {
-                    localStorage.setItem("tutorialIsInactive", true);
-                    tutorialDeactivate();
-                }}
+                bubblesPosition={bubblesPosition}
             >
-                Pomiń tutorial
-            </Button>
-        </TutorialPopUpElement>
+                <Header>Krok {tutorialStep + 1}.</Header>
+                <p>{tipText}</p>
+                <Button
+                    type="button"
+                    colorSchemeNo={colorSchemeNo}
+                    onClick={() => {
+                        localStorage.setItem("tutorialIsInactive", true);
+                        tutorialDeactivate();
+                    }}
+                >
+                    Pomiń tutorial
+                </Button>
+            </TutorialPopUpElement>
+        </TutorialPopUpWrapper>
     );
 };
 

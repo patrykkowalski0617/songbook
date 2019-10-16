@@ -91,7 +91,7 @@ const HeaderButtons = props => {
                 const icon = item.onStatus ? item.onIcon : item.offIcon;
                 const tutorialPopUp = item.tutorialMode ? (
                     <TutorialPopUp
-                        position={`left: -220px; bottom: -100px;`}
+                        position={`left: -205px; bottom: -100px;`}
                         bubblesPosition={"top right"}
                         tipText={item.tipText}
                     />
