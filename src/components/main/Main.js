@@ -1,6 +1,6 @@
 import React from "react";
-import LyricsList from "./LyricsList";
-import Lyrics from "./lyrics/Lyrics";
+import { LyricsList } from "./";
+import { Lyrics } from "./lyrics";
 import styled from "styled-components";
 import {
     headerH,

@@ -1,6 +1,5 @@
 import React from "react";
-import Search from "./Search";
-import HeaderButtons from "./HeaderButtons";
+import { Search, HeaderButtons } from "./";
 import styled from "styled-components";
 import {
     headerH,

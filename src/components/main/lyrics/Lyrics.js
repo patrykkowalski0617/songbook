@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { space, row, col, colorScheme, focus, linkStyle } from "../../style";
-import Metronom from "./Metronom";
-import LyricsBody from "./LyricsBody";
+import { Metronom, LyricsBody } from "./";
 import { connect } from "react-redux";
 
 const LyricsElement = styled.div`

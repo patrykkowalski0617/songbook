@@ -1,12 +1,8 @@
 import React, { Component } from "react";
-import LyricsBar from "./LyricsBar";
-import BarAnimation from "./logic/BarAnimation";
-import ScrollAnimation from "./logic/ScrollAnimation";
-import ProgressBarAnimation from "./logic/ProgressBarAnimation";
+import { LyricsBar, Countdown, Counter } from "./";
+import { BarAnimation, ScrollAnimation, ProgressBarAnimation } from "./logic/";
 import styled from "styled-components";
 import { colorScheme, space, lyricsBarH } from "../../style";
-import Countdown from "./Countdown";
-import Counter from "./Counter";
 import { counterSetSongTiming } from "../../../redux/actions";
 import { connect } from "react-redux";
 import "react-perfect-scrollbar/dist/css/styles.css";
