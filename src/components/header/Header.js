@@ -31,6 +31,12 @@ const Logo = styled.h1`
     line-height: 20px;
     margin: 0;
     display: ${props => props.displayLogo};
+    ${props => {
+        const no = props.colorSchemeNo;
+        return `
+         color: ${colorScheme[no].contrast1};
+        `;
+    }}
 `;
 
 const LogoLink = styled.a`
@@ -51,7 +57,10 @@ const Header = props => {
     return (
         <HeaderElement colorSchemeNo={colorSchemeNo}>
             <Container>
-                <Logo displayLogo={displayLyricsList ? "none" : "block"}>
+                <Logo
+                    displayLogo={displayLyricsList ? "none" : "block"}
+                    colorSchemeNo={colorSchemeNo}
+                >
                     <LogoLink href="/" colorSchemeNo={colorSchemeNo}>
                         Song Book
                     </LogoLink>
