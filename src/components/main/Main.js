@@ -35,7 +35,7 @@ const Container = styled.div`
     height: 100%;
     overflow: auto;
     position: relative;
-    background: ${props => colorScheme[props.colorSchemeNo].dark1}ee;
+    background: ${props => colorScheme[props.colorSchemeNo].dark1}d5;
     ${container};
 `;
 
