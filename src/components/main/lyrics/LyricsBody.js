@@ -13,6 +13,37 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 
 const LyricsBodyContainer = styled.div`
     position: relative;
+    .ps .ps__rail-y:hover,
+    .ps .ps__rail-y.ps--clicking {
+        background: ${props =>
+            colorScheme[props.colorSchemeNo].muted} !important;
+        opacity: 1;
+    }
+    .ps__thumb-y {
+        background: ${props =>
+            colorScheme[props.colorSchemeNo].contrast1} !important;
+    }
+    .ps__rail-y {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        &::before,
+        &::after {
+            content: "";
+            background: inherit;
+            display: block;
+            width: 100%;
+            height: 5px;
+            position: absolute;
+        }
+        &::after {
+            bottom: -5px;
+            border-radius: 0 0 5px 5px;
+        }
+        &::before {
+            top: -5px;
+            border-radius: 5px 5px 0 0;
+        }
+    }
 `;
 
 const ProgressBarContainer = styled.div`
@@ -153,7 +184,7 @@ class LyricsBody extends Component {
                         indexOfLastBar={this.indexOfLastBar}
                     />
                 ) : null}
-                <LyricsBodyContainer>
+                <LyricsBodyContainer colorSchemeNo={colorSchemeNo}>
                     <Countdown />
                     <PerfectScrollbar
                         ref={this.perfectScrollContainerRef}
