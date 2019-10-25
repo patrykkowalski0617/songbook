@@ -1,6 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
 import { LyricsList } from "./";
 import { Lyrics } from "./lyrics";
+import { Settings } from "./settings";
 import styled from "styled-components";
 import {
     headerH,
@@ -10,7 +12,6 @@ import {
     media,
     container
 } from "../style";
-import { connect } from "react-redux";
 
 const MainElement = styled.main`
     height: calc(100vh - ${headerH} - ${footerH});
@@ -58,6 +59,7 @@ const Main = props => {
                 {!lyricsData && !displayLyricsList ? (
                     <ContainerElement></ContainerElement>
                 ) : null}
+                <Settings />
             </Container>
         </MainElement>
     );

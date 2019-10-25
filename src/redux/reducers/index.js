@@ -12,6 +12,7 @@ import colorSchemeNoUpdateReducer from "./colorSchemeNoUpdateReducer";
 import tutorialDeactivateReducer from "./tutorialDeactivateReducer";
 import tutorialNextStepReducer from "./tutorialNextStepReducer";
 import lyricsLastBarIsMarkedReducer from "./lyricsLastBarIsMarkedReducer";
+import { reducer as formReducer } from "redux-form";
 
 const allReducers = combineReducers({
     displayLyricsList: lyricsListToggleReducer,
@@ -25,7 +26,8 @@ const allReducers = combineReducers({
     colorSchemeNo: colorSchemeNoUpdateReducer,
     tutorialIsInactive: tutorialDeactivateReducer,
     tutorialStep: tutorialNextStepReducer,
-    lyricsIsLastBarMarked: lyricsLastBarIsMarkedReducer
+    lyricsIsLastBarMarked: lyricsLastBarIsMarkedReducer,
+    form: formReducer
 });
 
 export default allReducers;
