@@ -1,11 +1,21 @@
 import React from "react";
+import { withStyles } from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 
-const RenderSwitch = ({ input, label }) => (
+const styles = {
+    controlLabel: {
+        display: "flex",
+        justifyContent: "space-between",
+        flexDirection: "row-reverse"
+    }
+};
+
+const RenderSwitch = ({ input, label, classes }) => (
     <div>
         <FormControlLabel
-            value="start"
+            value="top"
+            className={classes.controlLabel}
             control={
                 <Switch
                     color="primary"
@@ -13,10 +23,10 @@ const RenderSwitch = ({ input, label }) => (
                     onChange={input.onChange}
                 />
             }
-            label="Start"
-            labelPlacement="start"
+            label={label}
+            labelPlacement="top"
         />
     </div>
 );
 
-export default RenderSwitch;
+export default withStyles(styles)(RenderSwitch);

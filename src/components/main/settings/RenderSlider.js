@@ -1,10 +1,18 @@
 import React, { Component } from "react";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import { makeStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
 import Input from "@material-ui/core/Input";
 import Slider from "@material-ui/core/Slider";
 
-export default class RenderSlider extends Component {
+const styles = {
+    controlLabel: {
+        alignItems: "start",
+        display: "flex"
+    }
+};
+
+class RenderSlider extends Component {
     state = {
         value: this.props.init,
         sliderClicked: false
@@ -53,51 +61,58 @@ export default class RenderSlider extends Component {
     }
 
     render() {
-        const { input, label, min, max, init } = this.props;
+        const { classes, input, label, min, max, init } = this.props;
         const { value } = this.state;
 
         return (
             <div>
                 <FormControlLabel
-                    value="start"
+                    value="top"
+                    className={classes.controlLabel}
                     control={
-                        <div>
-                            <Slider
-                                value={
-                                    typeof value === "number"
-                                        ? value
-                                        : Number(init)
-                                }
-                                min={Number(min)}
-                                max={Number(max)}
-                                onChange={this.handleSliderChange}
-                                onMouseDown={this.handleSliderMouseDown}
-                                aria-labelledby="input-slider"
-                            />
-                            <Input
-                                value={value}
-                                margin="dense"
-                                onChange={e => {
-                                    this.handleInputChange(e);
-                                    input.onChange(e);
-                                }}
-                                onBlur={this.handleBlur}
-                                onFocus={input.onChange}
-                                inputProps={{
-                                    step: 1,
-                                    min: { min },
-                                    max: { max },
-                                    type: "number",
-                                    "aria-labelledby": "input-slider",
-                                    ref: this.numberInputRef
-                                }}
-                            />
-                        </div>
+                        <Grid container spacing={2} alignItems="center">
+                            <Grid item xs={9}>
+                                <Slider
+                                    value={
+                                        typeof value === "number"
+                                            ? value
+                                            : Number(init)
+                                    }
+                                    min={Number(min)}
+                                    max={Number(max)}
+                                    onChange={this.handleSliderChange}
+                                    onMouseDown={this.handleSliderMouseDown}
+                                    aria-labelledby="input-slider"
+                                />
+                            </Grid>
+                            <Grid item xs={3}>
+                                <Input
+                                    value={value}
+                                    margin="dense"
+                                    onChange={e => {
+                                        this.handleInputChange(e);
+                                        input.onChange(e);
+                                    }}
+                                    onBlur={this.handleBlur}
+                                    onFocus={input.onChange}
+                                    inputProps={{
+                                        step: 1,
+                                        min: { min },
+                                        max: { max },
+                                        type: "number",
+                                        "aria-labelledby": "input-slider",
+                                        ref: this.numberInputRef
+                                    }}
+                                />
+                            </Grid>
+                        </Grid>
                     }
                     label={label}
-                    labelPlacement={"start"}
+                    labelPlacement={"top"}
                 />
             </div>
         );
     }
 }
+
+export default withStyles(styles)(RenderSlider);
