@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 
 import lyricsListToggleReducer from "./lyricsListToggleReducer";
+import settingsToggleReducer from "./settingsToggleReducer";
 import keepLyricsDataReducer from "./keepLyricsDataReducer";
 import keepSearchResultReducer from "./keepSearchResultReducer";
 import keepSearchedValueReducer from "./keepSearchedValueReducer";
@@ -16,6 +17,7 @@ import { reducer as formReducer } from "redux-form";
 
 const allReducers = combineReducers({
     displayLyricsList: lyricsListToggleReducer,
+    displaySettings: settingsToggleReducer,
     lyricsData: keepLyricsDataReducer,
     searchResult: keepSearchResultReducer,
     searchedValue: keepSearchedValueReducer,

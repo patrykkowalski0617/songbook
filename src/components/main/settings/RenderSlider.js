@@ -61,7 +61,7 @@ class RenderSlider extends Component {
     }
 
     render() {
-        const { classes, input, label, min, max, init } = this.props;
+        const { classes, input, label, min, max, init, disabled } = this.props;
         const { value } = this.state;
 
         return (
@@ -83,12 +83,14 @@ class RenderSlider extends Component {
                                     onChange={this.handleSliderChange}
                                     onMouseDown={this.handleSliderMouseDown}
                                     aria-labelledby="input-slider"
+                                    disabled={disabled}
                                 />
                             </Grid>
                             <Grid item xs={3}>
                                 <Input
                                     value={value}
                                     margin="dense"
+                                    disabled={disabled}
                                     onChange={e => {
                                         this.handleInputChange(e);
                                         input.onChange(e);

@@ -1,4 +1,5 @@
 export { lyricsListToggle } from "./lyricsListToggle";
+export { settingsToggle } from "./settingsToggle";
 export { keepLyricsData } from "./keepLyricsData";
 export { keepSearchResult } from "./keepSearchResult";
 export { keepSearchedValue } from "./keepSearchedValue";

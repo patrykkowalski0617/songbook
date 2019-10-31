@@ -34,7 +34,7 @@ const MainElement = styled.main`
 
 const Container = styled.div`
     height: 100%;
-    overflow: auto;
+    overflow: hidden auto;
     position: relative;
     background: ${props => colorScheme[props.colorSchemeNo].dark1}d5;
     ${container};
@@ -59,7 +59,12 @@ const Main = props => {
                 {!lyricsData && !displayLyricsList ? (
                     <ContainerElement></ContainerElement>
                 ) : null}
-                <Settings />
+                <Settings
+                    initialValues={{
+                        metronom_sound: true,
+                        start_delay: 2
+                    }}
+                />
             </Container>
         </MainElement>
     );

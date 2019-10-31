@@ -4,6 +4,7 @@ import { space, circleInput, row, col, pulse, colorScheme } from "../style";
 import {
     keepSearchedValue,
     lyricsListToggle,
+    settingsToggle,
     counterToggle,
     tutorialNextStep
 } from "./../../redux/actions";
@@ -40,6 +41,7 @@ const HeaderButtons = props => {
         counterToggle,
         keepSearchedValue,
         lyricsListToggle,
+        settingsToggle,
         tutorialNextStep,
         redux: {
             counterIsRun,
@@ -73,6 +75,18 @@ const HeaderButtons = props => {
             tipText: `Rozpocznij zabawę.
             Metronom pomoże Ci utrzymać właściwe tempo podczas wykonywania utworu. 
             Po oliczaniu tekst zacznie przewijać się synchronicznie.`
+        },
+        {
+            onIcon: "settings",
+            offIcon: "close",
+            onStatus: true,
+            display: !displayLyricsList,
+            onClickHandler: () => {
+                settingsToggle();
+                // if (counterIsRun) {
+                //     counterToggle(false);
+                // }
+            }
         },
         {
             onIcon: "lyrics-list",
@@ -131,6 +145,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
     keepSearchedValue,
     lyricsListToggle,
+    settingsToggle,
     counterToggle,
     tutorialNextStep
 };
