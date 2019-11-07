@@ -129,8 +129,19 @@ class LyricsBody extends Component {
 
     render() {
         const {
-            redux: { lyricsData, counterIsRun, songTiming, colorSchemeNo }
+            redux: {
+                lyricsData,
+                counterIsRun,
+                songTiming,
+                colorSchemeNo,
+                counterIterationNumber,
+                counterScrollDelay
+            }
         } = this.props;
+
+        const displayCountdown =
+            counterIsRun &&
+            counterIterationNumber + 1 <= counterScrollDelay * songTiming;
 
         const lyricsBars = () => {
             const barsData = lyricsData.bars;
@@ -147,11 +158,15 @@ class LyricsBody extends Component {
             });
 
             const bars = barsDataReduced.map((item, index) => {
-                let marginBottom, marginTop;
+                let marginBottom, marginTop, opacity;
                 if (index === barsDataReduced.length - 1) {
                     marginBottom = lyricsBarH;
                 } else if (index === 0) {
                     marginTop = lyricsBarH;
+                }
+
+                if (displayCountdown) {
+                    opacity = ".2";
                 }
 
                 return (
@@ -160,7 +175,7 @@ class LyricsBody extends Component {
                         text={item.text}
                         chords={item.chords}
                         barType={item.barType}
-                        style={{ marginBottom, marginTop }}
+                        style={{ marginBottom, marginTop, opacity }}
                     />
                 );
             });
@@ -185,7 +200,7 @@ class LyricsBody extends Component {
                     />
                 ) : null}
                 <LyricsBodyContainer colorSchemeNo={colorSchemeNo}>
-                    <Countdown />
+                    <Countdown displayCountdown={displayCountdown} />
                     <PerfectScrollbar
                         ref={this.perfectScrollContainerRef}
                         style={{ height: 240 }}

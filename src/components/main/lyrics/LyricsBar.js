@@ -8,6 +8,7 @@ const LyricsBarElement = styled.div`
     position: relative;
     width: 100%;
     overflow: hidden;
+    transition: 0.3s opacity ease-in-out;
     @media (max-width: ${media.m}) {
         font-size: 20px;
     }

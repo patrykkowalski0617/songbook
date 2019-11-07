@@ -9,7 +9,6 @@ const CountdownElement = styled.div`
     right: 0;
     bottom: 0;
     left: 0;
-    background: ${props => colorScheme[props.colorSchemeNo].dark1};
     color: ${props => colorScheme[props.colorSchemeNo].light1};
     text-align: center;
     opacity: 0.5;
@@ -33,9 +32,9 @@ const numberZoomAnimation = keyframes`
 `;
 
 const Coundown = ({
+    displayCountdown,
     redux: {
         lyricsData,
-        counterScrollDelay,
         songTiming,
         counterIsRun,
         counterIterationNumber,
@@ -44,17 +43,15 @@ const Coundown = ({
 }) => {
     const time = (60 / lyricsData.tempo) * 1000 * 0.25;
 
-    const delay = counterScrollDelay * songTiming;
-
     const P = styled.p`
         position: absolute;
         top: 50%;
         left: 50%
         transform: translate(-50%, -50%);
-        animation: ${numberZoomAnimation} ${props => time}ms ease-out 1;
+        animation: ${numberZoomAnimation} ${time}ms ease-out 1;
     `;
 
-    return counterIsRun && counterIterationNumber + 1 <= delay ? (
+    return displayCountdown ? (
         <CountdownElement colorSchemeNo={colorSchemeNo}>
             <P time={time}>{songTiming - counterIterationNumber}</P>
         </CountdownElement>
