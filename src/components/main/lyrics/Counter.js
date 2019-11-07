@@ -68,13 +68,22 @@ class Counter extends Component {
     }
 
     render() {
-        return (
+        const {
+            redux: {
+                form: {
+                    settings: {
+                        values: { metronom_sound }
+                    }
+                }
+            }
+        } = this.props;
+        return metronom_sound ? (
             <Sound
                 url={"metronom_audio/metronom.mp3"}
                 playStatus={"PLAYING"}
                 autoLoad={true}
             />
-        );
+        ) : null;
     }
 }
 

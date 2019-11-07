@@ -48,23 +48,33 @@ const ContainerElement = styled.div`
 
 const Main = props => {
     const {
-        redux: { lyricsData, displayLyricsList, colorSchemeNo }
+        redux: { lyricsData, displayLyricsList, displaySettings, colorSchemeNo }
     } = props;
+
+    let storedValue = window.localStorage.getItem("metronom_sound");
+    storedValue =
+        storedValue === "false"
+            ? false
+            : storedValue === "true" || storedValue === null
+            ? true
+            : null;
+
+    const initialValues = {
+        metronom_sound: storedValue,
+        start_delay: 2
+    };
 
     return (
         <MainElement colorSchemeNo={colorSchemeNo}>
             <Container colorSchemeNo={colorSchemeNo}>
                 <LyricsList />
-                {lyricsData && !displayLyricsList ? <Lyrics /> : null}
+                {lyricsData && !displayLyricsList && !displaySettings ? (
+                    <Lyrics />
+                ) : null}
                 {!lyricsData && !displayLyricsList ? (
                     <ContainerElement></ContainerElement>
                 ) : null}
-                <Settings
-                    initialValues={{
-                        metronom_sound: true,
-                        start_delay: 2
-                    }}
-                />
+                <Settings initialValues={initialValues} />
             </Container>
         </MainElement>
     );

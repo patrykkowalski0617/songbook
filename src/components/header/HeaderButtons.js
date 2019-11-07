@@ -46,6 +46,7 @@ const HeaderButtons = props => {
         redux: {
             counterIsRun,
             displayLyricsList,
+            displaySettings,
             lyricsData,
             colorSchemeNo,
             tutorialIsInactive,
@@ -59,7 +60,7 @@ const HeaderButtons = props => {
             onIcon: "play",
             offIcon: "pause",
             onStatus: !counterIsRun,
-            display: !displayLyricsList && lyricsData,
+            display: !displayLyricsList && !displaySettings && lyricsData,
             onClickHandler: () => {
                 if (!lyricsIsLastBarMarked) {
                     counterToggle(true);
@@ -79,20 +80,20 @@ const HeaderButtons = props => {
         {
             onIcon: "settings",
             offIcon: "close",
-            onStatus: true,
+            onStatus: !displaySettings,
             display: !displayLyricsList,
             onClickHandler: () => {
                 settingsToggle();
-                // if (counterIsRun) {
-                //     counterToggle(false);
-                // }
+                if (counterIsRun) {
+                    counterToggle(false);
+                }
             }
         },
         {
             onIcon: "lyrics-list",
             offIcon: "close",
             onStatus: !displayLyricsList,
-            display: true,
+            display: !displaySettings,
             onClickHandler: () => {
                 keepSearchedValue("");
                 lyricsListToggle();
