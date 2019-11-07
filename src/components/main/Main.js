@@ -45,11 +45,7 @@ const ContainerElement = styled.div`
     padding-top: ${space.s7};
 `;
 
-const Main = props => {
-    const {
-        redux: { lyricsData, displayLyricsList, colorSchemeNo }
-    } = props;
-
+const Main = ({ redux: { lyricsData, displayLyricsList, colorSchemeNo } }) => {
     return (
         <MainElement colorSchemeNo={colorSchemeNo}>
             <Container colorSchemeNo={colorSchemeNo}>

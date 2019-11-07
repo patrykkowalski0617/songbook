@@ -35,23 +35,21 @@ const ButtonElement = styled.button`
             : "none"}
 `;
 
-const HeaderButtons = props => {
-    const {
-        counterToggle,
-        keepSearchedValue,
-        lyricsListToggle,
-        tutorialNextStep,
-        redux: {
-            counterIsRun,
-            displayLyricsList,
-            lyricsData,
-            colorSchemeNo,
-            tutorialIsInactive,
-            tutorialStep,
-            lyricsIsLastBarMarked
-        }
-    } = props;
-
+const HeaderButtons = ({
+    counterToggle,
+    keepSearchedValue,
+    lyricsListToggle,
+    tutorialNextStep,
+    redux: {
+        counterIsRun,
+        displayLyricsList,
+        lyricsData,
+        colorSchemeNo,
+        tutorialIsInactive,
+        tutorialStep,
+        lyricsIsLastBarMarked
+    }
+}) => {
     const buttonsData = [
         {
             onIcon: "play",

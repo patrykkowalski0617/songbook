@@ -32,18 +32,16 @@ const numberZoomAnimation = keyframes`
     100% {transform: translate(-50%, -50%) scale(1); opacity: 1}
 `;
 
-const Coundown = props => {
-    const {
-        redux: {
-            lyricsData,
-            counterScrollDelay,
-            songTiming,
-            counterIsRun,
-            counterIterationNumber,
-            colorSchemeNo
-        }
-    } = props;
-
+const Coundown = ({
+    redux: {
+        lyricsData,
+        counterScrollDelay,
+        songTiming,
+        counterIsRun,
+        counterIterationNumber,
+        colorSchemeNo
+    }
+}) => {
     const time = (60 / lyricsData.tempo) * 1000 * 0.25;
 
     const delay = counterScrollDelay * songTiming;

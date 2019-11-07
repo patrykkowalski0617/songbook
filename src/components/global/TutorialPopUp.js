@@ -74,15 +74,13 @@ const Button = styled.button`
     display: block;
 `;
 
-const TutorialPopUp = props => {
-    const {
-        position,
-        bubblesPosition,
-        tipText,
-        tutorialDeactivate,
-        redux: { tutorialStep, colorSchemeNo }
-    } = props;
-
+const TutorialPopUp = ({
+    position,
+    bubblesPosition,
+    tipText,
+    tutorialDeactivate,
+    redux: { tutorialStep, colorSchemeNo }
+}) => {
     return (
         <TutorialPopUpWrapper colorSchemeNo={colorSchemeNo} position={position}>
             <TutorialPopUpElement

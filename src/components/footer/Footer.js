@@ -14,11 +14,7 @@ const Container = styled.div`
     ${container}
 `;
 
-const Footer = props => {
-    const {
-        redux: { colorSchemeNo }
-    } = props;
-
+const Footer = ({ redux: { colorSchemeNo } }) => {
     return (
         <FooterElement colorSchemeNo={colorSchemeNo}>
             <Container>&copy; SongBook</Container>

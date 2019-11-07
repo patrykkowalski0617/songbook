@@ -29,9 +29,7 @@ const BarSection = styled.p`
     vertical-align: middle;
 `;
 
-const LyricsBar = props => {
-    const { barType, chords, text, style } = props;
-
+const LyricsBar = ({ barType, chords, text, style }) => {
     // className lyrics-bar and bar-content are instead of rel
     // and are needed for animation scripts
     return (

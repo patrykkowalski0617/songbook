@@ -36,16 +36,9 @@ const Description = styled.div`
     color: ${props => colorScheme[props.colorSchemeNo].light1};
 `;
 
-const Metronom = props => {
-    const {
-        redux: {
-            songTiming,
-            counterIsRun,
-            counterIterationNumber,
-            colorSchemeNo
-        }
-    } = props;
-
+const Metronom = ({
+    redux: { songTiming, counterIsRun, counterIterationNumber, colorSchemeNo }
+}) => {
     const colSize = 12 / songTiming;
 
     const metronomParts = Array(songTiming).fill(null);
