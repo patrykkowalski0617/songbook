@@ -134,14 +134,14 @@ class LyricsList extends Component {
                     this.props.lyricsListToggle();
                     this.props.keepLyricsData(lyricsData);
                 })
-                .catch(error => {
-                    if (error.response.status) {
+                .catch(err => {
+                    if (err.response.status) {
                         alert(
                             'Aplikacja jest w wersji beta i obsługuje tylko "Kings of Leon - Sex On Fire". Należy wybrać ten utwór.'
                         );
                     } else {
                         alert("Wystąpił nieoczekiwany błąd.");
-                        console.log(error, error.response);
+                        console.log(err, err.response);
                     }
                 });
         };
@@ -168,7 +168,4 @@ const mapDispatchToProps = {
     keepLyricsData,
     keepSearchResult
 };
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(LyricsList);
+export default connect(mapStateToProps, mapDispatchToProps)(LyricsList);

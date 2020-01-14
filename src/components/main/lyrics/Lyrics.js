@@ -3,6 +3,9 @@ import styled from "styled-components";
 import { space, row, col, colorScheme, focus, linkStyle } from "../../style";
 import { Metronom, LyricsBody } from "./";
 import { connect } from "react-redux";
+import Spotify from "spotify-web-api-js";
+
+const spotifyApi = new Spotify();
 
 const LyricsElement = styled.div`
     position: absolute;
@@ -28,11 +31,8 @@ const H2 = styled.h2`
     margin-bottom: ${space.s2};
 `;
 
-const YouTubeIcon = styled.a`
-    ${props => {
-        const color = colorScheme[props.colorSchemeNo].contrast2;
-        return linkStyle(color);
-    }}
+const SpotifyIcon = styled.a`
+    ${linkStyle()}
     ${props => {
         const no = props.colorSchemeNo;
         return focus(no);
@@ -43,6 +43,27 @@ const YouTubeIcon = styled.a`
 `;
 
 class Lyrics extends Component {
+    playOnSpotify() {
+        const {
+            redux: { loggedIn }
+        } = this.props;
+
+        if (!loggedIn) {
+            alert("You have to be logged-in");
+        } else {
+            const {
+                redux: { lyricsData }
+            } = this.props;
+
+            spotifyApi
+                .searchTracks(lyricsData.title)
+                .then(data => {
+                    window.open(data.tracks.items[0].external_urls.spotify);
+                })
+                .catch(err => console.log(err));
+        }
+    }
+
     render() {
         const {
             redux: { lyricsData, colorSchemeNo }
@@ -51,17 +72,7 @@ class Lyrics extends Component {
         return (
             <LyricsElement>
                 <LyricsHeader>
-                    <H2>
-                        {lyricsData.title}
-                        <YouTubeIcon
-                            href={lyricsData.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            colorSchemeNo={colorSchemeNo}
-                        >
-                            <i className="icon icon-youtube" />
-                        </YouTubeIcon>
-                    </H2>
+                    <H2>{lyricsData.title}</H2>
                     <LyricsData>
                         <LyricsDataContent>
                             Tempo: {lyricsData.tempo}
@@ -70,6 +81,13 @@ class Lyrics extends Component {
                             Time: {lyricsData.time}
                         </LyricsDataContent>
                     </LyricsData>
+                    <SpotifyIcon
+                        colorSchemeNo={colorSchemeNo}
+                        onClick={() => this.playOnSpotify()}
+                    >
+                        Odsłuchaj na Spotify
+                        <i className="icon icon-spotify" />
+                    </SpotifyIcon>
                 </LyricsHeader>
                 <LyricsBody />
                 <Metronom />

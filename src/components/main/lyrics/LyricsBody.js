@@ -227,7 +227,4 @@ const mapDispatchToProps = {
     counterSetSongTiming,
     lyricsLastBarIsMarked
 };
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(LyricsBody);
+export default connect(mapStateToProps, mapDispatchToProps)(LyricsBody);

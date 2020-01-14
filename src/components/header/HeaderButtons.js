@@ -32,7 +32,17 @@ const ButtonElement = styled.button`
             ? css`
                   ${pulse(props)} 3s ease-out infinite;
               `
-            : "none"}
+            : "none"};
+    ${props =>
+        props.userImgSrc
+            ? ` 
+            background-image: url(${props.userImgSrc});
+            background-size: contain;
+            background-position: center;
+            ::before{
+                display: none;
+            }`
+            : null}
 `;
 
 const HeaderButtons = ({
@@ -47,9 +57,12 @@ const HeaderButtons = ({
         colorSchemeNo,
         tutorialIsInactive,
         tutorialStep,
-        lyricsIsLastBarMarked
+        lyricsIsLastBarMarked,
+        loggedIn
     }
 }) => {
+    const userImgSrc = loggedIn ? loggedIn.images[0].url : null;
+
     const buttonsData = [
         {
             onIcon: "play",
@@ -73,7 +86,7 @@ const HeaderButtons = ({
             Po oliczaniu tekst zacznie przewijać się synchronicznie.`
         },
         {
-            onIcon: "lyrics-list",
+            onIcon: "list",
             offIcon: "close",
             onStatus: !displayLyricsList,
             display: true,
@@ -87,6 +100,22 @@ const HeaderButtons = ({
             },
             tutorialMode: !tutorialIsInactive && tutorialStep === 0,
             tipText: "Wybierz piosenkę z listy."
+        },
+        {
+            onIcon: "login",
+            offIcon: "logout",
+            onStatus: true,
+            display: !displayLyricsList,
+            onClickHandler: () => {
+                if (loggedIn) {
+                    const logOut = window.confirm("Do you want to log-out?");
+                    if (logOut) {
+                        window.location.href = window.location.origin;
+                    }
+                } else {
+                    window.location.href = "https://getting-s.herokuapp.com";
+                }
+            }
         }
     ];
 
@@ -114,6 +143,7 @@ const HeaderButtons = ({
                             animationColor={
                                 colorScheme[colorSchemeNo].contrast1
                             }
+                            userImgSrc={icon === "login" ? userImgSrc : null}
                         />
                         {tutorialPopUp}
                     </ButtonContainer>
@@ -132,7 +162,4 @@ const mapDispatchToProps = {
     counterToggle,
     tutorialNextStep
 };
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(HeaderButtons);
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderButtons);

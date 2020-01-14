@@ -1,9 +1,10 @@
 
-.icon-play:before { content: '\e800'; } /* '' */
-.icon-stop:before { content: '\e801'; } /* '' */
-.icon-pause:before { content: '\e802'; } /* '' */
+.icon-pause:before { content: '\e800'; } /* '' */
+.icon-list:before { content: '\e801'; } /* '' */
+.icon-close:before { content: '\e802'; } /* '' */
 .icon-settings:before { content: '\e803'; } /* '' */
-.icon-lyrics-list:before { content: '\e804'; } /* '' */
-.icon-close:before { content: '\e805'; } /* '' */
-.icon-cancel:before { content: '\e806'; } /* '' */
-.icon-youtube:before { content: '\f167'; } /* '' */
+.icon-play:before { content: '\e804'; } /* '' */
+.icon-login:before { content: '\e805'; } /* '' */
+.icon-logout:before { content: '\e806'; } /* '' */
+.icon-personal-website:before { content: '\e808'; } /* '' */
+.icon-spotify:before { content: '\f1bc'; } /* '' */

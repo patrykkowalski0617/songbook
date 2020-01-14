@@ -72,4 +72,5 @@ export const linkStyle = (color = "inherit", bg = "inherit") => `
             background: ${bg};
         }
         text-decoration: none;
+        cursor: pointer;
 `;
