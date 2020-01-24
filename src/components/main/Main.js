@@ -51,19 +51,6 @@ const Main = props => {
         redux: { lyricsData, displayLyricsList, displaySettings, colorSchemeNo }
     } = props;
 
-    let storedValue = window.localStorage.getItem("metronom_sound");
-    storedValue =
-        storedValue === "false"
-            ? false
-            : storedValue === "true" || storedValue === null
-            ? true
-            : null;
-
-    const initialValues = {
-        metronom_sound: storedValue,
-        start_delay: 2
-    };
-
     return (
         <MainElement colorSchemeNo={colorSchemeNo}>
             <Container colorSchemeNo={colorSchemeNo}>
@@ -74,7 +61,9 @@ const Main = props => {
                 {!lyricsData && !displayLyricsList ? (
                     <ContainerElement></ContainerElement>
                 ) : null}
-                <Settings initialValues={initialValues} />
+                <Settings
+                    initialValues={{ employed: false, metronom_sound: false }}
+                />
             </Container>
         </MainElement>
     );

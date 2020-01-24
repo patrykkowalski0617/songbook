@@ -41,7 +41,7 @@ class RenderSlider extends Component {
 
     handleKeyUp = e => {
         // force redux-form to update value
-        // event if user release mouse key outside of slider
+        // even if user release mouse key outside of slider
         if (this.state.sliderClicked) {
             this.numberInputRef.current.focus();
         }
@@ -99,8 +99,8 @@ class RenderSlider extends Component {
                                     onFocus={input.onChange}
                                     inputProps={{
                                         step: 1,
-                                        min: { min },
-                                        max: { max },
+                                        min: Number(min),
+                                        max: Number(max),
                                         type: "number",
                                         "aria-labelledby": "input-slider",
                                         ref: this.numberInputRef

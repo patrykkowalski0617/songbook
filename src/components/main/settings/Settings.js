@@ -1,7 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
-import { RenderSwitch, RenderSlider } from "./";
+import {
+    RenderSwitch
+    // , RenderSlider
+} from "./";
 import Grid from "@material-ui/core/Grid";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import purple from "@material-ui/core/colors/purple";
@@ -12,15 +15,8 @@ const theme = createMuiTheme({
         secondary: { main: "#11cb5f" } // This is just green.A700 as hex.
     }
 });
-let Settings = props => {
-    const {
-        handleSubmit,
-        initialValues: { start_delay },
-        redux: { displaySettings, lyricsData }
-    } = props;
 
-    const tempo = lyricsData ? lyricsData.tempo : 0;
-
+let Settings = ({ handleSubmit, redux: { displaySettings, lyricsData } }) => {
     return displaySettings ? (
         <ThemeProvider theme={theme}>
             <form onSubmit={handleSubmit}>
@@ -30,24 +26,26 @@ let Settings = props => {
                     </Grid>
                     <Grid item xs={12}>
                         <Field
+                            id="metronom_sound"
                             name="metronom_sound"
                             component={RenderSwitch}
                             label="Dźwięk metronomu"
+                            type="checkbox"
                         />
                     </Grid>
-                    <Grid item xs={12}>
+                    {/* <Grid item xs={12}>
                         <Field
                             name="start_delay"
                             component={RenderSlider}
                             label="Opóźnienie startu"
                             min="1"
                             max="4"
-                            init={start_delay}
-                            disabled={!start_delay}
+                            init={initialValues.start_delay}
+                            disabled={!initialValues.start_delay}
                         />
-                    </Grid>
+                    </Grid> */}
 
-                    <Grid item xs={12}>
+                    {/* <Grid item xs={12}>
                         <p>Ustawienia główne</p>
                     </Grid>
 
@@ -61,7 +59,7 @@ let Settings = props => {
                             init={tempo}
                             disabled={!tempo}
                         />
-                    </Grid>
+                    </Grid> */}
                 </Grid>
             </form>
         </ThemeProvider>
