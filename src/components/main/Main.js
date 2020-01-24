@@ -46,10 +46,21 @@ const ContainerElement = styled.div`
     padding-top: ${space.s7};
 `;
 
-const Main = props => {
-    const {
-        redux: { lyricsData, displayLyricsList, displaySettings, colorSchemeNo }
-    } = props;
+const Main = ({
+    redux: { lyricsData, displayLyricsList, displaySettings, colorSchemeNo }
+}) => {
+    const keyForSavedSettings = "saved_settings";
+
+    // get value from local storage. If ther is no saved values, eturn default value
+    const getInitialValue = (key, defaultValue) => {
+        let value = window.localStorage.getItem(keyForSavedSettings);
+
+        return value !== null ? JSON.parse(value)[key] : defaultValue;
+    };
+
+    const initialValues = {
+        metronom_sound: getInitialValue("metronom_sound", true)
+    };
 
     return (
         <MainElement colorSchemeNo={colorSchemeNo}>
@@ -62,7 +73,8 @@ const Main = props => {
                     <ContainerElement></ContainerElement>
                 ) : null}
                 <Settings
-                    initialValues={{ employed: false, metronom_sound: false }}
+                    initialValues={initialValues}
+                    keyForSavedSettings={keyForSavedSettings}
                 />
             </Container>
         </MainElement>

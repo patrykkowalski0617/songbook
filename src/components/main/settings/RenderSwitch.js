@@ -13,7 +13,8 @@ const styles = {
 
 export class RenderSwitch extends Component {
     render() {
-        const { input, label, classes } = this.props;
+        const { input, label, classes, returnvalue } = this.props;
+
         return (
             <div>
                 <FormControlLabel
@@ -23,11 +24,14 @@ export class RenderSwitch extends Component {
                         <Switch
                             color="primary"
                             checked={input.value ? true : false}
-                            onChange={input.onChange}
+                            onChange={(e, val) => {
+                                input.onChange(val);
+                            }}
                         />
                     }
                     label={label}
                     labelPlacement="top"
+                    // returnvalue={returnvalue("dupa")}
                 />
             </div>
         );

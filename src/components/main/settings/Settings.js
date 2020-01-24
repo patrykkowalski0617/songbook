@@ -16,7 +16,26 @@ const theme = createMuiTheme({
     }
 });
 
-let Settings = ({ handleSubmit, redux: { displaySettings, lyricsData } }) => {
+let Settings = props => {
+    const {
+        handleSubmit,
+        initialValues,
+        keyForSavedSettings,
+        redux: {
+            displaySettings,
+            form: {
+                settings: { values }
+            }
+        }
+    } = props;
+
+    const saveValuesLocally = (key, value) => {
+        window.localStorage.setItem(
+            keyForSavedSettings,
+            JSON.stringify({ [key]: value })
+        );
+    };
+
     return displaySettings ? (
         <ThemeProvider theme={theme}>
             <form onSubmit={handleSubmit}>
@@ -31,6 +50,9 @@ let Settings = ({ handleSubmit, redux: { displaySettings, lyricsData } }) => {
                             component={RenderSwitch}
                             label="Dźwięk metronomu"
                             type="checkbox"
+                            onChange={val => {
+                                saveValuesLocally("metronom_sound", val);
+                            }}
                         />
                     </Grid>
                     {/* <Grid item xs={12}>
