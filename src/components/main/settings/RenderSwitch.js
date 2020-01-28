@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -11,30 +11,24 @@ const styles = {
     }
 };
 
-export class RenderSwitch extends Component {
-    render() {
-        const { input, label, classes } = this.props;
-
-        return (
-            <div>
-                <FormControlLabel
-                    value="top"
-                    className={classes.controlLabel}
-                    control={
-                        <Switch
-                            color="primary"
-                            checked={input.value ? true : false}
-                            onChange={(e, val) => {
-                                input.onChange(val);
-                            }}
-                        />
-                    }
-                    label={label}
-                    labelPlacement="top"
+const RenderSwitch = ({ input, label, classes }) => (
+    <div>
+        <FormControlLabel
+            value="top"
+            className={classes.controlLabel}
+            control={
+                <Switch
+                    color="primary"
+                    checked={input.value ? true : false}
+                    onChange={(e, val) => {
+                        input.onChange(val);
+                    }}
                 />
-            </div>
-        );
-    }
-}
+            }
+            label={label}
+            labelPlacement="top"
+        />
+    </div>
+);
 
 export default withStyles(styles)(RenderSwitch);

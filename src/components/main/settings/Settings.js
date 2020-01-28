@@ -21,7 +21,6 @@ let Settings = props => {
     } = props;
 
     const saveValuesLocally = (key, value) => {
-        // console.log(key, value);
         let currentSavedSettings = window.localStorage.getItem(
             keyForSavedSettings
         );
