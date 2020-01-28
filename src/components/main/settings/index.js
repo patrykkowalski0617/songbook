@@ -1,5 +1,3 @@
-import Settings from "./Settings";
-import RenderSwitch from "./RenderSwitch";
-import RenderSlider from "./RenderSlider";
-
-export { Settings, RenderSwitch, RenderSlider };
+export { default as Settings } from "./Settings";
+export { default as Slider } from "./Slider";
+export { default as Switch } from "./Switch";

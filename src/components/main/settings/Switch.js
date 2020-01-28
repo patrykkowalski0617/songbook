@@ -1,6 +1,6 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
-import Switch from "@material-ui/core/Switch";
+import { default as SwitchElement } from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 const styles = {
@@ -17,7 +17,7 @@ const RenderSwitch = ({ input, label, classes }) => (
             value="top"
             className={classes.controlLabel}
             control={
-                <Switch
+                <SwitchElement
                     color="primary"
                     checked={input.value ? true : false}
                     onChange={(e, val) => {

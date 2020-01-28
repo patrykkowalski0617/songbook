@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
-import { RenderSwitch, RenderSlider } from "./";
+import { Switch, Slider } from "./";
 import Grid from "@material-ui/core/Grid";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import purple from "@material-ui/core/colors/purple";
@@ -49,7 +49,7 @@ let Settings = props => {
                         <Field
                             id="metronom_sound"
                             name="metronom_sound"
-                            component={RenderSwitch}
+                            component={Switch}
                             label="Dźwięk metronomu"
                             onChange={val => {
                                 saveValuesLocally("metronom_sound", val);
@@ -60,7 +60,7 @@ let Settings = props => {
                         <Field
                             id="start_delay"
                             name="start_delay"
-                            component={RenderSlider}
+                            component={Slider}
                             label="Opóźnienie startu"
                             min="1"
                             max="4"
@@ -78,7 +78,7 @@ let Settings = props => {
                         <Field
                             id="tempo"
                             name="tempo"
-                            component={RenderSlider}
+                            component={Slider}
                             label="Tempo"
                             min="10"
                             max="300"

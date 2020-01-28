@@ -3,7 +3,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Input from "@material-ui/core/Input";
-import Slider from "@material-ui/core/Slider";
+import { default as SliderElement } from "@material-ui/core/Slider";
 
 const styles = {
     controlLabel: {
@@ -12,7 +12,7 @@ const styles = {
     }
 };
 
-const RenderSlider = ({ classes, input, label, min, max, disabled }) => (
+const Slider = ({ classes, input, label, min, max, disabled }) => (
     <div>
         <FormControlLabel
             value="top"
@@ -20,7 +20,7 @@ const RenderSlider = ({ classes, input, label, min, max, disabled }) => (
             control={
                 <Grid container spacing={2} alignItems="center">
                     <Grid item xs={9}>
-                        <Slider
+                        <SliderElement
                             value={
                                 typeof input.value === "number"
                                     ? input.value
@@ -67,4 +67,4 @@ const RenderSlider = ({ classes, input, label, min, max, disabled }) => (
     </div>
 );
 
-export default withStyles(styles)(RenderSlider);
+export default withStyles(styles)(Slider);
