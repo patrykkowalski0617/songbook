@@ -54,12 +54,14 @@ const Main = ({
     // get value from local storage. If ther is no saved values, eturn default value
     const getInitialValue = (key, defaultValue) => {
         let value = window.localStorage.getItem(keyForSavedSettings);
-
-        return value !== null ? JSON.parse(value)[key] : defaultValue;
+        value = value !== null ? JSON.parse(value)[key] : defaultValue;
+        value = value !== undefined ? value : defaultValue;
+        return value;
     };
 
     const initialValues = {
-        metronom_sound: getInitialValue("metronom_sound", true)
+        metronom_sound: getInitialValue("metronom_sound", true),
+        start_delay: getInitialValue("start_delay", 2)
     };
 
     return (

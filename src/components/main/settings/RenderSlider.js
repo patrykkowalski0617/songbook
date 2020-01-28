@@ -61,8 +61,7 @@ class RenderSlider extends Component {
     }
 
     render() {
-        const { classes, input, label, min, max, init, disabled } = this.props;
-        const { value } = this.state;
+        const { classes, input, label, min, max, disabled } = this.props;
 
         return (
             <div>
@@ -74,13 +73,16 @@ class RenderSlider extends Component {
                             <Grid item xs={9}>
                                 <Slider
                                     value={
-                                        typeof value === "number"
-                                            ? value
-                                            : Number(init)
+                                        typeof input.value === "number"
+                                            ? input.value
+                                            : Number(input.value)
                                     }
                                     min={Number(min)}
                                     max={Number(max)}
-                                    onChange={this.handleSliderChange}
+                                    onChange={(e, val) => {
+                                        input.onChange(val);
+                                        this.handleSliderChange(e);
+                                    }}
                                     onMouseDown={this.handleSliderMouseDown}
                                     aria-labelledby="input-slider"
                                     disabled={disabled}
@@ -88,22 +90,30 @@ class RenderSlider extends Component {
                             </Grid>
                             <Grid item xs={3}>
                                 <Input
-                                    value={value}
+                                    value={
+                                        typeof input.value === "number"
+                                            ? input.value
+                                            : Number(input.value)
+                                    }
                                     margin="dense"
                                     disabled={disabled}
                                     onChange={e => {
-                                        this.handleInputChange(e);
+                                        console.log("change in num");
                                         input.onChange(e);
+                                        this.handleInputChange(e);
                                     }}
-                                    onBlur={this.handleBlur}
-                                    onFocus={input.onChange}
                                     inputProps={{
                                         step: 1,
                                         min: Number(min),
                                         max: Number(max),
                                         type: "number",
                                         "aria-labelledby": "input-slider",
-                                        ref: this.numberInputRef
+                                        ref: this.numberInputRef,
+                                        onChange: e => {
+                                            input.onChange(
+                                                e.target.valueAsNumber
+                                            );
+                                        }
                                     }}
                                 />
                             </Grid>

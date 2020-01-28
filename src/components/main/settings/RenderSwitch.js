@@ -13,7 +13,7 @@ const styles = {
 
 export class RenderSwitch extends Component {
     render() {
-        const { input, label, classes, returnvalue } = this.props;
+        const { input, label, classes } = this.props;
 
         return (
             <div>
@@ -31,7 +31,6 @@ export class RenderSwitch extends Component {
                     }
                     label={label}
                     labelPlacement="top"
-                    // returnvalue={returnvalue("dupa")}
                 />
             </div>
         );

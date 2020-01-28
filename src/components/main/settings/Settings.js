@@ -1,10 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
-import {
-    RenderSwitch
-    // , RenderSlider
-} from "./";
+import { RenderSwitch, RenderSlider } from "./";
 import Grid from "@material-ui/core/Grid";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import purple from "@material-ui/core/colors/purple";
@@ -19,20 +16,26 @@ const theme = createMuiTheme({
 let Settings = props => {
     const {
         handleSubmit,
-        initialValues,
         keyForSavedSettings,
-        redux: {
-            displaySettings,
-            form: {
-                settings: { values }
-            }
-        }
+        redux: { displaySettings }
     } = props;
 
     const saveValuesLocally = (key, value) => {
+        // console.log(key, value);
+        let currentSavedSettings = window.localStorage.getItem(
+            keyForSavedSettings
+        );
+        currentSavedSettings = JSON.parse(currentSavedSettings);
+
+        if (currentSavedSettings !== null) {
+            currentSavedSettings[key] = value;
+        } else {
+            currentSavedSettings = { [key]: value };
+        }
+
         window.localStorage.setItem(
             keyForSavedSettings,
-            JSON.stringify({ [key]: value })
+            JSON.stringify(currentSavedSettings)
         );
     };
 
@@ -49,38 +52,50 @@ let Settings = props => {
                             name="metronom_sound"
                             component={RenderSwitch}
                             label="Dźwięk metronomu"
-                            type="checkbox"
                             onChange={val => {
                                 saveValuesLocally("metronom_sound", val);
                             }}
                         />
                     </Grid>
-                    {/* <Grid item xs={12}>
+                    <Grid item xs={12}>
                         <Field
+                            id="start_delay"
                             name="start_delay"
                             component={RenderSlider}
                             label="Opóźnienie startu"
                             min="1"
                             max="4"
-                            init={initialValues.start_delay}
-                            disabled={!initialValues.start_delay}
+                            onChange={val => {
+                                if (typeof val === "number") {
+                                    saveValuesLocally("start_delay", val);
+                                } else {
+                                    console.warn("value is not type of number");
+                                }
+                            }}
                         />
-                    </Grid> */}
-
-                    {/* <Grid item xs={12}>
-                        <p>Ustawienia główne</p>
                     </Grid>
 
                     <Grid item xs={12}>
                         <Field
+                            id="tempo"
                             name="tempo"
                             component={RenderSlider}
                             label="Tempo"
                             min="10"
                             max="300"
-                            init={tempo}
-                            disabled={!tempo}
+                            disabled={true}
+                            onChange={val => {
+                                // if (typeof val === "number") {
+                                //     saveValuesLocally("tempo", val);
+                                // } else {
+                                //     console.warn("value is not type of number");
+                                // }
+                            }}
                         />
+                    </Grid>
+
+                    {/* <Grid item xs={12}>
+                        <p>Ustawienia główne</p>
                     </Grid> */}
                 </Grid>
             </form>
