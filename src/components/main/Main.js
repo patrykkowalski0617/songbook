@@ -1,6 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
 import { LyricsList } from "./";
 import { Lyrics } from "./lyrics";
+import { Settings, defaultSettings } from "./settings";
 import styled from "styled-components";
 import {
     headerH,
@@ -10,7 +12,6 @@ import {
     media,
     container
 } from "../style";
-import { connect } from "react-redux";
 
 const MainElement = styled.main`
     height: calc(100vh - ${headerH} - ${footerH});
@@ -33,7 +34,7 @@ const MainElement = styled.main`
 
 const Container = styled.div`
     height: 100%;
-    overflow: auto;
+    overflow: hidden auto;
     position: relative;
     background: ${props => colorScheme[props.colorSchemeNo].dark1}d5;
     ${container};
@@ -45,15 +46,41 @@ const ContainerElement = styled.div`
     padding-top: ${space.s7};
 `;
 
-const Main = ({ redux: { lyricsData, displayLyricsList, colorSchemeNo } }) => {
+const Main = ({
+    redux: { lyricsData, displayLyricsList, displaySettings, colorSchemeNo }
+}) => {
+    const keyForSavedSettings = "saved_settings";
+
+    // get value from local storage. If ther is no saved values, eturn default value
+    const getInitialValue = (key, defaultValue) => {
+        let value = window.localStorage.getItem(keyForSavedSettings);
+        value = value !== null ? JSON.parse(value)[key] : defaultValue;
+        value = value !== undefined ? value : defaultValue;
+        return value;
+    };
+
+    const initialValues = {
+        metronom_sound: getInitialValue(
+            "metronom_sound",
+            defaultSettings.metronomSound
+        ),
+        start_delay: getInitialValue("start_delay", defaultSettings.startDelay)
+    };
+
     return (
         <MainElement colorSchemeNo={colorSchemeNo}>
             <Container colorSchemeNo={colorSchemeNo}>
                 <LyricsList />
-                {lyricsData && !displayLyricsList ? <Lyrics /> : null}
+                {lyricsData && !displayLyricsList && !displaySettings ? (
+                    <Lyrics />
+                ) : null}
                 {!lyricsData && !displayLyricsList ? (
                     <ContainerElement></ContainerElement>
                 ) : null}
+                <Settings
+                    initialValues={initialValues}
+                    keyForSavedSettings={keyForSavedSettings}
+                />
             </Container>
         </MainElement>
     );

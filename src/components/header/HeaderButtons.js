@@ -4,6 +4,7 @@ import { space, circleInput, row, col, pulse, colorScheme } from "../style";
 import {
     keepSearchedValue,
     lyricsListToggle,
+    settingsToggle,
     counterToggle,
     tutorialNextStep
 } from "./../../redux/actions";
@@ -49,10 +50,12 @@ const HeaderButtons = ({
     counterToggle,
     keepSearchedValue,
     lyricsListToggle,
+    settingsToggle,
     tutorialNextStep,
     redux: {
         counterIsRun,
         displayLyricsList,
+        displaySettings,
         lyricsData,
         colorSchemeNo,
         tutorialIsInactive,
@@ -62,13 +65,25 @@ const HeaderButtons = ({
     }
 }) => {
     const userImgSrc = loggedIn ? loggedIn.images[0].url : null;
-
+    console.log(displayLyricsList);
     const buttonsData = [
+        {
+            onIcon: "settings",
+            offIcon: "close",
+            onStatus: !displaySettings,
+            display: !displayLyricsList,
+            onClickHandler: () => {
+                settingsToggle();
+                if (counterIsRun) {
+                    counterToggle(false);
+                }
+            }
+        },
         {
             onIcon: "play",
             offIcon: "pause",
             onStatus: !counterIsRun,
-            display: !displayLyricsList && lyricsData,
+            display: !displayLyricsList && !displaySettings && lyricsData,
             onClickHandler: () => {
                 if (!lyricsIsLastBarMarked) {
                     counterToggle(true);
@@ -89,7 +104,7 @@ const HeaderButtons = ({
             onIcon: "list",
             offIcon: "close",
             onStatus: !displayLyricsList,
-            display: true,
+            display: !displaySettings,
             onClickHandler: () => {
                 keepSearchedValue("");
                 lyricsListToggle();
@@ -105,7 +120,7 @@ const HeaderButtons = ({
             onIcon: "login",
             offIcon: "logout",
             onStatus: true,
-            display: !displayLyricsList,
+            display: !displayLyricsList && !displaySettings,
             onClickHandler: () => {
                 if (loggedIn) {
                     const logOut = window.confirm("Do you want to log-out?");
@@ -159,6 +174,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
     keepSearchedValue,
     lyricsListToggle,
+    settingsToggle,
     counterToggle,
     tutorialNextStep
 };

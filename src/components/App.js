@@ -3,11 +3,7 @@ import { Header } from "./header/";
 import { Main } from "./main/";
 import { Footer } from "./footer/";
 import { connect } from "react-redux";
-import {
-    counterSetScrollDelay,
-    tutorialDeactivate,
-    logIn
-} from "../redux/actions";
+import { tutorialDeactivate, logIn } from "../redux/actions";
 import Spotify from "spotify-web-api-js";
 
 const spotifyApi = new Spotify();
@@ -17,7 +13,7 @@ class App extends Component {
         super(props);
 
         const params = this.getHashParams();
-        
+
         const token = params.access_token;
         if (token) {
             spotifyApi.setAccessToken(token);
@@ -28,7 +24,6 @@ class App extends Component {
                 })
                 .catch(err => console.log(err));
         }
-
         this.state = { userImg: null };
     }
 
@@ -45,9 +40,7 @@ class App extends Component {
     }
 
     componentWillMount() {
-        const { counterSetScrollDelay, tutorialDeactivate } = this.props;
-
-        counterSetScrollDelay();
+        const { tutorialDeactivate } = this.props;
 
         const tutorialIsInactive = localStorage.getItem("tutorialIsInactive");
         if (tutorialIsInactive) {
@@ -70,7 +63,6 @@ const mapStateToProps = state => {
     return { redux: state };
 };
 const mapDispatchToProps = {
-    counterSetScrollDelay,
     tutorialDeactivate,
     logIn
 };

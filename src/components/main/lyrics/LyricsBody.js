@@ -10,6 +10,9 @@ import {
 import { connect } from "react-redux";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import { formValueSelector } from "redux-form";
+
+const selector = formValueSelector("settings");
 
 const LyricsBodyContainer = styled.div`
     position: relative;
@@ -129,19 +132,19 @@ class LyricsBody extends Component {
 
     render() {
         const {
+            startDelay,
             redux: {
                 lyricsData,
                 counterIsRun,
                 songTiming,
                 colorSchemeNo,
-                counterIterationNumber,
-                counterScrollDelay
+                counterIterationNumber
             }
         } = this.props;
 
         const displayCountdown =
             counterIsRun &&
-            counterIterationNumber + 1 <= counterScrollDelay * songTiming;
+            counterIterationNumber + 1 <= startDelay * songTiming;
 
         const lyricsBars = () => {
             const barsData = lyricsData.bars;
@@ -220,9 +223,11 @@ class LyricsBody extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return { redux: state };
-};
+const mapStateToProps = state => ({
+    redux: state,
+    startDelay: selector(state, "start_delay")
+});
+
 const mapDispatchToProps = {
     counterSetSongTiming,
     lyricsLastBarIsMarked
