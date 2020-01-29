@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { LyricsList } from "./";
 import { Lyrics } from "./lyrics";
-import { Settings } from "./settings";
+import { Settings, defaultSettings } from "./settings";
 import styled from "styled-components";
 import {
     headerH,
@@ -60,8 +60,11 @@ const Main = ({
     };
 
     const initialValues = {
-        metronom_sound: getInitialValue("metronom_sound", true),
-        start_delay: getInitialValue("start_delay", 2)
+        metronom_sound: getInitialValue(
+            "metronom_sound",
+            defaultSettings.metronomSound
+        ),
+        start_delay: getInitialValue("start_delay", defaultSettings.startDelay)
     };
 
     return (
