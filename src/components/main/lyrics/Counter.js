@@ -72,16 +72,9 @@ class Counter extends Component {
     }
 
     render() {
-        const {
-            redux: {
-                form: {
-                    settings: {
-                        values: { metronom_sound }
-                    }
-                }
-            }
-        } = this.props;
-        return metronom_sound ? (
+        const { metronomSound } = this.props;
+
+        return metronomSound ? (
             <Sound
                 url={"metronom_audio/metronom.mp3"}
                 playStatus={"PLAYING"}
@@ -93,7 +86,8 @@ class Counter extends Component {
 
 const mapStateToProps = state => ({
     redux: state,
-    startDelay: selector(state, "start_delay")
+    startDelay: selector(state, "start_delay"),
+    metronomSound: selector(state, "metronom_sound")
 });
 
 const mapDispatchToProps = {
