@@ -8,7 +8,8 @@ import { default as SliderElement } from "@material-ui/core/Slider";
 const styles = {
     controlLabel: {
         alignItems: "start",
-        display: "flex"
+        display: "flex",
+        textAlign: "right"
     }
 };
 

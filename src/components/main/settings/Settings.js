@@ -4,21 +4,20 @@ import { Field, reduxForm } from "redux-form";
 import { Switch, Slider } from "./";
 import Grid from "@material-ui/core/Grid";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import purple from "@material-ui/core/colors/purple";
+import { colorScheme } from "../../style";
 
-const theme = createMuiTheme({
-    palette: {
-        primary: { main: purple[500] }, // Purple and green play nicely together.
-        secondary: { main: "#11cb5f" } // This is just green.A700 as hex.
-    }
-});
-
-let Settings = props => {
-    const {
-        handleSubmit,
-        keyForSavedSettings,
-        redux: { displaySettings }
-    } = props;
+let Settings = ({
+    handleSubmit,
+    keyForSavedSettings,
+    redux: { displaySettings, colorSchemeNo }
+}) => {
+    const theme = createMuiTheme({
+        palette: {
+            primary: { main: colorScheme[colorSchemeNo].primary1 },
+            secondary: { main: colorScheme[colorSchemeNo].secondary1 },
+            text: { primary: "#FFDACF" }
+        }
+    });
 
     const saveValuesLocally = (key, value) => {
         let currentSavedSettings = window.localStorage.getItem(
@@ -50,7 +49,7 @@ let Settings = props => {
                             id="metronom_sound"
                             name="metronom_sound"
                             component={Switch}
-                            label="Dźwięk metronomu"
+                            label="Metronom sound"
                             onChange={val => {
                                 saveValuesLocally("metronom_sound", val);
                             }}
@@ -61,7 +60,7 @@ let Settings = props => {
                             id="start_delay"
                             name="start_delay"
                             component={Slider}
-                            label="Opóźnienie startu"
+                            label="Start delay [bars]"
                             min="1"
                             max="4"
                             onChange={val => {
@@ -74,7 +73,7 @@ let Settings = props => {
                         />
                     </Grid>
 
-                    <Grid item xs={12}>
+                    {/* <Grid item xs={12}>
                         <Field
                             id="tempo"
                             name="tempo"
@@ -91,10 +90,6 @@ let Settings = props => {
                                 // }
                             }}
                         />
-                    </Grid>
-
-                    {/* <Grid item xs={12}>
-                        <p>Ustawienia główne</p>
                     </Grid> */}
                 </Grid>
             </form>

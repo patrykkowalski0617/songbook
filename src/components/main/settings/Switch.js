@@ -7,7 +7,8 @@ const styles = {
     controlLabel: {
         display: "flex",
         justifyContent: "space-between",
-        flexDirection: "row-reverse"
+        flexDirection: "row-reverse",
+        color: "#FFDACF"
     }
 };
 
