@@ -56,7 +56,7 @@ const Coundown = ({
         transform: translate(-50%, -50%);
         animation: ${numberZoomAnimation} ${time}ms ease-out 1;
     `;
-    console.log(displayCountdown);
+    
     return displayCountdown ? (
         <CountdownElement colorSchemeNo={colorSchemeNo}>
             <P time={time}>{delay - counterIterationNumber}</P>

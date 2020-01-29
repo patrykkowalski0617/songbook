@@ -65,7 +65,7 @@ const HeaderButtons = ({
     }
 }) => {
     const userImgSrc = loggedIn ? loggedIn.images[0].url : null;
-    console.log(displayLyricsList);
+
     const buttonsData = [
         {
             onIcon: "settings",
