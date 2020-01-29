@@ -2,6 +2,9 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import { colorScheme } from "../../style";
 import { connect } from "react-redux";
+import { formValueSelector } from "redux-form";
+
+const selector = formValueSelector("settings");
 
 const CountdownElement = styled.div`
     position: absolute;
@@ -36,17 +39,17 @@ const Coundown = props => {
     const {
         redux: {
             lyricsData,
-            counterScrollDelay,
             songTiming,
             counterIsRun,
             counterIterationNumber,
             colorSchemeNo
-        }
+        },
+        startDelay
     } = props;
 
     const time = (60 / lyricsData.tempo) * 1000 * 0.25;
 
-    const delay = counterScrollDelay * songTiming;
+    const delay = startDelay * songTiming;
 
     const P = styled.p`
         position: absolute;
@@ -58,14 +61,16 @@ const Coundown = props => {
 
     return counterIsRun && counterIterationNumber + 1 <= delay ? (
         <CountdownElement colorSchemeNo={colorSchemeNo}>
-            <P time={time}>{songTiming - counterIterationNumber}</P>
+            <P time={time}>{delay - counterIterationNumber}</P>
         </CountdownElement>
     ) : counterIsRun ? (
         <PreventScrollCover />
     ) : null;
 };
 
-const mapStateToProps = state => {
-    return { redux: state };
-};
+const mapStateToProps = state => ({
+    redux: state,
+    startDelay: selector(state, "start_delay")
+});
+
 export default connect(mapStateToProps)(Coundown);

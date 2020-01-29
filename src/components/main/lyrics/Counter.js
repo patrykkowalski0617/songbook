@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { counterIteration, counterToggle } from "../../../redux/actions";
 import Sound from "react-sound-dkadrios";
+import { formValueSelector } from "redux-form";
+
+const selector = formValueSelector("settings");
 
 class Counter extends Component {
     componentWillMount() {
@@ -14,11 +17,12 @@ class Counter extends Component {
             counterIteration,
             onBarChange,
             counterToggle,
-            redux: { lyricsData, counterScrollDelay, songTiming }
+            startDelay,
+            redux: { lyricsData, songTiming }
         } = this.props;
 
         const intervalTime = (60 / lyricsData.tempo) * 1000;
-        const startDelay = counterScrollDelay * songTiming;
+        const scrollDelay = startDelay * songTiming;
         const endDelay = 1;
 
         let counterIterationNumber = 0;
@@ -38,7 +42,7 @@ class Counter extends Component {
                 counterIteration(true);
                 //  if second bar is active
                 if (
-                    counterIterationNumber >= startDelay &&
+                    counterIterationNumber >= scrollDelay &&
                     counterIterationNumber % songTiming === 0
                 ) {
                     onBarChange();
@@ -87,14 +91,13 @@ class Counter extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return { redux: state };
-};
+const mapStateToProps = state => ({
+    redux: state,
+    startDelay: selector(state, "start_delay")
+});
+
 const mapDispatchToProps = {
     counterIteration,
     counterToggle
 };
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Counter);
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
