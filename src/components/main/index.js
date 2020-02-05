@@ -1,3 +1,2 @@
-import Main from "./Main";
-import LyricsList from "./LyricsList";
-export { Main, LyricsList };
+export { default as Main } from "./Main";
+export { default as LyricsList } from "./LyricsList";

@@ -29,14 +29,15 @@ ShallowWrapper {
     "nodeType": "function",
     "props": Object {
       "children": <App
-        counterSetScrollDelay={[Function]}
+        logIn={[Function]}
         redux={
           Object {
-            "colorSchemeNo": 1,
             "counterIsRun": false,
             "counterIterationNumber": 0,
-            "counterScrollDelay": 1,
             "displayLyricsList": false,
+            "displaySettings": false,
+            "form": Object {},
+            "loggedIn": null,
             "lyricsData": null,
             "lyricsIsLastBarMarked": false,
             "searchResult": null,
@@ -65,13 +66,14 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "counterSetScrollDelay": [Function],
+        "logIn": [Function],
         "redux": Object {
-          "colorSchemeNo": 1,
           "counterIsRun": false,
           "counterIterationNumber": 0,
-          "counterScrollDelay": 1,
           "displayLyricsList": false,
+          "displaySettings": false,
+          "form": Object {},
+          "loggedIn": null,
           "lyricsData": null,
           "lyricsIsLastBarMarked": false,
           "searchResult": null,
@@ -119,14 +121,15 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": <App
-          counterSetScrollDelay={[Function]}
+          logIn={[Function]}
           redux={
             Object {
-              "colorSchemeNo": 1,
               "counterIsRun": false,
               "counterIterationNumber": 0,
-              "counterScrollDelay": 1,
               "displayLyricsList": false,
+              "displaySettings": false,
+              "form": Object {},
+              "loggedIn": null,
               "lyricsData": null,
               "lyricsIsLastBarMarked": false,
               "searchResult": null,
@@ -155,13 +158,14 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "counterSetScrollDelay": [Function],
+          "logIn": [Function],
           "redux": Object {
-            "colorSchemeNo": 1,
             "counterIsRun": false,
             "counterIterationNumber": 0,
-            "counterScrollDelay": 1,
             "displayLyricsList": false,
+            "displaySettings": false,
+            "form": Object {},
+            "loggedIn": null,
             "lyricsData": null,
             "lyricsIsLastBarMarked": false,
             "searchResult": null,

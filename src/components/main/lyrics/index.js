@@ -1,7 +1,6 @@
-import Countdown from "./Countdown";
-import Counter from "./Counter";
-import Lyrics from "./Lyrics";
-import LyricsBar from "./LyricsBar";
-import LyricsBody from "./LyricsBody";
-import Metronom from "./Metronom";
-export { Countdown, Counter, Lyrics, LyricsBar, LyricsBody, Metronom };
+export { default as Countdown } from "./Countdown";
+export { default as Counter } from "./Counter";
+export { default as Lyrics } from "./Lyrics";
+export { default as LyricsBar } from "./LyricsBar";
+export { default as LyricsBody } from "./LyricsBody";
+export { default as Metronom } from "./Metronom";

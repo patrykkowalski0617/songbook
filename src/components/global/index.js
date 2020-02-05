@@ -1,2 +1,1 @@
-import TutorialPopUp from "./TutorialPopUp";
-export { TutorialPopUp };
+export { default as TutorialPopUp } from "./TutorialPopUp";

@@ -33,11 +33,12 @@ ShallowWrapper {
         counterToggle={[Function]}
         redux={
           Object {
-            "colorSchemeNo": 1,
             "counterIsRun": false,
             "counterIterationNumber": 0,
-            "counterScrollDelay": 1,
             "displayLyricsList": false,
+            "displaySettings": false,
+            "form": Object {},
+            "loggedIn": null,
             "lyricsData": null,
             "lyricsIsLastBarMarked": false,
             "searchResult": null,
@@ -67,12 +68,14 @@ ShallowWrapper {
       "props": Object {
         "counterIteration": [Function],
         "counterToggle": [Function],
+        "metronomSound": undefined,
         "redux": Object {
-          "colorSchemeNo": 1,
           "counterIsRun": false,
           "counterIterationNumber": 0,
-          "counterScrollDelay": 1,
           "displayLyricsList": false,
+          "displaySettings": false,
+          "form": Object {},
+          "loggedIn": null,
           "lyricsData": null,
           "lyricsIsLastBarMarked": false,
           "searchResult": null,
@@ -81,6 +84,7 @@ ShallowWrapper {
           "tutorialIsInactive": false,
           "tutorialStep": 0,
         },
+        "startDelay": undefined,
         "store": Object {
           "dispatch": [Function],
           "getState": [Function],
@@ -123,11 +127,12 @@ ShallowWrapper {
           counterToggle={[Function]}
           redux={
             Object {
-              "colorSchemeNo": 1,
               "counterIsRun": false,
               "counterIterationNumber": 0,
-              "counterScrollDelay": 1,
               "displayLyricsList": false,
+              "displaySettings": false,
+              "form": Object {},
+              "loggedIn": null,
               "lyricsData": null,
               "lyricsIsLastBarMarked": false,
               "searchResult": null,
@@ -157,12 +162,14 @@ ShallowWrapper {
         "props": Object {
           "counterIteration": [Function],
           "counterToggle": [Function],
+          "metronomSound": undefined,
           "redux": Object {
-            "colorSchemeNo": 1,
             "counterIsRun": false,
             "counterIterationNumber": 0,
-            "counterScrollDelay": 1,
             "displayLyricsList": false,
+            "displaySettings": false,
+            "form": Object {},
+            "loggedIn": null,
             "lyricsData": null,
             "lyricsIsLastBarMarked": false,
             "searchResult": null,
@@ -171,6 +178,7 @@ ShallowWrapper {
             "tutorialIsInactive": false,
             "tutorialStep": 0,
           },
+          "startDelay": undefined,
           "store": Object {
             "dispatch": [Function],
             "getState": [Function],

@@ -29,16 +29,18 @@ ShallowWrapper {
     "nodeType": "function",
     "props": Object {
       "children": <LyricsList
+        colorSchemeNo={0}
         keepLyricsData={[Function]}
         keepSearchResult={[Function]}
         lyricsListToggle={[Function]}
         redux={
           Object {
-            "colorSchemeNo": 1,
             "counterIsRun": false,
             "counterIterationNumber": 0,
-            "counterScrollDelay": 1,
             "displayLyricsList": false,
+            "displaySettings": false,
+            "form": Object {},
+            "loggedIn": null,
             "lyricsData": null,
             "lyricsIsLastBarMarked": false,
             "searchResult": null,
@@ -66,15 +68,17 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
+        "colorSchemeNo": 0,
         "keepLyricsData": [Function],
         "keepSearchResult": [Function],
         "lyricsListToggle": [Function],
         "redux": Object {
-          "colorSchemeNo": 1,
           "counterIsRun": false,
           "counterIterationNumber": 0,
-          "counterScrollDelay": 1,
           "displayLyricsList": false,
+          "displaySettings": false,
+          "form": Object {},
+          "loggedIn": null,
           "lyricsData": null,
           "lyricsIsLastBarMarked": false,
           "searchResult": null,
@@ -121,16 +125,18 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": <LyricsList
+          colorSchemeNo={0}
           keepLyricsData={[Function]}
           keepSearchResult={[Function]}
           lyricsListToggle={[Function]}
           redux={
             Object {
-              "colorSchemeNo": 1,
               "counterIsRun": false,
               "counterIterationNumber": 0,
-              "counterScrollDelay": 1,
               "displayLyricsList": false,
+              "displaySettings": false,
+              "form": Object {},
+              "loggedIn": null,
               "lyricsData": null,
               "lyricsIsLastBarMarked": false,
               "searchResult": null,
@@ -158,15 +164,17 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "colorSchemeNo": 0,
           "keepLyricsData": [Function],
           "keepSearchResult": [Function],
           "lyricsListToggle": [Function],
           "redux": Object {
-            "colorSchemeNo": 1,
             "counterIsRun": false,
             "counterIterationNumber": 0,
-            "counterScrollDelay": 1,
             "displayLyricsList": false,
+            "displaySettings": false,
+            "form": Object {},
+            "loggedIn": null,
             "lyricsData": null,
             "lyricsIsLastBarMarked": false,
             "searchResult": null,

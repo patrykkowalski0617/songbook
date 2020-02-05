@@ -29,15 +29,17 @@ ShallowWrapper {
     "nodeType": "function",
     "props": Object {
       "children": <Search
+        colorSchemeNo={0}
         keepSearchedValue={[Function]}
         lyricsListToggle={[Function]}
         redux={
           Object {
-            "colorSchemeNo": 1,
             "counterIsRun": false,
             "counterIterationNumber": 0,
-            "counterScrollDelay": 1,
             "displayLyricsList": false,
+            "displaySettings": false,
+            "form": Object {},
+            "loggedIn": null,
             "lyricsData": null,
             "lyricsIsLastBarMarked": false,
             "searchResult": null,
@@ -65,14 +67,16 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
+        "colorSchemeNo": 0,
         "keepSearchedValue": [Function],
         "lyricsListToggle": [Function],
         "redux": Object {
-          "colorSchemeNo": 1,
           "counterIsRun": false,
           "counterIterationNumber": 0,
-          "counterScrollDelay": 1,
           "displayLyricsList": false,
+          "displaySettings": false,
+          "form": Object {},
+          "loggedIn": null,
           "lyricsData": null,
           "lyricsIsLastBarMarked": false,
           "searchResult": null,
@@ -119,15 +123,17 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": <Search
+          colorSchemeNo={0}
           keepSearchedValue={[Function]}
           lyricsListToggle={[Function]}
           redux={
             Object {
-              "colorSchemeNo": 1,
               "counterIsRun": false,
               "counterIterationNumber": 0,
-              "counterScrollDelay": 1,
               "displayLyricsList": false,
+              "displaySettings": false,
+              "form": Object {},
+              "loggedIn": null,
               "lyricsData": null,
               "lyricsIsLastBarMarked": false,
               "searchResult": null,
@@ -155,14 +161,16 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "colorSchemeNo": 0,
           "keepSearchedValue": [Function],
           "lyricsListToggle": [Function],
           "redux": Object {
-            "colorSchemeNo": 1,
             "counterIsRun": false,
             "counterIterationNumber": 0,
-            "counterScrollDelay": 1,
             "displayLyricsList": false,
+            "displaySettings": false,
+            "form": Object {},
+            "loggedIn": null,
             "lyricsData": null,
             "lyricsIsLastBarMarked": false,
             "searchResult": null,
