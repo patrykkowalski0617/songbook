@@ -1,12 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import { colorScheme, container, space, barInput } from "../style";
+import { colorScheme, container, space, barInput } from "../../style";
 import { tutorialNextStep, tutorialDeactivate } from "./../../redux/actions";
 import { connect } from "react-redux";
+import { formValueSelector } from "redux-form";
+
+const selector = formValueSelector("settings");
 
 const TutorialPopUpWrapper = styled.div`
     ${props =>
-        `background-color: ${colorScheme[props.colorSchemeNo].dark1};  ${props.position};`}
+        `background-color: ${colorScheme[props.colorSchemeNo].dark1};  ${
+            props.position
+        };`}
     border-radius: 5px;
     position: absolute;
     width: 200px;
@@ -79,7 +84,8 @@ const TutorialPopUp = ({
     bubblesPosition,
     tipText,
     tutorialDeactivate,
-    redux: { tutorialStep, colorSchemeNo }
+    colorSchemeNo,
+    redux: { tutorialStep }
 }) => {
     return (
         <TutorialPopUpWrapper colorSchemeNo={colorSchemeNo} position={position}>
@@ -104,14 +110,14 @@ const TutorialPopUp = ({
     );
 };
 
-const mapStateToProps = state => {
-    return { redux: state };
-};
+const mapStateToProps = state => ({
+    redux: state,
+    colorSchemeNo: selector(state, "color_scheme_no") || 0
+});
+
 const mapDispatchToProps = {
     tutorialNextStep,
     tutorialDeactivate
 };
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(TutorialPopUp);
+
+export default connect(mapStateToProps, mapDispatchToProps)(TutorialPopUp);

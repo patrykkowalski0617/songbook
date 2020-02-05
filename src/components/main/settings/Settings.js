@@ -1,48 +1,62 @@
+// At the moment this is only one part of aplication which use Material UI
+
 import React from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
-import { Switch, Slider } from "./";
+import { Switch, Slider, Select } from "./";
 import Grid from "@material-ui/core/Grid";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import { colorScheme } from "../../style";
+import { colorScheme } from "../../../style";
+import { saveValuesLocally } from "./";
+import { withStyles } from "@material-ui/core/styles";
+import { formValueSelector } from "redux-form";
+
+const selector = formValueSelector("settings");
+
+const styles = {
+    form: {
+        maxWidth: "300px",
+        margin: "0 auto"
+    }
+};
 
 let Settings = ({
     handleSubmit,
-    keyForSavedSettings,
-    redux: { displaySettings, colorSchemeNo }
+    colorSchemeNo,
+    classes,
+    redux: { displaySettings }
 }) => {
     const theme = createMuiTheme({
         palette: {
-            primary: { main: colorScheme[colorSchemeNo].primary1 },
-            secondary: { main: colorScheme[colorSchemeNo].secondary1 },
-            text: { primary: "#FFDACF" }
+            type: "dark",
+            text: {
+                primary: colorScheme[colorSchemeNo].light1,
+                secondary: colorScheme[colorSchemeNo].light2,
+                disabled: colorScheme[colorSchemeNo].muted
+            },
+            primary: {
+                main: colorScheme[colorSchemeNo].primary1
+            },
+            secondary: {
+                main: colorScheme[colorSchemeNo].secondary1
+            }
         }
     });
 
-    const saveValuesLocally = (key, value) => {
-        let currentSavedSettings = window.localStorage.getItem(
-            keyForSavedSettings
+    const colorSchemeOptions = colorScheme.map((item, index) => {
+        return (
+            <option key={index} value={index}>
+                {item.name}
+            </option>
         );
-        currentSavedSettings = JSON.parse(currentSavedSettings);
-
-        if (currentSavedSettings !== null) {
-            currentSavedSettings[key] = value;
-        } else {
-            currentSavedSettings = { [key]: value };
-        }
-
-        window.localStorage.setItem(
-            keyForSavedSettings,
-            JSON.stringify(currentSavedSettings)
-        );
-    };
+    });
 
     return displaySettings ? (
         <ThemeProvider theme={theme}>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className={classes.form}>
                 <Grid container spacing={4}>
                     <Grid item xs={12}>
-                        <p>Ustawienia główne</p>
+                        <p>Main settings</p>
                     </Grid>
                     <Grid item xs={12}>
                         <Field
@@ -72,7 +86,21 @@ let Settings = ({
                             }}
                         />
                     </Grid>
-
+                    <Grid item xs={12}>
+                        <Field
+                            id="color_scheme_no"
+                            name="color_scheme_no"
+                            component={Select}
+                            label="Skin"
+                            colorSchemeNo={colorSchemeNo}
+                            onChange={e => {
+                                const val = e.target.value;
+                                saveValuesLocally("color_scheme_no", val);
+                            }}
+                        >
+                            {colorSchemeOptions}
+                        </Field>
+                    </Grid>
                     {/* <Grid item xs={12}>
                         <Field
                             id="tempo"
@@ -97,12 +125,13 @@ let Settings = ({
     ) : null;
 };
 
-const mapStateToProps = state => {
-    return { redux: state };
-};
+const mapStateToProps = state => ({
+    redux: state,
+    colorSchemeNo: selector(state, "color_scheme_no") || 0
+});
 
 Settings = connect(mapStateToProps)(Settings);
 
 export default reduxForm({
     form: "settings"
-})(Settings);
+})(withStyles(styles)(Settings));

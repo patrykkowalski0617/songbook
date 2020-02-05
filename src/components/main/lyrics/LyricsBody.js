@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { LyricsBar, Countdown, Counter } from "./";
 import { BarAnimation, ScrollAnimation, ProgressBarAnimation } from "./logic/";
 import styled from "styled-components";
-import { colorScheme, space, lyricsBarH } from "../../style";
+import { colorScheme, space, lyricsBarH } from "../../../style";
 import {
     counterSetSongTiming,
     lyricsLastBarIsMarked
@@ -133,11 +133,11 @@ class LyricsBody extends Component {
     render() {
         const {
             startDelay,
+            colorSchemeNo,
             redux: {
                 lyricsData,
                 counterIsRun,
                 songTiming,
-                colorSchemeNo,
                 counterIterationNumber
             }
         } = this.props;
@@ -225,6 +225,7 @@ class LyricsBody extends Component {
 
 const mapStateToProps = state => ({
     redux: state,
+    colorSchemeNo: selector(state, "color_scheme_no") || 0,
     startDelay: selector(state, "start_delay")
 });
 
@@ -232,4 +233,5 @@ const mapDispatchToProps = {
     counterSetSongTiming,
     lyricsLastBarIsMarked
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(LyricsBody);

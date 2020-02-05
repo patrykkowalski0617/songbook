@@ -1,7 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { footerH, colorScheme, container } from "../style";
+import { footerH, colorScheme, container } from "../../style";
 import { connect } from "react-redux";
+import { formValueSelector } from "redux-form";
+
+const selector = formValueSelector("settings");
 
 const FooterElement = styled.footer`
     height: ${footerH};
@@ -14,7 +17,7 @@ const Container = styled.div`
     ${container}
 `;
 
-const Footer = ({ redux: { colorSchemeNo } }) => {
+const Footer = ({ colorSchemeNo }) => {
     return (
         <FooterElement colorSchemeNo={colorSchemeNo}>
             <Container>&copy; SongBook</Container>
@@ -22,7 +25,9 @@ const Footer = ({ redux: { colorSchemeNo } }) => {
     );
 };
 
-const mapStateToProps = state => {
-    return { redux: state };
-};
+const mapStateToProps = state => ({
+    redux: state,
+    colorSchemeNo: selector(state, "color_scheme_no") || 0
+});
+
 export default connect(mapStateToProps)(Footer);

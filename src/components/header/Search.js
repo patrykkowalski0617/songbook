@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { space, colorScheme, barInput, circleInput } from "../style";
+import { space, colorScheme, barInput, circleInput } from "../../style";
 import { connect } from "react-redux";
 import { keepSearchedValue, lyricsListToggle } from "./../../redux/actions";
+import { formValueSelector } from "redux-form";
+
+const selector = formValueSelector("settings");
 
 const SearchContainer = styled.div`
     margin-right: ${space.s1};
@@ -70,7 +73,8 @@ class Search extends Component {
 
     render() {
         const {
-            redux: { displayLyricsList, colorSchemeNo }
+            colorSchemeNo,
+            redux: { displayLyricsList }
         } = this.props;
 
         return displayLyricsList ? (
@@ -98,14 +102,14 @@ class Search extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return { redux: state };
-};
+const mapStateToProps = state => ({
+    redux: state,
+    colorSchemeNo: selector(state, "color_scheme_no") || 0
+});
+
 const mapDispatchToProps = {
     keepSearchedValue: keepSearchedValue,
     lyricsListToggle: lyricsListToggle
 };
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Search);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

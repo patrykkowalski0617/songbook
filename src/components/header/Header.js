@@ -8,8 +8,11 @@ import {
     container,
     focus,
     linkStyle
-} from "../style";
+} from "../../style";
 import { connect } from "react-redux";
+import { formValueSelector } from "redux-form";
+
+const selector = formValueSelector("settings");
 
 const HeaderElement = styled.header`
     height: ${headerH};
@@ -49,7 +52,7 @@ const LogoLink = styled.a`
     ${linkStyle()}
 `;
 
-const Header = ({ redux: { displayLyricsList, colorSchemeNo } }) => {
+const Header = ({ colorSchemeNo, redux: { displayLyricsList } }) => {
     return (
         <HeaderElement colorSchemeNo={colorSchemeNo}>
             <Container>
@@ -68,7 +71,9 @@ const Header = ({ redux: { displayLyricsList, colorSchemeNo } }) => {
     );
 };
 
-const mapStateToProps = state => {
-    return { redux: state };
-};
+const mapStateToProps = state => ({
+    redux: state,
+    colorSchemeNo: selector(state, "color_scheme_no") || 0
+});
+
 export default connect(mapStateToProps)(Header);

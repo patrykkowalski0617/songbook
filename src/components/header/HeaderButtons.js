@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import { space, circleInput, row, col, pulse, colorScheme } from "../style";
+import { space, circleInput, row, col, pulse, colorScheme } from "../../style";
 import {
     keepSearchedValue,
     lyricsListToggle,
@@ -10,6 +10,9 @@ import {
 } from "./../../redux/actions";
 import { connect } from "react-redux";
 import { TutorialPopUp } from "../global";
+import { formValueSelector } from "redux-form";
+
+const selector = formValueSelector("settings");
 
 const HeaderButtonsElement = styled.div`
     ${row}
@@ -52,12 +55,12 @@ const HeaderButtons = ({
     lyricsListToggle,
     settingsToggle,
     tutorialNextStep,
+    colorSchemeNo,
     redux: {
         counterIsRun,
         displayLyricsList,
         displaySettings,
         lyricsData,
-        colorSchemeNo,
         tutorialIsInactive,
         tutorialStep,
         lyricsIsLastBarMarked,
@@ -168,9 +171,11 @@ const HeaderButtons = ({
     );
 };
 
-const mapStateToProps = state => {
-    return { redux: state };
-};
+const mapStateToProps = state => ({
+    redux: state,
+    colorSchemeNo: selector(state, "color_scheme_no") || 0
+});
+
 const mapDispatchToProps = {
     keepSearchedValue,
     lyricsListToggle,
@@ -178,4 +183,5 @@ const mapDispatchToProps = {
     counterToggle,
     tutorialNextStep
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderButtons);

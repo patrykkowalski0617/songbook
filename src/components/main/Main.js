@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { LyricsList } from "./";
 import { Lyrics } from "./lyrics";
-import { Settings, defaultSettings } from "./settings";
+import { Settings, defaultSettings, getInitialValue } from "./settings";
 import styled from "styled-components";
 import {
     headerH,
@@ -11,7 +11,10 @@ import {
     colorScheme,
     media,
     container
-} from "../style";
+} from "../../style";
+import { formValueSelector } from "redux-form";
+
+const selector = formValueSelector("settings");
 
 const MainElement = styled.main`
     height: calc(100vh - ${headerH} - ${footerH});
@@ -47,24 +50,14 @@ const ContainerElement = styled.div`
 `;
 
 const Main = ({
-    redux: { lyricsData, displayLyricsList, displaySettings, colorSchemeNo }
+    redux: { lyricsData, displayLyricsList, displaySettings },
+    colorSchemeNo
 }) => {
-    const keyForSavedSettings = "saved_settings";
-
-    // get value from local storage. If ther is no saved values, eturn default value
-    const getInitialValue = (key, defaultValue) => {
-        let value = window.localStorage.getItem(keyForSavedSettings);
-        value = value !== null ? JSON.parse(value)[key] : defaultValue;
-        value = value !== undefined ? value : defaultValue;
-        return value;
-    };
-
+    const { metronomSound, startDelay, colorSchemeNO } = defaultSettings;
     const initialValues = {
-        metronom_sound: getInitialValue(
-            "metronom_sound",
-            defaultSettings.metronomSound
-        ),
-        start_delay: getInitialValue("start_delay", defaultSettings.startDelay)
+        metronom_sound: getInitialValue("metronom_sound", metronomSound),
+        start_delay: getInitialValue("start_delay", startDelay),
+        color_scheme_no: getInitialValue("color_scheme_no", colorSchemeNO)
     };
 
     return (
@@ -77,16 +70,15 @@ const Main = ({
                 {!lyricsData && !displayLyricsList ? (
                     <ContainerElement></ContainerElement>
                 ) : null}
-                <Settings
-                    initialValues={initialValues}
-                    keyForSavedSettings={keyForSavedSettings}
-                />
+                <Settings initialValues={initialValues} />
             </Container>
         </MainElement>
     );
 };
 
-const mapStateToProps = state => {
-    return { redux: state };
-};
+const mapStateToProps = state => ({
+    redux: state,
+    colorSchemeNo: selector(state, "color_scheme_no") || 0
+});
+
 export default connect(mapStateToProps)(Main);

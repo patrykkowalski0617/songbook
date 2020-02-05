@@ -8,7 +8,6 @@ import keepSearchedValueReducer from "./keepSearchedValueReducer";
 import counterToggleReducer from "./counterToggleReducer";
 import counterIterationReducer from "./counterIterationReducer";
 import counterSetSongTimingReducer from "./counterSetSongTimingReducer";
-import colorSchemeNoUpdateReducer from "./colorSchemeNoUpdateReducer";
 import tutorialDeactivateReducer from "./tutorialDeactivateReducer";
 import tutorialNextStepReducer from "./tutorialNextStepReducer";
 import lyricsLastBarIsMarkedReducer from "./lyricsLastBarIsMarkedReducer";
@@ -24,7 +23,6 @@ const allReducers = combineReducers({
     counterIsRun: counterToggleReducer,
     counterIterationNumber: counterIterationReducer,
     songTiming: counterSetSongTimingReducer,
-    colorSchemeNo: colorSchemeNoUpdateReducer,
     tutorialIsInactive: tutorialDeactivateReducer,
     tutorialStep: tutorialNextStepReducer,
     lyricsIsLastBarMarked: lyricsLastBarIsMarkedReducer,

@@ -1,7 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import { colorScheme, container, verticalPadding, row, col } from "../../style";
+import {
+    colorScheme,
+    container,
+    verticalPadding,
+    row,
+    col
+} from "../../../style";
 import { connect } from "react-redux";
+import { formValueSelector } from "redux-form";
+
+const selector = formValueSelector("settings");
 
 const Container = styled.div`
     ${container}
@@ -37,7 +46,8 @@ const Description = styled.div`
 `;
 
 const Metronom = ({
-    redux: { songTiming, counterIsRun, counterIterationNumber, colorSchemeNo }
+    redux: { songTiming, counterIsRun, counterIterationNumber },
+    colorSchemeNo
 }) => {
     const colSize = 12 / songTiming;
 
@@ -69,7 +79,9 @@ const Metronom = ({
     );
 };
 
-const mapStateToProps = state => {
-    return { redux: state };
-};
+const mapStateToProps = state => ({
+    redux: state,
+    colorSchemeNo: selector(state, "color_scheme_no") || 0
+});
+
 export default connect(mapStateToProps)(Metronom);

@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { space, row, col, colorScheme, focus, linkStyle } from "../../style";
+import { space, row, col, colorScheme, focus, linkStyle } from "../../../style";
 import { Metronom, LyricsBody } from "./";
 import { connect } from "react-redux";
 import Spotify from "spotify-web-api-js";
+import { formValueSelector } from "redux-form";
+
+const selector = formValueSelector("settings");
 
 const spotifyApi = new Spotify();
 
@@ -66,7 +69,8 @@ class Lyrics extends Component {
 
     render() {
         const {
-            redux: { lyricsData, colorSchemeNo }
+            colorSchemeNo,
+            redux: { lyricsData }
         } = this.props;
 
         return (
@@ -96,7 +100,9 @@ class Lyrics extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return { redux: state };
-};
+const mapStateToProps = state => ({
+    redux: state,
+    colorSchemeNo: selector(state, "color_scheme_no") || 0
+});
+
 export default connect(mapStateToProps)(Lyrics);

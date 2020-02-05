@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { media, lyricsBarH } from "../../style";
+import { media, lyricsBarH } from "../../../style";
 
 const LyricsBarElement = styled.div`
     height: ${lyricsBarH};

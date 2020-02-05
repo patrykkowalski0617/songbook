@@ -59,9 +59,10 @@ class App extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return { redux: state };
-};
+const mapStateToProps = state => ({
+    redux: state
+});
+
 const mapDispatchToProps = {
     tutorialDeactivate,
     logIn

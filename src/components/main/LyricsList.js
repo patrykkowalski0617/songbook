@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { colorScheme, focus } from "../style";
+import { colorScheme, focus } from "../../style";
 import axios from "axios";
 import { connect } from "react-redux";
 import {
@@ -10,6 +10,9 @@ import {
 } from "./../../redux/actions";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import { formValueSelector } from "redux-form";
+
+const selector = formValueSelector("settings");
 
 const Ul = styled.ul`
     padding: 0;
@@ -97,9 +100,14 @@ class LyricsList extends Component {
         };
 
         this.lyricsList = () => {
+            const {
+                colorSchemeNo,
+                redux: { searchedValue, searchResult }
+            } = this.props;
+
             const filteredLyricsList = this.filterLyricsList(
-                this.props.redux.searchedValue,
-                this.reduceLyricsListJson(this.props.redux.searchResult)
+                searchedValue,
+                this.reduceLyricsListJson(searchResult)
             );
 
             if (filteredLyricsList.length) {
@@ -110,7 +118,7 @@ class LyricsList extends Component {
                                 onClick={e => {
                                     this.getLyricsJson(e.target.innerText);
                                 }}
-                                colorSchemeNo={this.props.redux.colorSchemeNo}
+                                colorSchemeNo={colorSchemeNo}
                             >
                                 {item.lyricsName}
                             </LyricsItemButton>
@@ -160,12 +168,15 @@ class LyricsList extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return { redux: state };
-};
+const mapStateToProps = state => ({
+    redux: state,
+    colorSchemeNo: selector(state, "color_scheme_no") || 0
+});
+
 const mapDispatchToProps = {
     lyricsListToggle,
     keepLyricsData,
     keepSearchResult
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(LyricsList);
