@@ -6,7 +6,7 @@ import { Field, reduxForm } from "redux-form";
 import { Switch, Slider, Select } from "./";
 import Grid from "@material-ui/core/Grid";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import { colorScheme } from "../../../style";
+import { colorScheme, space } from "../../../style";
 import { saveValuesLocally } from "./";
 import { withStyles } from "@material-ui/core/styles";
 import { formValueSelector } from "redux-form";
@@ -16,7 +16,7 @@ const selector = formValueSelector("settings");
 const styles = {
     form: {
         maxWidth: "300px",
-        margin: "0 auto"
+        margin: `${space.s7} auto`
     }
 };
 
