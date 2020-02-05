@@ -92,16 +92,14 @@ const HeaderButtons = ({
                     counterToggle(true);
                 } else {
                     alert(
-                        "To koniec tekstu piosenki. Przewiń go, aby zacząć w innym miejscu."
+                        "This is the end of the lyrics. In order to start, scroll to somewhere else."
                     );
                 }
                 tutorialNextStep();
                 localStorage.setItem("tutorialIsInactive", true);
             },
             tutorialMode: !tutorialIsInactive && tutorialStep === 1,
-            tipText: `Rozpocznij zabawę.
-            Metronom pomoże Ci utrzymać właściwe tempo podczas wykonywania utworu. 
-            Po oliczaniu tekst zacznie przewijać się synchronicznie.`
+            tipText: `Start having fun! The metronome will help you keep the right tempo during your performance. Lyrics will start scroll synchronously after countdown.`
         },
         {
             onIcon: "list",
@@ -117,7 +115,7 @@ const HeaderButtons = ({
                 tutorialNextStep();
             },
             tutorialMode: !tutorialIsInactive && tutorialStep === 0,
-            tipText: "Wybierz piosenkę z listy."
+            tipText: "Select a song from the list."
         },
         {
             onIcon: "login",

@@ -89,7 +89,7 @@ class Lyrics extends Component {
                         colorSchemeNo={colorSchemeNo}
                         onClick={() => this.playOnSpotify()}
                     >
-                        Odsłuchaj na Spotify
+                        Listen in Spotify
                         <i className="icon icon-spotify" />
                     </SpotifyIcon>
                 </LyricsHeader>

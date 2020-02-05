@@ -81,8 +81,8 @@ class Search extends Component {
             <SearchContainer>
                 <Input
                     type="search"
-                    placeholder="wyszukaj:
-                    artysta - tytuł"
+                    placeholder="
+                    artist - title"
                     onChange={this.onChangeHandler}
                     onKeyUp={e => {
                         if (e.which === 13) {
