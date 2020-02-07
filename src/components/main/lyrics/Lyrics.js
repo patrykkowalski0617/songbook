@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { space, row, col, colorScheme, focus, linkStyle } from "../../../style";
 import { Metronom, LyricsBody } from "./";
 import { connect } from "react-redux";
+import { counterToggle } from "./../../../redux/actions";
 import Spotify from "spotify-web-api-js";
 import { formValueSelector } from "redux-form";
 
@@ -70,6 +71,7 @@ class Lyrics extends Component {
     render() {
         const {
             colorSchemeNo,
+            counterToggle,
             redux: { lyricsData }
         } = this.props;
 
@@ -87,7 +89,10 @@ class Lyrics extends Component {
                     </LyricsData>
                     <SpotifyIcon
                         colorSchemeNo={colorSchemeNo}
-                        onClick={() => this.playOnSpotify()}
+                        onClick={() => {
+                            this.playOnSpotify();
+                            counterToggle(true);
+                        }}
                     >
                         Listen in Spotify
                         <i className="icon icon-spotify" />
@@ -105,4 +110,8 @@ const mapStateToProps = state => ({
     colorSchemeNo: selector(state, "color_scheme_no") || 0
 });
 
-export default connect(mapStateToProps)(Lyrics);
+const mapDispatchToProps = {
+    counterToggle
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Lyrics);

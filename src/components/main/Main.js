@@ -43,12 +43,6 @@ const Container = styled.div`
     ${container};
 `;
 
-const ContainerElement = styled.div`
-    font-size: ${space.s5};
-    text-align: center;
-    padding-top: ${space.s7};
-`;
-
 const Main = ({
     redux: { lyricsData, displayLyricsList, displaySettings },
     colorSchemeNo
@@ -66,9 +60,6 @@ const Main = ({
                 <LyricsList />
                 {lyricsData && !displayLyricsList && !displaySettings ? (
                     <Lyrics />
-                ) : null}
-                {!lyricsData && !displayLyricsList ? (
-                    <ContainerElement></ContainerElement>
                 ) : null}
                 <Settings initialValues={initialValues} />
             </Container>
