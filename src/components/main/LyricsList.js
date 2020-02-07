@@ -126,7 +126,7 @@ class LyricsList extends Component {
                     );
                 });
             } else {
-                return "Jeszcze nie znam tej pioseki :(";
+                return "I don't know this song yet :(";
             }
         };
 
@@ -145,7 +145,7 @@ class LyricsList extends Component {
                 .catch(err => {
                     if (err.response.status) {
                         alert(
-                            'Aplikacja jest w wersji beta i obsługuje tylko "Kings of Leon - Sex On Fire". Należy wybrać ten utwór.'
+                            'This is beta version and you can choose only "Kings of Leon - Sex On Fire".'
                         );
                     } else {
                         alert("Wystąpił nieoczekiwany błąd.");

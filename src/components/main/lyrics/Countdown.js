@@ -64,7 +64,7 @@ const Coundown = ({
 const mapStateToProps = state => ({
     redux: state,
     startDelay: selector(state, "start_delay"),
-    colorSchemeNo: selector(state, "color_scheme_no")
+    colorSchemeNo: selector(state, "color_scheme_no") || 0
 });
 
 export default connect(mapStateToProps)(Coundown);

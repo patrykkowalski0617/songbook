@@ -4,14 +4,7 @@ import { LyricsList } from "./";
 import { Lyrics } from "./lyrics";
 import { Settings, defaultSettings, getInitialValue } from "./settings";
 import styled from "styled-components";
-import {
-    headerH,
-    footerH,
-    space,
-    colorScheme,
-    media,
-    container
-} from "../../style";
+import { headerH, footerH, colorScheme, media, container } from "../../style";
 import { formValueSelector } from "redux-form";
 
 const selector = formValueSelector("settings");
