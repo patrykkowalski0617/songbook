@@ -47,7 +47,7 @@ class LyricsList extends Component {
                     const data = res.data;
                     keepSearchResult(data);
                 })
-                .catch(() => alert("Nie można załadować listy piosenek"));
+                .catch(() => alert("Cannot load lyrics list"));
         };
 
         this.getLyricsListJson();
@@ -148,8 +148,8 @@ class LyricsList extends Component {
                             'This is beta version and you can choose only "Kings of Leon - Sex On Fire".'
                         );
                     } else {
-                        alert("Wystąpił nieoczekiwany błąd.");
-                        console.log(err, err.response);
+                        alert("Unexpected error");
+                        console.error(err, err.response);
                     }
                 });
         };
